@@ -1,0 +1,17 @@
+{
+  "name": "CFA Level I Study Ledger",
+  "short_name": "CFA Ledger",
+  "description": "Study tool for CFA Level I: chapter overviews, formulas, decision guides, and quizzes with remediation routing.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EEEAE0",
+  "theme_color": "#1F2A44",
+  "orientation": "any",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
