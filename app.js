@@ -138,9 +138,187 @@ ${EXHIBIT_DEFS}
 <text x="418" y="310" font-size="12" fill="#A6432C">Cash outflow (paid)</text>
 </svg>`;
 
-/* ============================================================
-   CONTENT DATA
-   ============================================================ */
+const EXHIBIT_WORKED_FV = `
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked single sum future value timeline</title>
+<desc>Timeline showing $5,000 invested today at time 0 growing to $8,954 at time 10, at 6 percent annual interest.</desc>
+${EXHIBIT_DEFS}
+<line x1="100" y1="150" x2="600" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="150" y1="146" x2="150" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="550" y1="146" x2="550" y2="154" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 0</text>
+<text x="350" y="172" text-anchor="middle" font-size="12" fill="#4B5468">10 years @ 6%</text>
+<text x="550" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 10</text>
+<text x="350" y="145" text-anchor="middle" font-size="12" fill="#4B5468">&#183; &#183; &#183;</text>
+<line x1="150" y1="146" x2="150" y2="205" stroke="#A6432C" stroke-width="2" marker-end="url(#arrow-brick)"/>
+<text x="150" y="222" text-anchor="middle" font-size="12" fill="#A6432C">&#8722;$5,000</text>
+<line x1="550" y1="154" x2="550" y2="95" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="550" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#3F7A5C">+$8,954</text>
+</svg>`;
+
+const EXHIBIT_WORKED_PV = `
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked single sum present value timeline</title>
+<desc>Timeline showing a future amount of $10,000 at time 5 valued back to approximately $7,130 at time 0, at 7 percent.</desc>
+${EXHIBIT_DEFS}
+<line x1="100" y1="150" x2="600" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<circle cx="150" cy="150" r="4" fill="#232C42"/>
+<line x1="550" y1="146" x2="550" y2="154" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 0 &#8212; value here</text>
+<text x="150" y="192" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">PV &#8776; $7,130</text>
+<text x="350" y="172" text-anchor="middle" font-size="12" fill="#4B5468">@ 7% discount rate</text>
+<text x="350" y="145" text-anchor="middle" font-size="12" fill="#4B5468">&#183; &#183; &#183;</text>
+<text x="550" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 5</text>
+<line x1="550" y1="154" x2="550" y2="95" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="550" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#3F7A5C">+$10,000</text>
+</svg>`;
+
+const EXHIBIT_WORKED_EAR = `
+<svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked effective annual rate timeline</title>
+<desc>Timeline over one year with four quarterly compounding steps, showing one dollar growing to 1.0824 dollars by year end.</desc>
+${EXHIBIT_DEFS}
+<line x1="100" y1="150" x2="620" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="150" y1="146" x2="150" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="262" y1="146" x2="262" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="374" y1="146" x2="374" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="486" y1="146" x2="486" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="598" y1="146" x2="598" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="262" y1="146" x2="262" y2="120" stroke="#B67A22" stroke-width="2" marker-end="url(#arrow-amber)"/>
+<line x1="374" y1="146" x2="374" y2="120" stroke="#B67A22" stroke-width="2" marker-end="url(#arrow-amber)"/>
+<line x1="486" y1="146" x2="486" y2="120" stroke="#B67A22" stroke-width="2" marker-end="url(#arrow-amber)"/>
+<line x1="598" y1="146" x2="598" y2="120" stroke="#B67A22" stroke-width="2" marker-end="url(#arrow-amber)"/>
+<text x="150" y="172" text-anchor="middle" font-size="12" fill="#4B5468">Start</text>
+<text x="150" y="192" text-anchor="middle" font-size="12" fill="#4B5468">$1.00</text>
+<text x="598" y="172" text-anchor="middle" font-size="12" fill="#4B5468">1 year</text>
+<text x="598" y="192" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">$1.0824 (EAR)</text>
+<text x="374" y="205" text-anchor="middle" font-size="12" fill="#4B5468">4 compounding periods (quarterly)</text>
+</svg>`;
+
+const EXHIBIT_WORKED_ANNUITY_FV = `
+<svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked ordinary annuity future value timeline</title>
+<desc>Timeline showing eight equal end-of-year payments of $2,000, compressed in the middle, accumulating to a future value of approximately $19,098.</desc>
+${EXHIBIT_DEFS}
+<line x1="100" y1="150" x2="620" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="180" y1="146" x2="180" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="260" y1="146" x2="260" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="340" y1="146" x2="340" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="560" y1="146" x2="560" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="180" y1="146" x2="180" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="260" y1="146" x2="260" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="340" y1="146" x2="340" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="560" y1="146" x2="560" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="180" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=1</text>
+<text x="260" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=2</text>
+<text x="340" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=3</text>
+<text x="430" y="145" text-anchor="middle" font-size="12" fill="#4B5468">&#183; &#183; &#183;</text>
+<text x="560" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=8</text>
+<text x="560" y="85" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">FV &#8776; $19,098</text>
+<text x="350" y="205" text-anchor="middle" font-size="12" fill="#4B5468">$2,000 at the end of each year, 5% annually</text>
+</svg>`;
+
+const EXHIBIT_WORKED_ANNUITY_PV = `
+<svg viewBox="0 0 680 270" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked ordinary annuity versus annuity due present value timelines</title>
+<desc>Two stacked timelines comparing a six-period ordinary annuity worth about $7,863 today against the same payments as an annuity due, worth about $8,177 today.</desc>
+${EXHIBIT_DEFS}
+<text x="340" y="50" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">Ordinary: PV &#8776; $7,863</text>
+<line x1="100" y1="90" x2="620" y2="90" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="150" y1="86" x2="150" y2="94" stroke="#232C42" stroke-width="1"/>
+<line x1="240" y1="86" x2="240" y2="94" stroke="#232C42" stroke-width="1"/>
+<line x1="330" y1="86" x2="330" y2="94" stroke="#232C42" stroke-width="1"/>
+<line x1="420" y1="86" x2="420" y2="94" stroke="#232C42" stroke-width="1"/>
+<line x1="510" y1="86" x2="510" y2="94" stroke="#232C42" stroke-width="1"/>
+<line x1="600" y1="86" x2="600" y2="94" stroke="#232C42" stroke-width="1"/>
+<line x1="150" y1="86" x2="150" y2="55" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="240" y1="86" x2="240" y2="55" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="330" y1="86" x2="330" y2="55" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="420" y1="86" x2="420" y2="55" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="510" y1="86" x2="510" y2="55" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="600" y1="86" x2="600" y2="55" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="150" y="110" text-anchor="middle" font-size="11" fill="#4B5468">t=1</text>
+<text x="240" y="110" text-anchor="middle" font-size="11" fill="#4B5468">t=2</text>
+<text x="330" y="110" text-anchor="middle" font-size="11" fill="#4B5468">t=3</text>
+<text x="420" y="110" text-anchor="middle" font-size="11" fill="#4B5468">t=4</text>
+<text x="510" y="110" text-anchor="middle" font-size="11" fill="#4B5468">t=5</text>
+<text x="600" y="110" text-anchor="middle" font-size="11" fill="#4B5468">t=6</text>
+
+<text x="340" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">Annuity due: PV &#8776; $8,177</text>
+<line x1="100" y1="190" x2="620" y2="190" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="150" y1="186" x2="150" y2="194" stroke="#232C42" stroke-width="1"/>
+<line x1="240" y1="186" x2="240" y2="194" stroke="#232C42" stroke-width="1"/>
+<line x1="330" y1="186" x2="330" y2="194" stroke="#232C42" stroke-width="1"/>
+<line x1="420" y1="186" x2="420" y2="194" stroke="#232C42" stroke-width="1"/>
+<line x1="510" y1="186" x2="510" y2="194" stroke="#232C42" stroke-width="1"/>
+<line x1="600" y1="186" x2="600" y2="194" stroke="#232C42" stroke-width="1"/>
+<line x1="150" y1="186" x2="150" y2="155" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="240" y1="186" x2="240" y2="155" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="330" y1="186" x2="330" y2="155" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="420" y1="186" x2="420" y2="155" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="510" y1="186" x2="510" y2="155" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="150" y="210" text-anchor="middle" font-size="11" fill="#4B5468">t=0</text>
+<text x="240" y="210" text-anchor="middle" font-size="11" fill="#4B5468">t=1</text>
+<text x="330" y="210" text-anchor="middle" font-size="11" fill="#4B5468">t=2</text>
+<text x="420" y="210" text-anchor="middle" font-size="11" fill="#4B5468">t=3</text>
+<text x="510" y="210" text-anchor="middle" font-size="11" fill="#4B5468">t=4</text>
+<text x="600" y="210" text-anchor="middle" font-size="11" fill="#4B5468">t=5</text>
+<text x="340" y="245" text-anchor="middle" font-size="12" fill="#4B5468">Same $1,500/year, 4% &#8212; due version pays one period earlier</text>
+</svg>`;
+
+const EXHIBIT_WORKED_PERPETUITY_LEVEL = `
+<svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked level perpetuity timeline</title>
+<desc>A row of equal payment arrows fading into the distance, captioned six dollars per year forever at nine percent equals a present value of about $66.67.</desc>
+${EXHIBIT_DEFS}
+<text x="340" y="45" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">Level: $6/year forever, 9% rate &#8594; PV &#8776; $66.67</text>
+<line x1="90" y1="100" x2="520" y2="100" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="200" y1="96" x2="200" y2="60" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="270" y1="96" x2="270" y2="60" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="340" y1="96" x2="340" y2="60" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="410" y1="96" x2="410" y2="60" stroke="#3F7A5C" stroke-width="2" opacity="0.5"/>
+<line x1="460" y1="96" x2="460" y2="60" stroke="#3F7A5C" stroke-width="2" opacity="0.25"/>
+<text x="500" y="120" text-anchor="middle" font-size="11" fill="#4B5468">forever &#8594;</text>
+</svg>`;
+
+const EXHIBIT_WORKED_PERPETUITY_GROWING = `
+<svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked growing perpetuity timeline</title>
+<desc>A row of payment arrows fading into the distance, captioned six dollars growing three percent per year forever at nine percent equals a present value of $100.</desc>
+${EXHIBIT_DEFS}
+<text x="340" y="45" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">Growing 3%/year forever, 9% rate &#8594; PV = $100</text>
+<line x1="90" y1="100" x2="520" y2="100" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="200" y1="96" x2="200" y2="60" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="270" y1="96" x2="270" y2="53" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="340" y1="96" x2="340" y2="46" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="410" y1="96" x2="410" y2="40" stroke="#3F7A5C" stroke-width="2" opacity="0.5"/>
+<line x1="460" y1="96" x2="460" y2="34" stroke="#3F7A5C" stroke-width="2" opacity="0.25"/>
+<text x="500" y="120" text-anchor="middle" font-size="11" fill="#4B5468">forever, growing &#8594;</text>
+</svg>`;
+
+const EXHIBIT_WORKED_UNEVEN = `
+<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked uneven cash flow timeline</title>
+<desc>Timeline showing three different cash inflows of $2,000, $3,500, and $1,000 in years one through three, discounted back to a present value of about $5,842 at time 0.</desc>
+${EXHIBIT_DEFS}
+<line x1="100" y1="150" x2="600" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<circle cx="140" cy="150" r="4" fill="#232C42"/>
+<line x1="280" y1="146" x2="280" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="420" y1="146" x2="420" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="560" y1="146" x2="560" y2="154" stroke="#232C42" stroke-width="1"/>
+<text x="140" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 0</text>
+<text x="140" y="192" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">PV &#8776; $5,842</text>
+<line x1="280" y1="146" x2="280" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="280" y="110" text-anchor="middle" font-size="12" fill="#3F7A5C">+$2,000</text>
+<text x="280" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 1</text>
+<line x1="420" y1="146" x2="420" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="420" y="110" text-anchor="middle" font-size="12" fill="#3F7A5C">+$3,500</text>
+<text x="420" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 2</text>
+<line x1="560" y1="146" x2="560" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="560" y="110" text-anchor="middle" font-size="12" fill="#3F7A5C">+$1,000</text>
+<text x="560" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 3</text>
+<text x="350" y="215" text-anchor="middle" font-size="12" fill="#4B5468">Each cash flow discounted at 6% and summed</text>
+</svg>`;
 const CHAPTERS = [
   {
     id: "calc",
@@ -256,8 +434,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 2, svg: EXHIBIT_COMPOUNDING }],
         formulas: [
-          { id: "tvm-2-ear", name: "Effective annual rate (EAR)", expression: "EAR = (1 + rstated/m)^m \u2212 1", when: "Use whenever you need a true annual return to compare two investments that compound at different frequencies." },
-          { id: "tvm-2-ear-cont", name: "EAR with continuous compounding — advanced", expression: "EAR = e^(rstated) \u2212 1", when: "Rare on Level 1; appears when a problem explicitly says \"continuously compounded.\"" },
+          { id: "tvm-2-ear", name: "Effective annual rate (EAR)", expression: "EAR = (1 + rstated/m)^m \u2212 1", when: "Use whenever you need a true annual return to compare two investments that compound at different frequencies.", worked: "A bank quotes 8% annual interest, compounded quarterly (m = 4). EAR = (1 + 0.08/4)^4 \u2212 1 = (1.02)^4 \u2212 1 \u2248 8.24%. Notice this is higher than the quoted 8%, because quarterly compounding lets you earn interest on interest four times a year.", workedExhibit: EXHIBIT_WORKED_EAR },
+          { id: "tvm-2-ear-cont", name: "EAR with continuous compounding — advanced", expression: "EAR = e^(rstated) \u2212 1", when: "Rare on Level 1; appears when a problem explicitly says \"continuously compounded.\"", worked: "The same 8% rate compounded continuously: EAR = e^0.08 \u2212 1 \u2248 8.33% \u2014 slightly higher still, since continuous compounding is the limiting case of ever-more-frequent compounding." },
         ],
       },
       {
@@ -268,8 +446,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_SINGLE_SUM }],
         formulas: [
-          { id: "tvm-3-fv", name: "Future value of a single sum", expression: "FV = PV \u00D7 (1 + r)^n", when: "Wording cue: \"invest/deposit a lump sum today... worth in the future.\"" },
-          { id: "tvm-3-pv", name: "Present value of a single sum", expression: "PV = FV \u00F7 (1 + r)^n", when: "Wording cue: \"receive a single amount in the future... worth today.\"" },
+          { id: "tvm-3-fv", name: "Future value of a single sum", expression: "FV = PV \u00D7 (1 + r)^n", when: "Wording cue: \"invest/deposit a lump sum today... worth in the future.\"", worked: "You deposit $5,000 today at 6% annual interest for 10 years. FV = 5,000 \u00D7 (1.06)^10 \u2248 5,000 \u00D7 1.7908 \u2248 $8,954.", workedExhibit: EXHIBIT_WORKED_FV },
+          { id: "tvm-3-pv", name: "Present value of a single sum", expression: "PV = FV \u00F7 (1 + r)^n", when: "Wording cue: \"receive a single amount in the future... worth today.\"", worked: "You'll receive $10,000 in 5 years, at a 7% discount rate. PV = 10,000 \u00F7 (1.07)^5 \u2248 10,000 \u00F7 1.4026 \u2248 $7,130.", workedExhibit: EXHIBIT_WORKED_PV },
         ],
       },
       {
@@ -283,9 +461,9 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_ANNUITY }],
         formulas: [
-          { id: "tvm-4-fv-ord", name: "FV of an ordinary annuity", expression: "FV = PMT \u00D7 [((1+r)^n \u2212 1) / r]", when: "Equal end-of-period payments; solving for a future accumulated value." },
-          { id: "tvm-4-pv-ord", name: "PV of an ordinary annuity", expression: "PV = PMT \u00D7 [1 \u2212 (1+r)^\u2212n] / r", when: "Equal end-of-period payments; solving for today's value of the stream." },
-          { id: "tvm-4-due", name: "Annuity due adjustment — advanced", expression: "FVdue = FVordinary \u00D7 (1+r)\nPVdue = PVordinary \u00D7 (1+r)", when: "Same payment stream, but each payment occurs one period earlier than the ordinary case." },
+          { id: "tvm-4-fv-ord", name: "FV of an ordinary annuity", expression: "FV = PMT \u00D7 [((1+r)^n \u2212 1) / r]", when: "Equal end-of-period payments; solving for a future accumulated value.", worked: "You deposit $2,000 at the end of every year for 8 years, earning 5% annually. FV = 2,000 \u00D7 [((1.05)^8 \u2212 1) / 0.05] \u2248 2,000 \u00D7 9.549 \u2248 $19,098.", workedExhibit: EXHIBIT_WORKED_ANNUITY_FV },
+          { id: "tvm-4-pv-ord", name: "PV of an ordinary annuity", expression: "PV = PMT \u00D7 [1 \u2212 (1+r)^\u2212n] / r", when: "Equal end-of-period payments; solving for today's value of the stream.", worked: "A stream pays $1,500 at the end of each year for 6 years, at a 4% discount rate. PV = 1,500 \u00D7 [1 \u2212 (1.04)^\u22126] / 0.04 \u2248 1,500 \u00D7 5.242 \u2248 $7,863." },
+          { id: "tvm-4-due", name: "Annuity due adjustment — advanced", expression: "FVdue = FVordinary \u00D7 (1+r)\nPVdue = PVordinary \u00D7 (1+r)", when: "Same payment stream, but each payment occurs one period earlier than the ordinary case.", worked: "Take that same $1,500-per-year, 6-year, 4% stream, now paid at the beginning of each period. PVdue = 7,863 \u00D7 1.04 \u2248 $8,177 \u2014 about $314 more, just from receiving each payment one period sooner.", workedExhibit: EXHIBIT_WORKED_ANNUITY_PV },
         ],
       },
       {
@@ -299,8 +477,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_PERPETUITY }],
         formulas: [
-          { id: "tvm-5-perp", name: "PV of a level perpetuity", expression: "PV = PMT / r", when: "Wording cue: \"forever,\" \"perpetual,\" \"in perpetuity,\" level payment." },
-          { id: "tvm-5-gperp", name: "PV of a growing perpetuity — advanced", expression: "PV = PMT1 / (r \u2212 g), requires r > g", when: "Same as above, but the payment grows at a constant rate each period." },
+          { id: "tvm-5-perp", name: "PV of a level perpetuity", expression: "PV = PMT / r", when: "Wording cue: \"forever,\" \"perpetual,\" \"in perpetuity,\" level payment.", worked: "A preferred stock pays a level $6 dividend per year forever, starting one year from now, at a 9% discount rate. PV = 6 / 0.09 \u2248 $66.67.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_LEVEL },
+          { id: "tvm-5-gperp", name: "PV of a growing perpetuity — advanced", expression: "PV = PMT1 / (r \u2212 g), requires r > g", when: "Same as above, but the payment grows at a constant rate each period.", worked: "Same stock, but the dividend grows 3% every year. PV = 6 / (0.09 \u2212 0.03) = 6 / 0.06 = $100 \u2014 notably higher, since a growing payment stream is worth more than a level one at the same starting amount.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_GROWING },
         ],
       },
       {
@@ -311,7 +489,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_UNEVEN }],
         formulas: [
-          { id: "tvm-6-uneven", name: "PV of an uneven cash flow series — advanced", expression: "PV = \u03A3 [ CFt / (1+r)^t ] for t = 1 to n", when: "Wording cue: a list of different cash flow amounts by year, rather than one repeated payment." },
+          { id: "tvm-6-uneven", name: "PV of an uneven cash flow series — advanced", expression: "PV = \u03A3 [ CFt / (1+r)^t ] for t = 1 to n", when: "Wording cue: a list of different cash flow amounts by year, rather than one repeated payment.", worked: "A project returns $2,000 in year 1, $3,500 in year 2, and $1,000 in year 3, at a 6% discount rate. PV = 2,000/(1.06)^1 + 3,500/(1.06)^2 + 1,000/(1.06)^3 \u2248 1,887 + 3,115 + 840 \u2248 $5,842.", workedExhibit: EXHIBIT_WORKED_UNEVEN },
         ],
       },
       {
@@ -545,7 +723,9 @@ function renderReading() {
           <div class="led-name">${f.name}</div>
           <div class="led-expr">${f.expression}</div>
           <div class="led-when">${f.when}</div>
-        </div>`;
+          ${f.worked ? `<div class="led-worked"><strong>Worked example:</strong> ${f.worked}</div>` : ""}
+        </div>
+        ${f.workedExhibit ? `<div class="exhibit">${f.workedExhibit}</div>` : ""}`;
     });
   }
 
