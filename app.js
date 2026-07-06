@@ -405,6 +405,45 @@ const EXHIBIT_WORKED_DIVERSIFICATION = `
 <text x="238" y="164" font-size="11" fill="#B67A22">Asset B</text>
 </svg>`;
 
+const EXHIBIT_BOND_PRICE_MAP = `
+<svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Bond price relative to face value</title>
+<desc>A horizontal scale showing three bond price outcomes relative to a $1,000 face value: a discount bond priced below face value when its coupon rate is below the market yield, a par bond priced at face value when the coupon rate equals the yield, and a premium bond priced above face value when the coupon rate exceeds the yield.</desc>
+<line x1="80" y1="130" x2="600" y2="130" stroke="#CFC7AE" stroke-width="1"/>
+<circle cx="180" cy="130" r="4" fill="#A6432C"/>
+<circle cx="340" cy="130" r="4" fill="#232C42"/>
+<circle cx="500" cy="130" r="4" fill="#3F7A5C"/>
+<text x="180" y="105" text-anchor="middle" font-size="13" font-weight="600" fill="#A6432C">$948</text>
+<text x="340" y="105" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">$1,000</text>
+<text x="500" y="105" text-anchor="middle" font-size="13" font-weight="600" fill="#3F7A5C">$1,060</text>
+<text x="180" y="155" text-anchor="middle" font-size="12" font-weight="600" fill="#A6432C">Discount</text>
+<text x="180" y="172" text-anchor="middle" font-size="11" fill="#4B5468">coupon &lt; yield</text>
+<text x="340" y="155" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Par</text>
+<text x="340" y="172" text-anchor="middle" font-size="11" fill="#4B5468">coupon = yield</text>
+<text x="500" y="155" text-anchor="middle" font-size="12" font-weight="600" fill="#3F7A5C">Premium</text>
+<text x="500" y="172" text-anchor="middle" font-size="11" fill="#4B5468">coupon &gt; yield</text>
+</svg>`;
+
+const EXHIBIT_YIELD_CURVE_SHAPES = `
+<svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Yield curve shapes</title>
+<desc>Three small charts showing yield versus maturity: a normal upward-sloping curve, a flat curve, and an inverted downward-sloping curve.</desc>
+<text x="130" y="30" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Normal</text>
+<line x1="50" y1="130" x2="210" y2="130" stroke="#CFC7AE" stroke-width="1"/>
+<polyline points="50,120 130,90 210,60" fill="none" stroke="#3F7A5C" stroke-width="2"/>
+<text x="130" y="150" text-anchor="middle" font-size="10" fill="#4B5468">Most common shape</text>
+
+<text x="340" y="30" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Flat</text>
+<line x1="260" y1="130" x2="420" y2="130" stroke="#CFC7AE" stroke-width="1"/>
+<polyline points="260,90 340,90 420,90" fill="none" stroke="#B67A22" stroke-width="2"/>
+<text x="340" y="150" text-anchor="middle" font-size="10" fill="#4B5468">Transition / uncertainty</text>
+
+<text x="550" y="30" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Inverted</text>
+<line x1="470" y1="130" x2="630" y2="130" stroke="#CFC7AE" stroke-width="1"/>
+<polyline points="470,60 550,90 630,120" fill="none" stroke="#A6432C" stroke-width="2"/>
+<text x="550" y="150" text-anchor="middle" font-size="10" fill="#4B5468">Rare, often watched closely</text>
+</svg>`;
+
 const CHAPTERS = [
   {
     id: "calc",
@@ -533,7 +572,7 @@ const CHAPTERS = [
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_SINGLE_SUM }],
         formulas: [
           { id: "tvm-3-fv", name: "Future value of a single sum", expression: "FV = PV \u00D7 (1 + r)^n", when: "Wording cue: \"invest/deposit a lump sum today... worth in the future.\"", worked: "You deposit $5,000 today at 6% annual interest for 10 years. FV = 5,000 \u00D7 (1.06)^10 \u2248 5,000 \u00D7 1.7908 \u2248 $8,954.", workedExhibit: EXHIBIT_WORKED_FV },
-          { id: "tvm-3-pv", name: "Present value of a single sum", expression: "PV = FV \u00F7 (1 + r)^n", when: "Wording cue: \"receive a single amount in the future... worth today.\"", worked: "You'll receive $10,000 in 5 years, at a 7% discount rate. PV = 10,000 \u00F7 (1.07)^5 \u2248 10,000 \u00F7 1.4026 \u2248 $7,130.", workedExhibit: EXHIBIT_WORKED_PV },
+          { id: "tvm-3-pv", name: "Present value of a single sum", expression: "PV = <span class=\"frac\"><span class=\"num\">FV</span><span class=\"den\">(1 + r)^n</span></span>", when: "Wording cue: \"receive a single amount in the future... worth today.\"", worked: "You'll receive $10,000 in 5 years, at a 7% discount rate. PV = 10,000 \u00F7 (1.07)^5 \u2248 10,000 \u00F7 1.4026 \u2248 $7,130.", workedExhibit: EXHIBIT_WORKED_PV },
         ],
       },
       {
@@ -547,8 +586,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_ANNUITY }],
         formulas: [
-          { id: "tvm-4-fv-ord", name: "FV of an ordinary annuity", expression: "FV = PMT \u00D7 [((1+r)^n \u2212 1) / r]", when: "Equal end-of-period payments; solving for a future accumulated value.", worked: "You deposit $2,000 at the end of every year for 8 years, earning 5% annually. FV = 2,000 \u00D7 [((1.05)^8 \u2212 1) / 0.05] \u2248 2,000 \u00D7 9.549 \u2248 $19,098.", workedExhibit: EXHIBIT_WORKED_ANNUITY_FV },
-          { id: "tvm-4-pv-ord", name: "PV of an ordinary annuity", expression: "PV = PMT \u00D7 [1 \u2212 (1+r)^\u2212n] / r", when: "Equal end-of-period payments; solving for today's value of the stream.", worked: "A stream pays $1,500 at the end of each year for 6 years, at a 4% discount rate. PV = 1,500 \u00D7 [1 \u2212 (1.04)^\u22126] / 0.04 \u2248 1,500 \u00D7 5.242 \u2248 $7,863." },
+          { id: "tvm-4-fv-ord", name: "FV of an ordinary annuity", expression: "FV = PMT \u00D7 <span class=\"frac\"><span class=\"num\">(1+r)^n \u2212 1</span><span class=\"den\">r</span></span>", when: "Equal end-of-period payments; solving for a future accumulated value.", worked: "You deposit $2,000 at the end of every year for 8 years, earning 5% annually. FV = 2,000 \u00D7 [((1.05)^8 \u2212 1) / 0.05] \u2248 2,000 \u00D7 9.549 \u2248 $19,098.", workedExhibit: EXHIBIT_WORKED_ANNUITY_FV },
+          { id: "tvm-4-pv-ord", name: "PV of an ordinary annuity", expression: "PV = PMT \u00D7 <span class=\"frac\"><span class=\"num\">1 \u2212 (1+r)^\u2212n</span><span class=\"den\">r</span></span>", when: "Equal end-of-period payments; solving for today's value of the stream.", worked: "A stream pays $1,500 at the end of each year for 6 years, at a 4% discount rate. PV = 1,500 \u00D7 [1 \u2212 (1.04)^\u22126] / 0.04 \u2248 1,500 \u00D7 5.242 \u2248 $7,863." },
           { id: "tvm-4-due", name: "Annuity due adjustment — advanced", expression: "FVdue = FVordinary \u00D7 (1+r)\nPVdue = PVordinary \u00D7 (1+r)", when: "Same payment stream, but each payment occurs one period earlier than the ordinary case.", worked: "Take that same $1,500-per-year, 6-year, 4% stream, now paid at the beginning of each period. PVdue = 7,863 \u00D7 1.04 \u2248 $8,177 \u2014 about $314 more, just from receiving each payment one period sooner.", workedExhibit: EXHIBIT_WORKED_ANNUITY_PV },
         ],
       },
@@ -563,8 +602,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_PERPETUITY }],
         formulas: [
-          { id: "tvm-5-perp", name: "PV of a level perpetuity", expression: "PV = PMT / r", when: "Wording cue: \"forever,\" \"perpetual,\" \"in perpetuity,\" level payment.", worked: "A preferred stock pays a level $6 dividend per year forever, starting one year from now, at a 9% discount rate. PV = 6 / 0.09 \u2248 $66.67.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_LEVEL },
-          { id: "tvm-5-gperp", name: "PV of a growing perpetuity — advanced", expression: "PV = PMT1 / (r \u2212 g), requires r > g", when: "Same as above, but the payment grows at a constant rate each period.", worked: "Same stock, but the dividend grows 3% every year. PV = 6 / (0.09 \u2212 0.03) = 6 / 0.06 = $100 \u2014 notably higher, since a growing payment stream is worth more than a level one at the same starting amount.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_GROWING },
+          { id: "tvm-5-perp", name: "PV of a level perpetuity", expression: "PV = <span class=\"frac\"><span class=\"num\">PMT</span><span class=\"den\">r</span></span>", when: "Wording cue: \"forever,\" \"perpetual,\" \"in perpetuity,\" level payment.", worked: "A preferred stock pays a level $6 dividend per year forever, starting one year from now, at a 9% discount rate. PV = 6 / 0.09 \u2248 $66.67.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_LEVEL },
+          { id: "tvm-5-gperp", name: "PV of a growing perpetuity — advanced", expression: "PV = <span class=\"frac\"><span class=\"num\">PMT1</span><span class=\"den\">r \u2212 g</span></span>, requires r > g", when: "Same as above, but the payment grows at a constant rate each period.", worked: "Same stock, but the dividend grows 3% every year. PV = 6 / (0.09 \u2212 0.03) = 6 / 0.06 = $100 \u2014 notably higher, since a growing payment stream is worth more than a level one at the same starting amount.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_GROWING },
         ],
       },
       {
@@ -575,7 +614,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_UNEVEN }],
         formulas: [
-          { id: "tvm-6-uneven", name: "PV of an uneven cash flow series — advanced", expression: "PV = \u03A3 [ CFt / (1+r)^t ] for t = 1 to n", when: "Wording cue: a list of different cash flow amounts by year, rather than one repeated payment.", worked: "A project returns $2,000 in year 1, $3,500 in year 2, and $1,000 in year 3, at a 6% discount rate. PV = 2,000/(1.06)^1 + 3,500/(1.06)^2 + 1,000/(1.06)^3 \u2248 1,887 + 3,115 + 840 \u2248 $5,842.", workedExhibit: EXHIBIT_WORKED_UNEVEN },
+          { id: "tvm-6-uneven", name: "PV of an uneven cash flow series — advanced", expression: "PV = \u03A3 <span class=\"frac\"><span class=\"num\">CFt</span><span class=\"den\">(1+r)^t</span></span> for t = 1 to n", when: "Wording cue: a list of different cash flow amounts by year, rather than one repeated payment.", worked: "A project returns $2,000 in year 1, $3,500 in year 2, and $1,000 in year 3, at a 6% discount rate. PV = 2,000/(1.06)^1 + 3,500/(1.06)^2 + 1,000/(1.06)^3 \u2248 1,887 + 3,115 + 840 \u2248 $5,842.", workedExhibit: EXHIBIT_WORKED_UNEVEN },
         ],
       },
       {
@@ -650,7 +689,7 @@ const CHAPTERS = [
         ],
         formulas: [
           { id: "probstat-3-var", name: "Sample variance and standard deviation", expression: "s\u00B2 = \u03A3(xi \u2212 mean)\u00B2 / (n \u2212 1)\ns = \u221As\u00B2", when: "Measuring how spread out a data set is.", worked: "A stock's returns over 4 years are 10%, 14%, 6%, 10%. Mean = 10%. Squared deviations: 0, 16, 16, 0. Variance = (0+16+16+0)/(4\u22121) \u2248 10.67. Standard deviation = \u221A10.67 \u2248 3.27%." },
-          { id: "probstat-3-corr", name: "Correlation", expression: "Correlation(X,Y) = Covariance(X,Y) / (StdDev(X) \u00D7 StdDev(Y))", when: "Measuring how strongly, and in what direction, two variables move together." },
+          { id: "probstat-3-corr", name: "Correlation", expression: "Correlation(X,Y) = <span class=\"frac\"><span class=\"num\">Covariance(X,Y)</span><span class=\"den\">StdDev(X) \u00D7 StdDev(Y)</span></span>", when: "Measuring how strongly, and in what direction, two variables move together." },
         ],
       },
       {
@@ -731,7 +770,7 @@ const CHAPTERS = [
           `Elasticity measures how sensitive quantity is to a change in price. Demand is elastic if a small price increase causes a large drop in quantity purchased. Demand is inelastic if quantity barely changes even with a large price increase.`,
         ],
         formulas: [
-          { id: "econ-3-elasticity", name: "Price elasticity of demand", expression: "% change in quantity demanded / % change in price", when: "Measuring how sensitive demand is to a price change.", worked: "A 10% price increase causes a 25% drop in quantity demanded. Elasticity = \u221225% / 10% = \u22122.5 (elastic)." },
+          { id: "econ-3-elasticity", name: "Price elasticity of demand", expression: "Elasticity = <span class=\"frac\"><span class=\"num\">% change in quantity demanded</span><span class=\"den\">% change in price</span></span>", when: "Measuring how sensitive demand is to a price change.", worked: "A 10% price increase causes a 25% drop in quantity demanded. Elasticity = \u221225% / 10% = \u22122.5 (elastic)." },
         ],
       },
       {
@@ -843,10 +882,10 @@ const CHAPTERS = [
           `Liquidity ratios ask: can the company meet short-term obligations? Solvency ratios ask: can it meet long-term obligations? Profitability ratios ask: how efficiently does it turn sales into profit? Activity ratios ask: how efficiently does it use its assets?`,
         ],
         formulas: [
-          { id: "fsa-4-current", name: "Current ratio (liquidity)", expression: "Current assets / Current liabilities", when: "Assessing ability to meet short-term obligations.", worked: "Current assets of $500,000 and current liabilities of $250,000. Current ratio = 500,000 / 250,000 = 2.0." },
-          { id: "fsa-4-de", name: "Debt-to-equity ratio (solvency)", expression: "Total debt / Total equity", when: "Assessing leverage / ability to meet long-term obligations.", worked: "Total debt of $3 million and total equity of $2 million. Debt-to-equity = 3,000,000 / 2,000,000 = 1.5." },
-          { id: "fsa-4-margin", name: "Net profit margin (profitability)", expression: "Net income / Revenue", when: "Assessing how much profit is generated per dollar of sales.", worked: "Net income of $400,000 on revenue of $5,000,000. Net profit margin = 400,000 / 5,000,000 = 8%." },
-          { id: "fsa-4-turnover", name: "Inventory turnover (activity)", expression: "Cost of goods sold / Average inventory", when: "Assessing how efficiently inventory is used.", worked: "COGS of $2,000,000 and average inventory of $400,000. Inventory turnover = 2,000,000 / 400,000 = 5 times per year." },
+          { id: "fsa-4-current", name: "Current ratio (liquidity)", expression: "<span class=\"frac\"><span class=\"num\">Current assets</span><span class=\"den\">Current liabilities</span></span>", when: "Assessing ability to meet short-term obligations.", worked: "Current assets of $500,000 and current liabilities of $250,000. Current ratio = 500,000 / 250,000 = 2.0." },
+          { id: "fsa-4-de", name: "Debt-to-equity ratio (solvency)", expression: "<span class=\"frac\"><span class=\"num\">Total debt</span><span class=\"den\">Total equity</span></span>", when: "Assessing leverage / ability to meet long-term obligations.", worked: "Total debt of $3 million and total equity of $2 million. Debt-to-equity = 3,000,000 / 2,000,000 = 1.5." },
+          { id: "fsa-4-margin", name: "Net profit margin (profitability)", expression: "<span class=\"frac\"><span class=\"num\">Net income</span><span class=\"den\">Revenue</span></span>", when: "Assessing how much profit is generated per dollar of sales.", worked: "Net income of $400,000 on revenue of $5,000,000. Net profit margin = 400,000 / 5,000,000 = 8%." },
+          { id: "fsa-4-turnover", name: "Inventory turnover (activity)", expression: "<span class=\"frac\"><span class=\"num\">Cost of goods sold</span><span class=\"den\">Average inventory</span></span>", when: "Assessing how efficiently inventory is used.", worked: "COGS of $2,000,000 and average inventory of $400,000. Inventory turnover = 2,000,000 / 400,000 = 5 times per year." },
         ],
       },
       {
@@ -989,7 +1028,7 @@ const CHAPTERS = [
         body: [`If a company pays dividends, its shares can be valued using the exact same perpetuity logic from Chapter 02 — a share of stock is just a claim on a stream of future dividends, discounted back to today.`],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_DDM }],
         formulas: [
-          { id: "equity-4-ggm", name: "Gordon growth (constant-growth dividend discount) model", expression: "V0 = D1 / (r \u2212 g)", when: "Values a stock as a growing perpetuity of dividends.", worked: "A stock just paid a $2.00 dividend, growing 4% per year forever. D1 = 2.00 \u00D7 1.04 = $2.08. At a 10% required return, V0 = 2.08 / (0.10 \u2212 0.04) \u2248 $34.67." },
+          { id: "equity-4-ggm", name: "Gordon growth (constant-growth dividend discount) model", expression: "V0 = <span class=\"frac\"><span class=\"num\">D1</span><span class=\"den\">r \u2212 g</span></span>", when: "Values a stock as a growing perpetuity of dividends.", worked: "A stock just paid a $2.00 dividend, growing 4% per year forever. D1 = 2.00 \u00D7 1.04 = $2.08. At a 10% required return, V0 = 2.08 / (0.10 \u2212 0.04) \u2248 $34.67." },
         ],
       },
       {
@@ -997,7 +1036,7 @@ const CHAPTERS = [
         title: "Relative valuation: multiples",
         body: [`Rather than discounting cash flows directly, analysts often value a stock by comparing it to similar companies using a multiple — a ratio of price to some fundamental metric.`],
         formulas: [
-          { id: "equity-5-pe", name: "Price-to-earnings (P/E) ratio", expression: "Price per share / Earnings per share", when: "Comparing a stock's price to its earnings, relative to similar companies.", worked: "A stock trades at $60 with earnings per share of $4.00. P/E = 60 / 4 = 15." },
+          { id: "equity-5-pe", name: "Price-to-earnings (P/E) ratio", expression: "<span class=\"frac\"><span class=\"num\">Price per share</span><span class=\"den\">Earnings per share</span></span>", when: "Comparing a stock's price to its earnings, relative to similar companies.", worked: "A stock trades at $60 with earnings per share of $4.00. P/E = 60 / 4 = 15." },
         ],
       },
       {
@@ -1048,43 +1087,102 @@ const CHAPTERS = [
       {
         id: "fi-2",
         title: "Bond features and structure",
-        body: [`A bond has a face value (par value — repaid at maturity, commonly $1,000), a coupon rate (the stated annual interest rate, usually fixed installments), and a maturity date. The bond's cash flows are simply the coupon payments (an annuity) plus the face value repayment (a single sum) at maturity.`],
+        body: [
+          `A bond has a face value (also called par value — the amount repaid at maturity, commonly $1,000), a coupon rate (the stated annual interest rate paid to the bondholder), and a maturity date (when the face value is repaid). The coupon rate, applied to face value, sets the dollar coupon payment: a 6% coupon rate on $1,000 face value pays $60 per year, usually split into two $30 semiannual payments in practice.`,
+          `The bond's cash flows are simply the coupon payments (an annuity) plus the face value repayment (a single sum) at maturity — the exact same two building blocks from Chapter 02, just combined into one instrument.`,
+        ],
         formulas: [],
+      },
+      {
+        id: "fi-2b",
+        title: "Coupon structures: fixed, zero-coupon, and floating",
+        body: [
+          `Most bonds you'll encounter pay a fixed coupon rate for the bond's entire life — the $60/year example above. But two other coupon structures show up often enough to know by name.`,
+          `A zero-coupon bond pays no periodic interest at all. It's sold for less than face value and simply repays the full face value at maturity; the entire return comes from that built-in price discount. Since there's no coupon annuity to value, pricing one is just the single-sum PV formula from Chapter 02.`,
+          `A floating-rate bond (or "floater") resets its coupon periodically based on a reference rate plus a fixed spread — for example, "SOFR + 1.5%," recalculated every quarter. Because the coupon adjusts to match current market rates, a floater's price stays much closer to par than a fixed-rate bond's does when rates move.`,
+        ],
+        formulas: [
+          { id: "fi-2b-zero", name: "Zero-coupon bond price", expression: "Price = <span class=\"frac\"><span class=\"num\">Face value</span><span class=\"den\">(1 + r)^n</span></span>", when: "No coupon payments at all — just a single lump sum at maturity.", worked: "A $1,000 face value zero-coupon bond matures in 5 years; the market yield is 6%. Price = 1,000 / (1.06)^5 \u2248 1,000 / 1.3382 \u2248 $747.26. The investor pays $747.26 today and receives $1,000 in 5 years — the entire $252.74 gain is the return, with no coupons along the way." },
+        ],
       },
       {
         id: "fi-3",
         title: "Bond pricing",
         body: [
           `A bond's price is the present value of all its future cash flows: the coupon payments (an annuity) plus the face value (a single sum), both discounted at the market's required yield.`,
-          `Core relationship: when market yields rise above a bond's coupon rate, its price falls below face value (a discount); when yields fall below the coupon rate, price rises above face value (a premium). Bond prices and yields always move in opposite directions.`,
+          `Core relationship: when market yields rise above a bond's coupon rate, its price falls below face value (a discount); when yields fall below the coupon rate, price rises above face value (a premium); when yields exactly equal the coupon rate, the bond prices at exactly face value (par). Bond prices and yields always move in opposite directions.`,
         ],
-        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_BOND }],
+        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_BOND }, { afterParagraph: 1, svg: EXHIBIT_BOND_PRICE_MAP }],
         formulas: [
           { id: "fi-3-price", name: "Bond price", expression: "Price = PV(coupon annuity) + PV(face value)", when: "Finding a bond's fair price given its coupon, face value, maturity, and required yield.", worked: "A $1,000 face value bond, 6% annual coupon ($60/yr), 3 years to maturity, market yield 8%. PV of coupons \u2248 $154.63. PV of face value \u2248 $793.83. Price \u2248 $948.46 — a discount, since coupon (6%) < yield (8%)." },
         ],
       },
       {
+        id: "fi-3b",
+        title: "Par, discount, and premium bonds",
+        body: [
+          `These three terms describe where a bond's price sits relative to its face value, and they follow directly from the pricing relationship above — worth naming explicitly since exam questions use this vocabulary constantly.`,
+          `A par bond trades at exactly its face value, which happens when the coupon rate equals the current market yield.`,
+          `A discount bond trades below face value, which happens when the coupon rate is below the market yield — the bond's fixed coupon looks unattractive compared to current market rates, so investors will only buy it at a lower price.`,
+          `A premium bond trades above face value, which happens when the coupon rate is above the market yield — the bond's fixed coupon looks attractive compared to current rates, so investors are willing to pay more than face value for it.`,
+        ],
+        formulas: [],
+      },
+      {
         id: "fi-4",
         title: "Yield measures",
-        body: [`The current yield is a quick, rough measure: annual coupon payment divided by current price. The yield to maturity (YTM) is more complete — the single discount rate that makes the PV of all remaining cash flows equal the current price. YTM is effectively the bond's own IRR.`],
-        formulas: [],
+        body: [
+          `The current yield is a quick, rough measure of return, using only the coupon and today's price — it ignores any gain or loss from the price eventually converging to face value at maturity.`,
+          `The yield to maturity (YTM) is the more complete measure — the single discount rate that makes the PV of all remaining cash flows equal the current price. YTM is effectively the bond's own IRR (see Corporate Issuers) and, unlike current yield, it captures the full return including any built-in price gain or loss to maturity. Like IRR, YTM typically has no simple closed-form formula — in practice it's found by iteration (or with a financial calculator's TVM worksheet, entering price as PV and solving for I/Y).`,
+        ],
+        formulas: [
+          { id: "fi-4-current", name: "Current yield", expression: "Current yield = <span class=\"frac\"><span class=\"num\">Annual coupon payment</span><span class=\"den\">Current bond price</span></span>", when: "A quick, rough yield estimate — ignores any price gain/loss to maturity.", worked: "A bond with a $60 annual coupon currently trades at $948. Current yield = 60 / 948 \u2248 6.33% — note this is higher than the 6% coupon rate, simply because the bond is trading below face value." },
+        ],
+      },
+      {
+        id: "fi-4b",
+        title: "Accrued interest and clean vs. dirty price",
+        body: [
+          `Bonds usually don't trade exactly on a coupon payment date — most trades happen somewhere in between. The seller has earned a portion of the next coupon simply by holding the bond since the last payment, and the buyer needs to compensate the seller for that, even though the buyer will eventually receive the full next coupon.`,
+          `Accrued interest is that in-between amount: the portion of the next coupon the seller has already earned. The clean price is a bond's quoted price excluding accrued interest (what you typically see quoted); the dirty price (or "full" or "invoice" price) is the clean price plus accrued interest — the actual amount the buyer pays at settlement.`,
+        ],
+        formulas: [
+          { id: "fi-4b-accrued", name: "Accrued interest (approximate)", expression: "Accrued interest = Annual coupon \u00D7 <span class=\"frac\"><span class=\"num\">Days since last coupon</span><span class=\"den\">Days in coupon period</span></span>", when: "Finding how much of the next coupon the seller has already earned.", worked: "A bond pays a $60 annual coupon (once a year, 360-day convention) and it has been 90 days since the last coupon payment. Accrued interest = 60 \u00D7 (90/360) = $15. If the quoted (clean) price is $980, the buyer actually pays the dirty price: $980 + $15 = $995 at settlement." },
+        ],
       },
       {
         id: "fi-5",
         title: "The yield curve and term structure",
-        body: [`The yield curve plots yields against maturities for otherwise similar bonds. A normal, upward-sloping yield curve reflects the extra compensation investors typically demand for tying up money longer. An inverted yield curve (short-term higher than long-term) is unusual and often watched as a potential signal of economic concern.`],
+        body: [`The yield curve plots yields against maturities for otherwise similar bonds. A normal, upward-sloping yield curve reflects the extra compensation investors typically demand for tying up money longer. A flat yield curve shows little difference in yield across maturities. An inverted yield curve (short-term higher than long-term) is unusual and often watched as a potential signal of economic concern.`],
+        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_YIELD_CURVE_SHAPES }],
         formulas: [],
       },
       {
         id: "fi-6",
-        title: "Duration, conceptually",
-        body: [`Duration measures a bond's sensitivity to changes in interest rates. Longer-maturity bonds and lower-coupon bonds generally have higher duration, because more of their value sits further out in time, where discounting has a bigger effect on present value.`],
+        title: "Duration",
+        body: [
+          `Duration measures a bond's sensitivity to changes in interest rates. Longer-maturity bonds and lower-coupon bonds generally have higher duration, because more of their value sits further out in time, where discounting has a bigger effect on present value.`,
+          `A useful approximation lets you estimate the actual price impact of a rate change once you know a bond's duration.`,
+        ],
+        formulas: [
+          { id: "fi-6-duration", name: "Approximate price change from duration", expression: "% change in price \u2248 \u2212 Duration \u00D7 (change in yield)", when: "Estimating how much a bond's price will move for a given change in market yield.", worked: "A bond has a duration of 7 and market yields rise by 0.50 percentage points (0.005). % change in price \u2248 \u22127 \u00D7 0.005 = \u22123.5% — the bond's price is expected to fall about 3.5%." },
+        ],
+      },
+      {
+        id: "fi-6b",
+        title: "Callable, putable, and convertible bonds",
+        body: [
+          `Beyond the plain, fixed-maturity structure covered so far, three common embedded features change a bond's risk profile.`,
+          `A callable bond gives the issuer the right to repay the bond early — typically used when rates have fallen and the issuer wants to refinance at a lower rate. This is a risk to the bondholder: the bond is most likely to get called away right when reinvesting the proceeds at an equally attractive rate has become hardest.`,
+          `A putable bond gives the bondholder the right to sell the bond back to the issuer early, at a preset price — the mirror image of callable, and a benefit to the bondholder rather than the issuer.`,
+          `A convertible bond gives the bondholder the right to convert the bond into a predetermined number of the issuer's common shares — effectively bundling a bond with a call option on the stock.`,
+        ],
         formulas: [],
       },
       {
         id: "fi-7",
         title: "Credit risk",
-        body: [`Credit risk is the risk that a bond's issuer fails to make its promised payments (default). Higher-rated ("investment grade") bonds are seen as lower default risk and typically offer lower yields; lower-rated ("high yield"/"junk") bonds offer higher yields to compensate for the extra risk.`],
+        body: [`Credit risk is the risk that a bond's issuer fails to make its promised payments (default). Credit rating agencies assign letter grades reflecting that risk: ratings from AAA down through BBB− are considered "investment grade," reflecting relatively low default risk and typically lower yields; ratings of BB+ and below are considered "high yield" or "junk," reflecting higher default risk and offering higher yields to compensate for that extra risk.`],
         formulas: [],
       },
       {
@@ -1094,10 +1192,14 @@ const CHAPTERS = [
         body: [`Match the question to the concept.`],
         decisionRows: [
           { cue: "Finding a bond's price given coupon, face value, maturity, required yield", formula: "Bond pricing (PV of coupon annuity + PV of face value)", section: "fi-3" },
+          { cue: "A bond with no periodic coupon, just a lump sum at maturity", formula: "Zero-coupon bond pricing (single sum PV)", section: "fi-2b" },
+          { cue: "Whether a bond trades above, at, or below face value", formula: "Par / discount / premium bond", section: "fi-3b" },
           { cue: "A quick yield estimate using only the coupon and current price", formula: "Current yield", section: "fi-4" },
           { cue: "The full, precise annualized return if held to maturity", formula: "Yield to maturity (YTM)", section: "fi-4" },
+          { cue: "How much of the next coupon a seller has already earned mid-period", formula: "Accrued interest / dirty price", section: "fi-4b" },
           { cue: "Comparing yields across different maturities", formula: "Yield curve", section: "fi-5" },
-          { cue: "How much a bond's price will move for a change in rates", formula: "Duration", section: "fi-6" },
+          { cue: "Estimating a bond's price change from a change in yield", formula: "Duration", section: "fi-6" },
+          { cue: "An issuer's right to redeem a bond before maturity", formula: "Callable bond", section: "fi-6b" },
           { cue: "Risk that the issuer won't pay", formula: "Credit risk", section: "fi-7" },
         ],
         formulas: [],
@@ -1111,6 +1213,8 @@ const CHAPTERS = [
           { item: "Assuming bond price and yield move together", detail: "They always move in opposite directions." },
           { item: "Confusing coupon rate with yield to maturity", detail: "Coupon rate is fixed at issuance; YTM changes constantly with market prices." },
           { item: "Assuming equal-maturity bonds have equal duration", detail: "Coupon rate matters too — lower coupons mean higher duration." },
+          { item: "Confusing clean price with the actual amount paid", detail: "The dirty price (clean price + accrued interest) is what the buyer actually pays at settlement." },
+          { item: "Assuming \"callable\" benefits the bondholder", detail: "Callable features favor the issuer; putable and convertible features favor the bondholder." },
         ],
         formulas: [],
       },
@@ -1455,6 +1559,12 @@ const QUIZZES = {
     { id: "fi-q5", question: "All else equal, a bond with a lower coupon rate will have", options: ["Lower duration", "Higher duration", "The same duration as any other bond", "No measurable duration"], correct: 1, explanation: "Lower coupons mean more value sits further out in time, raising duration.", remediation: "fi-6" },
     { id: "fi-q6", question: "Risk that a bond issuer fails to make payments is called", options: ["Duration risk", "Credit risk", "Reinvestment risk", "Currency risk"], correct: 1, explanation: "Credit risk is the risk of issuer default.", remediation: "fi-7" },
     { id: "fi-q7", question: "A $1,000 face value bond with a 5% coupon and 2 years to maturity, market yield 5% \u2014 is the price above, below, or at face value?", options: ["Above face value", "Below face value", "At face value", "Cannot be determined"], correct: 2, explanation: "When the coupon rate equals the market yield, the bond prices at exactly face value.", remediation: "fi-3" },
+    { id: "fi-q8", question: "A bond pays no periodic coupons and is sold below face value, repaying full face value at maturity. This is a", options: ["Floating-rate bond", "Zero-coupon bond", "Convertible bond", "Putable bond"], correct: 1, explanation: "A zero-coupon bond has no periodic interest — the return comes entirely from the price discount.", remediation: "fi-2b" },
+    { id: "fi-q9", question: "A bond trades below its face value. This is called a", options: ["Par bond", "Premium bond", "Discount bond", "Zero-coupon bond"], correct: 2, explanation: "A bond priced below face value is a discount bond, which happens when the coupon rate is below the market yield.", remediation: "fi-3b" },
+    { id: "fi-q10", question: "A bond has a $50 annual coupon and currently trades at $952. What is its current yield (approximately)?", options: ["5.0%", "5.25%", "4.8%", "10.5%"], correct: 1, explanation: "Current yield = 50 / 952 \u2248 5.25%.", remediation: "fi-4" },
+    { id: "fi-q11", question: "A bond trades between coupon dates. The quoted price plus accrued interest equals the", options: ["Clean price", "Par value", "Dirty (invoice) price", "Current yield"], correct: 2, explanation: "The dirty price is the clean price plus accrued interest — what the buyer actually pays.", remediation: "fi-4b" },
+    { id: "fi-q12", question: "A bond has a duration of 6. Market yields fall by 1 percentage point (0.01). Approximately how much does the price change?", options: ["-6%", "+6%", "-0.06%", "+0.6%"], correct: 1, explanation: "% change in price \u2248 \u22126 \u00D7 (\u22120.01) = +6% — falling yields raise price.", remediation: "fi-6" },
+    { id: "fi-q13", question: "Which embedded bond feature gives the issuer the right to redeem the bond early?", options: ["Putable", "Convertible", "Callable", "Floating-rate"], correct: 2, explanation: "A callable bond gives the issuer the right to redeem early, typically to refinance at lower rates.", remediation: "fi-6b" },
   ],
   derivatives: [
     { id: "deriv-q1", question: "Which derivative type standardizes the contract and trades it on an exchange?", options: ["Forward", "Futures", "Swap", "A private loan"], correct: 1, explanation: "Futures are standardized, exchange-traded contracts.", remediation: "deriv-2" },
