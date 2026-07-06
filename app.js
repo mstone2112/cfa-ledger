@@ -444,6 +444,72 @@ const EXHIBIT_YIELD_CURVE_SHAPES = `
 <text x="550" y="150" text-anchor="middle" font-size="10" fill="#4B5468">Rare, often watched closely</text>
 </svg>`;
 
+const EXHIBIT_INVENTORY_COMPARISON = `
+<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Inventory method comparison</title>
+<desc>Bar chart comparing cost of goods sold and ending inventory value under FIFO, LIFO, and weighted average methods during a period of rising prices.</desc>
+<line x1="90" y1="180" x2="620" y2="180" stroke="#CFC7AE" stroke-width="1"/>
+<rect x="130" y="67" width="25" height="113" fill="#A6432C"/>
+<rect x="160" y="138" width="25" height="42" fill="#3F7A5C"/>
+<text x="157" y="58" text-anchor="middle" font-size="11" fill="#A6432C">$1,600</text>
+<text x="172" y="130" text-anchor="middle" font-size="11" fill="#3F7A5C">$600</text>
+<text x="157" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">FIFO</text>
+<rect x="320" y="60" width="25" height="120" fill="#A6432C"/>
+<rect x="350" y="145" width="25" height="35" fill="#3F7A5C"/>
+<text x="347" y="51" text-anchor="middle" font-size="11" fill="#A6432C">$1,700</text>
+<text x="362" y="137" text-anchor="middle" font-size="11" fill="#3F7A5C">$500</text>
+<text x="347" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">LIFO</text>
+<rect x="510" y="64" width="25" height="116" fill="#A6432C"/>
+<rect x="540" y="141" width="25" height="39" fill="#3F7A5C"/>
+<text x="537" y="55" text-anchor="middle" font-size="11" fill="#A6432C">$1,650</text>
+<text x="552" y="133" text-anchor="middle" font-size="11" fill="#3F7A5C">$550</text>
+<text x="537" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Weighted avg.</text>
+<rect x="150" y="222" width="14" height="10" fill="#A6432C"/>
+<text x="170" y="231" font-size="11" fill="#4B5468">Cost of goods sold</text>
+<rect x="330" y="222" width="14" height="10" fill="#3F7A5C"/>
+<text x="350" y="231" font-size="11" fill="#4B5468">Ending inventory value</text>
+</svg>`;
+
+const EXHIBIT_DEPRECIATION_COMPARISON = `
+<svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Straight-line versus accelerated depreciation</title>
+<desc>Line chart comparing annual depreciation expense over five years: a flat straight-line amount versus a declining-balance amount that starts high and falls each year.</desc>
+<line x1="90" y1="180" x2="450" y2="180" stroke="#CFC7AE" stroke-width="1"/>
+<polyline points="100,126 180,126 260,126 340,126 420,126" fill="none" stroke="#3F7A5C" stroke-width="2"/>
+<polyline points="100,60 180,108 260,137 340,154 420,164" fill="none" stroke="#B67A22" stroke-width="2"/>
+<circle cx="100" cy="60" r="3" fill="#B67A22"/><circle cx="180" cy="108" r="3" fill="#B67A22"/><circle cx="260" cy="137" r="3" fill="#B67A22"/><circle cx="340" cy="154" r="3" fill="#B67A22"/><circle cx="420" cy="164" r="3" fill="#B67A22"/>
+<text x="100" y="200" text-anchor="middle" font-size="11" fill="#4B5468">Yr 1</text>
+<text x="180" y="200" text-anchor="middle" font-size="11" fill="#4B5468">Yr 2</text>
+<text x="260" y="200" text-anchor="middle" font-size="11" fill="#4B5468">Yr 3</text>
+<text x="340" y="200" text-anchor="middle" font-size="11" fill="#4B5468">Yr 4</text>
+<text x="420" y="200" text-anchor="middle" font-size="11" fill="#4B5468">Yr 5</text>
+<rect x="470" y="55" width="14" height="10" fill="#B67A22"/>
+<text x="490" y="64" font-size="11" fill="#4B5468">Declining balance (accelerated)</text>
+<rect x="470" y="80" width="14" height="10" fill="#3F7A5C"/>
+<text x="490" y="89" font-size="11" fill="#4B5468">Straight-line</text>
+</svg>`;
+
+const EXHIBIT_COMMONSIZE_COMPARISON = `
+<svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Common-size income statement comparison</title>
+<desc>Two stacked bars, each totaling 100 percent of revenue, comparing the cost of goods sold and gross profit proportions of two differently-sized companies.</desc>
+<line x1="90" y1="180" x2="590" y2="180" stroke="#CFC7AE" stroke-width="1"/>
+<rect x="220" y="90" width="60" height="90" fill="#A6432C"/>
+<rect x="220" y="30" width="60" height="60" fill="#3F7A5C"/>
+<text x="250" y="140" text-anchor="middle" font-size="12" fill="#EEEAE0">60%</text>
+<text x="250" y="65" text-anchor="middle" font-size="12" fill="#EEEAE0">40%</text>
+<text x="250" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Company A ($10M revenue)</text>
+<rect x="420" y="82" width="60" height="98" fill="#A6432C"/>
+<rect x="420" y="30" width="60" height="52" fill="#3F7A5C"/>
+<text x="450" y="136" text-anchor="middle" font-size="12" fill="#EEEAE0">65%</text>
+<text x="450" y="60" text-anchor="middle" font-size="12" fill="#EEEAE0">35%</text>
+<text x="450" y="200" text-anchor="middle" font-size="12" font-weight="600" fill="#232C42">Company B ($100M revenue)</text>
+<rect x="100" y="30" width="14" height="10" fill="#3F7A5C"/>
+<text x="120" y="39" font-size="11" fill="#4B5468">Gross profit %</text>
+<rect x="100" y="50" width="14" height="10" fill="#A6432C"/>
+<text x="120" y="59" font-size="11" fill="#4B5468">COGS %</text>
+</svg>`;
+
 const CHAPTERS = [
   {
     id: "calc",
@@ -876,6 +942,55 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "fsa-3b",
+        title: "Inventory accounting: FIFO, LIFO, and weighted average",
+        body: [
+          `When a company sells inventory, it has to decide which of its purchased units it's "selling" for accounting purposes — a real question, since identical units were often bought at different prices over time. Three methods handle this, and the choice meaningfully changes reported profit and balance sheet values, especially when prices are rising or falling.`,
+          `FIFO (first-in, first-out) assumes the oldest inventory costs are sold first, leaving the most recently purchased (and, in a rising-price environment, most expensive) costs on the balance sheet as ending inventory. This tends to report higher profit and a more current-looking inventory value during inflation.`,
+          `LIFO (last-in, first-out) assumes the newest inventory costs are sold first, leaving the oldest (and, in a rising-price environment, cheapest) costs as ending inventory. This tends to report lower profit — and therefore lower taxes — during inflation, but leaves a stale, understated inventory value on the balance sheet.`,
+          `Weighted average blends all purchase costs into a single average cost per unit, landing between FIFO and LIFO for both cost of goods sold and ending inventory value.`,
+        ],
+        exhibits: [{ afterParagraph: 3, svg: EXHIBIT_INVENTORY_COMPARISON }],
+        formulas: [
+          { id: "fsa-3b-methods", name: "Cost of goods sold and ending inventory (rising-price example)", expression: "COGS + Ending inventory = Total cost of goods available for sale", when: "The three methods always split the same total cost differently between COGS and ending inventory — they never change the total.", worked: "A company buys 100 units at $10 and then 100 units at $12 (rising prices), and sells 150 units. FIFO: COGS = (100\u00D7$10) + (50\u00D7$12) = $1,600; ending inventory = 50\u00D7$12 = $600. LIFO: COGS = (100\u00D7$12) + (50\u00D7$10) = $1,700; ending inventory = 50\u00D7$10 = $500. Weighted average: average cost = $2,200 / 200 units = $11/unit; COGS = 150\u00D7$11 = $1,650; ending inventory = 50\u00D7$11 = $550. Notice LIFO's higher COGS (and therefore lower reported profit) during rising prices — the opposite would be true if prices were falling instead." },
+        ],
+      },
+      {
+        id: "fsa-3c",
+        title: "Long-lived assets and depreciation",
+        body: [
+          `When a company buys a long-lived asset (equipment, a building, a vehicle), it doesn't expense the full cost immediately — it spreads that cost over the asset's useful life as depreciation, matching the expense to the periods the asset actually helps generate revenue.`,
+          `Straight-line depreciation spreads the cost evenly across every year of the asset's useful life — the simplest and most common method.`,
+          `Accelerated methods (such as declining balance) front-load more depreciation expense into the early years and less into later years — often used because many assets genuinely lose more of their value/usefulness early on, and because it can reduce taxable income (and therefore taxes owed) sooner.`,
+        ],
+        exhibits: [{ afterParagraph: 2, svg: EXHIBIT_DEPRECIATION_COMPARISON }],
+        formulas: [
+          { id: "fsa-3c-sl", name: "Straight-line depreciation", expression: "Annual depreciation = <span class=\"frac\"><span class=\"num\">Cost \u2212 Salvage value</span><span class=\"den\">Useful life</span></span>", when: "Spreading an asset's cost evenly across its useful life.", worked: "A machine costs $50,000, has an estimated salvage value of $5,000, and a 5-year useful life. Annual depreciation = (50,000 \u2212 5,000) / 5 = $9,000 every year." },
+          { id: "fsa-3c-ddb", name: "Double-declining balance (accelerated) — advanced", expression: "Annual depreciation = 2 \u00D7 <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">Useful life</span></span> \u00D7 Beginning book value", when: "Front-loading more depreciation into earlier years.", worked: "The same $50,000 machine, 5-year life, using double-declining balance (rate = 2/5 = 40% of book value each year). Year 1: 50,000 \u00D7 0.40 = $20,000. Year 2: (50,000 \u2212 20,000) \u00D7 0.40 = $12,000. Year 3: (30,000\u221212,000) \u00D7 0.40 = $7,200 \u2014 and so on, declining each year, unlike straight-line's flat $9,000." },
+        ],
+      },
+      {
+        id: "fsa-3d",
+        title: "Income taxes: book income vs. taxable income",
+        body: [
+          `The profit a company reports to shareholders (book income, following GAAP or IFRS) is often different from the profit it reports to tax authorities (taxable income, following tax law) — timing differences like depreciation method choices are a common cause, since a company can legally use straight-line depreciation for its financial statements while using an accelerated method for its tax return.`,
+          `When book income and taxable income differ due to timing (rather than permanently), the company records a deferred tax liability (it paid less tax now than its book income would suggest, and will effectively "catch up" later) or a deferred tax asset (the reverse — it paid more tax now and expects a future tax benefit).`,
+        ],
+        formulas: [
+          { id: "fsa-3d-deferred", name: "Deferred tax liability from a timing difference", expression: "Deferred tax liability created = (Tax depreciation \u2212 Book depreciation) \u00D7 Tax rate", when: "Estimating the deferred tax impact of using different depreciation methods for book vs. tax purposes.", worked: "A company uses straight-line depreciation for its books ($9,000 in year 1) but accelerated depreciation for tax purposes ($15,000 in year 1), and the tax rate is 25%. The extra $6,000 of tax depreciation ($15,000 \u2212 $9,000) reduces taxable income now without reducing book income by the same amount, creating a deferred tax liability of 6,000 \u00D7 0.25 = $1,500 — tax the company will effectively pay in a later year, once tax depreciation falls below book depreciation." },
+        ],
+      },
+      {
+        id: "fsa-3e",
+        title: "Other non-current liabilities: leases and pensions",
+        body: [
+          `Beyond bonds (covered in Fixed Income), two other non-current liability types show up often on a company's balance sheet.`,
+          `Leases: rather than buying an asset outright, a company may lease it instead. Modern accounting rules require most leases to appear on the balance sheet as a lease liability (the obligation to make future payments) alongside a matching right-of-use asset — effectively treating a lease much like a loan used to buy the same asset.`,
+          `Pensions: when a company promises employees future retirement benefits, it creates a liability today equal to the present value of that promise — a direct application of the time value of money from Chapter 02. A defined benefit plan promises a specific future payout (putting the funding-shortfall risk on the company); a defined contribution plan only promises to contribute a certain amount today (putting the investment-outcome risk on the employee).`,
+        ],
+        formulas: [],
+      },
+      {
         id: "fsa-4",
         title: "Key ratio categories, with worked examples",
         body: [
@@ -895,16 +1010,34 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "fsa-5b",
+        title: "Analysis technique: common-size statements",
+        body: [
+          `Comparing two companies' raw dollar figures side by side is often misleading if the companies are different sizes — a $6 million cost of goods sold means something very different for a $10 million company than a $100 million one. Common-size statements solve this by expressing every line item as a percentage of a base figure: revenue, for the income statement, or total assets, for the balance sheet.`,
+          `This lets you compare cost structure and efficiency across companies of very different sizes, or track how a single company's own structure changes over time, without the raw dollar figures getting in the way.`,
+        ],
+        exhibits: [{ afterParagraph: 1, svg: EXHIBIT_COMMONSIZE_COMPARISON }],
+        formulas: [
+          { id: "fsa-5b-commonsize", name: "Common-size income statement line item", expression: "Common-size % = <span class=\"frac\"><span class=\"num\">Line item</span><span class=\"den\">Total revenue</span></span>", when: "Restating an income statement line as a percentage of revenue, to compare companies of different sizes.", worked: "Company A has $10 million revenue and $6 million cost of goods sold: COGS common-size = 6/10 = 60%. Company B has $100 million revenue and $65 million cost of goods sold: COGS common-size = 65/100 = 65%. Despite Company B being ten times larger in dollar terms, common-sizing reveals it actually runs a slightly less efficient cost structure (65% vs. 60%) — a comparison the raw dollar figures alone would have obscured." },
+        ],
+      },
+      {
         id: "fsa-6",
         title: "Formula decision guide",
         type: "decision-guide",
-        body: [`Match the question to the ratio category.`],
+        body: [`Match the question to the concept.`],
         decisionRows: [
           { cue: "Ability to pay short-term bills", formula: "Liquidity ratios (e.g., current ratio)", section: "fsa-4" },
           { cue: "Ability to handle long-term debt", formula: "Solvency ratios (e.g., debt-to-equity)", section: "fsa-4" },
           { cue: "How much profit per dollar of sales", formula: "Profitability ratios (e.g., net profit margin)", section: "fsa-4" },
           { cue: "How efficiently assets/inventory are used", formula: "Activity ratios (e.g., inventory turnover)", section: "fsa-4" },
           { cue: "Whether reported profit is \"real\"", formula: "Compare net income to operating cash flow", section: "fsa-5" },
+          { cue: "Which inventory costs get expensed first, rising prices, higher reported profit", formula: "FIFO", section: "fsa-3b" },
+          { cue: "Which inventory costs get expensed first, rising prices, lower reported profit/taxes", formula: "LIFO", section: "fsa-3b" },
+          { cue: "Spreading an asset's cost evenly over its life", formula: "Straight-line depreciation", section: "fsa-3c" },
+          { cue: "Front-loading depreciation into early years", formula: "Declining balance (accelerated depreciation)", section: "fsa-3c" },
+          { cue: "Book income and taxable income differ due to timing", formula: "Deferred tax asset / liability", section: "fsa-3d" },
+          { cue: "Comparing companies of very different sizes", formula: "Common-size statements", section: "fsa-5b" },
         ],
         formulas: [],
       },
@@ -917,6 +1050,9 @@ const CHAPTERS = [
           { item: "Confusing accrual profit with cash", detail: "A profitable company on paper can still run out of cash if receivables pile up faster than they're collected." },
           { item: "Comparing ratios across very different industries", detail: "A \"normal\" ratio varies enormously by industry — always compare to peers." },
           { item: "Ignoring the balance sheet date mismatch", detail: "Using a single point-in-time number instead of an average can distort ratios like inventory turnover." },
+          { item: "Assuming LIFO and FIFO differ only in reported profit", detail: "They also leave very different (and non-comparable) inventory values on the balance sheet — LIFO's ending inventory can be badly stale during inflation." },
+          { item: "Assuming accelerated depreciation changes total depreciation", detail: "It only changes the timing — total depreciation over the asset's life is identical to straight-line; more expense early means less expense later." },
+          { item: "Treating a deferred tax liability as money currently owed", detail: "It reflects a timing difference expected to reverse in the future, not an amount currently payable." },
         ],
         formulas: [],
       },
@@ -1534,6 +1670,12 @@ const QUIZZES = {
     { id: "fsa-q5", question: "Which ratio category answers \"can this company handle its long-term debt\"?", options: ["Liquidity ratios", "Solvency ratios", "Activity ratios", "Profitability ratios"], correct: 1, explanation: "Solvency ratios assess long-term debt-paying ability.", remediation: "fsa-4" },
     { id: "fsa-q6", question: "Net income rising steadily while operating cash flow stays flat or falls is a signal of", options: ["Strong earnings quality", "Possible low quality of earnings", "Guaranteed fraud", "Nothing meaningful"], correct: 1, explanation: "A growing gap between net income and operating cash flow is a quality-of-earnings red flag.", remediation: "fsa-5" },
     { id: "fsa-q7", question: "Assets must always equal", options: ["Revenue minus expenses", "Liabilities plus equity", "Liabilities minus equity", "Equity alone"], correct: 1, explanation: "The accounting equation: Assets = Liabilities + Equity.", remediation: "fsa-2" },
+    { id: "fsa-q8", question: "During a period of rising prices, which inventory method generally reports the highest cost of goods sold (and therefore the lowest profit)?", options: ["FIFO", "LIFO", "Weighted average", "They are always identical"], correct: 1, explanation: "LIFO expenses the most recently purchased (pricier, during inflation) units first, raising COGS and lowering reported profit.", remediation: "fsa-3b" },
+    { id: "fsa-q9", question: "A machine costs $40,000, has a $4,000 salvage value, and a 4-year useful life. What is the annual straight-line depreciation?", options: ["$10,000", "$9,000", "$8,000", "$11,000"], correct: 1, explanation: "(40,000 \u2212 4,000) / 4 = $9,000 per year.", remediation: "fsa-3c" },
+    { id: "fsa-q10", question: "Compared to straight-line, an accelerated depreciation method (like declining balance) results in", options: ["More total depreciation over the asset's life", "Less total depreciation over the asset's life", "The same total depreciation, just timed differently", "No depreciation at all"], correct: 2, explanation: "Accelerated methods only shift the timing — total depreciation over the asset's useful life is unchanged.", remediation: "fsa-3c" },
+    { id: "fsa-q11", question: "A company's tax depreciation exceeds its book depreciation this year. This timing difference typically creates a", options: ["Deferred tax asset", "Deferred tax liability", "Permanent tax savings", "Reduction in revenue"], correct: 1, explanation: "Higher tax depreciation now (lower taxable income now) typically creates a deferred tax liability that reverses later.", remediation: "fsa-3d" },
+    { id: "fsa-q12", question: "A pension plan that only promises to contribute a set amount today, putting investment-outcome risk on the employee, is a", options: ["Defined benefit plan", "Defined contribution plan", "A lease liability", "A deferred tax asset"], correct: 1, explanation: "A defined contribution plan shifts investment risk to the employee; a defined benefit plan keeps funding-shortfall risk with the company.", remediation: "fsa-3e" },
+    { id: "fsa-q13", question: "Company A ($10M revenue, $6M COGS) and Company B ($100M revenue, $65M COGS) are compared using common-size statements. Which has the better (lower) COGS percentage?", options: ["Company A (60%)", "Company B (65%)", "They are identical", "Cannot be determined"], correct: 0, explanation: "Company A's COGS common-size is 60% (6/10), better than Company B's 65% (65/100) — despite B's larger absolute size.", remediation: "fsa-5b" },
   ],
   corp: [
     { id: "corp-q1", question: "A project has a positive NPV. What does that suggest?", options: ["It's expected to destroy value", "It's expected to add value", "Its IRR equals zero", "It should always be rejected"], correct: 1, explanation: "Positive NPV means the project is expected to add value.", remediation: "corp-3" },
