@@ -166,6 +166,8 @@ p.body-text { font-size: 15px; margin: 0 0 15px; color: var(--ink); }
 .led-name { color: var(--paper-dim); font-size: 12px; margin-bottom: 7px; font-family: 'Inter', sans-serif; }
 .led-expr { color: var(--led-text); font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 500; white-space: pre-wrap; letter-spacing: 0.3px; }
 .led-when { color: var(--paper-dim); font-size: 12.5px; margin-top: 9px; font-style: italic; }
+.led-worked { color: var(--paper-dim); font-size: 12.5px; margin-top: 9px; padding-top: 9px; border-top: 1px dashed rgba(238,234,224,0.2); }
+.led-worked strong { color: var(--led-text); font-weight: 600; }
 .led-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 3px; margin-bottom: 7px; letter-spacing: 0.5px; text-transform: uppercase; }
 .led-tag.basic { background: rgba(63,122,92,0.2); color: #6FBF95; }
 .led-tag.advanced { background: rgba(182,122,34,0.25); color: var(--amber-bright); }
