@@ -319,6 +319,92 @@ ${EXHIBIT_DEFS}
 <text x="560" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t = 3</text>
 <text x="350" y="215" text-anchor="middle" font-size="12" fill="#4B5468">Each cash flow discounted at 6% and summed</text>
 </svg>`;
+const EXHIBIT_WORKED_NPV = `
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked NPV timeline</title>
+<desc>Timeline showing a $50,000 outflow today and five $15,000 inflows in years 1 through 5, netting to an NPV of about $6,862 at 10 percent.</desc>
+${EXHIBIT_DEFS}
+<line x1="100" y1="150" x2="620" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<line x1="140" y1="146" x2="140" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="230" y1="146" x2="230" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="320" y1="146" x2="320" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="560" y1="146" x2="560" y2="154" stroke="#232C42" stroke-width="1"/>
+<line x1="140" y1="146" x2="140" y2="205" stroke="#A6432C" stroke-width="2" marker-end="url(#arrow-brick)"/>
+<text x="140" y="222" text-anchor="middle" font-size="12" fill="#A6432C">&#8722;$50,000</text>
+<line x1="230" y1="146" x2="230" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="320" y1="146" x2="320" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<line x1="560" y1="146" x2="560" y2="100" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="140" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=0</text>
+<text x="230" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=1</text>
+<text x="320" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=2</text>
+<text x="430" y="145" text-anchor="middle" font-size="12" fill="#4B5468">&#183; &#183; &#183;</text>
+<text x="560" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=5</text>
+<text x="560" y="85" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">NPV &#8776; $6,862</text>
+<text x="350" y="205" text-anchor="middle" font-size="12" fill="#4B5468">$15,000/year for 5 years at 10%, minus the $50,000 cost</text>
+</svg>`;
+
+const EXHIBIT_WORKED_DDM = `
+<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked dividend discount model timeline</title>
+<desc>Timeline showing a growing dividend of $2.08 starting in year 1 and continuing forever, valued today at approximately $34.67.</desc>
+${EXHIBIT_DEFS}
+<line x1="90" y1="150" x2="600" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<circle cx="140" cy="150" r="4" fill="#232C42"/>
+<text x="140" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=0 &#8212; value here</text>
+<text x="140" y="192" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">V0 &#8776; $34.67</text>
+<line x1="230" y1="146" x2="230" y2="105" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="230" y="95" text-anchor="middle" font-size="11" fill="#3F7A5C">$2.08</text>
+<text x="230" y="172" text-anchor="middle" font-size="11" fill="#4B5468">t=1</text>
+<line x1="310" y1="146" x2="310" y2="98" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="310" y="88" text-anchor="middle" font-size="11" fill="#3F7A5C">$2.16</text>
+<text x="310" y="172" text-anchor="middle" font-size="11" fill="#4B5468">t=2</text>
+<line x1="390" y1="146" x2="390" y2="91" stroke="#3F7A5C" stroke-width="2" opacity="0.6"/>
+<line x1="450" y1="146" x2="450" y2="85" stroke="#3F7A5C" stroke-width="2" opacity="0.3"/>
+<text x="500" y="172" text-anchor="middle" font-size="12" fill="#4B5468">forever, +4%/yr &#8594;</text>
+<text x="350" y="215" text-anchor="middle" font-size="12" fill="#4B5468">Growing perpetuity of dividends, discounted at 10%</text>
+</svg>`;
+
+const EXHIBIT_WORKED_BOND = `
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Worked bond pricing timeline</title>
+<desc>Timeline showing three annual coupon payments of $60 and a final face value repayment of $1,000 in year 3, priced today at approximately $948.46.</desc>
+${EXHIBIT_DEFS}
+<line x1="90" y1="150" x2="600" y2="150" stroke="#CFC7AE" stroke-width="1"/>
+<circle cx="140" cy="150" r="4" fill="#232C42"/>
+<text x="140" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=0</text>
+<text x="140" y="192" text-anchor="middle" font-size="13" font-weight="600" fill="#B67A22">Price &#8776; $948.46</text>
+<line x1="280" y1="146" x2="280" y2="105" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="280" y="95" text-anchor="middle" font-size="12" fill="#3F7A5C">+$60</text>
+<text x="280" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=1</text>
+<line x1="420" y1="146" x2="420" y2="105" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="420" y="95" text-anchor="middle" font-size="12" fill="#3F7A5C">+$60</text>
+<text x="420" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=2</text>
+<line x1="560" y1="146" x2="560" y2="90" stroke="#3F7A5C" stroke-width="2" marker-end="url(#arrow-teal)"/>
+<text x="560" y="80" text-anchor="middle" font-size="12" fill="#3F7A5C">+$60 &amp; +$1,000</text>
+<text x="560" y="172" text-anchor="middle" font-size="12" fill="#4B5468">t=3</text>
+<text x="350" y="220" text-anchor="middle" font-size="12" fill="#4B5468">6% coupon on $1,000 face, discounted at an 8% market yield</text>
+</svg>`;
+
+const EXHIBIT_WORKED_DIVERSIFICATION = `
+<svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Diversification and correlation illustration</title>
+<desc>Two wavy lines representing two assets. When highly correlated, the lines move together and the combined risk stays high. When less correlated, the lines partly offset, smoothing the combined result.</desc>
+<text x="170" y="40" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">Correlation near +1</text>
+<path d="M60 90 Q90 60 120 90 T180 90 T240 90 T280 90" fill="none" stroke="#3F7A5C" stroke-width="2"/>
+<path d="M60 95 Q90 65 120 95 T180 95 T240 95 T280 95" fill="none" stroke="#B67A22" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="170" y="120" text-anchor="middle" font-size="11" fill="#4B5468">Both assets move together &#8212; little diversification benefit</text>
+
+<text x="510" y="40" text-anchor="middle" font-size="13" font-weight="600" fill="#232C42">Correlation near 0 (or negative)</text>
+<path d="M400 90 Q430 60 460 90 T520 90 T580 90 T620 90" fill="none" stroke="#3F7A5C" stroke-width="2"/>
+<path d="M400 95 Q430 125 460 95 T520 95 T580 95 T620 95" fill="none" stroke="#B67A22" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="510" y="120" text-anchor="middle" font-size="11" fill="#4B5468">Ups and downs partly offset &#8212; real diversification benefit</text>
+
+<line x1="60" y1="160" x2="90" y2="160" stroke="#3F7A5C" stroke-width="2"/>
+<text x="98" y="164" font-size="11" fill="#3F7A5C">Asset A</text>
+<line x1="200" y1="160" x2="230" y2="160" stroke="#B67A22" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="238" y="164" font-size="11" fill="#B67A22">Asset B</text>
+</svg>`;
+
 const CHAPTERS = [
   {
     id: "calc",
@@ -524,6 +610,776 @@ const CHAPTERS = [
       },
     ],
   },
+  {
+    id: "probstat",
+    number: "03",
+    title: "Probability & Statistics",
+    subtitle: "Completing Quantitative Methods: the tools that describe risk, return, and uncertainty",
+    sections: [
+      {
+        id: "probstat-1",
+        title: "Overview",
+        body: [
+          `Quantitative Methods has two halves. Chapter 02 covered time value of money. This chapter covers the other half: how to describe and reason about uncertain outcomes.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "probstat-2",
+        title: "Core probability concepts",
+        body: [
+          `A random variable is any quantity whose outcome isn't known in advance — next year's stock return, whether a bond defaults, tomorrow's GDP growth rate. Probability measures how likely a particular outcome is, expressed as a number between 0 (impossible) and 1 (certain).`,
+          `Two events are mutually exclusive if they can't both happen. Two events are independent if one happening tells you nothing about whether the other happens.`,
+          `The addition rule finds the probability that either of two events happens. If mutually exclusive, just add their probabilities; otherwise subtract the overlap once, or you'll double-count it.`,
+          `Conditional probability asks: given that one thing has already happened, what's the probability of another? The multiplication rule finds the probability that both of two events happen — if independent, this simplifies to just multiplying the two probabilities together.`,
+          `Expected value is the probability-weighted average of all possible outcomes — the average you'd expect if you repeated the situation many times.`,
+        ],
+        formulas: [
+          { id: "probstat-2-addition", name: "Addition rule (general)", expression: "P(A or B) = P(A) + P(B) \u2212 P(A and B)", when: "Finding the probability that either of two events happens.", worked: "The probability a stock's price rises this month is 0.55; the probability its trading volume rises is 0.40; the probability both happen together is 0.25. P(price rises or volume rises) = 0.55 + 0.40 \u2212 0.25 = 0.70." },
+          { id: "probstat-2-mult", name: "Multiplication rule", expression: "P(A and B) = P(A) \u00D7 P(B | A)", when: "Finding the probability that both of two events happen. If independent, simplifies to P(A) \u00D7 P(B).", worked: "Probability a fund manager beats the market in a given year is 0.30. Assuming each year is independent, probability of beating the market two years in a row = 0.30 \u00D7 0.30 = 0.09, or 9%." },
+          { id: "probstat-2-ev", name: "Expected value", expression: "E(X) = \u03A3 [ P(outcome) \u00D7 value of outcome ]", when: "Finding the probability-weighted average outcome.", worked: "A bond has a 90% chance of paying $1,000 at maturity and a 10% chance of defaulting and paying only $400. E(X) = (0.90 \u00D7 1,000) + (0.10 \u00D7 400) = 900 + 40 = $940." },
+        ],
+      },
+      {
+        id: "probstat-3",
+        title: "Measures of central tendency and dispersion",
+        body: [
+          `Central tendency describes the "typical" value in a data set. The mean is the arithmetic average; the median is the middle value when data is sorted, useful when a few extreme outliers would distort the mean; the mode is the most frequently occurring value.`,
+          `Dispersion describes how spread out the data is around that typical value. Variance is the average of the squared differences from the mean. Standard deviation is the square root of variance, bringing the units back to the original scale — the most common measure of risk in investments.`,
+          `Covariance and correlation describe how two variables move together. Correlation rescales covariance to always fall between −1 and +1. A correlation near +1 means the two variables move together closely; near −1 means they move in opposite directions; near 0 means little linear relationship. This number becomes the backbone of diversification arguments in Portfolio Management.`,
+        ],
+        formulas: [
+          { id: "probstat-3-var", name: "Sample variance and standard deviation", expression: "s\u00B2 = \u03A3(xi \u2212 mean)\u00B2 / (n \u2212 1)\ns = \u221As\u00B2", when: "Measuring how spread out a data set is.", worked: "A stock's returns over 4 years are 10%, 14%, 6%, 10%. Mean = 10%. Squared deviations: 0, 16, 16, 0. Variance = (0+16+16+0)/(4\u22121) \u2248 10.67. Standard deviation = \u221A10.67 \u2248 3.27%." },
+          { id: "probstat-3-corr", name: "Correlation", expression: "Correlation(X,Y) = Covariance(X,Y) / (StdDev(X) \u00D7 StdDev(Y))", when: "Measuring how strongly, and in what direction, two variables move together." },
+        ],
+      },
+      {
+        id: "probstat-4",
+        title: "Probability distributions",
+        body: [
+          `A probability distribution describes every possible outcome of a random variable and how likely each one is. The most important distribution in investments is the normal distribution — the familiar symmetric bell curve, fully described by just its mean and standard deviation.`,
+          `Skewness describes asymmetry — a long tail to the right is positively skewed; a long tail to the left is negatively skewed. Kurtosis describes how "fat" the tails are compared to a normal distribution — fat tails mean extreme outcomes happen more often than a normal distribution would predict.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "probstat-5",
+        title: "Hypothesis testing, in plain terms",
+        body: [
+          `Hypothesis testing is a formal procedure for deciding whether evidence from a sample is strong enough to challenge an assumed claim about a population. You start by stating a null hypothesis (the default assumption) and an alternative hypothesis (what you'd conclude if the evidence contradicts the null).`,
+          `You then pick a significance level (commonly 5%) — the probability of wrongly rejecting a true null hypothesis that you're willing to accept. A Type I error rejects a null hypothesis that was actually true (a "false alarm"); a Type II error fails to reject a null hypothesis that was actually false (a "missed signal"). Making it harder to commit one type of error usually makes the other more likely.`,
+          `Worked example: a researcher tests whether a new trading strategy's average return differs from zero. Null hypothesis: the true average return is zero. If the sample data would be very unusual under that assumption, the researcher rejects the null and concludes the strategy's return is likely different from zero.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "probstat-6",
+        title: "Formula decision guide",
+        type: "decision-guide",
+        body: [`Find the phrase that matches the question, then go to the matching concept.`],
+        decisionRows: [
+          { cue: "\"Probability that either event happens\"", formula: "Addition rule", section: "probstat-2" },
+          { cue: "\"Probability that both events happen\"", formula: "Multiplication rule", section: "probstat-2" },
+          { cue: "\"Given that X happened, what's the probability of Y\"", formula: "Conditional probability", section: "probstat-2" },
+          { cue: "\"Average outcome across weighted probabilities\"", formula: "Expected value", section: "probstat-2" },
+          { cue: "\"How spread out are the returns\"", formula: "Variance / standard deviation", section: "probstat-3" },
+          { cue: "\"How do two variables move together\"", formula: "Covariance / correlation", section: "probstat-3" },
+          { cue: "\"Is this sample result statistically meaningful\"", formula: "Hypothesis testing", section: "probstat-5" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "probstat-7",
+        title: "Common traps",
+        type: "reference",
+        body: [`Four mix-ups account for a lot of missed points here.`],
+        referenceRows: [
+          { item: "Independent vs. mutually exclusive", detail: "Mutually exclusive events can't both happen (highly dependent on each other), while independent events don't affect each other's probability at all." },
+          { item: "Forgetting to subtract overlap", detail: "Only skip the subtraction in the addition rule if the events are truly mutually exclusive." },
+          { item: "Reporting variance instead of standard deviation", detail: "Variance is in squared units; always take the square root for a return-style answer." },
+          { item: "Misreading correlation direction", detail: "Correlation of \u22121 means the strongest possible opposite relationship, not \"no relationship.\" Zero means no linear relationship." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "econ",
+    number: "04",
+    title: "Economics",
+    subtitle: "How markets, money, and policy shape the environment every investment sits inside",
+    sections: [
+      {
+        id: "econ-1",
+        title: "Overview",
+        body: [`Economics on Level 1 is less about memorizing theory and more about recognizing how forces like supply, demand, interest rates, and policy decisions ripple into asset prices and company performance. This chapter builds the vocabulary you'll see referenced casually in every other topic area.`],
+        formulas: [],
+      },
+      {
+        id: "econ-2",
+        title: "Demand, supply, and equilibrium",
+        body: [
+          `Demand describes how much of a good buyers want to purchase at each possible price — generally, the lower the price, the more people want to buy. Supply describes how much sellers are willing to offer at each price — generally, the higher the price, the more sellers want to sell. The equilibrium price is where the demand and supply curves cross.`,
+          `If price sits above equilibrium, a surplus results, pushing price back down. If price sits below equilibrium, a shortage results, pushing price back up.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "econ-3",
+        title: "Elasticity",
+        body: [
+          `Elasticity measures how sensitive quantity is to a change in price. Demand is elastic if a small price increase causes a large drop in quantity purchased. Demand is inelastic if quantity barely changes even with a large price increase.`,
+        ],
+        formulas: [
+          { id: "econ-3-elasticity", name: "Price elasticity of demand", expression: "% change in quantity demanded / % change in price", when: "Measuring how sensitive demand is to a price change.", worked: "A 10% price increase causes a 25% drop in quantity demanded. Elasticity = \u221225% / 10% = \u22122.5 (elastic)." },
+        ],
+      },
+      {
+        id: "econ-4",
+        title: "Market structures",
+        body: [
+          `Perfect competition: many small sellers, identical products, no single seller can influence price (e.g., agricultural commodities).`,
+          `Monopoly: a single seller with no close substitutes, giving it significant pricing power (e.g., a regional utility).`,
+          `Oligopoly: a small number of large sellers, where each one's pricing decisions noticeably affect the others (e.g., commercial aircraft manufacturers).`,
+          `Monopolistic competition: many sellers, but each with a somewhat differentiated product, giving a bit of pricing power (e.g., restaurants, clothing brands).`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "econ-5",
+        title: "GDP, economic growth, and business cycles",
+        body: [
+          `Gross domestic product (GDP) measures the total value of goods and services produced within a country over a period. Real GDP adjusts for inflation; nominal GDP does not, and can overstate growth during inflationary periods.`,
+          `Economies move through a repeating pattern called the business cycle: expansion, peak, contraction (recession), and trough, before expansion resumes.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "econ-6",
+        title: "Monetary and fiscal policy",
+        body: [
+          `Monetary policy is controlled by a central bank (e.g., the Federal Reserve) and primarily works through interest rates and the money supply. Lowering rates tends to stimulate borrowing and spending (expansionary); raising rates tends to cool an overheating economy (contractionary).`,
+          `Fiscal policy is controlled by a government through spending and taxation. Increased spending or reduced taxes tends to stimulate the economy (expansionary); reduced spending or higher taxes tends to slow it (contractionary).`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "econ-7",
+        title: "Inflation",
+        body: [`Inflation is a sustained rise in the general price level over time, most commonly measured by the Consumer Price Index (CPI). Moderate, predictable inflation is generally considered healthy; high or unpredictable inflation erodes purchasing power — exactly why the effective annual rate and real-vs-nominal-rate distinctions from Chapter 02 matter in practice.`],
+        formulas: [],
+      },
+      {
+        id: "econ-8",
+        title: "Exchange rates and international trade",
+        body: [`An exchange rate is the price of one currency in terms of another. When a currency appreciates, goods become more expensive for foreign buyers (can hurt exports); when it depreciates, goods become cheaper abroad (can help exports). Countries trade because of comparative advantage — even if one country produces everything more efficiently, both still gain by specializing in what each produces relatively best.`],
+        formulas: [],
+      },
+      {
+        id: "econ-9",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the description in the question to the concept below.`],
+        decisionRows: [
+          { cue: "A small price change causing a big change in quantity", formula: "Elastic demand/supply", section: "econ-3" },
+          { cue: "One seller, no substitutes, price-setting power", formula: "Monopoly", section: "econ-4" },
+          { cue: "A few large firms whose pricing decisions affect each other", formula: "Oligopoly", section: "econ-4" },
+          { cue: "Central bank raising/lowering interest rates", formula: "Monetary policy", section: "econ-6" },
+          { cue: "Government changing spending or tax rates", formula: "Fiscal policy", section: "econ-6" },
+          { cue: "Sustained rise in the general price level", formula: "Inflation", section: "econ-7" },
+          { cue: "A country's currency strengthening or weakening", formula: "Exchange rate appreciation/depreciation", section: "econ-8" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "econ-10",
+        title: "Common traps",
+        type: "reference",
+        body: [`These mix-ups come up often.`],
+        referenceRows: [
+          { item: "Nominal vs. real GDP", detail: "Real GDP strips out inflation; rising nominal GDP with high inflation may mean little real growth." },
+          { item: "Monetary vs. fiscal policy", detail: "Monetary policy = central bank; fiscal policy = government — not the same body." },
+          { item: "Elasticity as a single fixed number", detail: "Elasticity typically differs at different points on the same demand curve." },
+          { item: "Currency appreciation as automatically \"good\"", detail: "It helps importers and travelers but can hurt exporters." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "fsa",
+    number: "05",
+    title: "Financial Statement Analysis",
+    subtitle: "Reading a company's three core statements and turning them into insight",
+    sections: [
+      {
+        id: "fsa-1",
+        title: "Overview",
+        body: [`Financial statement analysis (FSA) is how you translate a company's raw accounting output into judgments about its financial health, profitability, and risk. This chapter builds the vocabulary and ratio toolkit used constantly in equity and credit analysis later on.`],
+        formulas: [],
+      },
+      {
+        id: "fsa-2",
+        title: "The three financial statements",
+        body: [
+          `The income statement reports revenue, expenses, and the resulting profit (or loss) over a period. Think of it as a video of performance over time.`,
+          `The balance sheet reports what a company owns (assets), owes (liabilities), and the residual claim of owners (equity) at a single point in time. Think of it as a snapshot.`,
+          `The cash flow statement reports actual cash moving in and out, split into operating, investing, and financing activities — since the income statement includes non-cash items like depreciation and doesn't show whether profit actually turned into cash.`,
+        ],
+        formulas: [
+          { id: "fsa-2-equation", name: "The accounting equation", expression: "Assets = Liabilities + Equity", when: "Must always balance — the structural backbone of the balance sheet." },
+        ],
+      },
+      {
+        id: "fsa-3",
+        title: "Revenue and expense recognition",
+        body: [`Under accrual accounting, revenue is recognized when it is earned — not necessarily when cash is received. A company that ships goods on credit records the sale immediately, even though cash arrives later. Expenses are recognized in the same period as the revenue they helped generate (the matching principle).`],
+        formulas: [],
+      },
+      {
+        id: "fsa-4",
+        title: "Key ratio categories, with worked examples",
+        body: [
+          `Liquidity ratios ask: can the company meet short-term obligations? Solvency ratios ask: can it meet long-term obligations? Profitability ratios ask: how efficiently does it turn sales into profit? Activity ratios ask: how efficiently does it use its assets?`,
+        ],
+        formulas: [
+          { id: "fsa-4-current", name: "Current ratio (liquidity)", expression: "Current assets / Current liabilities", when: "Assessing ability to meet short-term obligations.", worked: "Current assets of $500,000 and current liabilities of $250,000. Current ratio = 500,000 / 250,000 = 2.0." },
+          { id: "fsa-4-de", name: "Debt-to-equity ratio (solvency)", expression: "Total debt / Total equity", when: "Assessing leverage / ability to meet long-term obligations.", worked: "Total debt of $3 million and total equity of $2 million. Debt-to-equity = 3,000,000 / 2,000,000 = 1.5." },
+          { id: "fsa-4-margin", name: "Net profit margin (profitability)", expression: "Net income / Revenue", when: "Assessing how much profit is generated per dollar of sales.", worked: "Net income of $400,000 on revenue of $5,000,000. Net profit margin = 400,000 / 5,000,000 = 8%." },
+          { id: "fsa-4-turnover", name: "Inventory turnover (activity)", expression: "Cost of goods sold / Average inventory", when: "Assessing how efficiently inventory is used.", worked: "COGS of $2,000,000 and average inventory of $400,000. Inventory turnover = 2,000,000 / 400,000 = 5 times per year." },
+        ],
+      },
+      {
+        id: "fsa-5",
+        title: "Quality of earnings — reading between the lines",
+        body: [`Not all reported profit is equally trustworthy. A red flag worth watching for: net income that's growing steadily while operating cash flow is flat or declining — this divergence can signal aggressive revenue recognition or other accounting choices that inflate reported profit without a matching increase in actual cash generated.`],
+        formulas: [],
+      },
+      {
+        id: "fsa-6",
+        title: "Formula decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the ratio category.`],
+        decisionRows: [
+          { cue: "Ability to pay short-term bills", formula: "Liquidity ratios (e.g., current ratio)", section: "fsa-4" },
+          { cue: "Ability to handle long-term debt", formula: "Solvency ratios (e.g., debt-to-equity)", section: "fsa-4" },
+          { cue: "How much profit per dollar of sales", formula: "Profitability ratios (e.g., net profit margin)", section: "fsa-4" },
+          { cue: "How efficiently assets/inventory are used", formula: "Activity ratios (e.g., inventory turnover)", section: "fsa-4" },
+          { cue: "Whether reported profit is \"real\"", formula: "Compare net income to operating cash flow", section: "fsa-5" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "fsa-7",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Confusing accrual profit with cash", detail: "A profitable company on paper can still run out of cash if receivables pile up faster than they're collected." },
+          { item: "Comparing ratios across very different industries", detail: "A \"normal\" ratio varies enormously by industry — always compare to peers." },
+          { item: "Ignoring the balance sheet date mismatch", detail: "Using a single point-in-time number instead of an average can distort ratios like inventory turnover." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "corp",
+    number: "06",
+    title: "Corporate Issuers",
+    subtitle: "How companies decide what to invest in, and how to pay for it",
+    sections: [
+      {
+        id: "corp-1",
+        title: "Overview",
+        body: [`Corporate issuers covers the financial decisions companies make internally — which projects to fund, how to raise capital, and how to manage day-to-day cash needs. Capital budgeting leans directly on the time value of money tools from Chapter 02.`],
+        formulas: [],
+      },
+      {
+        id: "corp-2",
+        title: "Corporate structures and governance",
+        body: [`Most large companies are organized as corporations, owned by shareholders but run day-to-day by management, with a board of directors overseeing management on shareholders' behalf. Corporate governance refers to the systems and checks meant to keep management's decisions aligned with shareholders' interests.`],
+        formulas: [],
+      },
+      {
+        id: "corp-3",
+        title: "Capital budgeting: NPV and IRR",
+        body: [
+          `When a company decides whether to invest in a new project, it estimates the project's future cash flows and discounts them back to today — exactly the uneven cash flow technique from Chapter 02.`,
+          `Internal rate of return (IRR) is the discount rate at which a project's NPV would be exactly zero. If a project's IRR exceeds the company's cost of capital, the project is generally attractive.`,
+        ],
+        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_NPV }],
+        formulas: [
+          { id: "corp-3-npv", name: "Net present value (NPV)", expression: "NPV = (PV of future cash inflows) \u2212 (initial investment)", when: "Positive NPV = expected to add value; negative NPV = expected to destroy value.", worked: "A project costs $50,000 today and generates $15,000/year for 5 years. At 10%, PV of that annuity \u2248 15,000 \u00D7 3.7908 \u2248 $56,862. NPV \u2248 56,862 \u2212 50,000 \u2248 $6,862 — positive." },
+        ],
+      },
+      {
+        id: "corp-4",
+        title: "Cost of capital",
+        body: [`A company's cost of capital is the blended rate of return it must earn to satisfy both its lenders and its shareholders — the minimum bar any new project must clear. This blended figure is commonly called the weighted average cost of capital (WACC).`],
+        formulas: [],
+      },
+      {
+        id: "corp-5",
+        title: "Capital structure and leverage",
+        body: [`Capital structure describes the mix of debt and equity a company uses to fund itself. Using more debt (higher leverage) can boost returns to equity holders when things go well, since debt is a fixed cost — but it also amplifies losses and financial risk when things go poorly.`],
+        formulas: [],
+      },
+      {
+        id: "corp-6",
+        title: "Working capital management",
+        body: [`Working capital is the difference between a company's current assets and current liabilities — the cash cushion available for day-to-day operations. Managing it well means collecting receivables promptly, not over-investing in inventory, and timing supplier payments sensibly.`],
+        formulas: [],
+      },
+      {
+        id: "corp-7",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "Whether a project adds value in dollar terms", formula: "NPV", section: "corp-3" },
+          { cue: "The project's own break-even rate of return", formula: "IRR", section: "corp-3" },
+          { cue: "The minimum return a company must earn overall", formula: "Cost of capital / WACC", section: "corp-4" },
+          { cue: "The mix of debt versus equity funding", formula: "Capital structure", section: "corp-5" },
+          { cue: "Day-to-day liquidity management", formula: "Working capital", section: "corp-6" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "corp-8",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Accepting a project just because IRR is \"high\"", detail: "Always compare IRR to the cost of capital — NPV handles scale trade-offs more directly." },
+          { item: "Forgetting leverage cuts both ways", detail: "Debt amplifies both gains and losses to equity holders." },
+          { item: "Ignoring the initial investment in NPV", detail: "NPV nets out the upfront cost — never report just the PV of inflows as the answer." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "equity",
+    number: "07",
+    title: "Equity Investments",
+    subtitle: "How stocks are structured, traded, and valued",
+    sections: [
+      {
+        id: "equity-1",
+        title: "Overview",
+        body: [`This chapter covers what equity securities are, how equity markets are organized, and — most importantly for problem-solving — how to value a share of stock using the same discounting logic from Chapter 02.`],
+        formulas: [],
+      },
+      {
+        id: "equity-2",
+        title: "Types of equity securities",
+        body: [`Common stock represents residual ownership: common shareholders are paid last but typically have voting rights and unlimited upside. Preferred stock typically pays a fixed dividend and is paid before common shareholders, but usually carries no voting rights and limited upside — a hybrid between a bond and common stock.`],
+        formulas: [],
+      },
+      {
+        id: "equity-3",
+        title: "Market organization and indices",
+        body: [`Equities trade on organized exchanges (like the NYSE) or over-the-counter networks. A stock market index (like the S&P 500) tracks the combined performance of a specified basket of stocks.`],
+        formulas: [],
+      },
+      {
+        id: "equity-4",
+        title: "Equity valuation: the dividend discount model",
+        body: [`If a company pays dividends, its shares can be valued using the exact same perpetuity logic from Chapter 02 — a share of stock is just a claim on a stream of future dividends, discounted back to today.`],
+        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_DDM }],
+        formulas: [
+          { id: "equity-4-ggm", name: "Gordon growth (constant-growth dividend discount) model", expression: "V0 = D1 / (r \u2212 g)", when: "Values a stock as a growing perpetuity of dividends.", worked: "A stock just paid a $2.00 dividend, growing 4% per year forever. D1 = 2.00 \u00D7 1.04 = $2.08. At a 10% required return, V0 = 2.08 / (0.10 \u2212 0.04) \u2248 $34.67." },
+        ],
+      },
+      {
+        id: "equity-5",
+        title: "Relative valuation: multiples",
+        body: [`Rather than discounting cash flows directly, analysts often value a stock by comparing it to similar companies using a multiple — a ratio of price to some fundamental metric.`],
+        formulas: [
+          { id: "equity-5-pe", name: "Price-to-earnings (P/E) ratio", expression: "Price per share / Earnings per share", when: "Comparing a stock's price to its earnings, relative to similar companies.", worked: "A stock trades at $60 with earnings per share of $4.00. P/E = 60 / 4 = 15." },
+        ],
+      },
+      {
+        id: "equity-6",
+        title: "Market efficiency",
+        body: [`The efficient market hypothesis describes the idea that stock prices already reflect available information, to varying degrees depending on which "form" of efficiency is assumed (weak, semi-strong, or strong). The stronger the assumed efficiency, the harder it becomes to consistently outperform the market using that category of information.`],
+        formulas: [],
+      },
+      {
+        id: "equity-7",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "A stock with a dividend expected to grow at a constant rate forever", formula: "Gordon growth (dividend discount) model", section: "equity-4" },
+          { cue: "Comparing a stock's price to earnings/book value/sales of similar companies", formula: "Relative valuation multiples (P/E, etc.)", section: "equity-5" },
+          { cue: "Fixed dividend, paid before common shareholders, usually no vote", formula: "Preferred stock", section: "equity-2" },
+          { cue: "Residual ownership, votes, last claim on assets", formula: "Common stock", section: "equity-2" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "equity-8",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Using D0 instead of D1 in Gordon growth", detail: "The formula needs D1 (next year's expected dividend), not D0 (the dividend just paid)." },
+          { item: "Forgetting the r > g requirement", detail: "Same trap as the growing perpetuity in Chapter 02." },
+          { item: "Treating a low P/E as automatically \"cheap\"", detail: "A low multiple can also reflect real weaknesses rather than a bargain." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "fixedincome",
+    number: "08",
+    title: "Fixed Income",
+    subtitle: "Bonds: how they're structured, priced, and how their risk is measured",
+    sections: [
+      {
+        id: "fi-1",
+        title: "Overview",
+        body: [`Fixed income securities (bonds) are loans investors make to a borrower in exchange for scheduled interest payments and repayment of principal. Bond pricing is a direct, practical application of the annuity and single-sum formulas from Chapter 02.`],
+        formulas: [],
+      },
+      {
+        id: "fi-2",
+        title: "Bond features and structure",
+        body: [`A bond has a face value (par value — repaid at maturity, commonly $1,000), a coupon rate (the stated annual interest rate, usually fixed installments), and a maturity date. The bond's cash flows are simply the coupon payments (an annuity) plus the face value repayment (a single sum) at maturity.`],
+        formulas: [],
+      },
+      {
+        id: "fi-3",
+        title: "Bond pricing",
+        body: [
+          `A bond's price is the present value of all its future cash flows: the coupon payments (an annuity) plus the face value (a single sum), both discounted at the market's required yield.`,
+          `Core relationship: when market yields rise above a bond's coupon rate, its price falls below face value (a discount); when yields fall below the coupon rate, price rises above face value (a premium). Bond prices and yields always move in opposite directions.`,
+        ],
+        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_BOND }],
+        formulas: [
+          { id: "fi-3-price", name: "Bond price", expression: "Price = PV(coupon annuity) + PV(face value)", when: "Finding a bond's fair price given its coupon, face value, maturity, and required yield.", worked: "A $1,000 face value bond, 6% annual coupon ($60/yr), 3 years to maturity, market yield 8%. PV of coupons \u2248 $154.63. PV of face value \u2248 $793.83. Price \u2248 $948.46 — a discount, since coupon (6%) < yield (8%)." },
+        ],
+      },
+      {
+        id: "fi-4",
+        title: "Yield measures",
+        body: [`The current yield is a quick, rough measure: annual coupon payment divided by current price. The yield to maturity (YTM) is more complete — the single discount rate that makes the PV of all remaining cash flows equal the current price. YTM is effectively the bond's own IRR.`],
+        formulas: [],
+      },
+      {
+        id: "fi-5",
+        title: "The yield curve and term structure",
+        body: [`The yield curve plots yields against maturities for otherwise similar bonds. A normal, upward-sloping yield curve reflects the extra compensation investors typically demand for tying up money longer. An inverted yield curve (short-term higher than long-term) is unusual and often watched as a potential signal of economic concern.`],
+        formulas: [],
+      },
+      {
+        id: "fi-6",
+        title: "Duration, conceptually",
+        body: [`Duration measures a bond's sensitivity to changes in interest rates. Longer-maturity bonds and lower-coupon bonds generally have higher duration, because more of their value sits further out in time, where discounting has a bigger effect on present value.`],
+        formulas: [],
+      },
+      {
+        id: "fi-7",
+        title: "Credit risk",
+        body: [`Credit risk is the risk that a bond's issuer fails to make its promised payments (default). Higher-rated ("investment grade") bonds are seen as lower default risk and typically offer lower yields; lower-rated ("high yield"/"junk") bonds offer higher yields to compensate for the extra risk.`],
+        formulas: [],
+      },
+      {
+        id: "fi-8",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "Finding a bond's price given coupon, face value, maturity, required yield", formula: "Bond pricing (PV of coupon annuity + PV of face value)", section: "fi-3" },
+          { cue: "A quick yield estimate using only the coupon and current price", formula: "Current yield", section: "fi-4" },
+          { cue: "The full, precise annualized return if held to maturity", formula: "Yield to maturity (YTM)", section: "fi-4" },
+          { cue: "Comparing yields across different maturities", formula: "Yield curve", section: "fi-5" },
+          { cue: "How much a bond's price will move for a change in rates", formula: "Duration", section: "fi-6" },
+          { cue: "Risk that the issuer won't pay", formula: "Credit risk", section: "fi-7" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "fi-9",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Assuming bond price and yield move together", detail: "They always move in opposite directions." },
+          { item: "Confusing coupon rate with yield to maturity", detail: "Coupon rate is fixed at issuance; YTM changes constantly with market prices." },
+          { item: "Assuming equal-maturity bonds have equal duration", detail: "Coupon rate matters too — lower coupons mean higher duration." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "derivatives",
+    number: "09",
+    title: "Derivatives",
+    subtitle: "Contracts whose value is derived from something else",
+    sections: [
+      {
+        id: "deriv-1",
+        title: "Overview",
+        body: [`A derivative is a financial contract whose value depends on ("derives from") the price of some other underlying asset — a stock, a bond, a commodity, an interest rate. This chapter covers the four main derivative types and why investors use them.`],
+        formulas: [],
+      },
+      {
+        id: "deriv-2",
+        title: "Forwards and futures",
+        body: [
+          `A forward contract is a private agreement between two parties to buy or sell an asset at a specified price on a specified future date. A futures contract does the same thing, but is standardized and exchange-traded, which adds liquidity and reduces counterparty risk.`,
+          `Worked example: a wheat farmer and a bakery agree today on a forward contract to exchange 10,000 bushels of wheat in 6 months at $6.00/bushel. Regardless of the market price of wheat in 6 months, both sides are obligated to transact at $6.00.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "deriv-3",
+        title: "Options",
+        body: [
+          `An option gives its buyer the right, but not the obligation, to buy or sell the underlying asset at a specified strike price. A call option gives the right to buy; a put option gives the right to sell. The buyer pays an upfront premium for this right.`,
+          `Worked example: an investor buys a call option with a $50 strike price, paying a $3 premium. If the stock rises to $60, exercising nets a $10 gain minus the $3 premium = $7 profit per share. If the stock falls to $40, the investor lets the option expire, losing only the $3 premium — never more.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "deriv-4",
+        title: "Swaps",
+        body: [`A swap is an agreement between two parties to exchange cash flows over time. The most common type, an interest rate swap, typically involves one party paying a fixed rate while receiving a floating rate from the other, often used to change interest rate exposure without refinancing.`],
+        formulas: [],
+      },
+      {
+        id: "deriv-5",
+        title: "Why investors use derivatives",
+        body: [`Derivatives are generally used for hedging (reducing an existing risk) or speculation (taking on new risk in pursuit of profit).`],
+        formulas: [],
+      },
+      {
+        id: "deriv-6",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "An obligation for both sides to transact at a set price/date, privately negotiated", formula: "Forward", section: "deriv-2" },
+          { cue: "Same obligation, but standardized and exchange-traded", formula: "Futures", section: "deriv-2" },
+          { cue: "The right, not the obligation, to buy at a set price", formula: "Call option", section: "deriv-3" },
+          { cue: "The right, not the obligation, to sell at a set price", formula: "Put option", section: "deriv-3" },
+          { cue: "Exchanging fixed for floating interest payments over time", formula: "Interest rate swap", section: "deriv-4" },
+          { cue: "Reducing an existing risk", formula: "Hedging", section: "deriv-5" },
+          { cue: "Taking on new risk for potential profit", formula: "Speculation", section: "deriv-5" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "deriv-7",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Confusing options with forwards/futures", detail: "Options give a right; forwards and futures are obligations for both parties." },
+          { item: "Assuming an option buyer's loss is unlimited", detail: "An option buyer's maximum loss is the premium paid, full stop." },
+          { item: "Mixing up hedging and speculation", detail: "The same instrument can be either — the intent is what defines it." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "altinvest",
+    number: "10",
+    title: "Alternative Investments",
+    subtitle: "Everything outside traditional stocks and bonds",
+    sections: [
+      {
+        id: "alt-1",
+        title: "Overview",
+        body: [`Alternative investments cover a wide, varied category of assets that don't fit neatly into traditional stock/bond buckets. What ties them together is less about what they are and more about shared characteristics: typically less liquid, less transparent, and often less correlated with traditional markets.`],
+        formulas: [],
+      },
+      {
+        id: "alt-2",
+        title: "Major categories",
+        body: [
+          `Real estate — direct property ownership, or shares in a real estate investment trust (REIT) that owns and manages properties on investors' behalf.`,
+          `Private equity / venture capital — direct ownership stakes in companies not listed on public exchanges, often involving active involvement in company strategy.`,
+          `Hedge funds — pooled investment vehicles that pursue a wide range of strategies, often with more flexibility (including leverage and short-selling) than traditional funds.`,
+          `Commodities — physical goods like oil, gold, or agricultural products, typically accessed through futures contracts rather than by holding the physical good directly.`,
+          `Infrastructure — investments in long-lived physical assets like toll roads, airports, or utilities, often valued for their stable, inflation-linked cash flows.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "alt-3",
+        title: "Key characteristics versus traditional investments",
+        body: [`Alternative investments typically share several traits: illiquidity (money often locked up for years), higher fees, limited transparency, and diversification potential — returns are often less correlated with traditional markets, which can improve a portfolio's overall risk-return profile. This connects directly to the correlation concept from Probability & Statistics and resurfaces in Portfolio Management.`],
+        formulas: [],
+      },
+      {
+        id: "alt-4",
+        title: "Decision guide",
+        type: "decision-guide",
+        body: [`Match the description to the category.`],
+        decisionRows: [
+          { cue: "Direct property ownership or a REIT", formula: "Real estate", section: "alt-2" },
+          { cue: "An ownership stake in a private, non-listed company", formula: "Private equity / venture capital", section: "alt-2" },
+          { cue: "A flexible pooled fund using leverage or short-selling", formula: "Hedge fund", section: "alt-2" },
+          { cue: "Physical goods like oil, gold, or crops", formula: "Commodities", section: "alt-2" },
+          { cue: "Long-lived physical assets like toll roads or utilities", formula: "Infrastructure", section: "alt-2" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "alt-5",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Assuming \"alternative\" means \"riskier\" across the board", detail: "Risk varies enormously — infrastructure can be quite stable, while venture capital can be extremely volatile." },
+          { item: "Assuming alternatives are always a good diversifier", detail: "Depends on genuinely low correlation with the rest of the portfolio — not automatic." },
+          { item: "Forgetting the illiquidity trade-off", detail: "Investors typically demand an \"illiquidity premium\" for not being able to access money quickly." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "portfolio",
+    number: "11",
+    title: "Portfolio Management",
+    subtitle: "Combining investments so the whole is better than the sum of its parts",
+    sections: [
+      {
+        id: "port-1",
+        title: "Overview",
+        body: [`Portfolio management is about combining individual investments into a single portfolio in a way that manages overall risk while pursuing return — leaning directly on the variance, covariance, and correlation concepts introduced in Probability & Statistics.`],
+        formulas: [],
+      },
+      {
+        id: "port-2",
+        title: "The portfolio management process",
+        body: [`Professional portfolio management typically follows a repeating cycle: planning (understanding the investor's goals, constraints, and risk tolerance), execution (selecting and combining specific investments), and feedback (monitoring performance and rebalancing) — then returning to planning as circumstances change.`],
+        formulas: [],
+      },
+      {
+        id: "port-3",
+        title: "Risk and return of a portfolio",
+        body: [
+          `A portfolio's expected return is simply the weighted average of the expected returns of its individual holdings, weighted by how much of the portfolio's value each holding represents.`,
+          `A portfolio's risk, however, is not simply the weighted average of the individual risks — because how the holdings move together (their covariance/correlation) affects the portfolio's overall variance. This is the mathematical foundation of diversification.`,
+        ],
+        formulas: [
+          { id: "port-3-return", name: "Portfolio expected return", expression: "E(Rp) = \u03A3 [ wi \u00D7 E(Ri) ]", when: "Finding a portfolio's overall expected return from its holdings' weights and expected returns.", worked: "A portfolio is 60% Stock A (10% expected return) and 40% Stock B (6% expected return). E(Rp) = (0.60\u00D710%) + (0.40\u00D76%) = 8.4%." },
+        ],
+      },
+      {
+        id: "port-4",
+        title: "Diversification, in plain terms",
+        body: [`If two stocks are perfectly positively correlated (correlation = +1), combining them provides no risk-reduction benefit. But if two stocks have a correlation below +1 (especially if negative), combining them can reduce the portfolio's overall risk below either stock's individual risk, since their ups and downs partially offset each other. The lower the correlation between holdings, the greater the diversification benefit.`],
+        exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_DIVERSIFICATION }],
+        formulas: [],
+      },
+      {
+        id: "port-5",
+        title: "The efficient frontier and capital allocation line, conceptually",
+        body: [`Plotting every possible portfolio combination of risky assets by risk and expected return traces out a curve; the efficient frontier is the upper-left edge — the set of portfolios offering the highest expected return for each level of risk. Adding a risk-free asset creates the capital allocation line, a straight line from the risk-free rate through the optimal risky portfolio, representing every risk-free/risky blend an investor could choose.`],
+        formulas: [],
+      },
+      {
+        id: "port-6",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "A portfolio's expected return given its holdings' weights and expected returns", formula: "Weighted average formula (E(Rp))", section: "port-3" },
+          { cue: "Whether combining two assets reduces risk", formula: "Correlation between the two assets", section: "port-4" },
+          { cue: "The best possible risk-return trade-off available from risky assets", formula: "Efficient frontier", section: "port-5" },
+          { cue: "Combining a risk-free asset with a risky portfolio", formula: "Capital allocation line", section: "port-5" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "port-7",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Treating portfolio risk like a simple weighted average", detail: "Portfolio risk depends on the correlations between holdings, not just their individual risk levels weighted together." },
+          { item: "Assuming diversification always eliminates risk", detail: "It reduces risk from holdings moving independently, but doesn't eliminate market-wide risk." },
+          { item: "Confusing the efficient frontier with the capital allocation line", detail: "The frontier uses only risky assets; the CAL specifically incorporates a risk-free asset." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "ethics",
+    number: "12",
+    title: "Ethics and Professional Standards",
+    subtitle: "The single most heavily weighted topic on the exam",
+    sections: [
+      {
+        id: "ethics-1",
+        title: "Overview",
+        body: [
+          `Ethics carries significant weight on the Level 1 exam and is tested throughout your career as a charterholder, not just on exam day. This chapter builds a general reasoning framework around the kinds of ethical situations investment professionals commonly face.`,
+          `Important note: CFA Institute's actual Code of Ethics and Standards of Professional Conduct is the authoritative source for exam purposes, and this chapter deliberately does not reproduce that copyrighted material verbatim — it's a general framework in plain language to build your intuition. You should also read the official Code and Standards directly, ideally more than once, before exam day.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "ethics-2",
+        title: "Why ethics is weighted so heavily",
+        body: [`Investment professionals are routinely trusted with other people's money, information, and financial futures. Because the potential for harm from misconduct is high, and because trust is the foundation the entire investment industry depends on, professional bodies place enormous emphasis on ethical conduct.`],
+        formulas: [],
+      },
+      {
+        id: "ethics-3",
+        title: "General principles worth internalizing",
+        body: [
+          `While you should study the official Code and Standards directly, these broad, commonly recognized ethical principles are worth having as a mental framework:`,
+          `Client interests come first. When a professional's own interests (or an employer's interests) conflict with a client's interests, the client's interests should take priority.`,
+          `Honesty and integrity in all professional dealings. This includes accurate representation of qualifications, performance, and the nature of investments.`,
+          `Competence and diligence. Professionals should only offer advice within their actual expertise, and maintain that expertise over time.`,
+          `Fair dealing. Clients should be treated fairly and consistently — not giving favored clients material information ahead of others.`,
+          `Market integrity. Actions that could distort or manipulate market prices, or that make use of material nonpublic information, undermine the fairness of markets for everyone.`,
+          `Disclosure of conflicts of interest. Where a conflict can't be avoided, it should be clearly and proactively disclosed.`,
+          `Compliance with applicable laws, regulations, and professional standards — generally following the stricter of the two where they differ.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "ethics-4",
+        title: "A reasoning framework for ethics vignettes",
+        body: [
+          `Ethics questions are typically presented as short scenarios ("vignettes") describing a professional's specific situation, then ask what the professional should have done, or whether an action was appropriate. A useful approach:`,
+          `First, identify who could be harmed or misled by the action described — a client, an employer, other market participants, or the integrity of the market itself.`,
+          `Second, identify any conflict of interest — does the professional (or their firm) stand to benefit in a way that could compromise judgment on the client's behalf?`,
+          `Third, ask whether the action was disclosed — many otherwise-permissible actions become problems specifically because they weren't disclosed.`,
+          `Fourth, consider the most conservative, client-first interpretation — when in doubt, the answer that best protects client interests and market integrity is usually correct.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "ethics-5",
+        title: "Decision guide",
+        type: "decision-guide",
+        body: [`Match the vignette pattern to the likely issue.`],
+        decisionRows: [
+          { cue: "Recommending unsuitable products because they pay a higher commission", formula: "Client interests not prioritized / conflict of interest", section: "ethics-3" },
+          { cue: "Trading ahead of a big client order for personal benefit", formula: "Fair dealing / market integrity violation", section: "ethics-3" },
+          { cue: "Giving one client earlier access to research than another", formula: "Fair dealing violation", section: "ethics-3" },
+          { cue: "Accepting an undisclosed gift before issuing a report on that company", formula: "Undisclosed conflict of interest", section: "ethics-3" },
+          { cue: "Advising outside your actual area of expertise", formula: "Competence violation", section: "ethics-3" },
+          { cue: "Exaggerating past investment performance to attract clients", formula: "Integrity / misrepresentation violation", section: "ethics-3" },
+        ],
+        formulas: [],
+      },
+    ],
+  },
 ];
 
 const QUIZZES = {
@@ -546,6 +1402,91 @@ const QUIZZES = {
     { id: "tvm-q8", question: "A savings account quotes 6% annual interest, compounded monthly. What do you need to compute before comparing it to a 6.1% account compounded annually?", options: ["Nothing, 6% is already comparable to 6.1%", "The effective annual rate (EAR) of the 6% account", "The perpetuity value of the account", "The annuity due adjustment"], correct: 1, explanation: "Comparing rates with different compounding frequencies requires converting to a common effective annual rate.", remediation: "tvm-2" },
     { id: "tvm-q9", question: "\"You will receive $500 at the end of every month for the next 3 years.\" This is best solved as:", options: ["A single sum, since $500 is one number", "An ordinary annuity, with rate and n converted to monthly terms", "A perpetuity, since it repeats", "An uneven cash flow series"], correct: 1, explanation: "Equal payments at regular intervals with a defined end point = ordinary annuity, using monthly rate and monthly n.", remediation: "tvm-7" },
     { id: "tvm-q10", question: "A bond pays a semiannual coupon, but you're given only the annual stated rate. Before applying any TVM formula, you should:", options: ["Use the annual rate as-is", "Convert to a periodic (semiannual) rate and double the number of periods", "Ignore compounding frequency entirely", "Apply the perpetuity formula"], correct: 1, explanation: "Rate and period frequency must match — divide the annual rate by 2 and use 2× the number of years as n.", remediation: "tvm-8" },
+  ],
+  probstat: [
+    { id: "probstat-q1", question: "Two events are mutually exclusive. What is P(A and B)?", options: ["1", "0", "0.5", "Cannot be determined"], correct: 1, explanation: "Mutually exclusive events can't both happen, so their joint probability is zero.", remediation: "probstat-2" },
+    { id: "probstat-q2", question: "Probability of rain is 0.3, probability of a delayed flight is 0.2, both together is 0.1. P(rain or delayed flight)?", options: ["0.5", "0.6", "0.4", "0.1"], correct: 2, explanation: "0.3 + 0.2 \u2212 0.1 = 0.4.", remediation: "probstat-2" },
+    { id: "probstat-q3", question: "A fund has a 60% chance of matching the benchmark each year, independent across years. Probability of matching it 3 years running?", options: ["0.6", "0.18", "0.216", "1.8"], correct: 2, explanation: "0.6\u00B3 = 0.216.", remediation: "probstat-2" },
+    { id: "probstat-q4", question: "A data set has one extreme outlier. Which measure of central tendency is least affected?", options: ["Mean", "Median", "Range", "Variance"], correct: 1, explanation: "The median is resistant to extreme outliers; the mean is pulled toward them.", remediation: "probstat-3" },
+    { id: "probstat-q5", question: "Standard deviation is the square root of which measure?", options: ["Mean", "Correlation", "Variance", "Covariance"], correct: 2, explanation: "Standard deviation = \u221Avariance.", remediation: "probstat-3" },
+    { id: "probstat-q6", question: "Two stocks have a correlation of \u22120.9. What does that suggest?", options: ["They move randomly with no relationship", "They tend to move strongly in opposite directions", "They always have equal returns", "One causes the other"], correct: 1, explanation: "Correlation near \u22121 means a strong opposite relationship.", remediation: "probstat-3" },
+    { id: "probstat-q7", question: "Rejecting a null hypothesis that was actually true is called", options: ["A Type II error", "A Type I error", "A significance level", "A confidence interval"], correct: 1, explanation: "A Type I error is a false rejection of a true null hypothesis.", remediation: "probstat-5" },
+    { id: "probstat-q8", question: "Which distribution is fully described by just its mean and standard deviation?", options: ["Any distribution", "The normal distribution", "A skewed distribution only", "None"], correct: 1, explanation: "The normal distribution is fully characterized by its mean and standard deviation.", remediation: "probstat-4" },
+  ],
+  econ: [
+    { id: "econ-q1", question: "Price rises above equilibrium. What results?", options: ["A shortage", "A surplus", "No change", "Elasticity increases"], correct: 1, explanation: "Above equilibrium, quantity supplied exceeds quantity demanded — a surplus.", remediation: "econ-2" },
+    { id: "econ-q2", question: "A 5% price increase causes only a 1% drop in quantity demanded. Demand is", options: ["Elastic", "Inelastic", "Perfectly elastic", "Undefined"], correct: 1, explanation: "A small quantity response to a price change indicates inelastic demand.", remediation: "econ-3" },
+    { id: "econ-q3", question: "Many sellers, identical product, no pricing power describes", options: ["Monopoly", "Oligopoly", "Perfect competition", "Monopolistic competition"], correct: 2, explanation: "Perfect competition features many sellers of identical goods with no individual pricing power.", remediation: "econ-4" },
+    { id: "econ-q4", question: "Which GDP measure adjusts for inflation?", options: ["Nominal GDP", "Real GDP", "Neither", "Both equally"], correct: 1, explanation: "Real GDP strips out the effect of price changes.", remediation: "econ-5" },
+    { id: "econ-q5", question: "A central bank lowering interest rates to stimulate borrowing is an example of", options: ["Contractionary fiscal policy", "Expansionary monetary policy", "Expansionary fiscal policy", "Contractionary monetary policy"], correct: 1, explanation: "Lowering rates via the central bank is expansionary monetary policy.", remediation: "econ-6" },
+    { id: "econ-q6", question: "A sustained rise in the general price level is called", options: ["Deflation", "Inflation", "Recession", "Appreciation"], correct: 1, explanation: "Inflation is a sustained rise in the general price level.", remediation: "econ-7" },
+    { id: "econ-q7", question: "A country's currency weakens. What tends to happen to its exports?", options: ["They become more expensive abroad, hurting exports", "They become cheaper abroad, helping exports", "No effect", "Imports become cheaper"], correct: 1, explanation: "A weaker currency makes domestic goods cheaper for foreign buyers.", remediation: "econ-8" },
+  ],
+  fsa: [
+    { id: "fsa-q1", question: "Which statement shows a snapshot at a single point in time?", options: ["The income statement", "The cash flow statement", "The balance sheet", "None of these"], correct: 2, explanation: "The balance sheet reports assets, liabilities, and equity at one point in time.", remediation: "fsa-2" },
+    { id: "fsa-q2", question: "Revenue is recorded when goods are shipped on credit, before cash is received. This reflects", options: ["Cash basis accounting", "Accrual accounting / revenue recognition", "An accounting error", "Deferred tax accounting"], correct: 1, explanation: "Under accrual accounting, revenue is recognized when earned, not when cash arrives.", remediation: "fsa-3" },
+    { id: "fsa-q3", question: "Current assets of $800,000 and current liabilities of $400,000 give a current ratio of", options: ["0.5", "2.0", "4.0", "1.0"], correct: 1, explanation: "800,000 / 400,000 = 2.0.", remediation: "fsa-4" },
+    { id: "fsa-q4", question: "Net income of $200,000 on revenue of $2,000,000 gives a net profit margin of", options: ["20%", "2%", "10%", "5%"], correct: 2, explanation: "200,000 / 2,000,000 = 10%.", remediation: "fsa-4" },
+    { id: "fsa-q5", question: "Which ratio category answers \"can this company handle its long-term debt\"?", options: ["Liquidity ratios", "Solvency ratios", "Activity ratios", "Profitability ratios"], correct: 1, explanation: "Solvency ratios assess long-term debt-paying ability.", remediation: "fsa-4" },
+    { id: "fsa-q6", question: "Net income rising steadily while operating cash flow stays flat or falls is a signal of", options: ["Strong earnings quality", "Possible low quality of earnings", "Guaranteed fraud", "Nothing meaningful"], correct: 1, explanation: "A growing gap between net income and operating cash flow is a quality-of-earnings red flag.", remediation: "fsa-5" },
+    { id: "fsa-q7", question: "Assets must always equal", options: ["Revenue minus expenses", "Liabilities plus equity", "Liabilities minus equity", "Equity alone"], correct: 1, explanation: "The accounting equation: Assets = Liabilities + Equity.", remediation: "fsa-2" },
+  ],
+  corp: [
+    { id: "corp-q1", question: "A project has a positive NPV. What does that suggest?", options: ["It's expected to destroy value", "It's expected to add value", "Its IRR equals zero", "It should always be rejected"], correct: 1, explanation: "Positive NPV means the project is expected to add value.", remediation: "corp-3" },
+    { id: "corp-q2", question: "IRR is defined as the discount rate at which NPV equals", options: ["The cost of capital", "One", "Zero", "The initial investment"], correct: 2, explanation: "IRR is the break-even discount rate where NPV = 0.", remediation: "corp-3" },
+    { id: "corp-q3", question: "Which measure blends the cost of debt and equity, weighted by their share of the capital structure?", options: ["NPV", "IRR", "WACC", "Working capital"], correct: 2, explanation: "WACC blends financing costs weighted by capital structure proportions.", remediation: "corp-4" },
+    { id: "corp-q4", question: "Increasing debt relative to equity increases which financial characteristic?", options: ["Liquidity", "Leverage (and financial risk)", "Working capital", "Market efficiency"], correct: 1, explanation: "More debt relative to equity means higher leverage.", remediation: "corp-5" },
+    { id: "corp-q5", question: "Current assets minus current liabilities defines", options: ["WACC", "Working capital", "NPV", "Capital structure"], correct: 1, explanation: "Working capital = current assets \u2212 current liabilities.", remediation: "corp-6" },
+    { id: "corp-q6", question: "A project's IRR is below the company's cost of capital. What should generally happen?", options: ["The project should generally be accepted", "The project should generally be rejected", "It has no bearing on the decision", "The company should raise more debt"], correct: 1, explanation: "An IRR below the cost of capital means the project is expected to destroy value.", remediation: "corp-3" },
+  ],
+  equity: [
+    { id: "equity-q1", question: "Which security type is typically paid before common shareholders but usually has no vote?", options: ["Common stock", "Preferred stock", "A bond", "A call option"], correct: 1, explanation: "Preferred stock has priority over common stock but usually no voting rights.", remediation: "equity-2" },
+    { id: "equity-q2", question: "Gordon growth model requires which relationship between r and g?", options: ["g must exceed r", "r must exceed g", "r must equal g", "No relationship is required"], correct: 1, explanation: "The model only works when the required return exceeds the growth rate.", remediation: "equity-4" },
+    { id: "equity-q3", question: "A stock paid a $3.00 dividend, expected to grow 5% forever, at an 11% required return. What is D1?", options: ["$3.00", "$3.05", "$3.15", "$3.30"], correct: 2, explanation: "D1 = 3.00 \u00D7 1.05 = $3.15.", remediation: "equity-4" },
+    { id: "equity-q4", question: "Using that D1, what is the Gordon growth value?", options: ["$30.00", "$52.50", "$60.00", "$45.00"], correct: 1, explanation: "3.15 / (0.11 \u2212 0.05) = $52.50.", remediation: "equity-4" },
+    { id: "equity-q5", question: "Price per share divided by earnings per share defines", options: ["The P/E ratio", "The current yield", "WACC", "Duration"], correct: 0, explanation: "P/E = price per share \u00F7 earnings per share.", remediation: "equity-5" },
+    { id: "equity-q6", question: "The idea that stock prices already reflect available information describes", options: ["The Gordon growth model", "The efficient market hypothesis", "Comparative advantage", "Duration"], correct: 1, explanation: "The efficient market hypothesis describes prices reflecting available information.", remediation: "equity-6" },
+  ],
+  fixedincome: [
+    { id: "fi-q1", question: "A bond's coupon rate is below the current market yield. Its price will be", options: ["Above face value (a premium)", "Below face value (a discount)", "Exactly at face value", "Cannot be determined"], correct: 1, explanation: "When yield exceeds the coupon rate, the bond trades at a discount.", remediation: "fi-3" },
+    { id: "fi-q2", question: "Bond prices and yields move", options: ["In the same direction", "In opposite directions", "Independently of each other", "Only during recessions"], correct: 1, explanation: "Bond prices and yields always move in opposite directions.", remediation: "fi-3" },
+    { id: "fi-q3", question: "The discount rate that makes a bond's PV of cash flows equal its current price is called", options: ["The coupon rate", "The current yield", "Yield to maturity", "Duration"], correct: 2, explanation: "Yield to maturity is that exact discount rate.", remediation: "fi-4" },
+    { id: "fi-q4", question: "An upward-sloping yield curve generally reflects", options: ["Lower yields demanded for longer maturities", "Higher yields demanded for longer maturities", "No relationship between yield and maturity", "An imminent recession"], correct: 1, explanation: "Normal yield curves slope upward, reflecting compensation for longer maturities.", remediation: "fi-5" },
+    { id: "fi-q5", question: "All else equal, a bond with a lower coupon rate will have", options: ["Lower duration", "Higher duration", "The same duration as any other bond", "No measurable duration"], correct: 1, explanation: "Lower coupons mean more value sits further out in time, raising duration.", remediation: "fi-6" },
+    { id: "fi-q6", question: "Risk that a bond issuer fails to make payments is called", options: ["Duration risk", "Credit risk", "Reinvestment risk", "Currency risk"], correct: 1, explanation: "Credit risk is the risk of issuer default.", remediation: "fi-7" },
+    { id: "fi-q7", question: "A $1,000 face value bond with a 5% coupon and 2 years to maturity, market yield 5% \u2014 is the price above, below, or at face value?", options: ["Above face value", "Below face value", "At face value", "Cannot be determined"], correct: 2, explanation: "When the coupon rate equals the market yield, the bond prices at exactly face value.", remediation: "fi-3" },
+  ],
+  derivatives: [
+    { id: "deriv-q1", question: "Which derivative type standardizes the contract and trades it on an exchange?", options: ["Forward", "Futures", "Swap", "A private loan"], correct: 1, explanation: "Futures are standardized, exchange-traded contracts.", remediation: "deriv-2" },
+    { id: "deriv-q2", question: "A contract giving the right, but not the obligation, to buy at a set price is", options: ["A forward", "A call option", "A put option", "A swap"], correct: 1, explanation: "A call option gives the right to buy.", remediation: "deriv-3" },
+    { id: "deriv-q3", question: "An option buyer's maximum possible loss is", options: ["Unlimited", "The premium paid", "The strike price", "Twice the premium"], correct: 1, explanation: "An option buyer can never lose more than the premium paid.", remediation: "deriv-3" },
+    { id: "deriv-q4", question: "An agreement to exchange a fixed interest rate for a floating rate over time is", options: ["A forward", "A futures contract", "An interest rate swap", "A call option"], correct: 2, explanation: "This describes an interest rate swap.", remediation: "deriv-4" },
+    { id: "deriv-q5", question: "A farmer locking in a future selling price to protect against falling prices is engaging in", options: ["Speculation", "Hedging", "Arbitrage", "Leverage"], correct: 1, explanation: "Reducing an existing risk is hedging.", remediation: "deriv-5" },
+    { id: "deriv-q6", question: "Which derivative type carries an obligation for both parties, privately negotiated (not exchange-traded)?", options: ["Futures", "Option", "Forward", "None of these"], correct: 2, explanation: "A forward is a private, bilateral obligation.", remediation: "deriv-2" },
+  ],
+  altinvest: [
+    { id: "alt-q1", question: "A pooled fund using leverage and short-selling across flexible strategies is a", options: ["Mutual fund", "Hedge fund", "REIT", "Government bond fund"], correct: 1, explanation: "Hedge funds use flexible strategies including leverage and short-selling.", remediation: "alt-2" },
+    { id: "alt-q2", question: "An ownership stake in a company not listed on a public exchange describes", options: ["Common stock", "Private equity / venture capital", "A REIT", "A commodity"], correct: 1, explanation: "Private equity/venture capital involves stakes in non-listed companies.", remediation: "alt-2" },
+    { id: "alt-q3", question: "Physical goods like oil or gold are most commonly accessed through", options: ["Common stock", "Futures contracts (commodities)", "Preferred stock", "Bonds"], correct: 1, explanation: "Commodities are typically accessed via futures contracts.", remediation: "alt-2" },
+    { id: "alt-q4", question: "Which shared characteristic often lets alternative investments improve a portfolio's risk-return profile?", options: ["Higher fees", "Lower correlation with traditional markets", "Greater transparency", "Guaranteed higher returns"], correct: 1, explanation: "Lower correlation with traditional assets can improve diversification.", remediation: "alt-3" },
+    { id: "alt-q5", question: "Extra expected return demanded for tying up money in a hard-to-sell investment is called", options: ["A credit spread", "An illiquidity premium", "A dividend yield", "A coupon"], correct: 1, explanation: "This is the illiquidity premium.", remediation: "alt-3" },
+    { id: "alt-q6", question: "Toll roads, airports, and utilities fall under which category?", options: ["Hedge funds", "Private equity", "Infrastructure", "Commodities"], correct: 2, explanation: "These are examples of infrastructure investments.", remediation: "alt-2" },
+  ],
+  portfolio: [
+    { id: "port-q1", question: "A portfolio is 70% Stock A (12% expected return) and 30% Stock B (5% expected return). Expected portfolio return?", options: ["8.5%", "9.9%", "12%", "17%"], correct: 1, explanation: "0.70\u00D712% + 0.30\u00D75% = 9.9%.", remediation: "port-3" },
+    { id: "port-q2", question: "Two stocks have a correlation of +1. Combining them provides", options: ["Full diversification benefit", "No diversification benefit", "Negative returns", "Guaranteed risk elimination"], correct: 1, explanation: "Perfectly correlated assets move together and provide no diversification benefit.", remediation: "port-4" },
+    { id: "port-q3", question: "The lower the correlation between two holdings, the", options: ["Smaller the diversification benefit", "Greater the diversification benefit", "Higher the expected return", "Lower the expected return"], correct: 1, explanation: "Lower correlation generally means greater diversification benefit.", remediation: "port-4" },
+    { id: "port-q4", question: "The set of portfolios offering the highest return for each level of risk is called", options: ["The capital allocation line", "The efficient frontier", "The yield curve", "WACC"], correct: 1, explanation: "This defines the efficient frontier.", remediation: "port-5" },
+    { id: "port-q5", question: "Adding a risk-free asset to the optimal risky portfolio creates", options: ["The efficient frontier", "The capital allocation line", "A hedge fund", "A yield curve"], correct: 1, explanation: "This defines the capital allocation line.", remediation: "port-5" },
+    { id: "port-q6", question: "Is portfolio risk generally a simple weighted average of the individual holdings' risks?", options: ["Yes, always", "No — it also depends on the correlations between the holdings", "Only for bonds", "Only for two-asset portfolios"], correct: 1, explanation: "Portfolio risk depends on correlations, not just weighted individual risks.", remediation: "port-3" },
+  ],
+  ethics: [
+    { id: "ethics-q1", question: "When a professional's interests conflict with a client's, whose interest should generally take priority?", options: ["The professional's", "The employer's", "The client's", "Whichever is most profitable"], correct: 2, explanation: "Client interests should generally take priority.", remediation: "ethics-3" },
+    { id: "ethics-q2", question: "A professional recommends a product mainly because it pays a higher commission, despite a better-suited alternative existing. This most likely violates which principle?", options: ["Competence", "Client interests coming first / avoiding conflicts of interest", "Market integrity only", "None of these"], correct: 1, explanation: "This is a classic conflict-of-interest and client-priority violation.", remediation: "ethics-3" },
+    { id: "ethics-q3", question: "Giving one client earlier access to the same research than another client violates which principle?", options: ["Competence", "Fair dealing", "Market integrity only", "Disclosure of gifts"], correct: 1, explanation: "Unequal access to information violates fair dealing.", remediation: "ethics-3" },
+    { id: "ethics-q4", question: "A professional accepts an undisclosed gift from a company before issuing a report on it. What's the core issue?", options: ["Nothing, gifts are always fine", "An undisclosed conflict of interest", "A market integrity violation only", "A competence violation"], correct: 1, explanation: "The core issue is the undisclosed conflict of interest.", remediation: "ethics-3" },
+    { id: "ethics-q5", question: "When in doubt between two plausible answers on an ethics vignette, which is usually the safer choice?", options: ["The one that benefits the professional most", "The one that most protects client interests and market integrity", "The one requiring the least disclosure", "Either, since ethics questions have no clear answer"], correct: 1, explanation: "The most client-protective, market-integrity-preserving answer is usually correct.", remediation: "ethics-4" },
+    { id: "ethics-q6", question: "What is the authoritative source for the actual Code of Ethics and Standards of Professional Conduct?", options: ["This app's chapter summary", "Any third-party study guide", "CFA Institute's official published Code and Standards", "None — it's not formally codified"], correct: 2, explanation: "Always defer to CFA Institute's official published Code and Standards.", remediation: "ethics-1" },
   ],
 };
 
