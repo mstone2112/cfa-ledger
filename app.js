@@ -1226,6 +1226,31 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "econ-8b",
+        title: "Exchange rate calculations",
+        body: [
+          `Exchange rates are quoted as one currency per unit of another — and a critical habit to build early: always identify which currency is the "price currency" (the amount being quoted) and which is the "base currency" (the one unit you're pricing), since mixing this up is one of the most common, avoidable errors on exam calculations.`,
+          `A cross rate lets you find the exchange rate between two currencies when you're only given each currency's rate against a common third currency (very often the US dollar) — multiplying or dividing the two given rates appropriately cancels out the common currency, leaving the direct rate between the two you actually want.`,
+          `A forward exchange rate is the rate agreed today for a currency exchange at a future date, and it's linked to today's spot rate through interest rate parity — the same no-arbitrage logic from the implied forward rate discussion in Quantitative Methods, just applied across two currencies instead of two maturities of the same currency. The currency with the higher interest rate will trade at a forward discount (its forward rate is weaker than its spot rate); the currency with the lower interest rate will trade at a forward premium.`,
+        ],
+        formulas: [
+          { id: "econ-8b-cross", name: "Cross rate calculation", expression: "(A/B) = (A/C) \u00D7 (C/B)", when: "Finding the exchange rate between two currencies, given each one's rate against a common third currency.", worked: "EUR/USD = 1.10 (1.10 US dollars per euro) and GBP/USD = 1.25 (1.25 US dollars per pound). To find EUR/GBP: EUR/GBP = (EUR/USD) \u00F7 (GBP/USD) = 1.10 / 1.25 = 0.88 \u2014 meaning 0.88 euros are needed to buy 1 British pound." },
+          { id: "econ-8b-forward", name: "Forward premium/discount (interest rate parity, approximate)", expression: "Forward premium/discount \u2248 Domestic interest rate \u2212 Foreign interest rate", when: "Estimating whether a currency should trade at a forward premium or discount, based on the interest rate differential between the two countries.", worked: "The US risk-free rate is 5% and the eurozone risk-free rate is 2%. The euro's approximate forward premium against the dollar \u2248 5% \u2212 2% = 3% \u2014 the euro (the lower-rate currency) is expected to strengthen against the dollar in the forward market, consistent with interest rate parity: the currency offering the lower interest rate trades at a forward premium." },
+        ],
+      },
+      {
+        id: "econ-8c",
+        title: "Capital flows and the FX market",
+        body: [`A country's balance of payments tracks all its economic transactions with the rest of the world, split broadly into the current account (trade in goods and services, plus income flows) and the capital/financial account (cross-border investment flows — money moving in and out to buy foreign stocks, bonds, or real assets). These flows interact directly with currency markets: strong capital inflows (foreign investors buying a country's assets) generally increase demand for that country's currency, putting upward pressure on its value, while capital outflows tend to have the opposite effect.`],
+        formulas: [],
+      },
+      {
+        id: "econ-8d",
+        title: "Introduction to geopolitics",
+        body: [`Geopolitical developments — trade disputes, sanctions, regional conflicts, shifts in international alliances — can meaningfully affect economic growth, trade flows, currency values, and market risk premiums, even though they originate outside traditional economic models. Analysts increasingly treat geopolitical risk as its own category worth monitoring directly, alongside the more traditional economic and policy factors covered elsewhere in this chapter, precisely because it doesn't always show up in advance in conventional economic data.`],
+        formulas: [],
+      },
+      {
         id: "econ-9",
         title: "Formula/concept decision guide",
         type: "decision-guide",
@@ -1238,6 +1263,10 @@ const CHAPTERS = [
           { cue: "Government changing spending or tax rates", formula: "Fiscal policy", section: "econ-6" },
           { cue: "Sustained rise in the general price level", formula: "Inflation", section: "econ-7" },
           { cue: "A country's currency strengthening or weakening", formula: "Exchange rate appreciation/depreciation", section: "econ-8" },
+          { cue: "Given two currencies' rates against a common third currency", formula: "Cross rate calculation", section: "econ-8b" },
+          { cue: "Finding a currency's forward premium/discount from interest rates", formula: "Interest rate parity", section: "econ-8b" },
+          { cue: "Cross-border investment flows affecting currency demand", formula: "Capital flows and the FX market", section: "econ-8c" },
+          { cue: "Trade disputes, sanctions, or conflict affecting markets", formula: "Geopolitical risk", section: "econ-8d" },
         ],
         formulas: [],
       },
@@ -1456,15 +1485,23 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "corp-2b",
+        title: "Investors and other stakeholders",
+        body: [`A corporation answers to more than just its shareholders. Lenders (bondholders and banks) hold a fixed, contractual claim — they're owed a specific amount regardless of how profitable the company becomes, and they're paid before shareholders in almost every circumstance, including bankruptcy. Shareholders hold a residual claim instead — no guaranteed payment, but unlimited upside if the company does well. Beyond these two financial stakeholders, employees, customers, suppliers, and the communities a company operates in all have a stake in its decisions too, and increasingly, environmental and social considerations factor into how companies weigh these different groups' interests against each other.`],
+        formulas: [],
+      },
+      {
         id: "corp-3",
         title: "Capital budgeting: NPV and IRR",
         body: [
           `When a company decides whether to invest in a new project, it estimates the project's future cash flows and discounts them back to today — exactly the uneven cash flow technique from Chapter 02.`,
           `Internal rate of return (IRR) is the discount rate at which a project's NPV would be exactly zero. If a project's IRR exceeds the company's cost of capital, the project is generally attractive.`,
+          `Return on invested capital (ROIC) offers a different, backward-looking lens on the same question: rather than evaluating a single proposed project in advance, it measures how efficiently a company has actually used the capital already invested in it — comparing ROIC to the company's cost of capital shows whether its existing investments, in aggregate, have truly been creating value or merely growing the business without necessarily creating value.`,
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_NPV }],
         formulas: [
           { id: "corp-3-npv", name: "Net present value (NPV)", expression: "NPV = (PV of future cash inflows) \u2212 (initial investment)", when: "Positive NPV = expected to add value; negative NPV = expected to destroy value.", worked: "A project costs $50,000 today and generates $15,000/year for 5 years. At 10%, PV of that annuity \u2248 15,000 \u00D7 3.7908 \u2248 $56,862. NPV \u2248 56,862 \u2212 50,000 \u2248 $6,862 — positive." },
+          { id: "corp-3-roic", name: "Return on invested capital (ROIC)", expression: "ROIC = <span class=\"frac\"><span class=\"num\">Net operating profit after tax</span><span class=\"den\">Invested capital</span></span>", when: "Assessing how efficiently a company's existing capital has been deployed — compare to the cost of capital to judge whether value is being created.", worked: "A company has net operating profit after tax of $18 million and invested capital of $150 million. ROIC = 18/150 = 12%. If the company's cost of capital is 9%, this 12% ROIC suggests it is genuinely creating value with its existing capital base, not just growing revenue." },
         ],
       },
       {
@@ -1476,13 +1513,27 @@ const CHAPTERS = [
       {
         id: "corp-5",
         title: "Capital structure and leverage",
-        body: [`Capital structure describes the mix of debt and equity a company uses to fund itself. Using more debt (higher leverage) can boost returns to equity holders when things go well, since debt is a fixed cost — but it also amplifies losses and financial risk when things go poorly.`],
+        body: [
+          `Capital structure describes the mix of debt and equity a company uses to fund itself. Using more debt (higher leverage) can boost returns to equity holders when things go well, since debt is a fixed cost — but it also amplifies losses and financial risk when things go poorly.`,
+          `The Modigliani-Miller propositions are the foundational theory behind this trade-off. In their simplest form (ignoring taxes and other real-world frictions), Modigliani and Miller showed that a company's capital structure shouldn't affect its total value at all — the pie is the same size regardless of how it's sliced between debt and equity. Once taxes are introduced, though, the picture changes: interest payments on debt are typically tax-deductible, creating a genuine tax benefit to using debt (an "interest tax shield") that pure equity financing doesn't offer — which is part of why real companies do usually carry some debt, and why an optimal, or target, capital structure balances that tax benefit against the rising costs of financial distress as leverage increases.`,
+        ],
         formulas: [],
       },
       {
         id: "corp-6",
         title: "Working capital management",
-        body: [`Working capital is the difference between a company's current assets and current liabilities — the cash cushion available for day-to-day operations. Managing it well means collecting receivables promptly, not over-investing in inventory, and timing supplier payments sensibly.`],
+        body: [
+          `Working capital is the difference between a company's current assets and current liabilities — the cash cushion available for day-to-day operations. Managing it well means collecting receivables promptly, not over-investing in inventory, and timing supplier payments sensibly.`,
+          `The cash conversion cycle turns that general idea into a concrete number: the time it takes a company to convert its investments in inventory back into cash. It combines how long inventory sits before being sold, how long it takes to collect cash from customers afterward, and how long the company itself takes to pay its own suppliers — a shorter cash conversion cycle generally means working capital is being managed more efficiently.`,
+        ],
+        formulas: [
+          { id: "corp-6-ccc", name: "Cash conversion cycle", expression: "CCC = Days inventory outstanding + Days sales outstanding \u2212 Days payables outstanding", when: "Measuring how long cash is tied up in the operating cycle before returning as cash from customers.", worked: "A company holds inventory for an average of 60 days, collects receivables in 45 days, and pays its own suppliers in 30 days. CCC = 60 + 45 \u2212 30 = 75 days \u2014 cash is tied up in the operating cycle for about 75 days before it's fully converted back to cash." },
+        ],
+      },
+      {
+        id: "corp-6b",
+        title: "Business models",
+        body: [`A business model describes, at a fundamental level, how a company creates, delivers, and captures value — what it sells, to whom, and how it actually earns money from that activity. Understanding a company's business model is a necessary first step before any of the deeper valuation or financial analysis covered elsewhere in this course actually makes sense, since the same financial ratio can mean very different things depending on the underlying business generating it (a subscription software company and a capital-intensive manufacturer will naturally look very different on paper, even if both are healthy, well-run businesses).`],
         formulas: [],
       },
       {
@@ -1496,6 +1547,11 @@ const CHAPTERS = [
           { cue: "The minimum return a company must earn overall", formula: "Cost of capital / WACC", section: "corp-4" },
           { cue: "The mix of debt versus equity funding", formula: "Capital structure", section: "corp-5" },
           { cue: "Day-to-day liquidity management", formula: "Working capital", section: "corp-6" },
+          { cue: "Comparing a lender's claim to a shareholder's claim", formula: "Investors and other stakeholders", section: "corp-2b" },
+          { cue: "How efficiently existing invested capital has been used", formula: "ROIC (vs. cost of capital)", section: "corp-3" },
+          { cue: "Whether capital structure itself affects total firm value", formula: "Modigliani-Miller propositions", section: "corp-5" },
+          { cue: "How long cash is tied up in the operating cycle", formula: "Cash conversion cycle", section: "corp-6" },
+          { cue: "How a company creates, delivers, and captures value", formula: "Business model", section: "corp-6b" },
         ],
         formulas: [],
       },
@@ -1534,8 +1590,13 @@ const CHAPTERS = [
       {
         id: "equity-3",
         title: "Market organization and indices",
-        body: [`Equities trade on organized exchanges (like the NYSE) or over-the-counter networks. A stock market index (like the S&P 500) tracks the combined performance of a specified basket of stocks.`],
-        formulas: [],
+        body: [
+          `Equities trade on organized exchanges (like the NYSE) or over-the-counter networks. A stock market index (like the S&P 500) tracks the combined performance of a specified basket of stocks.`,
+          `Buying on margin means borrowing part of a purchase price from a broker, using the securities themselves as collateral — this leverages returns in both directions, exactly like the leveraged return concept from Quantitative Methods. If the position's value falls enough, the broker issues a margin call, requiring the investor to deposit more funds or sell part of the position; the price at which this happens can be calculated directly from the initial margin percentage and the maintenance margin requirement.`,
+        ],
+        formulas: [
+          { id: "equity-3-margin", name: "Margin call price", expression: "Margin call price = Purchase price \u00D7 <span class=\"frac\"><span class=\"num\">1 \u2212 Initial margin</span><span class=\"den\">1 \u2212 Maintenance margin</span></span>", when: "Finding the stock price at which a margin call will be triggered.", worked: "An investor buys a stock at $80/share using 60% initial margin (borrowing the other 40%), with a 30% maintenance margin requirement. Margin call price = 80 \u00D7 [(1 \u2212 0.60) / (1 \u2212 0.30)] = 80 \u00D7 (0.40/0.70) \u2248 80 \u00D7 0.571 \u2248 $45.71. If the stock falls to about $45.71, the investor will receive a margin call." },
+        ],
       },
       {
         id: "equity-4",
@@ -1547,12 +1608,28 @@ const CHAPTERS = [
         ],
       },
       {
+        id: "equity-4b",
+        title: "Beyond single-stage: two-stage DDM and FCFE",
+        body: [
+          `Not every company grows at one constant rate forever — the single-stage Gordon growth model breaks down whenever growth is expected to shift meaningfully, such as a fast-growing young company that's expected to slow to a stable, mature growth rate later on. A two-stage dividend discount model handles this by valuing the high-growth years individually (as an uneven cash flow series, the same technique from Chapter 02), then valuing everything after that as a Gordon growth perpetuity, and finally discounting that terminal value back to today alongside the individual early-year dividends.`,
+          `Free cash flow to equity (FCFE), introduced in Financial Statement Analysis, offers an alternative to dividends entirely: instead of discounting what a company actually pays out, you discount what it *could* pay out to equity holders. This matters most for companies that pay small or no dividends despite generating substantial cash — the dividend discount model would undervalue such a company by focusing only on its (small) actual payout, while an FCFE-based valuation captures its true cash-generating capacity.`,
+        ],
+        formulas: [],
+      },
+      {
         id: "equity-5",
         title: "Relative valuation: multiples",
         body: [`Rather than discounting cash flows directly, analysts often value a stock by comparing it to similar companies using a multiple — a ratio of price to some fundamental metric.`],
         formulas: [
           { id: "equity-5-pe", name: "Price-to-earnings (P/E) ratio", expression: "<span class=\"frac\"><span class=\"num\">Price per share</span><span class=\"den\">Earnings per share</span></span>", when: "Comparing a stock's price to its earnings, relative to similar companies.", worked: "A stock trades at $60 with earnings per share of $4.00. P/E = 60 / 4 = 15." },
+          { id: "equity-5-ev", name: "Enterprise value multiple — advanced", expression: "EV/EBITDA = <span class=\"frac\"><span class=\"num\">Enterprise value</span><span class=\"den\">EBITDA</span></span>", when: "Comparing companies with very different capital structures (debt levels), since enterprise value captures both debt and equity claims, sidestepping the leverage differences that can distort a pure equity-price-based multiple like P/E.", worked: "A company has a market cap of $800 million, total debt of $300 million, and cash of $100 million (enterprise value = 800 + 300 \u2212 100 = $1,000 million). Its EBITDA is $125 million. EV/EBITDA = 1,000 / 125 = 8.0." },
         ],
+      },
+      {
+        id: "equity-5b",
+        title: "Industry and competitive analysis",
+        body: [`Before valuing an individual company, analysts often study the broader industry and competitive landscape it operates in, since a company's own performance is heavily shaped by the structure of the market around it. Porter's five forces framework is the standard tool for this: the intensity of rivalry among existing competitors, the threat of new entrants, the bargaining power of suppliers, the bargaining power of buyers, and the threat of substitute products. An industry where all five forces are weak (few competitors, high barriers to entry, weak suppliers and buyers, few substitutes) tends to support higher, more sustainable profitability than one where several forces are strong.`],
+        formulas: [],
       },
       {
         id: "equity-6",
@@ -1570,6 +1647,11 @@ const CHAPTERS = [
           { cue: "Comparing a stock's price to earnings/book value/sales of similar companies", formula: "Relative valuation multiples (P/E, etc.)", section: "equity-5" },
           { cue: "Fixed dividend, paid before common shareholders, usually no vote", formula: "Preferred stock", section: "equity-2" },
           { cue: "Residual ownership, votes, last claim on assets", formula: "Common stock", section: "equity-2" },
+          { cue: "Finding the price at which a leveraged position triggers a broker call", formula: "Margin call price", section: "equity-3" },
+          { cue: "A company with a growth rate expected to shift/slow over time", formula: "Two-stage DDM", section: "equity-4b" },
+          { cue: "A company paying little/no dividend despite generating real cash", formula: "FCFE valuation", section: "equity-4b" },
+          { cue: "Comparing companies with very different debt levels", formula: "EV/EBITDA multiple", section: "equity-5" },
+          { cue: "Assessing industry structure and competitive intensity", formula: "Porter's five forces", section: "equity-5b" },
         ],
         formulas: [],
       },
@@ -1892,9 +1974,30 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "alt-2b",
+        title: "Hedge fund fee structures and performance measurement",
+        body: [
+          `Hedge funds typically charge fees very differently from traditional mutual funds — a structure often summarized as "2 and 20": roughly a 2% annual management fee (charged on assets under management, regardless of performance) plus a 20% performance fee (charged only on profits actually earned). Two additional features commonly attach to that performance fee: a hurdle rate (a minimum return the fund must clear before any performance fee is charged at all) and a high-water mark (ensuring a fund can't charge a performance fee on gains that merely recover a previous loss — the fund must exceed its prior peak value first).`,
+          `This fee structure is also exactly why performance should always be evaluated both before and after fees: a fund's raw investment performance can look attractive before fees, but a heavy 2-and-20 structure can meaningfully erode what an investor actually keeps, especially in a fund with high turnover or frequent profitable periods.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "alt-2c",
+        title: "Private capital: equity vs. debt",
+        body: [`Private capital splits into two distinct categories worth telling apart. Private equity takes ownership stakes in companies, and itself divides further by company stage: venture capital funds early-stage, often pre-profitable companies in exchange for equity, accepting high risk for the chance at outsized returns; buyout funds (sometimes called leveraged buyouts) instead acquire mature, established companies, often using significant debt financing to fund the purchase. Private debt, by contrast, involves lending directly to companies (frequently smaller or mid-sized ones that may have limited access to public bond markets or bank loans) rather than taking an ownership stake — occupying a different, generally more senior position in a company's capital structure than private equity does.`],
+        formulas: [],
+      },
+      {
         id: "alt-3",
         title: "Key characteristics versus traditional investments",
         body: [`Alternative investments typically share several traits: illiquidity (money often locked up for years), higher fees, limited transparency, and diversification potential — returns are often less correlated with traditional markets, which can improve a portfolio's overall risk-return profile. This connects directly to the correlation concept from Probability & Statistics and resurfaces in Portfolio Management.`],
+        formulas: [],
+      },
+      {
+        id: "alt-3b",
+        title: "Digital assets",
+        body: [`Digital assets — cryptocurrencies and other blockchain-based instruments — are one of the newer additions to the alternative investment landscape. Cryptocurrencies (like Bitcoin) function as a digital medium of exchange or store of value without relying on a central issuing authority like a government or central bank, instead relying on a distributed ledger (blockchain) maintained across a decentralized network of computers to record and verify transactions. Investment characteristics that set digital assets apart from traditional alternatives: extremely high price volatility, a relatively short historical track record to draw on, evolving and still-developing regulatory treatment across different countries, and valuation approaches that remain far less settled than those used for traditional assets like stocks, bonds, or real estate.`],
         formulas: [],
       },
       {
@@ -1908,6 +2011,11 @@ const CHAPTERS = [
           { cue: "A flexible pooled fund using leverage or short-selling", formula: "Hedge fund", section: "alt-2" },
           { cue: "Physical goods like oil, gold, or crops", formula: "Commodities", section: "alt-2" },
           { cue: "Long-lived physical assets like toll roads or utilities", formula: "Infrastructure", section: "alt-2" },
+          { cue: "A fund charging roughly 2% management + 20% of profits", formula: "\"2 and 20\" hedge fund fee structure", section: "alt-2b" },
+          { cue: "A minimum return that must be cleared before performance fees apply", formula: "Hurdle rate", section: "alt-2b" },
+          { cue: "Funding an early-stage, pre-profitable company for equity", formula: "Venture capital", section: "alt-2c" },
+          { cue: "Lending directly to a company rather than taking an ownership stake", formula: "Private debt", section: "alt-2c" },
+          { cue: "Cryptocurrency and blockchain-based instruments", formula: "Digital assets", section: "alt-3b" },
         ],
         formulas: [],
       },
@@ -2104,7 +2212,16 @@ const CHAPTERS = [
       {
         id: "ethics-2",
         title: "Why ethics is weighted so heavily",
-        body: [`Investment professionals are routinely trusted with other people's money, information, and financial futures. Because the potential for harm from misconduct is high, and because trust is the foundation the entire investment industry depends on, professional bodies place enormous emphasis on ethical conduct.`],
+        body: [
+          `Investment professionals are routinely trusted with other people's money, information, and financial futures. Because the potential for harm from misconduct is high, and because trust is the foundation the entire investment industry depends on, professional bodies place enormous emphasis on ethical conduct.`,
+          `As a point of structure (not content — this is a factual description, not a substitute for reading the actual document): CFA Institute's Code of Ethics is organized around six broad components, and its Standards of Professional Conduct are organized into seven broad categories. This course intentionally does not reproduce that copyrighted material — the general principles below build the same underlying intuition in plain language, but the official Code and Standards remain the authoritative source for exam purposes.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "ethics-2b",
+        title: "GIPS: the Global Investment Performance Standards",
+        body: [`GIPS is a separate but related set of voluntary ethical standards, focused specifically on how investment firms calculate and present their performance track records to prospective clients — rather than on individual professional conduct, which is the focus of the Code and Standards covered elsewhere in this chapter. GIPS exists because performance figures are relatively easy to present in a misleadingly favorable light (for example, showcasing only a firm's best-performing accounts rather than its full, composite results) — firms that voluntarily comply with GIPS commit to consistent, comparable, and fully disclosed performance reporting, giving prospective clients a fairer basis for comparing one firm's track record against another's.`],
         formulas: [],
       },
       {
@@ -2146,6 +2263,7 @@ const CHAPTERS = [
           { cue: "Accepting an undisclosed gift before issuing a report on that company", formula: "Undisclosed conflict of interest", section: "ethics-3" },
           { cue: "Advising outside your actual area of expertise", formula: "Competence violation", section: "ethics-3" },
           { cue: "Exaggerating past investment performance to attract clients", formula: "Integrity / misrepresentation violation", section: "ethics-3" },
+          { cue: "A firm showcasing only its best accounts, not its full track record", formula: "GIPS violation (performance presentation)", section: "ethics-2b" },
         ],
         formulas: [],
       },
@@ -2224,6 +2342,10 @@ const QUIZZES = {
     { id: "econ-q5", question: "A central bank lowering interest rates to stimulate borrowing is an example of", options: ["Contractionary fiscal policy", "Expansionary monetary policy", "Expansionary fiscal policy", "Contractionary monetary policy"], correct: 1, explanation: "Lowering rates via the central bank is expansionary monetary policy.", remediation: "econ-6" },
     { id: "econ-q6", question: "A sustained rise in the general price level is called", options: ["Deflation", "Inflation", "Recession", "Appreciation"], correct: 1, explanation: "Inflation is a sustained rise in the general price level.", remediation: "econ-7" },
     { id: "econ-q7", question: "A country's currency weakens. What tends to happen to its exports?", options: ["They become more expensive abroad, hurting exports", "They become cheaper abroad, helping exports", "No effect", "Imports become cheaper"], correct: 1, explanation: "A weaker currency makes domestic goods cheaper for foreign buyers.", remediation: "econ-8" },
+    { id: "econ-q8", question: "EUR/USD = 1.10 and GBP/USD = 1.25. What is EUR/GBP?", options: ["1.375", "0.88", "1.14", "0.72"], correct: 1, explanation: "EUR/GBP = (EUR/USD) \u00F7 (GBP/USD) = 1.10 / 1.25 = 0.88.", remediation: "econ-8b" },
+    { id: "econ-q9", question: "Interest rate parity suggests that a currency with a higher interest rate than another will trade at a forward", options: ["Premium", "Discount", "Rate identical to spot", "Rate that cannot be estimated"], correct: 1, explanation: "The higher-interest-rate currency trades at a forward discount; the lower-rate currency trades at a forward premium.", remediation: "econ-8b" },
+    { id: "econ-q10", question: "Strong foreign capital inflows into a country's assets generally have what effect on that country's currency?", options: ["Downward pressure (weakening)", "Upward pressure (strengthening)", "No effect", "Only affects the current account"], correct: 1, explanation: "Capital inflows increase demand for the currency, generally strengthening it.", remediation: "econ-8c" },
+    { id: "econ-q11", question: "Trade disputes, sanctions, and regional conflicts affecting markets and currency values fall under which category?", options: ["Fiscal policy", "Geopolitical risk", "Monetary policy", "The business cycle"], correct: 1, explanation: "These are geopolitical risk factors, increasingly tracked as their own category.", remediation: "econ-8d" },
   ],
   fsa: [
     { id: "fsa-q1", question: "Which statement shows a snapshot at a single point in time?", options: ["The income statement", "The cash flow statement", "The balance sheet", "None of these"], correct: 2, explanation: "The balance sheet reports assets, liabilities, and equity at one point in time.", remediation: "fsa-2" },
@@ -2252,6 +2374,11 @@ const QUIZZES = {
     { id: "corp-q4", question: "Increasing debt relative to equity increases which financial characteristic?", options: ["Liquidity", "Leverage (and financial risk)", "Working capital", "Market efficiency"], correct: 1, explanation: "More debt relative to equity means higher leverage.", remediation: "corp-5" },
     { id: "corp-q5", question: "Current assets minus current liabilities defines", options: ["WACC", "Working capital", "NPV", "Capital structure"], correct: 1, explanation: "Working capital = current assets \u2212 current liabilities.", remediation: "corp-6" },
     { id: "corp-q6", question: "A project's IRR is below the company's cost of capital. What should generally happen?", options: ["The project should generally be accepted", "The project should generally be rejected", "It has no bearing on the decision", "The company should raise more debt"], correct: 1, explanation: "An IRR below the cost of capital means the project is expected to destroy value.", remediation: "corp-3" },
+    { id: "corp-q7", question: "Compared to a shareholder's claim, a lender's claim on the company is", options: ["Residual and unlimited upside", "Fixed/contractual, and paid first", "Identical in every way", "Paid only if the company is profitable"], correct: 1, explanation: "Lenders hold a fixed contractual claim paid before shareholders; shareholders hold the residual, unlimited-upside claim.", remediation: "corp-2b" },
+    { id: "corp-q8", question: "A company has NOPAT of $18 million and invested capital of $150 million. What is its ROIC?", options: ["8.3%", "12%", "18%", "6%"], correct: 1, explanation: "ROIC = 18/150 = 12%.", remediation: "corp-3" },
+    { id: "corp-q9", question: "In the simplest Modigliani-Miller framework (no taxes), a company's capital structure", options: ["Determines its total value entirely", "Does not affect its total value", "Only matters for large companies", "Eliminates all financial risk"], correct: 1, explanation: "In the simplest MM framework, total firm value is unaffected by the debt/equity mix.", remediation: "corp-5" },
+    { id: "corp-q10", question: "Once taxes are introduced, debt financing gains an advantage because", options: ["Dividends become tax-deductible", "Interest payments are typically tax-deductible", "Equity becomes worthless", "Working capital increases automatically"], correct: 1, explanation: "The tax-deductibility of interest creates an interest tax shield, a real benefit to debt financing.", remediation: "corp-5" },
+    { id: "corp-q11", question: "Inventory outstanding 60 days, receivables 45 days, payables 30 days. What is the cash conversion cycle?", options: ["135 days", "75 days", "90 days", "15 days"], correct: 1, explanation: "CCC = 60 + 45 \u2212 30 = 75 days.", remediation: "corp-6" },
   ],
   equity: [
     { id: "equity-q1", question: "Which security type is typically paid before common shareholders but usually has no vote?", options: ["Common stock", "Preferred stock", "A bond", "A call option"], correct: 1, explanation: "Preferred stock has priority over common stock but usually no voting rights.", remediation: "equity-2" },
@@ -2260,6 +2387,11 @@ const QUIZZES = {
     { id: "equity-q4", question: "Using that D1, what is the Gordon growth value?", options: ["$30.00", "$52.50", "$60.00", "$45.00"], correct: 1, explanation: "3.15 / (0.11 \u2212 0.05) = $52.50.", remediation: "equity-4" },
     { id: "equity-q5", question: "Price per share divided by earnings per share defines", options: ["The P/E ratio", "The current yield", "WACC", "Duration"], correct: 0, explanation: "P/E = price per share \u00F7 earnings per share.", remediation: "equity-5" },
     { id: "equity-q6", question: "The idea that stock prices already reflect available information describes", options: ["The Gordon growth model", "The efficient market hypothesis", "Comparative advantage", "Duration"], correct: 1, explanation: "The efficient market hypothesis describes prices reflecting available information.", remediation: "equity-6" },
+    { id: "equity-q7", question: "An investor buys a stock at $80 using 60% initial margin, with a 30% maintenance margin. What is the approximate margin call price?", options: ["$60.00", "$45.71", "$52.50", "$24.00"], correct: 1, explanation: "80 \u00D7 [(1\u22120.60)/(1\u22120.30)] = 80 \u00D7 (0.40/0.70) \u2248 $45.71.", remediation: "equity-3" },
+    { id: "equity-q8", question: "A young, fast-growing company is expected to slow to a stable growth rate in several years. Which valuation approach fits best?", options: ["Single-stage Gordon growth model", "Two-stage dividend discount model", "P/E ratio only", "Margin call formula"], correct: 1, explanation: "A two-stage DDM handles a growth rate that shifts over time, unlike the single-stage model.", remediation: "equity-4b" },
+    { id: "equity-q9", question: "A company generates strong free cash flow but pays little to no dividend. Valuing it with a plain dividend discount model would likely", options: ["Overvalue it", "Undervalue it", "Have no effect on the valuation", "Only work for bonds"], correct: 1, explanation: "DDM only captures actual payouts; FCFE captures the company's true cash-generating capacity even without dividends.", remediation: "equity-4b" },
+    { id: "equity-q10", question: "EV/EBITDA is often preferred over P/E when comparing companies with", options: ["Identical capital structures", "Very different debt levels", "The same industry only", "No earnings at all"], correct: 1, explanation: "Enterprise value captures both debt and equity claims, sidestepping leverage differences that distort P/E.", remediation: "equity-5" },
+    { id: "equity-q11", question: "Porter's five forces framework assesses", options: ["A single company's financial statements", "Industry structure and competitive intensity", "A bond's credit rating", "Currency exchange rates"], correct: 1, explanation: "Porter's five forces evaluates the competitive intensity and attractiveness of an industry.", remediation: "equity-5b" },
   ],
   fixedincome: [
     { id: "fi-q1", question: "A bond's coupon rate is below the current market yield. Its price will be", options: ["Above face value (a premium)", "Below face value (a discount)", "Exactly at face value", "Cannot be determined"], correct: 1, explanation: "When yield exceeds the coupon rate, the bond trades at a discount.", remediation: "fi-3" },
@@ -2301,6 +2433,11 @@ const QUIZZES = {
     { id: "alt-q4", question: "Which shared characteristic often lets alternative investments improve a portfolio's risk-return profile?", options: ["Higher fees", "Lower correlation with traditional markets", "Greater transparency", "Guaranteed higher returns"], correct: 1, explanation: "Lower correlation with traditional assets can improve diversification.", remediation: "alt-3" },
     { id: "alt-q5", question: "Extra expected return demanded for tying up money in a hard-to-sell investment is called", options: ["A credit spread", "An illiquidity premium", "A dividend yield", "A coupon"], correct: 1, explanation: "This is the illiquidity premium.", remediation: "alt-3" },
     { id: "alt-q6", question: "Toll roads, airports, and utilities fall under which category?", options: ["Hedge funds", "Private equity", "Infrastructure", "Commodities"], correct: 2, explanation: "These are examples of infrastructure investments.", remediation: "alt-2" },
+    { id: "alt-q7", question: "In a \"2 and 20\" hedge fund fee structure, the \"20\" refers to", options: ["A 20% annual management fee", "A 20% performance fee on profits earned", "A 20-year lockup period", "A 20% minimum required return"], correct: 1, explanation: "The 20 refers to a 20% performance fee charged on profits.", remediation: "alt-2b" },
+    { id: "alt-q8", question: "A high-water mark ensures that a hedge fund", options: ["Cannot lose money for investors", "Cannot charge a performance fee on gains that merely recover a prior loss", "Must always beat the S&P 500", "Charges no management fee at all"], correct: 1, explanation: "The high-water mark requires the fund to exceed its prior peak value before charging new performance fees.", remediation: "alt-2b" },
+    { id: "alt-q9", question: "A fund investing in early-stage, pre-profitable companies in exchange for equity is engaged in", options: ["Private debt", "Venture capital", "A leveraged buyout", "Infrastructure investing"], correct: 1, explanation: "Venture capital specifically targets early-stage, often pre-profitable companies.", remediation: "alt-2c" },
+    { id: "alt-q10", question: "Compared to private equity, private debt generally occupies which position in a company's capital structure?", options: ["A junior, residual ownership position", "A more senior lending position", "An identical position", "No position at all"], correct: 1, explanation: "Private debt involves lending (a more senior claim) rather than taking an ownership stake.", remediation: "alt-2c" },
+    { id: "alt-q11", question: "Which investment characteristic is particularly associated with digital assets, compared to traditional alternatives?", options: ["A very long, well-established historical track record", "Extremely high price volatility and evolving regulatory treatment", "Guaranteed low correlation with all other assets", "No valuation uncertainty at all"], correct: 1, explanation: "Digital assets are notable for high volatility, a short track record, and still-developing regulation.", remediation: "alt-3b" },
   ],
   portfolio: [
     { id: "port-q1", question: "A portfolio is 70% Stock A (12% expected return) and 30% Stock B (5% expected return). Expected portfolio return?", options: ["8.5%", "9.9%", "12%", "17%"], correct: 1, explanation: "0.70\u00D712% + 0.30\u00D75% = 9.9%.", remediation: "port-3" },
@@ -2325,6 +2462,9 @@ const QUIZZES = {
     { id: "ethics-q4", question: "A professional accepts an undisclosed gift from a company before issuing a report on it. What's the core issue?", options: ["Nothing, gifts are always fine", "An undisclosed conflict of interest", "A market integrity violation only", "A competence violation"], correct: 1, explanation: "The core issue is the undisclosed conflict of interest.", remediation: "ethics-3" },
     { id: "ethics-q5", question: "When in doubt between two plausible answers on an ethics vignette, which is usually the safer choice?", options: ["The one that benefits the professional most", "The one that most protects client interests and market integrity", "The one requiring the least disclosure", "Either, since ethics questions have no clear answer"], correct: 1, explanation: "The most client-protective, market-integrity-preserving answer is usually correct.", remediation: "ethics-4" },
     { id: "ethics-q6", question: "What is the authoritative source for the actual Code of Ethics and Standards of Professional Conduct?", options: ["This app's chapter summary", "Any third-party study guide", "CFA Institute's official published Code and Standards", "None — it's not formally codified"], correct: 2, explanation: "Always defer to CFA Institute's official published Code and Standards.", remediation: "ethics-1" },
+    { id: "ethics-q7", question: "CFA Institute's Standards of Professional Conduct are organized into how many broad categories?", options: ["Five", "Six", "Seven", "Ten"], correct: 2, explanation: "The Standards of Professional Conduct are organized into seven broad categories.", remediation: "ethics-2" },
+    { id: "ethics-q8", question: "GIPS primarily addresses which topic?", options: ["Individual professional conduct", "How investment firms calculate and present performance track records", "Corporate governance", "Bond credit ratings"], correct: 1, explanation: "GIPS is a voluntary standard specifically for consistent, comparable performance presentation.", remediation: "ethics-2b" },
+    { id: "ethics-q9", question: "A firm showcasing only its best-performing accounts, rather than its full composite results, to a prospective client is a concern GIPS was created to address. This is best described as a", options: ["Fair dealing violation", "Misleading performance presentation", "Conflict of interest only", "Not a concern at all, since firms may present anything"], correct: 1, explanation: "GIPS exists precisely to prevent this kind of selective, misleadingly favorable performance presentation.", remediation: "ethics-2b" },
   ],
 };
 
