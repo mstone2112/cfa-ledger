@@ -2271,6 +2271,25 @@ const CHAPTERS = [
   },
 ];
 
+/* ============================================================
+   TOPIC GROUPS — maps the 10 official CFA Institute topic areas
+   to their chapters. Calculator Fundamentals is intentionally
+   NOT an official CFA topic, so it's excluded from this list and
+   rendered separately, above these groups, in the sidebar.
+   ============================================================ */
+const TOPIC_GROUPS = [
+  { id: "group-quant", number: "1", title: "Quantitative Methods", chapterIds: ["tvm", "probstat", "returns", "simulation", "regression", "datascience"] },
+  { id: "group-econ", number: "2", title: "Economics", chapterIds: ["econ"] },
+  { id: "group-corp", number: "3", title: "Corporate Issuers", chapterIds: ["corp"] },
+  { id: "group-fsa", number: "4", title: "Financial Statement Analysis", chapterIds: ["fsa"] },
+  { id: "group-equity", number: "5", title: "Equity Investments", chapterIds: ["equity"] },
+  { id: "group-fi", number: "6", title: "Fixed Income", chapterIds: ["fixedincome"] },
+  { id: "group-deriv", number: "7", title: "Derivatives", chapterIds: ["derivatives"] },
+  { id: "group-alt", number: "8", title: "Alternative Investments", chapterIds: ["altinvest"] },
+  { id: "group-port", number: "9", title: "Portfolio Management", chapterIds: ["portfolio"] },
+  { id: "group-ethics", number: "10", title: "Ethics and Professional Standards", chapterIds: ["ethics"] },
+];
+
 const QUIZZES = {
   calc: [
     { id: "calc-q1", question: "Which two calculator models does CFA Institute permit in the exam room?", options: ["Any calculator with a TVM function", "Texas Instruments BA II Plus and Hewlett-Packard HP 12C only", "Casio FX series and TI BA II Plus", "Any calculator without internet connectivity"], correct: 1, explanation: "Only the TI BA II Plus (and Professional) and the HP 12C (and Platinum) are permitted.", remediation: "calc-1" },
@@ -2489,6 +2508,7 @@ let view = "reading";
 let chapterId = "calc";
 let sectionId = "calc-1";
 let expandedChapter = "calc";
+let expandedGroup = null;
 
 function findLocation(sectionId) {
   for (const ch of CHAPTERS) {
@@ -2498,10 +2518,16 @@ function findLocation(sectionId) {
   return null;
 }
 
+function groupIdForChapter(chId) {
+  const g = TOPIC_GROUPS.find((g) => g.chapterIds.includes(chId));
+  return g ? g.id : null;
+}
+
 function goTo(chId, secId) {
   chapterId = chId;
   sectionId = secId;
   expandedChapter = chId;
+  expandedGroup = groupIdForChapter(chId);
   view = "reading";
   renderAll();
 }
@@ -2509,6 +2535,7 @@ function goTo(chId, secId) {
 function goToQuiz(chId) {
   chapterId = chId;
   expandedChapter = chId;
+  expandedGroup = groupIdForChapter(chId);
   view = "quiz";
   renderAll();
 }
@@ -2570,30 +2597,67 @@ function recordQuizAnswer(questionId, isCorrect, remediation) {
 /* ============================================================
    RENDER: SIDEBAR
    ============================================================ */
+function renderSectionsAndQuiz(ch) {
+  let html = `<div class="nav-sections">`;
+  ch.sections.forEach((s) => {
+    const active = view === "reading" && sectionId === s.id ? " active" : "";
+    html += `<div class="nav-section${active}" data-chapter="${ch.id}" data-section="${s.id}">
+      <span class="nav-check">${completed.includes(s.id) ? "&#10003;" : ""}</span>${s.title}
+    </div>`;
+  });
+  html += `</div><div class="nav-quiz" data-quizchapter="${ch.id}">Take ${ch.title} quiz</div>`;
+  return html;
+}
+
+function renderChapterBlock(ch, nested) {
+  let html = `<div class="nav-chapter${nested ? " nested" : ""}">
+    <div class="nav-chapter-head" data-chapter="${ch.id}">
+      <span class="nav-chapter-title">${ch.title}</span>
+    </div>`;
+  if (expandedChapter === ch.id) html += renderSectionsAndQuiz(ch);
+  html += `</div>`;
+  return html;
+}
+
 function renderSidebar() {
   const el = document.getElementById("sidebar");
   let html = `<div class="sidebar-brand">CFA <span>Level I</span> Study Ledger</div>`;
   html += `<div class="sidebar-account"><span>${currentUser ? currentUser.email : ""}</span><button id="signout-btn">Sign out</button></div>`;
-  CHAPTERS.forEach((ch) => {
-    html += `<div class="nav-chapter">
-      <div class="nav-chapter-head" data-chapter="${ch.id}">
-        <span class="nav-num">${ch.number}</span><span class="nav-chapter-title">${ch.title}</span>
+
+  const calc = CHAPTERS.find((c) => c.id === "calc");
+  html += `<div class="nav-section-label">Before you begin</div>`;
+  html += renderChapterBlock(calc, false);
+
+  html += `<div class="nav-section-label">CFA Level I Curriculum</div>`;
+  TOPIC_GROUPS.forEach((g) => {
+    const groupActive = expandedGroup === g.id;
+    html += `<div class="nav-group">
+      <div class="nav-group-head${groupActive ? " active" : ""}" data-group="${g.id}">
+        <span class="nav-group-num">${g.number}</span><span class="nav-group-title">${g.title}</span>
       </div>`;
-    if (expandedChapter === ch.id) {
-      html += `<div class="nav-sections">`;
-      ch.sections.forEach((s) => {
-        const active = view === "reading" && sectionId === s.id ? " active" : "";
-        html += `<div class="nav-section${active}" data-chapter="${ch.id}" data-section="${s.id}">
-          <span class="nav-check">${completed.includes(s.id) ? "&#10003;" : ""}</span>${s.title}
-        </div>`;
-      });
-      html += `</div><div class="nav-quiz" data-quizchapter="${ch.id}">Take ${ch.title} quiz</div>`;
+    if (groupActive) {
+      if (g.chapterIds.length === 1) {
+        const ch = CHAPTERS.find((c) => c.id === g.chapterIds[0]);
+        html += `<div class="nav-chapter nested-direct">${renderSectionsAndQuiz(ch)}</div>`;
+      } else {
+        g.chapterIds.forEach((cid) => {
+          const ch = CHAPTERS.find((c) => c.id === cid);
+          html += renderChapterBlock(ch, true);
+        });
+      }
     }
     html += `</div>`;
   });
+
   html += `<div class="nav-dashboard" id="dash-link">&#9670; Dashboard</div>`;
   el.innerHTML = html;
 
+  el.querySelectorAll(".nav-group-head").forEach((n) =>
+    n.addEventListener("click", () => {
+      expandedGroup = expandedGroup === n.dataset.group ? null : n.dataset.group;
+      renderSidebar();
+    })
+  );
   el.querySelectorAll(".nav-chapter-head").forEach((n) =>
     n.addEventListener("click", () => {
       expandedChapter = expandedChapter === n.dataset.chapter ? null : n.dataset.chapter;
