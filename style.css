@@ -122,7 +122,27 @@ body { display: flex; line-height: 1.55; }
   background: none; border: none; color: var(--amber-bright);
   font-size: 12px; cursor: pointer; text-decoration: underline;
 }
+.nav-section-label {
+  padding: 14px 22px 6px; font-size: 10.5px; letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(238,234,224,0.4); font-weight: 600;
+}
+.nav-group { margin-bottom: 2px; }
+.nav-group-head {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 9px 22px; cursor: pointer; user-select: none;
+}
+.nav-group-head:hover { background: rgba(238,234,224,0.06); }
+.nav-group-head.active { background: rgba(238,234,224,0.05); }
+.nav-group-num {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--amber-bright);
+  opacity: 0.85; min-width: 14px;
+}
+.nav-group-title { font-weight: 600; font-size: 14px; }
 .nav-chapter { margin-bottom: 4px; }
+.nav-chapter.nested { margin-left: 14px; }
+.nav-chapter.nested .nav-chapter-head { padding-left: 32px; font-size: 13px; }
+.nav-chapter.nested-direct .nav-sections { padding-left: 36px; }
+.nav-chapter.nested-direct .nav-quiz { margin-left: 22px; margin-right: 22px; }
 .nav-chapter-head {
   display: flex; align-items: baseline; gap: 9px;
   padding: 9px 22px; cursor: pointer; user-select: none;
