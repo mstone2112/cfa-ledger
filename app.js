@@ -510,6 +510,45 @@ const EXHIBIT_COMMONSIZE_COMPARISON = `
 <text x="120" y="59" font-size="11" fill="#4B5468">COGS %</text>
 </svg>`;
 
+const EXHIBIT_SML = `
+<svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>The security market line</title>
+<desc>A line graph with beta on the horizontal axis and expected return on the vertical axis. The security market line starts at the risk-free rate when beta is zero and rises through the market return at beta equal to one. A point above the line is undervalued; a point below the line is overvalued.</desc>
+<line x1="90" y1="220" x2="600" y2="220" stroke="#232C42" stroke-width="1"/>
+<line x1="90" y1="220" x2="90" y2="40" stroke="#232C42" stroke-width="1"/>
+<text x="345" y="250" text-anchor="middle" font-size="12" fill="#4B5468">Beta (systematic risk)</text>
+<text x="40" y="130" text-anchor="middle" font-size="12" fill="#4B5468" transform="rotate(-90 40 130)">Expected return</text>
+<line x1="90" y1="190" x2="560" y2="70" stroke="#B67A22" stroke-width="2"/>
+<circle cx="90" cy="190" r="4" fill="#232C42"/>
+<text x="90" y="205" text-anchor="middle" font-size="11" fill="#4B5468">Rf</text>
+<text x="60" y="194" text-anchor="middle" font-size="11" fill="#4B5468">\u03B2=0</text>
+<circle cx="325" cy="130" r="4" fill="#232C42"/>
+<text x="325" y="205" text-anchor="middle" font-size="11" fill="#4B5468">\u03B2=1 (market)</text>
+<text x="325" y="115" text-anchor="middle" font-size="11" fill="#4B5468">Rm</text>
+<circle cx="450" cy="75" r="5" fill="#3F7A5C"/>
+<text x="450" y="60" text-anchor="middle" font-size="11" fill="#3F7A5C">Undervalued (above line)</text>
+<circle cx="230" cy="185" r="5" fill="#A6432C"/>
+<text x="230" y="200" text-anchor="middle" font-size="11" fill="#A6432C" dy="14">Overvalued (below line)</text>
+</svg>`;
+
+const EXHIBIT_EFFICIENT_FRONTIER = `
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>The efficient frontier and capital market line</title>
+<desc>A curved efficient frontier of risky-asset portfolios, with a straight capital market line running from the risk-free rate tangent to the frontier at the optimal market portfolio.</desc>
+<line x1="90" y1="210" x2="600" y2="210" stroke="#232C42" stroke-width="1"/>
+<line x1="90" y1="210" x2="90" y2="40" stroke="#232C42" stroke-width="1"/>
+<text x="345" y="240" text-anchor="middle" font-size="12" fill="#4B5468">Risk (standard deviation)</text>
+<text x="40" y="120" text-anchor="middle" font-size="12" fill="#4B5468" transform="rotate(-90 40 120)">Expected return</text>
+<path d="M150 200 Q 220 60 420 55 Q 500 55 560 75" fill="none" stroke="#3F7A5C" stroke-width="2"/>
+<text x="480" y="45" text-anchor="middle" font-size="11" fill="#3F7A5C">Efficient frontier (risky assets)</text>
+<line x1="90" y1="190" x2="450" y2="58" stroke="#B67A22" stroke-width="2"/>
+<circle cx="90" cy="190" r="4" fill="#232C42"/>
+<text x="90" y="205" text-anchor="middle" font-size="11" fill="#4B5468">Rf</text>
+<circle cx="330" cy="58" r="5" fill="#B67A22"/>
+<text x="330" y="42" text-anchor="middle" font-size="11" fill="#B67A22">Market portfolio (tangency point)</text>
+<text x="500" y="90" text-anchor="middle" font-size="11" fill="#B67A22">Capital market line (CML)</text>
+</svg>`;
+
 const CHAPTERS = [
   {
     id: "calc",
@@ -603,7 +642,7 @@ const CHAPTERS = [
     id: "tvm",
     number: "02",
     title: "Time Value of Money",
-    subtitle: "The single idea underneath bonds, equities, and corporate finance",
+    subtitle: "Quantitative Methods: the single idea underneath bonds, equities, and corporate finance",
     sections: [
       {
         id: "tvm-1",
@@ -684,6 +723,17 @@ const CHAPTERS = [
         ],
       },
       {
+        id: "tvm-6b",
+        title: "Cash flow additivity and implied forward rates",
+        body: [
+          `The cash flow additivity principle is a simple but powerful idea: the present value of a series of cash flows equals the sum of the present values of each individual cash flow — which is exactly what the uneven cash flow formula above already does. The reason this gets a name of its own is what it implies: if two different combinations of cash flows produce identical payoffs at identical times, they must be worth exactly the same amount today. If they weren't, you could buy the cheaper combination, sell the more expensive one, and pocket a riskless profit — a condition called arbitrage. Financial markets are assumed not to allow this kind of free money to persist, which is why this is often called the no-arbitrage principle.`,
+          `One direct application: if you know the spot rate (today's rate for a loan starting now) for two different maturities, you can back out the implied forward rate — the rate the market is effectively predicting for a future period — because a 2-year investment must earn the same total return whether you invest for 2 years directly, or invest for 1 year and then reinvest for a second year at whatever rate the market implies for that second year.`,
+        ],
+        formulas: [
+          { id: "tvm-6b-forward", name: "Implied forward rate (1-year rate, 1 year from now)", expression: "(1 + S1) \u00D7 (1 + 1y1y forward) = (1 + S2)<sup>2</sup>", when: "Finding the rate the market implicitly expects for a future period, given two spot rates of different maturities.", worked: "The 1-year spot rate is 4%, and the 2-year spot rate is 5%. (1.04) \u00D7 (1 + forward) = (1.05)<sup>2</sup> = 1.1025. Forward rate = 1.1025 / 1.04 \u2212 1 \u2248 6.01%. The market is implicitly predicting that 1-year rates will rise from 4% to about 6% one year from now — otherwise, an arbitrage opportunity would exist between investing 2 years directly versus rolling over two 1-year investments." },
+        ],
+      },
+      {
         id: "tvm-7",
         title: "Formula decision guide",
         type: "decision-guide",
@@ -696,6 +746,7 @@ const CHAPTERS = [
           { cue: "\"Continues forever,\" level payment", formula: "Perpetuity", section: "tvm-5" },
           { cue: "\"Continues forever\" and \"grows at a constant rate\"", formula: "Growing perpetuity", section: "tvm-5" },
           { cue: "A different payment amount listed for each period", formula: "Uneven cash flow series", section: "tvm-6" },
+          { cue: "Two spot rates given, asked for the rate implied for a future period", formula: "Implied forward rate", section: "tvm-6b" },
           { cue: "Compounding frequency ≠ quoted rate, or comparing two rates", formula: "Effective annual rate", section: "tvm-2" },
         ],
         formulas: [],
@@ -719,7 +770,7 @@ const CHAPTERS = [
     id: "probstat",
     number: "03",
     title: "Probability & Statistics",
-    subtitle: "Completing Quantitative Methods: the tools that describe risk, return, and uncertainty",
+    subtitle: "Quantitative Methods: the tools that describe risk, return, and uncertainty",
     sections: [
       {
         id: "probstat-1",
@@ -778,6 +829,45 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "probstat-5b",
+        title: "Semi-deviation and the coefficient of variation",
+        body: [
+          `Standard deviation treats upside and downside swings identically — but investors usually only really worry about the downside. Semi-deviation addresses this by measuring dispersion using only the returns that fall below the mean (or below some other target), ignoring how much the good outcomes varied.`,
+          `The coefficient of variation rescales standard deviation by the mean, turning "risk per unit of return" into a single comparable number — useful when comparing the relative riskiness of two investments with very different average returns, where comparing raw standard deviations alone would be misleading.`,
+        ],
+        formulas: [
+          { id: "probstat-5b-cov", name: "Coefficient of variation", expression: "CV = <span class=\"frac\"><span class=\"num\">Standard deviation</span><span class=\"den\">Mean</span></span>", when: "Comparing relative risk (risk per unit of return) across investments with different average returns.", worked: "Investment A has a mean return of 8% and standard deviation of 12%; CV = 12/8 = 1.5. Investment B has a mean return of 20% and standard deviation of 18%; CV = 18/20 = 0.9. Even though B has higher absolute risk (18% vs. 12%), it actually carries less risk per unit of expected return — a comparison the raw standard deviations alone would have gotten backwards." },
+        ],
+      },
+      {
+        id: "probstat-5c",
+        title: "Conditional expectations and Bayes' formula",
+        body: [
+          `An unconditional expectation is the expected value of a random variable with no extra information — the plain expected value formula from earlier in this chapter. A conditional expectation updates that expectation once you know something else has happened — "given that the economy is in recession, what's the expected return on this stock?" is a conditional expectation.`,
+          `Bayes' formula is the formal tool for updating a probability once new evidence arrives — starting from a prior probability (your belief before the new information) and combining it with how likely that evidence would be under different scenarios, to arrive at a posterior probability (your updated belief after the new information).`,
+        ],
+        formulas: [
+          { id: "probstat-5c-bayes", name: "Bayes' formula", expression: "P(Event | Info) = <span class=\"frac\"><span class=\"num\">P(Info | Event) \u00D7 P(Event)</span><span class=\"den\">P(Info)</span></span>", when: "Updating a probability once new information arrives.", worked: "A fund's prior probability of beating its benchmark in any given year is 30%. Historically, in years when the fund does beat the benchmark, its manager holds a large cash position 20% of the time; in years it does not beat the benchmark, the manager holds a large cash position 50% of the time. Overall probability of a large cash position: (0.20 \u00D7 0.30) + (0.50 \u00D7 0.70) = 0.06 + 0.35 = 0.41. Given that the manager currently holds a large cash position, updated probability of beating the benchmark = (0.20 \u00D7 0.30) / 0.41 \u2248 14.6% \u2014 notably lower than the 30% prior, since a large cash position is more typical of years the fund underperforms." },
+        ],
+      },
+      {
+        id: "probstat-5d",
+        title: "Sampling, the central limit theorem, and confidence intervals",
+        body: [
+          `You almost never have data on an entire population — you work with a sample and try to draw reliable conclusions about the whole population from it. The central limit theorem is what makes this possible: it states that as sample size grows large, the distribution of the sample mean approaches a normal distribution, regardless of the shape of the underlying population's distribution. This is what lets analysts confidently apply normal-distribution-based tools even when the underlying data itself isn't normally distributed.`,
+          `A confidence interval uses that idea to give a range, rather than a single point estimate, for an unknown population parameter — for example, "we're 95% confident the true mean return lies between 6% and 10%," rather than just claiming a single number.`,
+        ],
+        formulas: [
+          { id: "probstat-5d-ci", name: "Confidence interval for the mean", expression: "CI = Sample mean \u00B1 (z \u00D7 <span class=\"frac\"><span class=\"num\">Standard deviation</span><span class=\"den\">\u221An</span></span>)", when: "Estimating a range for the true population mean from a sample. z is a constant based on the desired confidence level (about 1.96 for 95% confidence).", worked: "A sample of 100 monthly returns has a mean of 1.2% and a standard deviation of 4%. For a 95% confidence interval: 1.2% \u00B1 (1.96 \u00D7 4%/\u221A100) = 1.2% \u00B1 (1.96 \u00D7 0.4%) = 1.2% \u00B1 0.784%. The 95% confidence interval runs from about 0.42% to 1.98%." },
+        ],
+      },
+      {
+        id: "probstat-5e",
+        title: "Parametric vs. non-parametric tests",
+        body: [`Parametric tests (like the hypothesis tests described above) assume the underlying data follows a specific distribution, usually normal, and typically test a parameter of that distribution (like the mean). Non-parametric tests make no such distributional assumption — useful when data is heavily skewed, has extreme outliers, or is based on ranks rather than precise numeric values rather than a clean bell curve. The trade-off: parametric tests are more powerful (better at detecting a real effect) when their assumptions actually hold, but non-parametric tests remain valid when those assumptions are violated.`],
+        formulas: [],
+      },
+      {
         id: "probstat-6",
         title: "Formula decision guide",
         type: "decision-guide",
@@ -790,6 +880,11 @@ const CHAPTERS = [
           { cue: "\"How spread out are the returns\"", formula: "Variance / standard deviation", section: "probstat-3" },
           { cue: "\"How do two variables move together\"", formula: "Covariance / correlation", section: "probstat-3" },
           { cue: "\"Is this sample result statistically meaningful\"", formula: "Hypothesis testing", section: "probstat-5" },
+          { cue: "\"Risk per unit of return,\" comparing investments with different means", formula: "Coefficient of variation", section: "probstat-5b" },
+          { cue: "Only downside variation matters", formula: "Semi-deviation", section: "probstat-5b" },
+          { cue: "Updating a probability given new information", formula: "Bayes' formula", section: "probstat-5c" },
+          { cue: "A range estimate for the true population mean", formula: "Confidence interval", section: "probstat-5d" },
+          { cue: "Data isn't normally distributed / has extreme outliers", formula: "Non-parametric test", section: "probstat-5e" },
         ],
         formulas: [],
       },
@@ -809,8 +904,258 @@ const CHAPTERS = [
     ],
   },
   {
-    id: "econ",
+    id: "returns",
     number: "04",
+    title: "Returns & Benchmarking",
+    subtitle: "Quantitative Methods: how to measure, annualize, and compare investment returns",
+    sections: [
+      {
+        id: "returns-1",
+        title: "Overview",
+        body: [`Before you can discount anything, you need to know what "return" actually means precisely — and it turns out there's more than one right answer, depending on the question being asked. This chapter covers how returns are measured, what makes up a required rate of return, how to compare a portfolio manager's skill fairly, and how market indexes are built.`],
+        formulas: [],
+      },
+      {
+        id: "returns-2",
+        title: "Types of returns",
+        body: [
+          `The holding period return (HPR) is the most basic return measure: the total return earned over whatever period you actually held the investment, including both price change and any income received (like dividends or interest).`,
+          `From there, several variations matter: a gross return is before fees and expenses; a net return is after them. A pre-tax return ignores taxes; an after-tax return accounts for them. A real return adjusts for inflation, while a nominal return does not — the same distinction from the effective annual rate discussion earlier, just applied to investment performance rather than a borrowing rate. A leveraged return uses borrowed money to amplify a position, which magnifies both gains and losses relative to the unleveraged return.`,
+        ],
+        formulas: [
+          { id: "returns-2-hpr", name: "Holding period return", expression: "HPR = <span class=\"frac\"><span class=\"num\">Ending value \u2212 Beginning value + Income</span><span class=\"den\">Beginning value</span></span>", when: "Measuring the total return earned over a single holding period.", worked: "You buy a stock for $50, receive a $1 dividend, and sell it for $54. HPR = (54 \u2212 50 + 1) / 50 = 5/50 = 10%." },
+        ],
+      },
+      {
+        id: "returns-3",
+        title: "Required rate of return",
+        body: [`The required rate of return an investor demands is built from two pieces: the risk-free rate (the return available on a virtually riskless investment, like a short-term government bill) plus a risk premium (extra return demanded for bearing the additional risk of this specific investment over the risk-free alternative). Inflation is embedded in the risk-free rate itself — a nominal risk-free rate compensates for both the pure time value of money and expected inflation, which is exactly why Chapter 02's real-vs-nominal distinction resurfaces constantly throughout the curriculum.`],
+        formulas: [
+          { id: "returns-3-required", name: "Required rate of return", expression: "Required return = Risk-free rate + Risk premium", when: "Building up the discount rate used to value a risky investment." },
+        ],
+      },
+      {
+        id: "returns-4",
+        title: "Money-weighted vs. time-weighted rate of return",
+        body: [
+          `When an investor adds or withdraws money partway through a period, two different return measures can tell very different stories — and the exam leans heavily on knowing which one answers which question.`,
+          `The money-weighted rate of return (MWRR) is exactly the same idea as IRR from Chapter 06 (Corporate Issuers) — the discount rate that makes the present value of all cash flows (contributions, withdrawals, and the ending value) equal zero. Because it's sensitive to the size and timing of contributions, MWRR reflects the actual dollar-weighted experience of that specific investor.`,
+          `The time-weighted rate of return (TWRR) breaks the overall period into sub-periods around each contribution/withdrawal, calculates the return for each sub-period separately, then geometrically links them together. Because it strips out the effect of when money was added or removed, TWRR isolates the performance of the underlying investments themselves — which is exactly why it's the standard for judging a portfolio manager's skill, regardless of when the manager's clients happened to add or remove cash.`,
+          `Worked example: you invest $100, and the portfolio grows 10% in year 1 to $110. You then add $100 more (now $210 invested), and the portfolio falls 10% in year 2, ending at $189. The TWRR treats each year on its own merits: TWRR = [(1.10) \u00D7 (0.90)]<sup>1/2</sup> \u2212 1 = \u221A0.99 \u2212 1 \u2248 \u22120.5% per year \u2014 a modest, symmetric-looking result. The MWRR, however, would come out noticeably lower than this, because the extra $100 contribution happened right before the bad year, meaning more of the investor's actual dollars were exposed to the 10% loss than to the 10% gain. Same investments, same two annual returns \u2014 different investor outcomes, and different numbers for it.`,
+        ],
+        formulas: [
+          { id: "returns-4-twrr", name: "Time-weighted rate of return", expression: "TWRR = [(1+r1) \u00D7 (1+r2) \u00D7 ... \u00D7 (1+rn)]<sup>1/n</sup> \u2212 1", when: "Measuring investment performance independent of the timing/size of external cash flows — the standard for evaluating manager skill." },
+        ],
+      },
+      {
+        id: "returns-5",
+        title: "Benchmarking with market indexes",
+        body: [
+          `A market index tracks the combined performance of a specified basket of securities, giving a shorthand for "how a market or segment is doing." How an index weights its constituent securities meaningfully changes what it measures and how it behaves.`,
+          `A price-weighted index (like the Dow Jones Industrial Average) simply averages the prices of its constituent stocks — meaning a $200 stock influences the index eight times as much as a $25 stock, regardless of the actual size of either company. A market-capitalization-weighted index (like the S&P 500) weights each constituent by its total market value (share price × shares outstanding), so larger companies drive more of the index's movement — generally considered more representative of the actual market's aggregate behavior. An equal-weighted index gives every constituent the same weight regardless of price or size, which tilts more toward smaller companies than either of the other two methods.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "returns-6",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "Total return earned over one holding period, including income", formula: "Holding period return (HPR)", section: "returns-2" },
+          { cue: "Building a discount rate from a risk-free rate plus compensation for risk", formula: "Required rate of return", section: "returns-3" },
+          { cue: "Evaluating a manager's skill, independent of client cash flow timing", formula: "Time-weighted rate of return (TWRR)", section: "returns-4" },
+          { cue: "Reflecting a specific investor's actual dollar-weighted experience", formula: "Money-weighted rate of return (MWRR)", section: "returns-4" },
+          { cue: "A larger stock's price move affects the index more than a smaller stock's", formula: "Price-weighted index", section: "returns-5" },
+          { cue: "A larger company's total market value affects the index more", formula: "Market-cap-weighted index", section: "returns-5" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "returns-7",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Confusing MWRR and TWRR", detail: "MWRR is sensitive to contribution timing (actual investor experience); TWRR strips that out (manager skill). A large contribution right before a loss drags MWRR down more than TWRR." },
+          { item: "Assuming index weighting doesn't matter", detail: "The same set of stocks can produce meaningfully different index returns depending on price-weighted vs. cap-weighted vs. equal-weighted construction." },
+          { item: "Forgetting income in HPR", detail: "Holding period return includes dividends/interest received, not just the price change." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "simulation",
+    number: "05",
+    title: "Simulation Methods",
+    subtitle: "Quantitative Methods: modeling uncertain outcomes when no clean formula exists",
+    sections: [
+      {
+        id: "sim-1",
+        title: "Overview",
+        body: [`Not every problem in finance has a tidy closed-form formula — sometimes the honest answer to "what might happen?" requires generating many possible outcomes and studying the resulting pattern. This chapter covers three ways analysts do that.`],
+        formulas: [],
+      },
+      {
+        id: "sim-2",
+        title: "Historical simulation",
+        body: [`Historical simulation reuses actual past data as the basis for simulating future outcomes — for example, taking the last 5 years of daily stock returns and treating each of those historical days as one equally likely possible outcome for tomorrow. Its strength is realism: it captures whatever real correlations, fat tails, and quirks actually occurred historically, without having to guess at a distribution. Its weakness is the same thing viewed the other way — it assumes the future will resemble the specific historical period sampled, which may not hold.`],
+        formulas: [],
+      },
+      {
+        id: "sim-3",
+        title: "Bootstrap resampling",
+        body: [`Bootstrap resampling repeatedly draws random samples from an existing data set, with replacement (meaning the same historical observation can be picked more than once in a given resample), to build up a picture of how uncertain a statistic (like a mean or a standard deviation) really is. Rather than assuming a formula for that uncertainty, the bootstrap approach empirically generates it by resampling the actual data over and over and seeing how much the resulting statistic bounces around.`],
+        formulas: [],
+      },
+      {
+        id: "sim-4",
+        title: "Monte Carlo simulation",
+        body: [`Monte Carlo simulation takes a different approach: rather than reusing historical data directly, it generates a large number of random scenarios by drawing from an assumed probability distribution (commonly a normal or lognormal distribution for asset prices), then studies the resulting range of outcomes. This is especially useful for modeling something like a retirement portfolio's terminal value across thousands of simulated market paths, where no simple formula could capture the combined effect of ongoing contributions, withdrawals, and random market returns all at once.`],
+        formulas: [],
+      },
+      {
+        id: "sim-5",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the description to the method.`],
+        decisionRows: [
+          { cue: "Reusing actual historical data points as the simulated outcomes", formula: "Historical simulation", section: "sim-2" },
+          { cue: "Repeatedly resampling existing data, with replacement, to gauge uncertainty in a statistic", formula: "Bootstrap resampling", section: "sim-3" },
+          { cue: "Generating many random scenarios from an assumed distribution", formula: "Monte Carlo simulation", section: "sim-4" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "sim-6",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Assuming historical simulation predicts the future", detail: "It assumes the future resembles the sampled historical period — a real limitation, not a guarantee." },
+          { item: "Confusing bootstrap resampling with simply repeating the original data set", detail: "Bootstrap resampling draws random samples with replacement — the same data point can appear multiple times or not at all in a given resample." },
+          { item: "Assuming Monte Carlo results are exact", detail: "Results depend entirely on the assumed distribution and its parameters — a flawed assumption produces a flawed simulation, however sophisticated it looks." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "regression",
+    number: "06",
+    title: "Simple Linear Regression",
+    subtitle: "Quantitative Methods: quantifying the relationship between two variables",
+    sections: [
+      {
+        id: "reg-1",
+        title: "Overview",
+        body: [`Simple linear regression finds the straight line that best describes how one variable (the dependent variable) tends to move in response to another (the independent variable) — the statistical backbone behind estimating a stock's beta, one of the most important numbers you'll meet in Portfolio Management.`],
+        formulas: [],
+      },
+      {
+        id: "reg-2",
+        title: "The regression model and the least squares criterion",
+        body: [
+          `A simple linear regression model says: Y = b0 + b1X + error, where b0 (the intercept) is the model's predicted value of Y when X is zero, and b1 (the slope) is how much Y is predicted to change for each one-unit change in X.`,
+          `The least squares criterion is how the "best" line is actually chosen: out of every possible line you could draw through a scatter of data points, least squares picks the one that minimizes the sum of the squared vertical distances between each actual data point and the line — squaring ensures points above and below the line don't cancel out, and penalizes large misses more heavily than small ones.`,
+        ],
+        formulas: [
+          { id: "reg-2-slope", name: "Regression slope (b1)", expression: "b1 = <span class=\"frac\"><span class=\"num\">Covariance(X,Y)</span><span class=\"den\">Variance(X)</span></span>", when: "Estimating how much Y changes, on average, for a one-unit change in X — this is exactly how a stock's beta is calculated.", worked: "A stock's returns are regressed against market returns. Covariance(stock, market) = 0.008, Variance(market) = 0.005. Slope (beta) = 0.008 / 0.005 = 1.6. This means the stock's returns tend to move 1.6% for every 1% move in the market — a more aggressive, higher-beta stock than the market itself. This exact number is what plugs directly into the CAPM formula you'll see in Portfolio Management." },
+        ],
+      },
+      {
+        id: "reg-3",
+        title: "Assessing the fit: R\u00B2 and standard error",
+        body: [
+          `Not every regression line fits its data equally well. R\u00B2 (the coefficient of determination) measures the proportion of the variation in Y that's explained by the model's relationship with X, ranging from 0 (the model explains none of the variation) to 1 (it explains all of it). The standard error of estimate measures the typical size of the model's prediction errors, in the same units as Y itself — a smaller standard error means predictions cluster more tightly around the fitted line.`,
+        ],
+        formulas: [
+          { id: "reg-3-r2", name: "R\u00B2 (coefficient of determination)", expression: "R\u00B2 = <span class=\"frac\"><span class=\"num\">Explained variation</span><span class=\"den\">Total variation</span></span>", when: "Measuring how much of Y's variation the regression model actually explains.", worked: "A regression of a stock's returns on market returns produces an R\u00B2 of 0.36. This means 36% of the variation in the stock's returns is explained by movements in the overall market — the remaining 64% is due to factors specific to that stock, unrelated to the broad market." },
+        ],
+      },
+      {
+        id: "reg-4",
+        title: "Predictions, prediction intervals, and functional form",
+        body: [`Once a regression line is fitted, plugging in a new X value gives a predicted value of Y — but that single predicted number is a best estimate, not a certainty. A prediction interval gives a range around that predicted value, reflecting the model's typical error, the same conceptual idea as the confidence interval from the Probability & Statistics chapter, just applied to a regression prediction rather than a sample mean. Not every relationship is a straight line either — some financial relationships fit better using a different functional form (like a logarithmic or quadratic relationship) than a simple straight line, something regression diagnostics can help reveal.`],
+        formulas: [],
+      },
+      {
+        id: "reg-5",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the question to the concept.`],
+        decisionRows: [
+          { cue: "How much Y changes per one-unit change in X (e.g., a stock's beta)", formula: "Regression slope (b1)", section: "reg-2" },
+          { cue: "How much of Y's variation the model explains", formula: "R\u00B2", section: "reg-3" },
+          { cue: "The typical size of the model's prediction errors", formula: "Standard error of estimate", section: "reg-3" },
+          { cue: "A range estimate around a single predicted value", formula: "Prediction interval", section: "reg-4" },
+        ],
+        formulas: [],
+      },
+      {
+        id: "reg-6",
+        title: "Common traps",
+        type: "reference",
+        body: [`Watch for these.`],
+        referenceRows: [
+          { item: "Confusing correlation with the regression slope", detail: "Correlation is always between \u22121 and +1; the regression slope (beta) can be any number, and depends on the variance of X." },
+          { item: "Assuming a high R\u00B2 means the model is \"correct\"", detail: "A high R\u00B2 shows a strong statistical fit within the sample — it doesn't prove the relationship is causal or will hold going forward." },
+          { item: "Forcing a straight line onto a clearly non-linear relationship", detail: "Some relationships are better described by a different functional form entirely." },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "datascience",
+    number: "07",
+    title: "Introduction to Financial Data Science",
+    subtitle: "Quantitative Methods: how big data, machine learning, and AI are changing investment analysis",
+    sections: [
+      {
+        id: "ds-1",
+        title: "Overview",
+        body: [`Modern investment analysis increasingly draws on data and techniques that go well beyond the traditional financial statements and market prices covered elsewhere in this course. This short chapter introduces the vocabulary, kept deliberately light on math — the goal here is fluency with the concepts, not calculation.`],
+        formulas: [],
+      },
+      {
+        id: "ds-2",
+        title: "Big data and alternative data",
+        body: [`Big data refers to data sets too large, fast-moving, or unstructured for traditional analysis tools to handle easily. In investing, this increasingly includes alternative data — information not found in traditional financial statements or market prices, like satellite imagery of retailer parking lots (used to estimate sales before earnings are reported), credit card transaction data, or social media sentiment. Structured data fits neatly into rows and columns (like a spreadsheet of financial ratios); unstructured data does not (like the text of a news article or an earnings call transcript), and typically requires more specialized techniques to analyze.`],
+        formulas: [],
+      },
+      {
+        id: "ds-3",
+        title: "Machine learning and artificial intelligence in investing",
+        body: [`Machine learning refers to computer systems that improve their performance on a task by learning patterns from data, rather than following only explicitly programmed rules. Two broad categories come up often: supervised learning trains a model on data where the "correct answer" is already known (like predicting default using historical loans that are already labeled as defaulted or not), while unsupervised learning looks for patterns or groupings in data without any pre-labeled correct answer (like clustering stocks into groups with similar behavior, without being told in advance what those groups should be).`],
+        formulas: [],
+      },
+      {
+        id: "ds-4",
+        title: "Applications in fintech and investment management",
+        body: [`These techniques show up across the investment industry in practical ways: robo-advisors use algorithms to build and manage portfolios with minimal human intervention; algorithmic and high-frequency trading use automated rules to execute trades, sometimes within fractions of a second; sentiment analysis applies natural language processing to news, filings, or social media to gauge market mood; and credit scoring and fraud detection increasingly rely on machine learning models trained on large historical data sets.`],
+        formulas: [],
+      },
+      {
+        id: "ds-5",
+        title: "Formula/concept decision guide",
+        type: "decision-guide",
+        body: [`Match the description to the term.`],
+        decisionRows: [
+          { cue: "Data too large or unstructured for traditional tools", formula: "Big data", section: "ds-2" },
+          { cue: "Information outside traditional financial statements/prices (satellite images, transaction data)", formula: "Alternative data", section: "ds-2" },
+          { cue: "A model trained on data with known correct answers", formula: "Supervised learning", section: "ds-3" },
+          { cue: "A model finding patterns without pre-labeled correct answers", formula: "Unsupervised learning", section: "ds-3" },
+          { cue: "Automated portfolio construction/management with minimal human input", formula: "Robo-advisors", section: "ds-4" },
+        ],
+        formulas: [],
+      },
+    ],
+  },
+  {
+    id: "econ",
+    number: "08",
     title: "Economics",
     subtitle: "How markets, money, and policy shape the environment every investment sits inside",
     sections: [
@@ -913,7 +1258,7 @@ const CHAPTERS = [
   },
   {
     id: "fsa",
-    number: "05",
+    number: "09",
     title: "Financial Statement Analysis",
     subtitle: "Reading a company's three core statements and turning them into insight",
     sections: [
@@ -1022,6 +1367,37 @@ const CHAPTERS = [
         ],
       },
       {
+        id: "fsa-5c",
+        title: "DuPont analysis: breaking down return on equity",
+        body: [
+          `Return on equity (ROE) — net income divided by shareholders' equity — is one of the single most-watched profitability numbers, but on its own it doesn't explain *why* a company's ROE is high or low. DuPont analysis breaks ROE apart into three drivers, each answering a different question: how profitable is each sale (net profit margin), how efficiently are assets used to generate sales (asset turnover), and how much leverage is the company using (the equity multiplier)? Two companies can have identical ROE for completely different reasons — one earning it through genuine operating efficiency, another through aggressive leverage — and DuPont analysis is what reveals the difference.`,
+        ],
+        formulas: [
+          { id: "fsa-5c-dupont", name: "DuPont analysis (3-factor ROE decomposition)", expression: "ROE = <span class=\"frac\"><span class=\"num\">Net income</span><span class=\"den\">Revenue</span></span> \u00D7 <span class=\"frac\"><span class=\"num\">Revenue</span><span class=\"den\">Total assets</span></span> \u00D7 <span class=\"frac\"><span class=\"num\">Total assets</span><span class=\"den\">Total equity</span></span>", when: "Breaking ROE into net profit margin \u00D7 asset turnover \u00D7 the equity multiplier (leverage), to see what's actually driving it.", worked: "A company has a 6% net profit margin, an asset turnover of 1.5 (meaning $1.50 of revenue per $1 of assets), and an equity multiplier of 2.0 (meaning assets are twice equity, implying half the balance sheet is debt-financed). ROE = 6% \u00D7 1.5 \u00D7 2.0 = 18%. A competitor could reach the same 18% ROE with only a 4% margin and 1.0 asset turnover, but a much higher equity multiplier of 4.5 — the same headline number, driven almost entirely by leverage instead of operating performance." },
+        ],
+      },
+      {
+        id: "fsa-5d",
+        title: "Earnings per share (EPS)",
+        body: [
+          `Earnings per share restates net income on a per-share basis, making it possible to compare profitability across companies regardless of how many shares each happens to have outstanding. Basic EPS uses only the shares currently outstanding; diluted EPS additionally accounts for securities that could convert into new common shares (like convertible bonds, covered in Fixed Income, or employee stock options), showing what EPS would look like if all of that potential dilution actually happened. Diluted EPS is always less than or equal to basic EPS, since adding potential shares can only spread the same net income more thinly, never less.`,
+        ],
+        formulas: [
+          { id: "fsa-5d-eps", name: "Basic earnings per share", expression: "Basic EPS = <span class=\"frac\"><span class=\"num\">Net income \u2212 Preferred dividends</span><span class=\"den\">Weighted average shares outstanding</span></span>", when: "Preferred dividends are subtracted first because that income belongs to preferred shareholders, not common shareholders.", worked: "A company has net income of $5,000,000, pays $500,000 in preferred dividends, and has a weighted average of 2,000,000 common shares outstanding. Basic EPS = (5,000,000 \u2212 500,000) / 2,000,000 = 4,500,000 / 2,000,000 = $2.25 per share." },
+        ],
+      },
+      {
+        id: "fsa-5e",
+        title: "Free cash flow: FCFF and FCFE",
+        body: [
+          `Net income and operating cash flow both matter, but neither directly answers the question "how much cash could this company actually distribute to its investors without harming the business?" Free cash flow fills that gap, and comes in two versions depending on which investors you're asking about.`,
+          `Free cash flow to the firm (FCFF) is the cash available to all of the company's capital providers — both debt and equity holders — after covering operating expenses and the capital investment needed to sustain the business. Free cash flow to equity (FCFE) narrows that down to just what's available to equity holders specifically, after also accounting for net payments to debtholders.`,
+        ],
+        formulas: [
+          { id: "fsa-5e-fcff", name: "FCFF (starting from net income) — advanced", expression: "FCFF = Net income + Non-cash charges + Interest \u00D7 (1 \u2212 tax rate) \u2212 Capital expenditures \u2212 Increase in working capital", when: "Estimating cash available to all capital providers (debt and equity) combined.", worked: "A company has net income of $2,000,000, non-cash depreciation of $400,000, interest expense of $300,000, a 25% tax rate, capital expenditures of $600,000, and a $100,000 increase in working capital. FCFF = 2,000,000 + 400,000 + 300,000\u00D7(1\u22120.25) \u2212 600,000 \u2212 100,000 = 2,000,000 + 400,000 + 225,000 \u2212 600,000 \u2212 100,000 = $1,925,000." },
+        ],
+      },
+      {
         id: "fsa-6",
         title: "Formula decision guide",
         type: "decision-guide",
@@ -1032,6 +1408,9 @@ const CHAPTERS = [
           { cue: "How much profit per dollar of sales", formula: "Profitability ratios (e.g., net profit margin)", section: "fsa-4" },
           { cue: "How efficiently assets/inventory are used", formula: "Activity ratios (e.g., inventory turnover)", section: "fsa-4" },
           { cue: "Whether reported profit is \"real\"", formula: "Compare net income to operating cash flow", section: "fsa-5" },
+          { cue: "Breaking ROE down into margin, turnover, and leverage", formula: "DuPont analysis", section: "fsa-5c" },
+          { cue: "Profit restated on a per-share basis", formula: "Earnings per share (EPS)", section: "fsa-5d" },
+          { cue: "Cash available to all capital providers (debt + equity)", formula: "Free cash flow to the firm (FCFF)", section: "fsa-5e" },
           { cue: "Which inventory costs get expensed first, rising prices, higher reported profit", formula: "FIFO", section: "fsa-3b" },
           { cue: "Which inventory costs get expensed first, rising prices, lower reported profit/taxes", formula: "LIFO", section: "fsa-3b" },
           { cue: "Spreading an asset's cost evenly over its life", formula: "Straight-line depreciation", section: "fsa-3c" },
@@ -1060,7 +1439,7 @@ const CHAPTERS = [
   },
   {
     id: "corp",
-    number: "06",
+    number: "10",
     title: "Corporate Issuers",
     subtitle: "How companies decide what to invest in, and how to pay for it",
     sections: [
@@ -1136,7 +1515,7 @@ const CHAPTERS = [
   },
   {
     id: "equity",
-    number: "07",
+    number: "11",
     title: "Equity Investments",
     subtitle: "How stocks are structured, traded, and valued",
     sections: [
@@ -1210,7 +1589,7 @@ const CHAPTERS = [
   },
   {
     id: "fixedincome",
-    number: "08",
+    number: "12",
     title: "Fixed Income",
     subtitle: "Bonds: how they're structured, priced, and how their risk is measured",
     sections: [
@@ -1295,13 +1674,27 @@ const CHAPTERS = [
       },
       {
         id: "fi-6",
-        title: "Duration",
+        title: "Macaulay duration and modified duration",
         body: [
-          `Duration measures a bond's sensitivity to changes in interest rates. Longer-maturity bonds and lower-coupon bonds generally have higher duration, because more of their value sits further out in time, where discounting has a bigger effect on present value.`,
-          `A useful approximation lets you estimate the actual price impact of a rate change once you know a bond's duration.`,
+          `Duration measures a bond's sensitivity to changes in interest rates, but the term actually covers a small family of related measures, and it's worth knowing which one is which.`,
+          `Macaulay duration is the foundational version: the weighted-average time (in years) until a bondholder receives the bond's cash flows, where each cash flow's weight is the proportion of the bond's total present value that it represents. A bond with only a single cash flow (a zero-coupon bond) has a Macaulay duration exactly equal to its maturity, since there's only one cash flow to wait for; a coupon-paying bond's Macaulay duration is always shorter than its maturity, since some value arrives earlier via the coupons.`,
+          `Modified duration adjusts Macaulay duration to directly estimate price sensitivity to yield changes — it's Macaulay duration scaled down by the periodic yield, and it's the version that plugs directly into the price-change approximation below. Longer-maturity bonds and lower-coupon bonds generally have higher duration (of either kind), because more of their value sits further out in time, where discounting has a bigger effect on present value.`,
         ],
         formulas: [
-          { id: "fi-6-duration", name: "Approximate price change from duration", expression: "% change in price \u2248 \u2212 Duration \u00D7 (change in yield)", when: "Estimating how much a bond's price will move for a given change in market yield.", worked: "A bond has a duration of 7 and market yields rise by 0.50 percentage points (0.005). % change in price \u2248 \u22127 \u00D7 0.005 = \u22123.5% — the bond's price is expected to fall about 3.5%." },
+          { id: "fi-6-modified", name: "Modified duration (from Macaulay duration)", expression: "Modified duration = <span class=\"frac\"><span class=\"num\">Macaulay duration</span><span class=\"den\">1 + periodic yield</span></span>", when: "Converting Macaulay duration into the form used to directly estimate price sensitivity.", worked: "A bond has a Macaulay duration of 4.5 years and a periodic (annual) yield of 6%. Modified duration = 4.5 / 1.06 \u2248 4.25." },
+          { id: "fi-6-duration", name: "Approximate price change from duration", expression: "% change in price \u2248 \u2212 Modified duration \u00D7 (change in yield)", when: "Estimating how much a bond's price will move for a given change in market yield.", worked: "A bond has a modified duration of 7 and market yields rise by 0.50 percentage points (0.005). % change in price \u2248 \u22127 \u00D7 0.005 = \u22123.5% — the bond's price is expected to fall about 3.5%." },
+        ],
+      },
+      {
+        id: "fi-6a2",
+        title: "Convexity",
+        body: [
+          `Duration's price-change approximation is a straight-line estimate, but the true relationship between a bond's price and its yield is actually curved, not straight — convexity measures that curvature, and captures the part of the price change duration alone misses.`,
+          `A bond with positive convexity (true of most ordinary, option-free bonds) gains more from a given yield decrease than it loses from an equal-sized yield increase — meaning duration alone tends to understate price gains and overstate price losses. Adding a convexity adjustment to the duration estimate corrects for this, and the correction matters more the larger the yield change is, since the "curve versus straight line" gap widens the further you move from the starting point.`,
+          `Bonds with embedded options behave differently: a callable bond's price gains are capped as yields fall (since the issuer becomes more likely to call it away), giving it negative convexity in that range — one more reason embedded call features are a risk to the bondholder, not just the reinvestment-timing risk covered earlier.`,
+        ],
+        formulas: [
+          { id: "fi-6a2-adj", name: "Full price change estimate (duration + convexity)", expression: "% change in price \u2248 [\u2212 Modified duration \u00D7 \u0394y] + [\u00BD \u00D7 Convexity \u00D7 (\u0394y)<sup>2</sup>]", when: "Getting a more accurate price-change estimate than duration alone provides, especially for larger yield changes.", worked: "A bond has modified duration of 7, convexity of 65, and yields rise by 2 percentage points (0.02). Duration-only estimate: \u22127 \u00D7 0.02 = \u221214%. Convexity adjustment: \u00BD \u00D7 65 \u00D7 (0.02)\u00B2 = \u00BD \u00D7 65 \u00D7 0.0004 \u2248 0.013 = +1.3%. Combined estimate: \u221214% + 1.3% = \u221212.7% \u2014 a noticeably smaller loss than the duration-only estimate suggested, because positive convexity cushions the downside." },
         ],
       },
       {
@@ -1312,6 +1705,15 @@ const CHAPTERS = [
           `A callable bond gives the issuer the right to repay the bond early — typically used when rates have fallen and the issuer wants to refinance at a lower rate. This is a risk to the bondholder: the bond is most likely to get called away right when reinvesting the proceeds at an equally attractive rate has become hardest.`,
           `A putable bond gives the bondholder the right to sell the bond back to the issuer early, at a preset price — the mirror image of callable, and a benefit to the bondholder rather than the issuer.`,
           `A convertible bond gives the bondholder the right to convert the bond into a predetermined number of the issuer's common shares — effectively bundling a bond with a call option on the stock.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "fi-6c",
+        title: "Securitization: ABS and MBS",
+        body: [
+          `Securitization is the process of pooling many individual loans or receivables together (mortgages, auto loans, credit card debt) and converting that pool into tradable bonds, backed by the cash flows those underlying loans generate. This lets the original lender free up capital to make new loans, rather than holding every loan on its own balance sheet until maturity.`,
+          `A mortgage-backed security (MBS) is securitized specifically from a pool of mortgage loans; the broader category, asset-backed security (ABS), covers securitization from other loan types, like auto loans or credit card receivables. A key risk specific to mortgage-related securitization: prepayment risk — homeowners can pay off their mortgages early (often by refinancing when rates fall), which returns principal to MBS investors earlier than expected, right when reinvesting it at an equally attractive rate is hardest — the same underlying problem as callable bond risk, just arising structurally from the pool of borrowers rather than from an explicit call feature.`,
         ],
         formulas: [],
       },
@@ -1334,8 +1736,11 @@ const CHAPTERS = [
           { cue: "The full, precise annualized return if held to maturity", formula: "Yield to maturity (YTM)", section: "fi-4" },
           { cue: "How much of the next coupon a seller has already earned mid-period", formula: "Accrued interest / dirty price", section: "fi-4b" },
           { cue: "Comparing yields across different maturities", formula: "Yield curve", section: "fi-5" },
-          { cue: "Estimating a bond's price change from a change in yield", formula: "Duration", section: "fi-6" },
+          { cue: "Weighted-average time until a bond's cash flows are received", formula: "Macaulay duration", section: "fi-6" },
+          { cue: "Estimating a bond's price change from a change in yield", formula: "Modified duration", section: "fi-6" },
+          { cue: "Improving the price-change estimate for larger yield changes", formula: "Convexity adjustment", section: "fi-6a2" },
           { cue: "An issuer's right to redeem a bond before maturity", formula: "Callable bond", section: "fi-6b" },
+          { cue: "A bond backed by a pool of mortgages or other loans", formula: "Securitization (MBS/ABS)", section: "fi-6c" },
           { cue: "Risk that the issuer won't pay", formula: "Credit risk", section: "fi-7" },
         ],
         formulas: [],
@@ -1351,6 +1756,8 @@ const CHAPTERS = [
           { item: "Assuming equal-maturity bonds have equal duration", detail: "Coupon rate matters too — lower coupons mean higher duration." },
           { item: "Confusing clean price with the actual amount paid", detail: "The dirty price (clean price + accrued interest) is what the buyer actually pays at settlement." },
           { item: "Assuming \"callable\" benefits the bondholder", detail: "Callable features favor the issuer; putable and convertible features favor the bondholder." },
+          { item: "Using Macaulay duration directly in the price-change formula", detail: "The price-change approximation needs modified duration, not Macaulay duration — convert first." },
+          { item: "Forgetting convexity on larger yield changes", detail: "Duration alone is a straight-line approximation; the convexity adjustment corrects for the true curved price-yield relationship, and matters more as the yield change grows." },
         ],
         formulas: [],
       },
@@ -1358,7 +1765,7 @@ const CHAPTERS = [
   },
   {
     id: "derivatives",
-    number: "09",
+    number: "13",
     title: "Derivatives",
     subtitle: "Contracts whose value is derived from something else",
     sections: [
@@ -1387,6 +1794,34 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "deriv-3b",
+        title: "Intrinsic value and time value",
+        body: [`An option's premium splits into two components. Intrinsic value is what the option would be worth if exercised right now — for a call, the amount by which the stock price exceeds the strike price (zero if the stock is below the strike); for a put, the reverse. Time value is whatever's left of the premium beyond intrinsic value — compensation for the possibility that the option becomes more valuable before it expires. Time value shrinks toward zero as expiration approaches, since less time remains for the underlying price to move favorably — an effect commonly called time decay.`],
+        formulas: [],
+      },
+      {
+        id: "deriv-3c",
+        title: "Put-call parity",
+        body: [`Put-call parity is a direct application of the no-arbitrage principle from Quantitative Methods: a call option, a put option (same strike, same expiration, same underlying), and the underlying stock and a bond are all linked by one fixed relationship. If the actual market prices ever drifted away from this relationship, an arbitrageur could combine these instruments to lock in a riskless profit — which is exactly why the relationship holds in efficient markets.`],
+        formulas: [
+          { id: "deriv-3c-parity", name: "Put-call parity", expression: "Call price + <span class=\"frac\"><span class=\"num\">Strike price</span><span class=\"den\">(1+r)<sup>t</sup></span></span> = Put price + Stock price", when: "Checking whether call price, put price, strike, and stock price are mutually consistent — or backing out one of them given the other three.", worked: "A stock trades at $52. A 1-year call and put, both with a $50 strike, exist in a market with a 4% risk-free rate. The put trades at $2.50. Put-call parity: Call + 50/(1.04) = 2.50 + 52. Call + 48.08 = 54.50. Call \u2248 $6.42. If the actual call price differs meaningfully from $6.42, an arbitrage opportunity exists." },
+        ],
+      },
+      {
+        id: "deriv-3d",
+        title: "The cost of carry model",
+        body: [`The cost of carry model explains how a forward or futures price relates to the underlying asset's current spot price: the forward price should equal the spot price grown forward at the risk-free rate, adjusted for any costs of holding the asset (like storage costs for a physical commodity) minus any benefits of holding it (like dividends received on a stock, or convenience yield for a commodity in short supply). If a forward price ever strayed from this no-arbitrage relationship, the same kind of arbitrage described in put-call parity would again be available.`],
+        formulas: [
+          { id: "deriv-3d-carry", name: "Cost of carry (forward price)", expression: "Forward price = Spot price \u00D7 (1+r)<sup>t</sup> + Carry costs \u2212 Carry benefits", when: "Finding the no-arbitrage forward price of an asset, given its spot price and the costs/benefits of holding it.", worked: "A stock trades at $100 today, the risk-free rate is 5%, the forward contract matures in 1 year, and the stock pays no dividend. Forward price = 100 \u00D7 (1.05) = $105. If the stock instead paid a $2 dividend over the year (a carry benefit), the forward price would be 105 \u2212 2 = $103 \u2014 lower, since holding the stock directly captures that dividend, which a forward buyer forgoes." },
+        ],
+      },
+      {
+        id: "deriv-3e",
+        title: "The one-period binomial model — advanced",
+        body: [`The binomial model prices an option by imagining just two possible outcomes for the underlying asset over one period: an "up" move or a "down" move, each with an assumed size and probability. Working backward from the option's known payoff in each of those two future states, the model finds today's option value using the same no-arbitrage logic behind put-call parity and cost of carry — constructing a riskless combination of the option and the underlying stock, which must therefore earn exactly the risk-free rate. Extending this same idea across many small periods, rather than just one, is the conceptual bridge toward more advanced option pricing models used at later levels of the curriculum.`],
+        formulas: [],
+      },
+      {
         id: "deriv-4",
         title: "Swaps",
         body: [`A swap is an agreement between two parties to exchange cash flows over time. The most common type, an interest rate swap, typically involves one party paying a fixed rate while receiving a floating rate from the other, often used to change interest rate exposure without refinancing.`],
@@ -1408,6 +1843,10 @@ const CHAPTERS = [
           { cue: "Same obligation, but standardized and exchange-traded", formula: "Futures", section: "deriv-2" },
           { cue: "The right, not the obligation, to buy at a set price", formula: "Call option", section: "deriv-3" },
           { cue: "The right, not the obligation, to sell at a set price", formula: "Put option", section: "deriv-3" },
+          { cue: "What an option would be worth if exercised right now", formula: "Intrinsic value", section: "deriv-3b" },
+          { cue: "Checking whether call/put/stock/strike prices are mutually consistent", formula: "Put-call parity", section: "deriv-3c" },
+          { cue: "Finding a forward price from the spot price plus/minus holding costs", formula: "Cost of carry model", section: "deriv-3d" },
+          { cue: "Pricing an option using two possible future outcomes", formula: "One-period binomial model", section: "deriv-3e" },
           { cue: "Exchanging fixed for floating interest payments over time", formula: "Interest rate swap", section: "deriv-4" },
           { cue: "Reducing an existing risk", formula: "Hedging", section: "deriv-5" },
           { cue: "Taking on new risk for potential profit", formula: "Speculation", section: "deriv-5" },
@@ -1430,7 +1869,7 @@ const CHAPTERS = [
   },
   {
     id: "altinvest",
-    number: "10",
+    number: "14",
     title: "Alternative Investments",
     subtitle: "Everything outside traditional stocks and bonds",
     sections: [
@@ -1488,7 +1927,7 @@ const CHAPTERS = [
   },
   {
     id: "portfolio",
-    number: "11",
+    number: "15",
     title: "Portfolio Management",
     subtitle: "Combining investments so the whole is better than the sum of its parts",
     sections: [
@@ -1505,14 +1944,26 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "port-2b",
+        title: "Investor types and the asset management industry",
+        body: [
+          `Investors come in two broad categories with meaningfully different needs: individual investors manage their own wealth (or have it managed) toward personal goals like retirement or a home purchase; institutional investors manage large pools of money on behalf of others — pension funds, endowments, insurance companies, and sovereign wealth funds among them.`,
+          `Pension plans split into two structures with very different risk allocation: a defined benefit (DB) plan promises retirees a specific future payout, putting the funding-shortfall risk on the sponsoring company (the same distinction introduced in Financial Statement Analysis); a defined contribution (DC) plan only promises to contribute a set amount today, putting investment-outcome risk on the employee.`,
+          `Retail investors can also access professionally managed portfolios through pooled vehicles — mutual funds (actively or passively managed, priced once daily) and exchange-traded funds, or ETFs (which trade throughout the day like a stock and are most commonly passively managed to track an index).`,
+        ],
+        formulas: [],
+      },
+      {
         id: "port-3",
         title: "Risk and return of a portfolio",
         body: [
           `A portfolio's expected return is simply the weighted average of the expected returns of its individual holdings, weighted by how much of the portfolio's value each holding represents.`,
           `A portfolio's risk, however, is not simply the weighted average of the individual risks — because how the holdings move together (their covariance/correlation) affects the portfolio's overall variance. This is the mathematical foundation of diversification.`,
+          `Among every possible two-asset portfolio you could build from a given pair of stocks, one specific mix produces the lowest possible risk — the global minimum-variance portfolio. It isn't necessarily the mix with the highest return; it's simply the one where the assets' offsetting movements cancel out as much risk as mathematically possible.`,
         ],
         formulas: [
           { id: "port-3-return", name: "Portfolio expected return", expression: "E(Rp) = \u03A3 [ wi \u00D7 E(Ri) ]", when: "Finding a portfolio's overall expected return from its holdings' weights and expected returns.", worked: "A portfolio is 60% Stock A (10% expected return) and 40% Stock B (6% expected return). E(Rp) = (0.60\u00D710%) + (0.40\u00D76%) = 8.4%." },
+          { id: "port-3-minvar", name: "Minimum-variance weight (two-asset portfolio) — advanced", expression: "w1 = <span class=\"frac\"><span class=\"num\">\u03C32\u00B2 \u2212 Cov(1,2)</span><span class=\"den\">\u03C31\u00B2 + \u03C32\u00B2 \u2212 2 \u00D7 Cov(1,2)</span></span>", when: "Finding the weight in asset 1 that minimizes the overall portfolio's variance, for a two-asset portfolio.", worked: "Stock 1 has variance 0.04, Stock 2 has variance 0.09, and their covariance is 0.02. w1 = (0.09 \u2212 0.02) / (0.04 + 0.09 \u2212 2\u00D70.02) = 0.07 / 0.09 \u2248 77.8%. The minimum-variance portfolio holds about 78% Stock 1 and 22% Stock 2 \u2014 not necessarily the highest-return mix, just the lowest-risk one." },
         ],
       },
       {
@@ -1524,8 +1975,75 @@ const CHAPTERS = [
       },
       {
         id: "port-5",
-        title: "The efficient frontier and capital allocation line, conceptually",
-        body: [`Plotting every possible portfolio combination of risky assets by risk and expected return traces out a curve; the efficient frontier is the upper-left edge — the set of portfolios offering the highest expected return for each level of risk. Adding a risk-free asset creates the capital allocation line, a straight line from the risk-free rate through the optimal risky portfolio, representing every risk-free/risky blend an investor could choose.`],
+        title: "The efficient frontier, capital allocation line, and capital market line",
+        body: [
+          `Plotting every possible portfolio combination of risky assets by risk and expected return traces out a curve; the efficient frontier is the upper-left edge — the set of portfolios offering the highest expected return for each level of risk.`,
+          `Adding a risk-free asset creates the capital allocation line (CAL) — a straight line from the risk-free rate through a chosen risky portfolio, representing every risk-free/risky blend an investor could choose. When that chosen risky portfolio is specifically the market portfolio (the single risky portfolio every rational investor would hold, under the theory's assumptions), that particular CAL gets its own name: the capital market line (CML). Every investor, in this framework, ends up holding some blend of the risk-free asset and that same market portfolio — differing only in how much of each, based on their personal risk tolerance.`,
+        ],
+        exhibits: [{ afterParagraph: 1, svg: EXHIBIT_EFFICIENT_FRONTIER }],
+        formulas: [],
+      },
+      {
+        id: "port-5b",
+        title: "Systematic vs. unsystematic risk",
+        body: [
+          `Not all risk behaves the same way once you're holding a diversified portfolio. Unsystematic risk (also called diversifiable or firm-specific risk) is risk unique to one company or industry — a factory fire, a product recall, a lawsuit — and diversification genuinely eliminates most of it, since one company's bad luck tends to be offset by another's good luck across a large enough portfolio.`,
+          `Systematic risk (also called market or non-diversifiable risk) is risk that affects the entire market at once — a recession, a broad interest rate change — and no amount of diversification removes it, since it moves every holding in the same direction simultaneously. This distinction matters enormously: an investor should only expect to be compensated with extra return for bearing systematic risk, since unsystematic risk could have been diversified away for free.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "port-5c",
+        title: "CAPM and the security market line",
+        body: [
+          `The capital asset pricing model (CAPM) formalizes the idea from the previous section: an asset's required return depends only on its systematic risk, measured by beta — the same beta calculated via regression in the Quantitative Methods chapter. A beta of 1.0 means the asset moves in line with the market; a beta above 1.0 means it amplifies market moves; a beta below 1.0 means it dampens them.`,
+          `Plotting CAPM's required return against beta for every possible value of beta traces out the security market line (SML) — a straight line starting at the risk-free rate (where beta is zero) and rising through the market return (where beta equals one). Any asset priced so that it sits above the SML is offering more return than its systematic risk justifies (undervalued); any asset below the line is offering less (overvalued) — at least according to the model.`,
+        ],
+        exhibits: [{ afterParagraph: 1, svg: EXHIBIT_SML }],
+        formulas: [
+          { id: "port-5c-capm", name: "Capital asset pricing model (CAPM)", expression: "E(Ri) = Rf + \u03B2i \u00D7 [E(Rm) \u2212 Rf]", when: "Finding an asset's required return based purely on its systematic risk (beta).", worked: "The risk-free rate is 3%, the expected market return is 9%, and a stock has a beta of 1.4. E(Ri) = 3% + 1.4 \u00D7 (9% \u2212 3%) = 3% + 1.4\u00D76% = 3% + 8.4% = 11.4%. This stock's higher-than-market systematic risk (beta of 1.4) means the market requires a higher return from it than the market's own 9%." },
+        ],
+      },
+      {
+        id: "port-5d",
+        title: "Evaluating portfolio performance",
+        body: [
+          `Raw return alone doesn't tell you whether a portfolio manager did a good job — a higher return earned by taking on much more risk isn't necessarily better. Several ratios adjust return for risk to make a fairer comparison.`,
+          `The Sharpe ratio measures excess return (over the risk-free rate) per unit of total risk (standard deviation) — appropriate when evaluating a portfolio that represents an investor's entire holdings. The Treynor ratio measures excess return per unit of systematic risk (beta) only — more appropriate when evaluating one holding that's part of a larger, already-diversified portfolio, where unsystematic risk is less relevant. Jensen's alpha measures the actual return earned above and beyond what CAPM would have predicted for that level of systematic risk — a positive alpha suggests genuine outperformance after adjusting for risk.`,
+        ],
+        formulas: [
+          { id: "port-5d-sharpe", name: "Sharpe ratio", expression: "Sharpe = <span class=\"frac\"><span class=\"num\">Rp \u2212 Rf</span><span class=\"den\">\u03C3p</span></span>", when: "Comparing risk-adjusted return using total risk — appropriate for an investor's entire portfolio.", worked: "A portfolio returns 11%, the risk-free rate is 3%, and the portfolio's standard deviation is 16%. Sharpe = (11% \u2212 3%) / 16% = 8/16 = 0.50 \u2014 half a unit of excess return for every unit of total risk taken." },
+          { id: "port-5d-treynor", name: "Treynor ratio", expression: "Treynor = <span class=\"frac\"><span class=\"num\">Rp \u2212 Rf</span><span class=\"den\">\u03B2p</span></span>", when: "Comparing risk-adjusted return using only systematic risk — appropriate for one holding within a larger diversified portfolio.", worked: "Same portfolio: 11% return, 3% risk-free rate, and a beta of 1.2. Treynor = (11% \u2212 3%) / 1.2 = 8/1.2 \u2248 6.67 (expressed as a percentage-point return per unit of beta)." },
+          { id: "port-5d-jensen", name: "Jensen's alpha", expression: "\u03B1p = Rp \u2212 [Rf + \u03B2p \u00D7 (Rm \u2212 Rf)]", when: "Measuring return earned above or below what CAPM predicts for that level of systematic risk.", worked: "The same portfolio returns 11%, has a beta of 1.2, the risk-free rate is 3%, and the market return is 9%. CAPM-predicted return = 3% + 1.2\u00D7(9%\u22123%) = 3% + 7.2% = 10.2%. Jensen's alpha = 11% \u2212 10.2% = 0.8% \u2014 a small positive alpha, suggesting modest outperformance after adjusting for systematic risk." },
+        ],
+      },
+      {
+        id: "port-5e",
+        title: "The Investment Policy Statement",
+        body: [
+          `An Investment Policy Statement (IPS) is the foundational document that formally records an investor's objectives and constraints before any portfolio gets built — the practical starting point of the entire planning process introduced earlier in this chapter.`,
+          `Objectives split into risk and return: a return objective states what the investor needs or wants to earn; a risk objective captures both the investor's willingness to take risk (their psychological comfort with volatility) and their ability to take risk (their actual financial capacity to absorb losses, based on factors like time horizon and income stability) — these two don't always agree, and when they conflict, the more conservative of the two generally governs.`,
+          `Constraints capture the practical boundaries within which the portfolio must operate: liquidity needs (cash requirements for near-term spending), time horizon (when the money will actually be needed), tax considerations, legal/regulatory constraints, and unique circumstances (anything else specific to that investor, like a concentrated stock position or an ethical restriction on certain investments).`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "port-5f",
+        title: "Behavioral biases",
+        body: [
+          `Real investors don't always behave the way traditional finance theory assumes. Behavioral biases fall into two broad categories.`,
+          `Cognitive errors stem from faulty reasoning or information processing — and are somewhat correctable once recognized. Examples include confirmation bias (favoring information that supports an existing belief while discounting contrary evidence) and anchoring (relying too heavily on an initial piece of information, like a stock's purchase price, when making later decisions).`,
+          `Emotional biases stem from feelings and impulses rather than faulty logic — and tend to be harder to correct through information alone, since they aren't really a reasoning error to begin with. Examples include loss aversion (feeling the pain of a loss more intensely than the pleasure of an equivalent gain, which can cause investors to hold losing positions too long) and overconfidence (overestimating one's own investment skill or judgment).`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "port-5g",
+        title: "Introduction to risk management",
+        body: [
+          `Risk management is the ongoing discipline of identifying, measuring, and deliberately deciding what to do about the risks a portfolio (or an institution) faces — not simply avoiding risk altogether, since risk-taking is how returns get earned in the first place, but taking on risk deliberately and at a scale the investor can actually tolerate.`,
+          `Risk governance sets the overall framework and oversight for how risk decisions get made and who's accountable for them. Risk budgeting allocates a limited "risk tolerance" across different strategies or asset classes, similar in spirit to a financial budget, but allocating risk rather than dollars. Once risks are identified, they can be modified in one of a few ways: avoided (not taking the risk at all), reduced (lowering exposure), transferred (shifting it to someone else, such as through insurance or derivatives), or accepted (deliberately retained, usually because the expected reward justifies it).`,
+        ],
         formulas: [],
       },
       {
@@ -1535,9 +2053,19 @@ const CHAPTERS = [
         body: [`Match the question to the concept.`],
         decisionRows: [
           { cue: "A portfolio's expected return given its holdings' weights and expected returns", formula: "Weighted average formula (E(Rp))", section: "port-3" },
+          { cue: "The two-asset portfolio with the lowest possible risk", formula: "Global minimum-variance portfolio", section: "port-3" },
           { cue: "Whether combining two assets reduces risk", formula: "Correlation between the two assets", section: "port-4" },
           { cue: "The best possible risk-return trade-off available from risky assets", formula: "Efficient frontier", section: "port-5" },
-          { cue: "Combining a risk-free asset with a risky portfolio", formula: "Capital allocation line", section: "port-5" },
+          { cue: "Combining a risk-free asset with the market portfolio specifically", formula: "Capital market line (CML)", section: "port-5" },
+          { cue: "Risk that diversification can eliminate", formula: "Unsystematic (diversifiable) risk", section: "port-5b" },
+          { cue: "Risk that diversification cannot eliminate", formula: "Systematic (market) risk", section: "port-5b" },
+          { cue: "Required return based purely on beta / systematic risk", formula: "CAPM", section: "port-5c" },
+          { cue: "Risk-adjusted return for an investor's whole portfolio (uses total risk)", formula: "Sharpe ratio", section: "port-5d" },
+          { cue: "Risk-adjusted return for one holding in a diversified portfolio (uses beta)", formula: "Treynor ratio", section: "port-5d" },
+          { cue: "Return earned above/below what CAPM would predict", formula: "Jensen's alpha", section: "port-5d" },
+          { cue: "The document recording an investor's objectives and constraints", formula: "Investment Policy Statement (IPS)", section: "port-5e" },
+          { cue: "A reasoning error that's somewhat correctable with information", formula: "Cognitive error", section: "port-5f" },
+          { cue: "A feelings-driven bias, harder to correct with information alone", formula: "Emotional bias", section: "port-5f" },
         ],
         formulas: [],
       },
@@ -1548,8 +2076,11 @@ const CHAPTERS = [
         body: [`Watch for these.`],
         referenceRows: [
           { item: "Treating portfolio risk like a simple weighted average", detail: "Portfolio risk depends on the correlations between holdings, not just their individual risk levels weighted together." },
-          { item: "Assuming diversification always eliminates risk", detail: "It reduces risk from holdings moving independently, but doesn't eliminate market-wide risk." },
-          { item: "Confusing the efficient frontier with the capital allocation line", detail: "The frontier uses only risky assets; the CAL specifically incorporates a risk-free asset." },
+          { item: "Assuming diversification always eliminates risk", detail: "It eliminates unsystematic risk, but systematic (market-wide) risk remains no matter how diversified the portfolio is." },
+          { item: "Confusing the CAL with the CML", detail: "Every CAL uses some risky portfolio; the CML is the one specific CAL that uses the market portfolio." },
+          { item: "Confusing Sharpe and Treynor ratios", detail: "Sharpe uses total risk (standard deviation) — for an entire portfolio. Treynor uses only systematic risk (beta) — for one holding within a diversified portfolio." },
+          { item: "Assuming willingness and ability to take risk always agree", detail: "When they conflict, the more conservative of the two generally governs the IPS's risk objective." },
+          { item: "Assuming behavioral biases only affect uninformed investors", detail: "Cognitive errors and emotional biases affect even highly sophisticated investors — recognizing them is the main defense." },
         ],
         formulas: [],
       },
@@ -1557,7 +2088,7 @@ const CHAPTERS = [
   },
   {
     id: "ethics",
-    number: "12",
+    number: "16",
     title: "Ethics and Professional Standards",
     subtitle: "The single most heavily weighted topic on the exam",
     sections: [
@@ -1642,6 +2173,7 @@ const QUIZZES = {
     { id: "tvm-q8", question: "A savings account quotes 6% annual interest, compounded monthly. What do you need to compute before comparing it to a 6.1% account compounded annually?", options: ["Nothing, 6% is already comparable to 6.1%", "The effective annual rate (EAR) of the 6% account", "The perpetuity value of the account", "The annuity due adjustment"], correct: 1, explanation: "Comparing rates with different compounding frequencies requires converting to a common effective annual rate.", remediation: "tvm-2" },
     { id: "tvm-q9", question: "\"You will receive $500 at the end of every month for the next 3 years.\" This is best solved as:", options: ["A single sum, since $500 is one number", "An ordinary annuity, with rate and n converted to monthly terms", "A perpetuity, since it repeats", "An uneven cash flow series"], correct: 1, explanation: "Equal payments at regular intervals with a defined end point = ordinary annuity, using monthly rate and monthly n.", remediation: "tvm-7" },
     { id: "tvm-q10", question: "A bond pays a semiannual coupon, but you're given only the annual stated rate. Before applying any TVM formula, you should:", options: ["Use the annual rate as-is", "Convert to a periodic (semiannual) rate and double the number of periods", "Ignore compounding frequency entirely", "Apply the perpetuity formula"], correct: 1, explanation: "Rate and period frequency must match — divide the annual rate by 2 and use 2× the number of years as n.", remediation: "tvm-8" },
+    { id: "tvm-q11", question: "The 1-year spot rate is 3% and the 2-year spot rate is 4%. What does the cash flow additivity / no-arbitrage principle let you calculate?", options: ["The bond's coupon rate", "The implied 1-year forward rate, one year from now", "The bond's duration", "The current yield"], correct: 1, explanation: "Two spot rates of different maturities let you back out the market's implied forward rate for the intervening period.", remediation: "tvm-6b" },
   ],
   probstat: [
     { id: "probstat-q1", question: "Two events are mutually exclusive. What is P(A and B)?", options: ["1", "0", "0.5", "Cannot be determined"], correct: 1, explanation: "Mutually exclusive events can't both happen, so their joint probability is zero.", remediation: "probstat-2" },
@@ -1652,6 +2184,37 @@ const QUIZZES = {
     { id: "probstat-q6", question: "Two stocks have a correlation of \u22120.9. What does that suggest?", options: ["They move randomly with no relationship", "They tend to move strongly in opposite directions", "They always have equal returns", "One causes the other"], correct: 1, explanation: "Correlation near \u22121 means a strong opposite relationship.", remediation: "probstat-3" },
     { id: "probstat-q7", question: "Rejecting a null hypothesis that was actually true is called", options: ["A Type II error", "A Type I error", "A significance level", "A confidence interval"], correct: 1, explanation: "A Type I error is a false rejection of a true null hypothesis.", remediation: "probstat-5" },
     { id: "probstat-q8", question: "Which distribution is fully described by just its mean and standard deviation?", options: ["Any distribution", "The normal distribution", "A skewed distribution only", "None"], correct: 1, explanation: "The normal distribution is fully characterized by its mean and standard deviation.", remediation: "probstat-4" },
+    { id: "probstat-q9", question: "Investment A: mean 8%, std dev 12%. Investment B: mean 20%, std dev 18%. Which has the better (lower) coefficient of variation?", options: ["Investment A (1.5)", "Investment B (0.9)", "They are equal", "Cannot be determined"], correct: 1, explanation: "CV = std dev / mean. A: 12/8=1.5. B: 18/20=0.9 — B carries less risk per unit of expected return.", remediation: "probstat-5b" },
+    { id: "probstat-q10", question: "Bayes' formula is used to", options: ["Compute a simple average", "Update a probability given new information", "Test a null hypothesis", "Calculate correlation"], correct: 1, explanation: "Bayes' formula combines a prior probability with new evidence to produce an updated (posterior) probability.", remediation: "probstat-5c" },
+    { id: "probstat-q11", question: "The central limit theorem states that, as sample size grows large, the distribution of the sample mean", options: ["Becomes impossible to predict", "Approaches a normal distribution, regardless of the population's own distribution shape", "Always matches the population's distribution exactly", "Becomes perfectly uniform"], correct: 1, explanation: "This is the core content of the central limit theorem, and it's what justifies using normal-distribution tools on sample means.", remediation: "probstat-5d" },
+    { id: "probstat-q12", question: "A data set is heavily skewed with extreme outliers. Which type of test remains valid without requiring a normal-distribution assumption?", options: ["A parametric test", "A non-parametric test", "Neither type is usable", "Only a hypothesis test on the mean"], correct: 1, explanation: "Non-parametric tests don't require the underlying data to follow a specific distribution.", remediation: "probstat-5e" },
+  ],
+  returns: [
+    { id: "returns-q1", question: "You buy a stock for $40, receive a $2 dividend, and sell it for $44. What is the holding period return?", options: ["10%", "15%", "12%", "6%"], correct: 1, explanation: "HPR = (44 \u2212 40 + 2) / 40 = 6/40 = 15%.", remediation: "returns-2" },
+    { id: "returns-q2", question: "A required rate of return is built from which two components?", options: ["Inflation and taxes", "Risk-free rate and risk premium", "Coupon rate and yield", "Nominal rate and real rate only"], correct: 1, explanation: "Required return = risk-free rate + risk premium.", remediation: "returns-3" },
+    { id: "returns-q3", question: "Which return measure is the standard for judging a portfolio manager's skill, independent of when clients added or withdrew cash?", options: ["Money-weighted rate of return", "Time-weighted rate of return", "Holding period return", "Current yield"], correct: 1, explanation: "TWRR strips out the effect of external cash flow timing, isolating the manager's actual investment performance.", remediation: "returns-4" },
+    { id: "returns-q4", question: "An investor adds a large contribution right before a bad year. Compared to TWRR, their MWRR will tend to be", options: ["Higher", "Lower", "Identical", "Cannot be determined"], correct: 1, explanation: "More of the investor's dollars were exposed to the loss, dragging the dollar-weighted MWRR down more than the TWRR.", remediation: "returns-4" },
+    { id: "returns-q5", question: "In a price-weighted index, a $300 stock influences the index how much compared to a $100 stock?", options: ["The same amount", "3 times as much", "1/3 as much", "It depends only on market cap"], correct: 1, explanation: "Price-weighted indexes weight purely by price, so a $300 stock has 3x the influence of a $100 stock.", remediation: "returns-5" },
+    { id: "returns-q6", question: "Which index weighting method is generally considered most representative of the overall market's aggregate behavior?", options: ["Price-weighted", "Equal-weighted", "Market-capitalization-weighted", "None of these differ meaningfully"], correct: 2, explanation: "Cap-weighted indexes size each constituent's influence by total company value, generally seen as most representative.", remediation: "returns-5" },
+  ],
+  simulation: [
+    { id: "sim-q1", question: "Which simulation method reuses actual past market data as the simulated outcomes?", options: ["Monte Carlo simulation", "Historical simulation", "Bootstrap resampling", "Regression analysis"], correct: 1, explanation: "Historical simulation directly reuses real historical data points as the simulated future outcomes.", remediation: "sim-2" },
+    { id: "sim-q2", question: "Bootstrap resampling draws samples from the original data set", options: ["Without replacement, only once", "With replacement, repeatedly", "Only from the most recent data point", "Using a normal distribution assumption"], correct: 1, explanation: "Bootstrap resampling repeatedly resamples with replacement to gauge the uncertainty in a statistic.", remediation: "sim-3" },
+    { id: "sim-q3", question: "Which method generates outcomes by drawing from an assumed probability distribution, rather than reusing historical data?", options: ["Historical simulation", "Bootstrap resampling", "Monte Carlo simulation", "Regression"], correct: 2, explanation: "Monte Carlo simulation draws random scenarios from an assumed distribution.", remediation: "sim-4" },
+    { id: "sim-q4", question: "A key limitation of historical simulation is that it", options: ["Requires assuming a specific distribution", "Assumes the future will resemble the sampled historical period", "Cannot use any real data", "Always overstates risk"], correct: 1, explanation: "Historical simulation is only as good as the assumption that history is a reasonable guide to the future.", remediation: "sim-2" },
+  ],
+  regression: [
+    { id: "reg-q1", question: "In Y = b0 + b1X, what does b1 represent?", options: ["The predicted value of Y when X is zero", "How much Y is predicted to change per one-unit change in X", "The correlation between X and Y", "The R\u00B2 of the model"], correct: 1, explanation: "b1 is the slope — the predicted change in Y per one-unit change in X.", remediation: "reg-2" },
+    { id: "reg-q2", question: "The least squares criterion chooses the regression line that", options: ["Passes through the most data points", "Minimizes the sum of squared vertical distances between the data and the line", "Maximizes R\u00B2 only", "Has the steepest slope"], correct: 1, explanation: "Least squares minimizes the sum of squared residuals.", remediation: "reg-2" },
+    { id: "reg-q3", question: "Covariance(stock, market) = 0.008, Variance(market) = 0.005. What is the regression slope (beta)?", options: ["0.625", "1.6", "0.04", "8.0"], correct: 1, explanation: "b1 = Covariance / Variance = 0.008 / 0.005 = 1.6.", remediation: "reg-2" },
+    { id: "reg-q4", question: "An R\u00B2 of 0.36 means", options: ["The correlation is 0.36", "36% of Y's variation is explained by the model", "The slope is 0.36", "The model is 36% accurate on future predictions"], correct: 1, explanation: "R\u00B2 is the proportion of variation in Y explained by the regression model.", remediation: "reg-3" },
+    { id: "reg-q5", question: "This chapter's regression slope calculation is the exact technique used to estimate which important Portfolio Management input?", options: ["The risk-free rate", "A stock's beta", "The Sharpe ratio", "Duration"], correct: 1, explanation: "Beta is estimated by regressing a stock's returns against market returns — the slope is the beta.", remediation: "reg-2" },
+  ],
+  datascience: [
+    { id: "ds-q1", question: "Information like satellite imagery or credit card transaction data, outside traditional financial statements, is called", options: ["Structured data", "Alternative data", "A regression model", "A confidence interval"], correct: 1, explanation: "Alternative data refers to non-traditional data sources used in investment analysis.", remediation: "ds-2" },
+    { id: "ds-q2", question: "A machine learning model trained on historical loans already labeled as defaulted or not is an example of", options: ["Unsupervised learning", "Supervised learning", "Bootstrap resampling", "Monte Carlo simulation"], correct: 1, explanation: "Supervised learning trains on data with known, labeled correct answers.", remediation: "ds-3" },
+    { id: "ds-q3", question: "Clustering stocks into groups with similar behavior, without pre-labeled groups, is an example of", options: ["Supervised learning", "Unsupervised learning", "A regression model", "Historical simulation"], correct: 1, explanation: "Unsupervised learning finds patterns without pre-labeled correct answers.", remediation: "ds-3" },
+    { id: "ds-q4", question: "An algorithm that builds and manages a portfolio with minimal human intervention is called a", options: ["Robo-advisor", "Bootstrap model", "Regression model", "Bayesian updater"], correct: 0, explanation: "Robo-advisors use algorithms for automated portfolio construction and management.", remediation: "ds-4" },
   ],
   econ: [
     { id: "econ-q1", question: "Price rises above equilibrium. What results?", options: ["A shortage", "A surplus", "No change", "Elasticity increases"], correct: 1, explanation: "Above equilibrium, quantity supplied exceeds quantity demanded — a surplus.", remediation: "econ-2" },
@@ -1676,6 +2239,11 @@ const QUIZZES = {
     { id: "fsa-q11", question: "A company's tax depreciation exceeds its book depreciation this year. This timing difference typically creates a", options: ["Deferred tax asset", "Deferred tax liability", "Permanent tax savings", "Reduction in revenue"], correct: 1, explanation: "Higher tax depreciation now (lower taxable income now) typically creates a deferred tax liability that reverses later.", remediation: "fsa-3d" },
     { id: "fsa-q12", question: "A pension plan that only promises to contribute a set amount today, putting investment-outcome risk on the employee, is a", options: ["Defined benefit plan", "Defined contribution plan", "A lease liability", "A deferred tax asset"], correct: 1, explanation: "A defined contribution plan shifts investment risk to the employee; a defined benefit plan keeps funding-shortfall risk with the company.", remediation: "fsa-3e" },
     { id: "fsa-q13", question: "Company A ($10M revenue, $6M COGS) and Company B ($100M revenue, $65M COGS) are compared using common-size statements. Which has the better (lower) COGS percentage?", options: ["Company A (60%)", "Company B (65%)", "They are identical", "Cannot be determined"], correct: 0, explanation: "Company A's COGS common-size is 60% (6/10), better than Company B's 65% (65/100) — despite B's larger absolute size.", remediation: "fsa-5b" },
+    { id: "fsa-q14", question: "DuPont analysis breaks ROE into which three components?", options: ["Liquidity, solvency, and profitability ratios", "Net profit margin, asset turnover, and the equity multiplier (leverage)", "Revenue, expenses, and taxes", "FIFO, LIFO, and weighted average"], correct: 1, explanation: "DuPont analysis decomposes ROE into margin \u00D7 turnover \u00D7 leverage.", remediation: "fsa-5c" },
+    { id: "fsa-q15", question: "Two companies have identical 18% ROE, but Company X has a much higher equity multiplier than Company Y. What does this suggest?", options: ["Company X is more profitable per sale", "Company X is relying more on leverage to achieve the same ROE", "The two companies are identical in every way", "Company X has better asset turnover"], correct: 1, explanation: "A higher equity multiplier means more of the ROE is being driven by leverage rather than operating performance.", remediation: "fsa-5c" },
+    { id: "fsa-q16", question: "Diluted EPS compared to basic EPS is always", options: ["Higher", "Lower or equal", "Unrelated", "Exactly double"], correct: 1, explanation: "Diluted EPS accounts for potential additional shares, which can only spread net income more thinly — never increase EPS.", remediation: "fsa-5d" },
+    { id: "fsa-q17", question: "Net income $5,000,000, preferred dividends $500,000, weighted average shares 2,000,000. What is basic EPS?", options: ["$2.50", "$2.25", "$2.75", "$2.00"], correct: 1, explanation: "(5,000,000 \u2212 500,000) / 2,000,000 = $2.25.", remediation: "fsa-5d" },
+    { id: "fsa-q18", question: "Free cash flow to the firm (FCFF) represents cash available to", options: ["Common shareholders only", "Preferred shareholders only", "All capital providers, both debt and equity", "Tax authorities"], correct: 2, explanation: "FCFF is available to all capital providers combined, before splitting between debt and equity holders.", remediation: "fsa-5e" },
   ],
   corp: [
     { id: "corp-q1", question: "A project has a positive NPV. What does that suggest?", options: ["It's expected to destroy value", "It's expected to add value", "Its IRR equals zero", "It should always be rejected"], correct: 1, explanation: "Positive NPV means the project is expected to add value.", remediation: "corp-3" },
@@ -1707,6 +2275,11 @@ const QUIZZES = {
     { id: "fi-q11", question: "A bond trades between coupon dates. The quoted price plus accrued interest equals the", options: ["Clean price", "Par value", "Dirty (invoice) price", "Current yield"], correct: 2, explanation: "The dirty price is the clean price plus accrued interest — what the buyer actually pays.", remediation: "fi-4b" },
     { id: "fi-q12", question: "A bond has a duration of 6. Market yields fall by 1 percentage point (0.01). Approximately how much does the price change?", options: ["-6%", "+6%", "-0.06%", "+0.6%"], correct: 1, explanation: "% change in price \u2248 \u22126 \u00D7 (\u22120.01) = +6% — falling yields raise price.", remediation: "fi-6" },
     { id: "fi-q13", question: "Which embedded bond feature gives the issuer the right to redeem the bond early?", options: ["Putable", "Convertible", "Callable", "Floating-rate"], correct: 2, explanation: "A callable bond gives the issuer the right to redeem early, typically to refinance at lower rates.", remediation: "fi-6b" },
+    { id: "fi-q14", question: "A zero-coupon bond's Macaulay duration equals", options: ["Half its maturity", "Its maturity exactly", "Zero", "Its modified duration times its yield"], correct: 1, explanation: "With only one cash flow at maturity, Macaulay duration equals the bond's maturity exactly.", remediation: "fi-6" },
+    { id: "fi-q15", question: "A bond has Macaulay duration of 6 years and a periodic yield of 5%. What is its modified duration?", options: ["6.30", "5.71", "6.00", "5.00"], correct: 1, explanation: "Modified duration = 6 / 1.05 \u2248 5.71.", remediation: "fi-6" },
+    { id: "fi-q16", question: "For an ordinary, option-free bond with positive convexity, the duration-only price estimate tends to", options: ["Overstate gains and understate losses", "Understate gains and overstate losses", "Be perfectly accurate", "Only apply to zero-coupon bonds"], correct: 1, explanation: "Positive convexity means the bond gains more than duration alone predicts and loses less — duration-only estimates understate gains and overstate losses.", remediation: "fi-6a2" },
+    { id: "fi-q17", question: "A bond backed by a pool of auto loans or credit card receivables (rather than mortgages) is best described as", options: ["A mortgage-backed security (MBS)", "An asset-backed security (ABS)", "A zero-coupon bond", "A putable bond"], correct: 1, explanation: "MBS specifically refers to mortgage-backed pools; ABS is the broader category covering other loan types.", remediation: "fi-6c" },
+    { id: "fi-q18", question: "Homeowners refinancing and paying off mortgages early, right when rates have fallen, creates which risk for MBS investors?", options: ["Credit risk", "Prepayment risk", "Currency risk", "Convexity"], correct: 1, explanation: "Prepayment risk returns principal early, right when reinvesting at an equally attractive rate is hardest.", remediation: "fi-6c" },
   ],
   derivatives: [
     { id: "deriv-q1", question: "Which derivative type standardizes the contract and trades it on an exchange?", options: ["Forward", "Futures", "Swap", "A private loan"], correct: 1, explanation: "Futures are standardized, exchange-traded contracts.", remediation: "deriv-2" },
@@ -1715,6 +2288,11 @@ const QUIZZES = {
     { id: "deriv-q4", question: "An agreement to exchange a fixed interest rate for a floating rate over time is", options: ["A forward", "A futures contract", "An interest rate swap", "A call option"], correct: 2, explanation: "This describes an interest rate swap.", remediation: "deriv-4" },
     { id: "deriv-q5", question: "A farmer locking in a future selling price to protect against falling prices is engaging in", options: ["Speculation", "Hedging", "Arbitrage", "Leverage"], correct: 1, explanation: "Reducing an existing risk is hedging.", remediation: "deriv-5" },
     { id: "deriv-q6", question: "Which derivative type carries an obligation for both parties, privately negotiated (not exchange-traded)?", options: ["Futures", "Option", "Forward", "None of these"], correct: 2, explanation: "A forward is a private, bilateral obligation.", remediation: "deriv-2" },
+    { id: "deriv-q7", question: "A call option has a $40 strike and the stock trades at $55. What is the option's intrinsic value?", options: ["$0", "$15", "$40", "$55"], correct: 1, explanation: "Intrinsic value of a call = stock price \u2212 strike = 55 \u2212 40 = $15.", remediation: "deriv-3b" },
+    { id: "deriv-q8", question: "As an option approaches expiration, its time value tends to", options: ["Increase", "Shrink toward zero", "Stay constant", "Become negative"], correct: 1, explanation: "Time decay causes time value to shrink as expiration approaches.", remediation: "deriv-3b" },
+    { id: "deriv-q9", question: "Put-call parity links which four things together?", options: ["Duration, convexity, yield, and price", "Call price, put price, strike price, and stock price", "Beta, alpha, Sharpe ratio, and Treynor ratio", "FIFO, LIFO, weighted average, and COGS"], correct: 1, explanation: "Put-call parity is a fixed no-arbitrage relationship between these four values.", remediation: "deriv-3c" },
+    { id: "deriv-q10", question: "According to the cost of carry model, a dividend paid on the underlying stock (a carry benefit) should make the no-arbitrage forward price", options: ["Higher", "Lower", "Unaffected", "Equal to the spot price exactly"], correct: 1, explanation: "Carry benefits like dividends reduce the forward price, since a forward buyer forgoes them.", remediation: "deriv-3d" },
+    { id: "deriv-q11", question: "The one-period binomial option pricing model assumes", options: ["Infinitely many possible future prices", "Exactly two possible future outcomes (up or down)", "The stock price cannot change", "No connection to no-arbitrage principles"], correct: 1, explanation: "The binomial model simplifies to two possible outcomes per period, using no-arbitrage logic to price the option.", remediation: "deriv-3e" },
   ],
   altinvest: [
     { id: "alt-q1", question: "A pooled fund using leverage and short-selling across flexible strategies is a", options: ["Mutual fund", "Hedge fund", "REIT", "Government bond fund"], correct: 1, explanation: "Hedge funds use flexible strategies including leverage and short-selling.", remediation: "alt-2" },
@@ -1731,6 +2309,14 @@ const QUIZZES = {
     { id: "port-q4", question: "The set of portfolios offering the highest return for each level of risk is called", options: ["The capital allocation line", "The efficient frontier", "The yield curve", "WACC"], correct: 1, explanation: "This defines the efficient frontier.", remediation: "port-5" },
     { id: "port-q5", question: "Adding a risk-free asset to the optimal risky portfolio creates", options: ["The efficient frontier", "The capital allocation line", "A hedge fund", "A yield curve"], correct: 1, explanation: "This defines the capital allocation line.", remediation: "port-5" },
     { id: "port-q6", question: "Is portfolio risk generally a simple weighted average of the individual holdings' risks?", options: ["Yes, always", "No — it also depends on the correlations between the holdings", "Only for bonds", "Only for two-asset portfolios"], correct: 1, explanation: "Portfolio risk depends on correlations, not just weighted individual risks.", remediation: "port-3" },
+    { id: "port-q7", question: "Which type of risk can diversification eliminate?", options: ["Systematic risk", "Unsystematic (firm-specific) risk", "Both equally", "Neither"], correct: 1, explanation: "Unsystematic risk is diversifiable; systematic risk affects the whole market and cannot be diversified away.", remediation: "port-5b" },
+    { id: "port-q8", question: "Risk-free rate is 3%, expected market return is 8%, and a stock has a beta of 1.2. What does CAPM predict for its required return?", options: ["8%", "9%", "11%", "6%"], correct: 1, explanation: "E(Ri) = 3% + 1.2\u00D7(8%\u22123%) = 3% + 6% = 9%.", remediation: "port-5c" },
+    { id: "port-q9", question: "On the security market line, an asset priced above the line is considered", options: ["Overvalued", "Undervalued", "Fairly valued", "Riskless"], correct: 1, explanation: "A point above the SML offers more return than its systematic risk (beta) justifies — undervalued according to CAPM.", remediation: "port-5c" },
+    { id: "port-q10", question: "Which performance ratio uses total risk (standard deviation) rather than just systematic risk?", options: ["Treynor ratio", "Sharpe ratio", "Jensen's alpha", "Beta"], correct: 1, explanation: "The Sharpe ratio divides excess return by standard deviation (total risk).", remediation: "port-5d" },
+    { id: "port-q11", question: "A portfolio's actual return exceeds what CAPM would have predicted for its level of beta. This is captured by a positive", options: ["Sharpe ratio", "Treynor ratio", "Jensen's alpha", "Coefficient of variation"], correct: 2, explanation: "Jensen's alpha measures return earned above or below the CAPM-predicted return.", remediation: "port-5d" },
+    { id: "port-q12", question: "An investor's psychological comfort with volatility is their", options: ["Ability to take risk", "Willingness to take risk", "Required return", "Risk-free rate"], correct: 1, explanation: "Willingness to take risk is the psychological/attitudinal side; ability to take risk is the financial-capacity side.", remediation: "port-5e" },
+    { id: "port-q13", question: "An investor holds onto a losing stock far too long because the pain of realizing the loss feels worse than an equivalent gain would feel good. This describes", options: ["Confirmation bias", "Anchoring", "Loss aversion", "The Sharpe ratio"], correct: 2, explanation: "Loss aversion is an emotional bias where losses are felt more intensely than equivalent gains.", remediation: "port-5f" },
+    { id: "port-q14", question: "Shifting a risk to an insurance company rather than retaining it is an example of which risk management response?", options: ["Avoiding the risk", "Reducing the risk", "Transferring the risk", "Accepting the risk"], correct: 2, explanation: "Transferring risk means shifting it to another party, such as through insurance.", remediation: "port-5g" },
   ],
   ethics: [
     { id: "ethics-q1", question: "When a professional's interests conflict with a client's, whose interest should generally take priority?", options: ["The professional's", "The employer's", "The client's", "Whichever is most profitable"], correct: 2, explanation: "Client interests should generally take priority.", remediation: "ethics-3" },
