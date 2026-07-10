@@ -549,6 +549,267 @@ const EXHIBIT_EFFICIENT_FRONTIER = `
 <text x="500" y="90" text-anchor="middle" font-size="11" fill="#B67A22">Capital market line (CML)</text>
 </svg>`;
 
+const EXHIBIT_TVM_MINDMAP_SVG = `
+<style>
+  .mm-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .mm-svg-wrap { min-width: 1360px; }
+  .mm-leaf-group { cursor: pointer; }
+  .mm-leaf-box { transition: stroke 0.15s, stroke-width 0.15s; }
+  .mm-leaf-group:hover .mm-leaf-box { stroke: #B67A22; }
+  .mm-leaf-group.selected .mm-leaf-box { stroke: #B67A22; stroke-width: 2.5; }
+  #mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
+  #mm-detail-panel.visible { display: block; }
+  #mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
+  .mm-detail-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #B9AE8F; margin-bottom: 4px; }
+  #mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0 0 14px; }
+  #mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
+</style>
+<div class="mm-scroll"><div class="mm-svg-wrap">
+<svg width="100%" viewBox="0 0 1500 950" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Time value of money formula mind map with six branches</title>
+<defs>
+  <marker id="mm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#B67A22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect x="545" y="15" width="360" height="75" rx="8" fill="#1C2333"/>
+<text x="725" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EA">Core TVM Relationship</text>
+<text x="725" y="70" text-anchor="middle" font-size="16" font-family="monospace" fill="#E8A33D">FV = PV &#215; (1+r)<tspan font-size="10" dy="-6">n</tspan></text>
+<line x1="725" y1="90" x2="155" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="725" y1="90" x2="385" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="725" y1="90" x2="615" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="725" y1="90" x2="845" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="725" y1="90" x2="1075" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="725" y1="90" x2="1305" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<rect x="45" y="150" width="210" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/>
+<rect x="45" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="150" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Solving for PV</text>
+<rect x="275" y="150" width="210" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/>
+<rect x="275" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="380" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Solving for FV</text>
+<rect x="505" y="150" width="210" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/>
+<rect x="505" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="610" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Solving for Rate,</text>
+<text x="610" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">n, or PMT</text>
+<rect x="735" y="150" width="210" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/>
+<rect x="735" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="840" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">How the Rate (r)</text>
+<text x="840" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Is Defined</text>
+<rect x="965" y="150" width="210" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/>
+<rect x="965" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="1070" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Payment Frequency</text>
+<text x="1070" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">&amp; Timing</text>
+<rect x="1195" y="150" width="210" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/>
+<rect x="1195" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="1300" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">No-Arbitrage &amp;</text>
+<text x="1300" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Real Instruments</text>
+<line x1="150" y1="212" x2="150" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="150" y1="336" x2="150" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="150" y1="436" x2="150" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="150" y1="536" x2="150" y2="550" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="150" y1="636" x2="150" y2="650" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="150" y1="736" x2="150" y2="750" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="mm-leaf-group" id="mm-grp-pv-single" onclick="showTVMExample('pv-single')">
+<rect class="mm-leaf-box" x="45" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="45" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="150" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Single Sum</text>
+<text x="150" y="292" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">FV</text>
+<line x1="128" y1="297" x2="172" y2="297" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="314" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">(1+r)<tspan font-size="8" dy="-5">n</tspan></text>
+<text x="150" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-pv-ordinary" onclick="showTVMExample('pv-ordinary')">
+<rect class="mm-leaf-box" x="45" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="45" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="150" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Ordinary Annuity</text>
+<text x="150" y="390" text-anchor="middle" font-size="9.5" font-family="monospace" fill="#232C42">PMT&#215;[1&#8722;(1+r)<tspan font-size="7" dy="-5">&#8722;n</tspan><tspan dy="5">]</tspan></text>
+<line x1="123" y1="396" x2="177" y2="396" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="412" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r</text>
+<text x="150" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-pv-due" onclick="showTVMExample('pv-due')">
+<rect class="mm-leaf-box" x="45" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="45" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="150" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Annuity Due</text>
+<text x="150" y="494" text-anchor="middle" font-size="9.5" font-family="monospace" fill="#232C42">PVordinary &#215; (1+r)</text>
+<text x="150" y="512" text-anchor="middle" font-size="9.5" fill="#4B5468">(beginning of period)</text>
+<text x="150" y="530" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-pv-perpetuity" onclick="showTVMExample('pv-perpetuity')">
+<rect class="mm-leaf-box" x="45" y="550" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="45" y="550" width="3" height="86" fill="#B67A22"/>
+<text x="150" y="570" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Perpetuity</text>
+<text x="150" y="592" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">PMT</text>
+<line x1="133" y1="597" x2="167" y2="597" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="614" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r</text>
+<text x="150" y="632" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-pv-growing" onclick="showTVMExample('pv-growing')">
+<rect class="mm-leaf-box" x="45" y="650" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="45" y="650" width="3" height="86" fill="#B67A22"/>
+<text x="150" y="670" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Growing Perpetuity</text>
+<text x="150" y="692" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">PMT1</text>
+<line x1="123" y1="697" x2="177" y2="697" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="714" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r &#8722; g</text>
+<text x="150" y="732" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-pv-uneven" onclick="showTVMExample('pv-uneven')">
+<rect class="mm-leaf-box" x="45" y="750" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="45" y="750" width="3" height="86" fill="#B67A22"/>
+<text x="150" y="770" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Uneven Cash Flows</text>
+<text x="150" y="792" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">CFt</text>
+<line x1="128" y1="797" x2="172" y2="797" stroke="#232C42" stroke-width="1"/>
+<text x="150" y="814" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">(1+r)<tspan font-size="8" dy="-5">t</tspan></text>
+<text x="150" y="832" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="380" y1="212" x2="380" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="380" y1="336" x2="380" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="380" y1="436" x2="380" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="mm-leaf-group" id="mm-grp-fv-single" onclick="showTVMExample('fv-single')">
+<rect class="mm-leaf-box" x="275" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="275" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="380" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Single Sum</text>
+<text x="380" y="300" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">FV=PV&#215;(1+r)<tspan font-size="8" dy="-6">n</tspan></text>
+<text x="380" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-fv-ordinary" onclick="showTVMExample('fv-ordinary')">
+<rect class="mm-leaf-box" x="275" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="275" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="380" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Ordinary Annuity</text>
+<text x="380" y="390" text-anchor="middle" font-size="9.5" font-family="monospace" fill="#232C42">PMT&#215;[(1+r)<tspan font-size="7" dy="-5">n</tspan><tspan dy="5">&#8722;1]</tspan></text>
+<line x1="350" y1="396" x2="410" y2="396" stroke="#232C42" stroke-width="1"/>
+<text x="380" y="412" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r</text>
+<text x="380" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-fv-due" onclick="showTVMExample('fv-due')">
+<rect class="mm-leaf-box" x="275" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="275" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="380" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Annuity Due</text>
+<text x="380" y="494" text-anchor="middle" font-size="9.5" font-family="monospace" fill="#232C42">FVordinary &#215; (1+r)</text>
+<text x="380" y="512" text-anchor="middle" font-size="9.5" fill="#4B5468">(beginning of period)</text>
+<text x="380" y="530" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="610" y1="212" x2="610" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="610" y1="336" x2="610" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="610" y1="436" x2="610" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="mm-leaf-group" id="mm-grp-rate-implied" onclick="showTVMExample('rate-implied')">
+<rect class="mm-leaf-box" x="505" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="505" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="610" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Implied Return / Yield</text>
+<text x="610" y="296" text-anchor="middle" font-size="10.5" fill="#4B5468">Solve for r, given</text>
+<text x="610" y="312" text-anchor="middle" font-size="10.5" fill="#4B5468">PV, cash flows, n</text>
+<text x="610" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-solve-n" onclick="showTVMExample('solve-n')">
+<rect class="mm-leaf-box" x="505" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="505" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="610" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Solving for n</text>
+<text x="610" y="394" text-anchor="middle" font-size="10.5" fill="#4B5468">"How long until...?"</text>
+<text x="610" y="410" text-anchor="middle" font-size="10.5" fill="#4B5468">e.g. doubling time</text>
+<text x="610" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-solve-pmt" onclick="showTVMExample('solve-pmt')">
+<rect class="mm-leaf-box" x="505" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="505" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="610" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Solving for PMT</text>
+<text x="610" y="494" text-anchor="middle" font-size="10.5" fill="#4B5468">"How much to save</text>
+<text x="610" y="510" text-anchor="middle" font-size="10.5" fill="#4B5468">each period?"</text>
+<text x="610" y="530" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="840" y1="212" x2="840" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="840" y1="336" x2="840" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="840" y1="436" x2="840" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="mm-leaf-group" id="mm-grp-rate-ear" onclick="showTVMExample('rate-ear')">
+<rect class="mm-leaf-box" x="735" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="735" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="840" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Effective Annual Rate</text>
+<text x="840" y="300" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">EAR=(1+r/m)<tspan font-size="7" dy="-6">m</tspan><tspan dy="6">&#8722;1</tspan></text>
+<text x="840" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-rate-continuous" onclick="showTVMExample('rate-continuous')">
+<rect class="mm-leaf-box" x="735" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="735" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="840" y="370" text-anchor="middle" font-size="11" font-weight="700" fill="#232C42">Continuous Compounding</text>
+<text x="840" y="404" text-anchor="middle" font-size="12.5" font-family="monospace" fill="#232C42">EAR=e<tspan font-size="9" dy="-6">r</tspan><tspan dy="6">&#8722;1</tspan></text>
+<text x="840" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-rate-periodic" onclick="showTVMExample('rate-periodic')">
+<rect class="mm-leaf-box" x="735" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="735" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="840" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Periodic Rate</text>
+<text x="840" y="492" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">r</text>
+<line x1="823" y1="497" x2="857" y2="497" stroke="#232C42" stroke-width="1"/>
+<text x="840" y="514" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">m</text>
+<text x="840" y="532" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="1070" y1="212" x2="1070" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="1070" y1="336" x2="1070" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="1070" y1="436" x2="1070" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="mm-leaf-group" id="mm-grp-freq-monthly" onclick="showTVMExample('freq-monthly')">
+<rect class="mm-leaf-box" x="965" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="965" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="1070" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Monthly vs. Annual</text>
+<text x="1070" y="296" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">n = years &#215; 12</text>
+<text x="1070" y="314" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">r = rate &#247; 12</text>
+<text x="1070" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-freq-beginning" onclick="showTVMExample('freq-beginning')">
+<rect class="mm-leaf-box" x="965" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="965" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="1070" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Beginning vs. End</text>
+<text x="1070" y="392" text-anchor="middle" font-size="9.5" font-family="monospace" fill="#232C42">PVdue = PVord &#215; (1+r)</text>
+<text x="1070" y="410" text-anchor="middle" font-size="9.5" fill="#4B5468">of each period</text>
+<text x="1070" y="430" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-freq-semiannual" onclick="showTVMExample('freq-semiannual')">
+<rect class="mm-leaf-box" x="965" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="965" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="1070" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Semiannual/Quarterly</text>
+<text x="1070" y="496" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">n = years &#215; m</text>
+<text x="1070" y="514" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">r = rate &#247; m</text>
+<text x="1070" y="532" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="1300" y1="212" x2="1300" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
+<line x1="1300" y1="336" x2="1300" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="1300" y1="436" x2="1300" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="mm-leaf-group" id="mm-grp-value-bond" onclick="showTVMExample('value-bond')">
+<rect class="mm-leaf-box" x="1195" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="1195" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="1300" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Valuing a Bond</text>
+<text x="1300" y="294" text-anchor="middle" font-size="10" fill="#4B5468">PV(coupon annuity)</text>
+<text x="1300" y="310" text-anchor="middle" font-size="10" fill="#4B5468">+ PV(face value)</text>
+<text x="1300" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-value-stock" onclick="showTVMExample('value-stock')">
+<rect class="mm-leaf-box" x="1195" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="1195" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="1300" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Valuing a Stock (DDM)</text>
+<text x="1300" y="392" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">D1</text>
+<line x1="1280" y1="397" x2="1320" y2="397" stroke="#232C42" stroke-width="1"/>
+<text x="1300" y="414" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r &#8722; g</text>
+<text x="1300" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="mm-leaf-group" id="mm-grp-forward-implied" onclick="showTVMExample('forward-implied')">
+<rect class="mm-leaf-box" x="1195" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
+<rect x="1195" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="1300" y="470" text-anchor="middle" font-size="11" font-weight="700" fill="#232C42">Implied Forward Rate</text>
+<text x="1300" y="494" text-anchor="middle" font-size="9.5" font-family="monospace" fill="#232C42">(1+S1)(1+f) = (1+S2)<tspan font-size="7" dy="-5">2</tspan></text>
+<text x="1300" y="512" text-anchor="middle" font-size="9.5" fill="#4B5468">from no-arbitrage</text>
+<text x="1300" y="530" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+</svg>
+</div></div>
+<div id="mm-detail-panel">
+  <div class="mm-detail-label">Word problem</div>
+  <div id="mm-detail-title"></div>
+  <p id="mm-detail-problem"></p>
+  <div class="mm-detail-label">Solution</div>
+  <div id="mm-detail-solution"></div>
+</div>
+<div id="mm-placeholder">Click any formula box above to see a worked example.</div>
+`;
+
 const CHAPTERS = [
   {
     id: "calc",
@@ -762,6 +1023,16 @@ const CHAPTERS = [
           { item: "Sign convention drift", detail: "PV and FV/PMT need opposite signs. Wrong-sign answers usually trace back here." },
           { item: "Off-by-one on perpetuities", detail: "Values one period before the first payment. If the first payment is delayed, discount that lump sum back the extra periods." },
         ],
+        formulas: [],
+      },
+      {
+        id: "tvm-9",
+        title: "Addendum: Interactive Formula Mind Map",
+        body: [
+          `Every formula in this chapter is a variation of the same core relationship. The interactive map below organizes them by which variable a question is really asking about — solving for present value, future value, the rate itself, or a payment/number of periods — plus how the rate gets defined and how payment frequency changes the setup. This is meant as a review tool, not new material: work through the chapter normally first, then use this to test whether you can match a word problem to the right formula at a glance.`,
+          `Click any box below to see a full worked word problem for that specific variation.`,
+        ],
+        interactiveExhibit: "tvmMindmap",
         formulas: [],
       },
     ],
@@ -2731,6 +3002,9 @@ function renderReading() {
   if (section.interactiveExhibit === "rpnStepper") {
     html += `<div class="exhibit" id="rpn-stepper-mount"></div>`;
   }
+  if (section.interactiveExhibit === "tvmMindmap") {
+    html += `<div class="exhibit" id="tvm-mindmap-mount"></div>`;
+  }
 
   html += `<div class="nav-buttons">`;
   html += prev ? `<button class="btn btn-ghost" data-navprev="${prev.id}">&#8592; ${prev.title}</button>` : `<span></span>`;
@@ -2747,6 +3021,7 @@ function renderReading() {
   if (nextBtn) nextBtn.addEventListener("click", () => goTo(chapterId, nextBtn.dataset.navnext));
 
   if (section.interactiveExhibit === "rpnStepper") mountRpnStepper();
+  if (section.interactiveExhibit === "tvmMindmap") mountTVMMindmap();
   renderSidebar();
 }
 
@@ -2804,6 +3079,51 @@ function mountRpnStepper() {
     document.getElementById("rpn-next").addEventListener("click", () => { if (idx < steps.length - 1) idx++; else idx = 0; render(); });
   }
   render();
+}
+
+/* ============================================================
+   TVM FORMULA MIND MAP (interactive exhibit)
+   ============================================================ */
+const TVM_MINDMAP_EXAMPLES = {
+  "pv-single": { title: "Single Sum — Present Value", problem: "You will inherit $50,000 in 8 years. At a 6% discount rate, what is that inheritance worth today?", solution: "PV = 50,000 / (1.06)^8\n   = 50,000 / 1.5938\n   \u2248 $31,371" },
+  "pv-ordinary": { title: "Ordinary Annuity — Present Value", problem: "A structured settlement pays $2,000 at the end of each year for 10 years. At a 5% discount rate, what is the settlement worth today?", solution: "PV = 2,000 \u00D7 [1 \u2212 (1.05)^\u221210] / 0.05\n   = 2,000 \u00D7 7.7217\n   \u2248 $15,443" },
+  "pv-due": { title: "Annuity Due — Present Value", problem: "A lease requires $1,500 payments at the beginning of each year for 5 years. At a 4% rate, what is the lease worth today?", solution: "PV(ordinary) = 1,500 \u00D7 [1 \u2212 (1.04)^\u22125] / 0.04 \u2248 $6,678\nPV(due) = 6,678 \u00D7 1.04 \u2248 $6,945\n\n(worth about $267 more than the ordinary version,\nsince every payment lands one period earlier)" },
+  "pv-perpetuity": { title: "Perpetuity — Present Value", problem: "A preferred stock pays a level $5 dividend forever, starting next year, at an 8% required return. What is it worth today?", solution: "PV = 5 / 0.08\n   = $62.50" },
+  "pv-growing": { title: "Growing Perpetuity — Present Value", problem: "A stock's next dividend is expected to be $3, growing 4% annually forever, at a 10% required return. What is its value today?", solution: "PV = 3 / (0.10 \u2212 0.04)\n   = 3 / 0.06\n   = $50.00" },
+  "pv-uneven": { title: "Uneven Cash Flows — Present Value", problem: "A project returns $4,000 in year 1, $6,000 in year 2, and $3,000 in year 3, at a 7% discount rate. What is its present value?", solution: "PV = 4,000/(1.07)^1 + 6,000/(1.07)^2 + 3,000/(1.07)^3\n   \u2248 3,738 + 5,241 + 2,449\n   \u2248 $11,428" },
+  "fv-single": { title: "Single Sum — Future Value", problem: "You deposit $8,000 today at 5.5% annual interest for 12 years. What will it grow to?", solution: "FV = 8,000 \u00D7 (1.055)^12\n   \u2248 8,000 \u00D7 1.898\n   \u2248 $15,184" },
+  "fv-ordinary": { title: "Ordinary Annuity — Future Value", problem: "You contribute $3,000 to a retirement account at the end of each year for 20 years, earning 7%. What is the account worth at the end?", solution: "FV = 3,000 \u00D7 [(1.07)^20 \u2212 1] / 0.07\n   \u2248 3,000 \u00D7 40.995\n   \u2248 $122,986" },
+  "fv-due": { title: "Annuity Due — Future Value", problem: "Same contributions as before ($3,000/year, 20 years, 7%), but made at the beginning of each year instead. What is the account worth?", solution: "FV(due) = 122,986 \u00D7 1.07\n        \u2248 $131,595\n\n(about $8,609 more, just from each\ndeposit having one extra year to grow)" },
+  "rate-implied": { title: "Implied Return / Yield", problem: "A zero-coupon bond costs $700 today and pays $1,000 in 5 years. What annual return (yield) does it offer?", solution: "700 = 1,000 / (1+r)^5\n(1+r)^5 = 1,000/700 = 1.4286\n1+r = 1.4286^(1/5) \u2248 1.0739\nr \u2248 7.39%\n\n(this is exactly the same idea as YTM in\nFixed Income, or IRR in Corporate Issuers \u2014\nsolving for the rate instead of a dollar amount)" },
+  "solve-n": { title: "Solving for n", problem: "You invest $5,000 today at 8% annual interest. How many years will it take to double to $10,000?", solution: "10,000 = 5,000 \u00D7 (1.08)^n\n2 = (1.08)^n\nn = ln(2) / ln(1.08)\nn \u2248 9.0 years\n\n(the quick \"Rule of 72\" estimate: 72/8 = 9 years \u2014\nmatches closely, and is a useful sanity check)" },
+  "solve-pmt": { title: "Solving for PMT", problem: "You want to have $200,000 in 25 years for retirement, earning 7% annually. How much must you deposit at the end of each year?", solution: "200,000 = PMT \u00D7 [(1.07)^25 \u2212 1] / 0.07\n200,000 = PMT \u00D7 63.249\nPMT \u2248 $3,162 per year" },
+  "rate-ear": { title: "Effective Annual Rate", problem: "A credit card quotes 24% annual interest, compounded monthly. What is the effective annual rate?", solution: "EAR = (1 + 0.24/12)^12 \u2212 1\n    = (1.02)^12 \u2212 1\n    \u2248 26.82%" },
+  "rate-continuous": { title: "Continuous Compounding", problem: "A bank offers 6% interest compounded continuously. What is the effective annual rate?", solution: "EAR = e^0.06 \u2212 1\n    \u2248 6.18%" },
+  "rate-periodic": { title: "Periodic Rate", problem: "A loan's stated annual rate is 9%, compounded monthly. What periodic (monthly) rate should you use in a TVM calculation?", solution: "Periodic rate = 9% / 12\n             = 0.75% per month" },
+  "freq-monthly": { title: "Monthly vs. Annual Payments", problem: "You want to accumulate $50,000 in 6 years by making equal monthly deposits, earning 6% annual interest compounded monthly. What n and r do you use before applying the FV annuity formula?", solution: "n = 6 years \u00D7 12 = 72 months\nr = 6% / 12 = 0.5% per month\n\nThen solve: 50,000 = PMT \u00D7 [(1.005)^72 \u2212 1] / 0.005\nfor the required monthly deposit." },
+  "freq-beginning": { title: "Beginning vs. End of Period", problem: "Two rent contracts each require $1,000/month for 3 years at 6% annual (0.5% monthly). Contract A pays at the start of each month; Contract B pays at the end. Which is worth more today, and by how much?", solution: "PV(B, ordinary) = 1,000 \u00D7 [1\u2212(1.005)^\u221236]/0.005 \u2248 $32,871\nPV(A, due) = 32,871 \u00D7 1.005 \u2248 $33,035\n\nContract A is worth about $164 more \u2014\nsame payments, just one period earlier throughout." },
+  "freq-semiannual": { title: "Semiannual / Quarterly Compounding", problem: "A bond pays semiannual coupons at a stated annual rate of 8%, and has 5 years to maturity. What n and r should you use to find its price?", solution: "n = 5 years \u00D7 2 = 10 periods\nr = 8% / 2 = 4% per period\n\nThen apply the bond pricing formula\n(PV of coupon annuity + PV of face value)\nusing these converted values." },
+  "value-bond": { title: "Valuing a Bond", problem: "A $1,000 face value bond pays a 5% annual coupon and matures in 4 years. The market requires a 7% yield. What is the bond's price?", solution: "PV(coupons) = 50 \u00D7 [1\u2212(1.07)^\u22124]/0.07 \u2248 $169.36\nPV(face) = 1,000 / (1.07)^4 \u2248 $762.90\nPrice \u2248 169.36 + 762.90 \u2248 $932.26\n\n(a discount bond, since the 5% coupon\nis below the 7% market yield)" },
+  "value-stock": { title: "Valuing a Stock (Dividend Discount Model)", problem: "A stock just paid a $1.80 dividend, expected to grow 3% forever. At a 9% required return, what is the stock worth today?", solution: "D1 = 1.80 \u00D7 1.03 = $1.854\nV0 = 1.854 / (0.09 \u2212 0.03)\n   = 1.854 / 0.06\n   \u2248 $30.90\n\n(the exact same growing perpetuity formula\nfrom the PV branch \u2014 just applied to a stock)" },
+  "forward-implied": { title: "Implied Forward Rate", problem: "The 1-year spot rate is 3% and the 2-year spot rate is 4.5%. What 1-year rate is implied for the period starting one year from now?", solution: "(1.03) \u00D7 (1+f) = (1.045)^2 = 1.092\n1+f = 1.092 / 1.03 \u2248 1.0602\nf \u2248 6.02%\n\n(from cash flow additivity / no-arbitrage:\ntwo 1-year investments back-to-back must earn\nthe same total return as one 2-year investment)" },
+};
+
+function showTVMExample(id) {
+  const d = TVM_MINDMAP_EXAMPLES[id];
+  if (!d) return;
+  document.getElementById("mm-detail-title").textContent = d.title;
+  document.getElementById("mm-detail-problem").textContent = d.problem;
+  document.getElementById("mm-detail-solution").textContent = d.solution;
+  document.getElementById("mm-detail-panel").classList.add("visible");
+  document.getElementById("mm-placeholder").style.display = "none";
+  document.querySelectorAll(".mm-leaf-group").forEach((el) => el.classList.remove("selected"));
+  document.getElementById("mm-grp-" + id).classList.add("selected");
+}
+
+function mountTVMMindmap() {
+  const mount = document.getElementById("tvm-mindmap-mount");
+  if (!mount) return;
+  mount.innerHTML = EXHIBIT_TVM_MINDMAP_SVG;
 }
 
 /* ============================================================
