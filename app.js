@@ -1,4 +1,4 @@
-/* ============================================================
+   /* ============================================================
    EXHIBIT SVGS (static timeline diagrams)
    ============================================================ */
 const EXHIBIT_DEFS = `
@@ -560,8 +560,10 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
   #mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
   #mm-detail-panel.visible { display: block; }
   #mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
-  .mm-detail-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #B9AE8F; margin-bottom: 4px; }
-  #mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0 0 14px; }
+  .mm-detail-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #B9AE8F; margin: 12px 0 4px; }
+  .mm-detail-label:first-of-type { margin-top: 0; }
+  #mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #mm-detail-given, #mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
   #mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
   #mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
 </style>
@@ -804,10 +806,327 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
   <div class="mm-detail-label">Word problem</div>
   <div id="mm-detail-title"></div>
   <p id="mm-detail-problem"></p>
-  <div class="mm-detail-label">Solution</div>
+  <div class="mm-detail-label">Given</div>
+  <div id="mm-detail-given"></div>
+  <div class="mm-detail-label">Formula</div>
+  <div id="mm-detail-formula"></div>
+  <div class="mm-detail-label">Calculation</div>
   <div id="mm-detail-solution"></div>
 </div>
 <div id="mm-placeholder">Click any formula box above to see a worked example.</div>
+`;
+
+const EXHIBIT_FI_MINDMAP_SVG = `
+<style>
+  .fi-mm-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .fi-mm-svg-wrap { min-width: 1080px; }
+  .fi-mm-leaf-group { cursor: pointer; }
+  .fi-mm-leaf-box { transition: stroke 0.15s, stroke-width 0.15s; }
+  .fi-mm-leaf-group:hover .fi-mm-leaf-box { stroke: #B67A22; }
+  .fi-mm-leaf-group.selected .fi-mm-leaf-box { stroke: #B67A22; stroke-width: 2.5; }
+  #fi-mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
+  #fi-mm-detail-panel.visible { display: block; }
+  #fi-mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
+  .mm-detail-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #B9AE8F; margin: 12px 0 4px; }
+  .mm-detail-label:first-of-type { margin-top: 0; }
+  #fi-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #fi-mm-detail-given, #fi-mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
+  #fi-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #fi-mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
+</style>
+<div class="fi-mm-scroll"><div class="fi-mm-svg-wrap">
+<svg width="100%" viewBox="0 0 1080 600" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Fixed income formula mind map with three branches</title>
+<defs><marker id="fi-mm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#B67A22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="400" y="15" width="280" height="75" rx="8" fill="#1C2333"/>
+<text x="540" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EA">Bond Value</text>
+<text x="540" y="68" text-anchor="middle" font-size="13" font-family="monospace" fill="#E8A33D">Price = PV(all future cash flows)</text>
+<line x1="540" y1="90" x2="175" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
+<line x1="540" y1="90" x2="540" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
+<line x1="540" y1="90" x2="905" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
+<rect x="45" y="150" width="260" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="45" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="175" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Pricing a Bond</text>
+<rect x="410" y="150" width="260" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="410" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="540" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Yield &amp; Settlement</text>
+<rect x="775" y="150" width="260" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="775" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="905" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Interest Rate Risk</text>
+<line x1="175" y1="212" x2="175" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
+<line x1="175" y1="336" x2="175" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-coupon-bond" onclick="showFIExample('coupon-bond')">
+<rect class="fi-mm-leaf-box" x="45" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="175" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Coupon Bond</text>
+<text x="175" y="296" text-anchor="middle" font-size="11" fill="#4B5468">PV(coupon annuity)</text>
+<text x="175" y="312" text-anchor="middle" font-size="11" fill="#4B5468">+ PV(face value)</text>
+<text x="175" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-zero-coupon" onclick="showFIExample('zero-coupon')">
+<rect class="fi-mm-leaf-box" x="45" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="175" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Zero-Coupon Bond</text>
+<text x="175" y="396" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Face</text>
+<line x1="150" y1="401" x2="200" y2="401" stroke="#232C42" stroke-width="1"/>
+<text x="175" y="418" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">(1+r)<tspan font-size="8" dy="-5">n</tspan></text>
+<text x="175" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="540" y1="212" x2="540" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
+<line x1="540" y1="336" x2="540" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-current-yield" onclick="showFIExample('current-yield')">
+<rect class="fi-mm-leaf-box" x="410" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="540" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Current Yield</text>
+<text x="540" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Coupon</text>
+<line x1="510" y1="301" x2="570" y2="301" stroke="#232C42" stroke-width="1"/>
+<text x="540" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Price</text>
+<text x="540" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-accrued-interest" onclick="showFIExample('accrued-interest')">
+<rect class="fi-mm-leaf-box" x="410" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="540" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Accrued Interest</text>
+<text x="540" y="396" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Coupon &#215; (days/360)</text>
+<text x="540" y="414" text-anchor="middle" font-size="10" fill="#4B5468">\u2192 dirty price</text>
+<text x="540" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="905" y1="212" x2="905" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
+<line x1="905" y1="336" x2="905" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="905" y1="436" x2="905" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-modified-duration" onclick="showFIExample('modified-duration')">
+<rect class="fi-mm-leaf-box" x="775" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="905" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Modified Duration</text>
+<text x="905" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Macaulay</text>
+<line x1="865" y1="301" x2="945" y2="301" stroke="#232C42" stroke-width="1"/>
+<text x="905" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">1 + yield</text>
+<text x="905" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-duration-price" onclick="showFIExample('duration-price')">
+<rect class="fi-mm-leaf-box" x="775" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="905" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Price Chg. from Duration</text>
+<text x="905" y="400" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">%\u0394P \u2248 \u2212Dur \u00D7 \u0394y</text>
+<text x="905" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fi-mm-leaf-group" id="fi-mm-grp-duration-convexity" onclick="showFIExample('duration-convexity')">
+<rect class="fi-mm-leaf-box" x="775" y="450" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="905" y="470" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Duration + Convexity</text>
+<text x="905" y="492" text-anchor="middle" font-size="10.5" fill="#4B5468">Adds a convexity term</text>
+<text x="905" y="508" text-anchor="middle" font-size="10.5" fill="#4B5468">for larger \u0394y</text>
+<text x="905" y="530" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+</svg>
+</div></div>
+<div id="fi-mm-detail-panel">
+  <div class="mm-detail-label">Word problem</div>
+  <div id="fi-mm-detail-title"></div>
+  <p id="fi-mm-detail-problem"></p>
+  <div class="mm-detail-label">Given</div>
+  <div id="fi-mm-detail-given"></div>
+  <div class="mm-detail-label">Formula</div>
+  <div id="fi-mm-detail-formula"></div>
+  <div class="mm-detail-label">Calculation</div>
+  <div id="fi-mm-detail-solution"></div>
+</div>
+<div id="fi-mm-placeholder">Click any formula box above to see a worked example.</div>
+`;
+
+const EXHIBIT_PM_MINDMAP_SVG = `
+<style>
+  .pm-mm-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .pm-mm-svg-wrap { min-width: 900px; }
+  .pm-mm-leaf-group { cursor: pointer; }
+  .pm-mm-leaf-box { transition: stroke 0.15s, stroke-width 0.15s; }
+  .pm-mm-leaf-group:hover .pm-mm-leaf-box { stroke: #B67A22; }
+  .pm-mm-leaf-group.selected .pm-mm-leaf-box { stroke: #B67A22; stroke-width: 2.5; }
+  #pm-mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
+  #pm-mm-detail-panel.visible { display: block; }
+  #pm-mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
+  #pm-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #pm-mm-detail-given, #pm-mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
+  #pm-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #pm-mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
+</style>
+<div class="pm-mm-scroll"><div class="pm-mm-svg-wrap">
+<svg width="100%" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Portfolio management formula mind map with two branches</title>
+<defs><marker id="pm-mm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#B67A22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<g class="pm-mm-leaf-group" id="pm-mm-grp-capm" onclick="showPMExample('capm')" style="cursor:pointer">
+<rect class="pm-mm-leaf-box" x="270" y="15" width="360" height="80" rx="8" fill="#1C2333"/>
+<text x="450" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EA">Core: CAPM</text>
+<text x="450" y="66" text-anchor="middle" font-size="13" font-family="monospace" fill="#E8A33D">E(Ri) = Rf + \u03B2i&#215;[E(Rm)\u2212Rf]</text>
+<text x="450" y="85" text-anchor="middle" font-size="9.5" font-style="italic" fill="#D69438">Example &#8594;</text>
+</g>
+<line x1="280" y1="95" x2="230" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#pm-mm-arrow)"/>
+<line x1="620" y1="95" x2="670" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#pm-mm-arrow)"/>
+<rect x="65" y="150" width="330" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="65" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="230" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Building the Portfolio</text>
+<rect x="505" y="150" width="330" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="505" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="670" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Evaluating Performance</text>
+<line x1="230" y1="212" x2="230" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#pm-mm-arrow)"/>
+<line x1="230" y1="336" x2="230" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="pm-mm-leaf-group" id="pm-mm-grp-port-return" onclick="showPMExample('port-return')">
+<rect class="pm-mm-leaf-box" x="65" y="250" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="65" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="230" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Portfolio Expected Return</text>
+<text x="230" y="298" text-anchor="middle" font-size="13" font-family="monospace" fill="#232C42">E(Rp) = \u03A3 [wi &#215; E(Ri)]</text>
+<text x="230" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="pm-mm-leaf-group" id="pm-mm-grp-min-var" onclick="showPMExample('min-var')">
+<rect class="pm-mm-leaf-box" x="65" y="350" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="65" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="230" y="370" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Minimum-Variance Weight</text>
+<text x="230" y="394" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">\u03C32\u00B2 \u2212 Cov(1,2)</text>
+<line x1="180" y1="399" x2="280" y2="399" stroke="#232C42" stroke-width="1"/>
+<text x="230" y="416" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">\u03C31\u00B2+\u03C32\u00B2\u22122Cov(1,2)</text>
+<text x="230" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="670" y1="212" x2="670" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#pm-mm-arrow)"/>
+<line x1="670" y1="336" x2="670" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="670" y1="436" x2="670" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="pm-mm-leaf-group" id="pm-mm-grp-sharpe" onclick="showPMExample('sharpe')">
+<rect class="pm-mm-leaf-box" x="505" y="250" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="505" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="670" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Sharpe Ratio</text>
+<text x="670" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Rp \u2212 Rf</text>
+<line x1="640" y1="301" x2="700" y2="301" stroke="#232C42" stroke-width="1"/>
+<text x="670" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">\u03C3p (total risk)</text>
+<text x="670" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="pm-mm-leaf-group" id="pm-mm-grp-treynor" onclick="showPMExample('treynor')">
+<rect class="pm-mm-leaf-box" x="505" y="350" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="505" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="670" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Treynor Ratio</text>
+<text x="670" y="396" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Rp \u2212 Rf</text>
+<line x1="640" y1="401" x2="700" y2="401" stroke="#232C42" stroke-width="1"/>
+<text x="670" y="418" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">\u03B2p (systematic risk)</text>
+<text x="670" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="pm-mm-leaf-group" id="pm-mm-grp-jensen" onclick="showPMExample('jensen')">
+<rect class="pm-mm-leaf-box" x="505" y="450" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="505" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="670" y="472" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Jensen's Alpha</text>
+<text x="670" y="500" text-anchor="middle" font-size="11" fill="#4B5468">Actual return \u2212</text>
+<text x="670" y="516" text-anchor="middle" font-size="11" fill="#4B5468">CAPM-predicted return</text>
+<text x="670" y="532" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+</svg>
+</div></div>
+<div id="pm-mm-detail-panel">
+  <div class="mm-detail-label">Word problem</div>
+  <div id="pm-mm-detail-title"></div>
+  <p id="pm-mm-detail-problem"></p>
+  <div class="mm-detail-label">Given</div>
+  <div id="pm-mm-detail-given"></div>
+  <div class="mm-detail-label">Formula</div>
+  <div id="pm-mm-detail-formula"></div>
+  <div class="mm-detail-label">Calculation</div>
+  <div id="pm-mm-detail-solution"></div>
+</div>
+<div id="pm-mm-placeholder">Click any formula box above to see a worked example.</div>
+`;
+
+const EXHIBIT_FSA_MINDMAP_SVG = `
+<style>
+  .fsa-mm-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .fsa-mm-svg-wrap { min-width: 1080px; }
+  .fsa-mm-leaf-group { cursor: pointer; }
+  .fsa-mm-leaf-box { transition: stroke 0.15s, stroke-width 0.15s; }
+  .fsa-mm-leaf-group:hover .fsa-mm-leaf-box { stroke: #B67A22; }
+  .fsa-mm-leaf-group.selected .fsa-mm-leaf-box { stroke: #B67A22; stroke-width: 2.5; }
+  #fsa-mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
+  #fsa-mm-detail-panel.visible { display: block; }
+  #fsa-mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
+  #fsa-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #fsa-mm-detail-given, #fsa-mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
+  #fsa-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #fsa-mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
+</style>
+<div class="fsa-mm-scroll"><div class="fsa-mm-svg-wrap">
+<svg width="100%" viewBox="0 0 1080 600" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Financial statement analysis formula mind map with three branches</title>
+<defs><marker id="fsa-mm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#B67A22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-dupont" onclick="showFSAExample('dupont')" style="cursor:pointer">
+<rect class="fsa-mm-leaf-box" x="370" y="15" width="340" height="80" rx="8" fill="#1C2333"/>
+<text x="540" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EA">Core: DuPont Analysis</text>
+<text x="540" y="66" text-anchor="middle" font-size="12.5" font-family="monospace" fill="#E8A33D">ROE = Margin &#215; Turnover &#215; Leverage</text>
+<text x="540" y="85" text-anchor="middle" font-size="9.5" font-style="italic" fill="#D69438">Example &#8594;</text>
+</g>
+<line x1="540" y1="95" x2="175" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
+<line x1="540" y1="95" x2="540" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
+<line x1="540" y1="95" x2="905" y2="148" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
+<rect x="45" y="150" width="260" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="45" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="175" y="187" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Liquidity &amp; Solvency</text>
+<rect x="410" y="150" width="260" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="410" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="540" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Profitability &amp;</text>
+<text x="540" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Efficiency</text>
+<rect x="775" y="150" width="260" height="62" rx="6" fill="#EFE8D2" stroke="#CFC7AE"/><rect x="775" y="150" width="4" height="62" fill="#B67A22"/>
+<text x="905" y="178" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Per-Share &amp;</text>
+<text x="905" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Cash Flow</text>
+<line x1="175" y1="212" x2="175" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
+<line x1="175" y1="336" x2="175" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-current-ratio" onclick="showFSAExample('current-ratio')">
+<rect class="fsa-mm-leaf-box" x="45" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="175" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Current Ratio</text>
+<text x="175" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Current assets</text>
+<line x1="130" y1="301" x2="220" y2="301" stroke="#232C42" stroke-width="1"/>
+<text x="175" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Current liabilities</text>
+<text x="175" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-debt-equity" onclick="showFSAExample('debt-equity')">
+<rect class="fsa-mm-leaf-box" x="45" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="175" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Debt-to-Equity</text>
+<text x="175" y="396" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Total debt</text>
+<line x1="140" y1="401" x2="210" y2="401" stroke="#232C42" stroke-width="1"/>
+<text x="175" y="418" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Total equity</text>
+<text x="175" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="540" y1="212" x2="540" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
+<line x1="540" y1="336" x2="540" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<line x1="540" y1="436" x2="540" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-net-margin" onclick="showFSAExample('net-margin')">
+<rect class="fsa-mm-leaf-box" x="410" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="540" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Net Profit Margin</text>
+<text x="540" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Net income</text>
+<line x1="500" y1="301" x2="580" y2="301" stroke="#232C42" stroke-width="1"/>
+<text x="540" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Revenue</text>
+<text x="540" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-inv-turnover" onclick="showFSAExample('inv-turnover')">
+<rect class="fsa-mm-leaf-box" x="410" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="540" y="370" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Inventory Turnover</text>
+<text x="540" y="394" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">COGS</text>
+<line x1="495" y1="399" x2="585" y2="399" stroke="#232C42" stroke-width="1"/>
+<text x="540" y="416" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Avg. inventory</text>
+<text x="540" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-common-size" onclick="showFSAExample('common-size')">
+<rect class="fsa-mm-leaf-box" x="410" y="450" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="450" width="3" height="86" fill="#B67A22"/>
+<text x="540" y="472" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Common-Size %</text>
+<text x="540" y="496" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Line item</text>
+<line x1="500" y1="501" x2="580" y2="501" stroke="#232C42" stroke-width="1"/>
+<text x="540" y="518" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Total revenue</text>
+<text x="540" y="532" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<line x1="905" y1="212" x2="905" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
+<line x1="905" y1="336" x2="905" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-eps" onclick="showFSAExample('eps')">
+<rect class="fsa-mm-leaf-box" x="775" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="250" width="3" height="86" fill="#B67A22"/>
+<text x="905" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Basic EPS</text>
+<text x="905" y="292" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">NI \u2212 Pref. div.</text>
+<line x1="855" y1="297" x2="955" y2="297" stroke="#232C42" stroke-width="1"/>
+<text x="905" y="314" text-anchor="middle" font-size="10" font-family="monospace" fill="#232C42">Wtd. avg. shares</text>
+<text x="905" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-fcff" onclick="showFSAExample('fcff')">
+<rect class="fsa-mm-leaf-box" x="775" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="350" width="3" height="86" fill="#B67A22"/>
+<text x="905" y="370" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Free Cash Flow (FCFF)</text>
+<text x="905" y="392" text-anchor="middle" font-size="10" fill="#4B5468">NI + Non-cash + Int(1\u2212t)</text>
+<text x="905" y="408" text-anchor="middle" font-size="10" fill="#4B5468">\u2212 CapEx \u2212 \u0394WC</text>
+<text x="905" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
+</g>
+</svg>
+</div></div>
+<div id="fsa-mm-detail-panel">
+  <div class="mm-detail-label">Word problem</div>
+  <div id="fsa-mm-detail-title"></div>
+  <p id="fsa-mm-detail-problem"></p>
+  <div class="mm-detail-label">Given</div>
+  <div id="fsa-mm-detail-given"></div>
+  <div class="mm-detail-label">Formula</div>
+  <div id="fsa-mm-detail-formula"></div>
+  <div class="mm-detail-label">Calculation</div>
+  <div id="fsa-mm-detail-solution"></div>
+</div>
+<div id="fsa-mm-placeholder">Click any formula box above to see a worked example.</div>
 `;
 
 const CHAPTERS = [
@@ -925,8 +1244,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 2, svg: EXHIBIT_COMPOUNDING }],
         formulas: [
-          { id: "tvm-2-ear", name: "Effective annual rate (EAR)", expression: "EAR = (1 + rstated/m)<sup>m</sup> \u2212 1", when: "Use whenever you need a true annual return to compare two investments that compound at different frequencies.", worked: "A bank quotes 8% annual interest, compounded quarterly (m = 4). EAR = (1 + 0.08/4)<sup>4</sup> \u2212 1 = (1.02)<sup>4</sup> \u2212 1 \u2248 8.24%. Notice this is higher than the quoted 8%, because quarterly compounding lets you earn interest on interest four times a year.", workedExhibit: EXHIBIT_WORKED_EAR },
-          { id: "tvm-2-ear-cont", name: "EAR with continuous compounding — advanced", expression: "EAR = e<sup>rstated</sup> \u2212 1", when: "Rare on Level 1; appears when a problem explicitly says \"continuously compounded.\"", worked: "The same 8% rate compounded continuously: EAR = e<sup>0.08</sup> \u2212 1 \u2248 8.33% \u2014 slightly higher still, since continuous compounding is the limiting case of ever-more-frequent compounding." },
+          { id: "tvm-2-ear", name: "Effective annual rate (EAR)", expression: "EAR = (1 + rstated/m)<sup>m</sup> \u2212 1", when: "Use whenever you need a true annual return to compare two investments that compound at different frequencies.", given: ["rstated = 0.08", "m = 4 (quarterly)"], worked: "EAR = (1 + 0.08/4)<sup>4</sup> \u2212 1\nEAR = (1.02)<sup>4</sup> \u2212 1\nEAR \u2248 8.24%\n\n(higher than the quoted 8%, because quarterly\ncompounding earns interest on interest four times a year)", workedExhibit: EXHIBIT_WORKED_EAR },
+          { id: "tvm-2-ear-cont", name: "EAR with continuous compounding — advanced", expression: "EAR = e<sup>rstated</sup> \u2212 1", when: "Rare on Level 1; appears when a problem explicitly says \"continuously compounded.\"", given: ["rstated = 0.08"], worked: "EAR = e<sup>0.08</sup> \u2212 1\nEAR \u2248 8.33%\n\n(slightly higher still than quarterly compounding \u2014\ncontinuous compounding is the limiting case)" },
         ],
       },
       {
@@ -937,8 +1256,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_SINGLE_SUM }],
         formulas: [
-          { id: "tvm-3-fv", name: "Future value of a single sum", expression: "FV = PV \u00D7 (1 + r)<sup>n</sup>", when: "Wording cue: \"invest/deposit a lump sum today... worth in the future.\"", worked: "You deposit $5,000 today at 6% annual interest for 10 years. FV = 5,000 \u00D7 (1.06)<sup>10</sup> \u2248 5,000 \u00D7 1.7908 \u2248 $8,954.", workedExhibit: EXHIBIT_WORKED_FV },
-          { id: "tvm-3-pv", name: "Present value of a single sum", expression: "PV = <span class=\"frac\"><span class=\"num\">FV</span><span class=\"den\">(1 + r)<sup>n</sup></span></span>", when: "Wording cue: \"receive a single amount in the future... worth today.\"", worked: "You'll receive $10,000 in 5 years, at a 7% discount rate. PV = 10,000 \u00F7 (1.07)<sup>5</sup> \u2248 10,000 \u00F7 1.4026 \u2248 $7,130.", workedExhibit: EXHIBIT_WORKED_PV },
+          { id: "tvm-3-fv", name: "Future value of a single sum", expression: "FV = PV \u00D7 (1 + r)<sup>n</sup>", when: "Wording cue: \"invest/deposit a lump sum today... worth in the future.\"", given: ["PV = $5,000", "r = 0.06", "n = 10"], worked: "FV = 5,000 \u00D7 (1.06)<sup>10</sup>\nFV = 5,000 \u00D7 1.7908\nFV \u2248 $8,954", workedExhibit: EXHIBIT_WORKED_FV },
+          { id: "tvm-3-pv", name: "Present value of a single sum", expression: "PV = <span class=\"frac\"><span class=\"num\">FV</span><span class=\"den\">(1 + r)<sup>n</sup></span></span>", when: "Wording cue: \"receive a single amount in the future... worth today.\"", given: ["FV = $10,000", "r = 0.07", "n = 5"], worked: "PV = 10,000 / (1.07)<sup>5</sup>\nPV = 10,000 / 1.4026\nPV \u2248 $7,130", workedExhibit: EXHIBIT_WORKED_PV },
         ],
       },
       {
@@ -952,9 +1271,9 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_ANNUITY }],
         formulas: [
-          { id: "tvm-4-fv-ord", name: "FV of an ordinary annuity", expression: "FV = PMT \u00D7 <span class=\"frac\"><span class=\"num\">(1+r)<sup>n</sup> \u2212 1</span><span class=\"den\">r</span></span>", when: "Equal end-of-period payments; solving for a future accumulated value.", worked: "You deposit $2,000 at the end of every year for 8 years, earning 5% annually. FV = 2,000 \u00D7 [((1.05)<sup>8</sup> \u2212 1) / 0.05] \u2248 2,000 \u00D7 9.549 \u2248 $19,098.", workedExhibit: EXHIBIT_WORKED_ANNUITY_FV },
-          { id: "tvm-4-pv-ord", name: "PV of an ordinary annuity", expression: "PV = PMT \u00D7 <span class=\"frac\"><span class=\"num\">1 \u2212 (1+r)<sup>−n</sup></span><span class=\"den\">r</span></span>", when: "Equal end-of-period payments; solving for today's value of the stream.", worked: "A stream pays $1,500 at the end of each year for 6 years, at a 4% discount rate. PV = 1,500 \u00D7 [1 \u2212 (1.04)<sup>−6</sup>] / 0.04 \u2248 1,500 \u00D7 5.242 \u2248 $7,863." },
-          { id: "tvm-4-due", name: "Annuity due adjustment — advanced", expression: "FVdue = FVordinary \u00D7 (1+r)\nPVdue = PVordinary \u00D7 (1+r)", when: "Same payment stream, but each payment occurs one period earlier than the ordinary case.", worked: "Take that same $1,500-per-year, 6-year, 4% stream, now paid at the beginning of each period. PVdue = 7,863 \u00D7 1.04 \u2248 $8,177 \u2014 about $314 more, just from receiving each payment one period sooner.", workedExhibit: EXHIBIT_WORKED_ANNUITY_PV },
+          { id: "tvm-4-fv-ord", name: "FV of an ordinary annuity", expression: "FV = PMT \u00D7 <span class=\"frac\"><span class=\"num\">(1+r)<sup>n</sup> \u2212 1</span><span class=\"den\">r</span></span>", when: "Equal end-of-period payments; solving for a future accumulated value.", given: ["PMT = $2,000", "r = 0.05", "n = 8"], worked: "FV = 2,000 \u00D7 [((1.05)<sup>8</sup> \u2212 1) / 0.05]\nFV = 2,000 \u00D7 9.549\nFV \u2248 $19,098", workedExhibit: EXHIBIT_WORKED_ANNUITY_FV },
+          { id: "tvm-4-pv-ord", name: "PV of an ordinary annuity", expression: "PV = PMT \u00D7 <span class=\"frac\"><span class=\"num\">1 \u2212 (1+r)<sup>−n</sup></span><span class=\"den\">r</span></span>", when: "Equal end-of-period payments; solving for today's value of the stream.", given: ["PMT = $1,500", "r = 0.04", "n = 6"], worked: "PV = 1,500 \u00D7 [1 \u2212 (1.04)<sup>−6</sup>] / 0.04\nPV = 1,500 \u00D7 5.242\nPV \u2248 $7,863" },
+          { id: "tvm-4-due", name: "Annuity due adjustment — advanced", expression: "FVdue = FVordinary \u00D7 (1+r)\nPVdue = PVordinary \u00D7 (1+r)", when: "Same payment stream, but each payment occurs one period earlier than the ordinary case.", given: ["PVordinary = $7,863 (from the ordinary-annuity example above)", "r = 0.04"], worked: "PVdue = 7,863 \u00D7 1.04\nPVdue \u2248 $8,177\n\n(about $314 more than the ordinary version,\njust from receiving each payment one period sooner)", workedExhibit: EXHIBIT_WORKED_ANNUITY_PV },
         ],
       },
       {
@@ -968,8 +1287,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_PERPETUITY }],
         formulas: [
-          { id: "tvm-5-perp", name: "PV of a level perpetuity", expression: "PV = <span class=\"frac\"><span class=\"num\">PMT</span><span class=\"den\">r</span></span>", when: "Wording cue: \"forever,\" \"perpetual,\" \"in perpetuity,\" level payment.", worked: "A preferred stock pays a level $6 dividend per year forever, starting one year from now, at a 9% discount rate. PV = 6 / 0.09 \u2248 $66.67.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_LEVEL },
-          { id: "tvm-5-gperp", name: "PV of a growing perpetuity — advanced", expression: "PV = <span class=\"frac\"><span class=\"num\">PMT1</span><span class=\"den\">r \u2212 g</span></span>, requires r > g", when: "Same as above, but the payment grows at a constant rate each period.", worked: "Same stock, but the dividend grows 3% every year. PV = 6 / (0.09 \u2212 0.03) = 6 / 0.06 = $100 \u2014 notably higher, since a growing payment stream is worth more than a level one at the same starting amount.", workedExhibit: EXHIBIT_WORKED_PERPETUITY_GROWING },
+          { id: "tvm-5-perp", name: "PV of a level perpetuity", expression: "PV = <span class=\"frac\"><span class=\"num\">PMT</span><span class=\"den\">r</span></span>", when: "Wording cue: \"forever,\" \"perpetual,\" \"in perpetuity,\" level payment.", given: ["PMT = $6", "r = 0.09"], worked: "PV = 6 / 0.09\nPV \u2248 $66.67", workedExhibit: EXHIBIT_WORKED_PERPETUITY_LEVEL },
+          { id: "tvm-5-gperp", name: "PV of a growing perpetuity — advanced", expression: "PV = <span class=\"frac\"><span class=\"num\">PMT1</span><span class=\"den\">r \u2212 g</span></span>, requires r > g", when: "Same as above, but the payment grows at a constant rate each period.", given: ["PMT1 = $6", "r = 0.09", "g = 0.03"], worked: "PV = 6 / (0.09 \u2212 0.03)\nPV = 6 / 0.06\nPV = $100\n\n(notably higher than the level version, since a\ngrowing stream is worth more at the same starting amount)", workedExhibit: EXHIBIT_WORKED_PERPETUITY_GROWING },
         ],
       },
       {
@@ -980,7 +1299,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_UNEVEN }],
         formulas: [
-          { id: "tvm-6-uneven", name: "PV of an uneven cash flow series — advanced", expression: "PV = \u03A3 <span class=\"frac\"><span class=\"num\">CFt</span><span class=\"den\">(1+r)<sup>t</sup></span></span> for t = 1 to n", when: "Wording cue: a list of different cash flow amounts by year, rather than one repeated payment.", worked: "A project returns $2,000 in year 1, $3,500 in year 2, and $1,000 in year 3, at a 6% discount rate. PV = 2,000/(1.06)<sup>1</sup> + 3,500/(1.06)<sup>2</sup> + 1,000/(1.06)<sup>3</sup> \u2248 1,887 + 3,115 + 840 \u2248 $5,842.", workedExhibit: EXHIBIT_WORKED_UNEVEN },
+          { id: "tvm-6-uneven", name: "PV of an uneven cash flow series — advanced", expression: "PV = \u03A3 <span class=\"frac\"><span class=\"num\">CFt</span><span class=\"den\">(1+r)<sup>t</sup></span></span> for t = 1 to n", when: "Wording cue: a list of different cash flow amounts by year, rather than one repeated payment.", given: ["CF1 = $2,000", "CF2 = $3,500", "CF3 = $1,000", "r = 0.06"], worked: "PV = 2,000/(1.06)<sup>1</sup> + 3,500/(1.06)<sup>2</sup> + 1,000/(1.06)<sup>3</sup>\nPV \u2248 1,887 + 3,115 + 840\nPV \u2248 $5,842", workedExhibit: EXHIBIT_WORKED_UNEVEN },
         ],
       },
       {
@@ -991,7 +1310,7 @@ const CHAPTERS = [
           `One direct application: if you know the spot rate (today's rate for a loan starting now) for two different maturities, you can back out the implied forward rate — the rate the market is effectively predicting for a future period — because a 2-year investment must earn the same total return whether you invest for 2 years directly, or invest for 1 year and then reinvest for a second year at whatever rate the market implies for that second year.`,
         ],
         formulas: [
-          { id: "tvm-6b-forward", name: "Implied forward rate (1-year rate, 1 year from now)", expression: "(1 + S1) \u00D7 (1 + 1y1y forward) = (1 + S2)<sup>2</sup>", when: "Finding the rate the market implicitly expects for a future period, given two spot rates of different maturities.", worked: "The 1-year spot rate is 4%, and the 2-year spot rate is 5%. (1.04) \u00D7 (1 + forward) = (1.05)<sup>2</sup> = 1.1025. Forward rate = 1.1025 / 1.04 \u2212 1 \u2248 6.01%. The market is implicitly predicting that 1-year rates will rise from 4% to about 6% one year from now — otherwise, an arbitrage opportunity would exist between investing 2 years directly versus rolling over two 1-year investments." },
+          { id: "tvm-6b-forward", name: "Implied forward rate (1-year rate, 1 year from now)", expression: "(1 + S1) \u00D7 (1 + 1y1y forward) = (1 + S2)<sup>2</sup>", when: "Finding the rate the market implicitly expects for a future period, given two spot rates of different maturities.", given: ["S1 = 0.04 (1-year spot rate)", "S2 = 0.05 (2-year spot rate)"], worked: "(1.04) \u00D7 (1 + forward) = (1.05)<sup>2</sup>\n(1.04) \u00D7 (1 + forward) = 1.1025\n1 + forward = 1.1025 / 1.04\nforward \u2248 6.01%\n\n(the market implicitly predicts 1-year rates rise\nfrom 4% to about 6% one year from now)" },
         ],
       },
       {
@@ -1062,9 +1381,9 @@ const CHAPTERS = [
           `Expected value is the probability-weighted average of all possible outcomes — the average you'd expect if you repeated the situation many times.`,
         ],
         formulas: [
-          { id: "probstat-2-addition", name: "Addition rule (general)", expression: "P(A or B) = P(A) + P(B) \u2212 P(A and B)", when: "Finding the probability that either of two events happens.", worked: "The probability a stock's price rises this month is 0.55; the probability its trading volume rises is 0.40; the probability both happen together is 0.25. P(price rises or volume rises) = 0.55 + 0.40 \u2212 0.25 = 0.70." },
-          { id: "probstat-2-mult", name: "Multiplication rule", expression: "P(A and B) = P(A) \u00D7 P(B | A)", when: "Finding the probability that both of two events happen. If independent, simplifies to P(A) \u00D7 P(B).", worked: "Probability a fund manager beats the market in a given year is 0.30. Assuming each year is independent, probability of beating the market two years in a row = 0.30 \u00D7 0.30 = 0.09, or 9%." },
-          { id: "probstat-2-ev", name: "Expected value", expression: "E(X) = \u03A3 [ P(outcome) \u00D7 value of outcome ]", when: "Finding the probability-weighted average outcome.", worked: "A bond has a 90% chance of paying $1,000 at maturity and a 10% chance of defaulting and paying only $400. E(X) = (0.90 \u00D7 1,000) + (0.10 \u00D7 400) = 900 + 40 = $940." },
+          { id: "probstat-2-addition", name: "Addition rule (general)", expression: "P(A or B) = P(A) + P(B) \u2212 P(A and B)", when: "Finding the probability that either of two events happens.", given: ["P(A) = 0.55 (price rises)", "P(B) = 0.40 (volume rises)", "P(A and B) = 0.25"], worked: "P(A or B) = 0.55 + 0.40 \u2212 0.25\nP(A or B) = 0.70" },
+          { id: "probstat-2-mult", name: "Multiplication rule", expression: "P(A and B) = P(A) \u00D7 P(B | A)", when: "Finding the probability that both of two events happen. If independent, simplifies to P(A) \u00D7 P(B).", given: ["P(A) = 0.30 (beats market this year)", "P(B) = 0.30 (beats market next year, independent)"], worked: "P(A and B) = 0.30 \u00D7 0.30\nP(A and B) = 0.09, or 9%" },
+          { id: "probstat-2-ev", name: "Expected value", expression: "E(X) = \u03A3 [ P(outcome) \u00D7 value of outcome ]", when: "Finding the probability-weighted average outcome.", given: ["P(pays $1,000) = 0.90", "P(defaults, pays $400) = 0.10"], worked: "E(X) = (0.90 \u00D7 1,000) + (0.10 \u00D7 400)\nE(X) = 900 + 40\nE(X) = $940" },
         ],
       },
       {
@@ -1076,7 +1395,7 @@ const CHAPTERS = [
           `Covariance and correlation describe how two variables move together. Correlation rescales covariance to always fall between −1 and +1. A correlation near +1 means the two variables move together closely; near −1 means they move in opposite directions; near 0 means little linear relationship. This number becomes the backbone of diversification arguments in Portfolio Management.`,
         ],
         formulas: [
-          { id: "probstat-3-var", name: "Sample variance and standard deviation", expression: "s\u00B2 = \u03A3(xi \u2212 mean)\u00B2 / (n \u2212 1)\ns = \u221As\u00B2", when: "Measuring how spread out a data set is.", worked: "A stock's returns over 4 years are 10%, 14%, 6%, 10%. Mean = 10%. Squared deviations: 0, 16, 16, 0. Variance = (0+16+16+0)/(4\u22121) \u2248 10.67. Standard deviation = \u221A10.67 \u2248 3.27%." },
+          { id: "probstat-3-var", name: "Sample variance and standard deviation", expression: "s\u00B2 = \u03A3(xi \u2212 mean)\u00B2 / (n \u2212 1)\ns = \u221As\u00B2", when: "Measuring how spread out a data set is.", given: ["Returns: 10%, 14%, 6%, 10%", "n = 4", "mean = 10%"], worked: "Squared deviations: 0, 16, 16, 0\nVariance = (0+16+16+0) / (4\u22121)\nVariance \u2248 10.67\nStd dev = \u221A10.67 \u2248 3.27%" },
           { id: "probstat-3-corr", name: "Correlation", expression: "Correlation(X,Y) = <span class=\"frac\"><span class=\"num\">Covariance(X,Y)</span><span class=\"den\">StdDev(X) \u00D7 StdDev(Y)</span></span>", when: "Measuring how strongly, and in what direction, two variables move together." },
         ],
       },
@@ -1107,7 +1426,7 @@ const CHAPTERS = [
           `The coefficient of variation rescales standard deviation by the mean, turning "risk per unit of return" into a single comparable number — useful when comparing the relative riskiness of two investments with very different average returns, where comparing raw standard deviations alone would be misleading.`,
         ],
         formulas: [
-          { id: "probstat-5b-cov", name: "Coefficient of variation", expression: "CV = <span class=\"frac\"><span class=\"num\">Standard deviation</span><span class=\"den\">Mean</span></span>", when: "Comparing relative risk (risk per unit of return) across investments with different average returns.", worked: "Investment A has a mean return of 8% and standard deviation of 12%; CV = 12/8 = 1.5. Investment B has a mean return of 20% and standard deviation of 18%; CV = 18/20 = 0.9. Even though B has higher absolute risk (18% vs. 12%), it actually carries less risk per unit of expected return — a comparison the raw standard deviations alone would have gotten backwards." },
+          { id: "probstat-5b-cov", name: "Coefficient of variation", expression: "CV = <span class=\"frac\"><span class=\"num\">Standard deviation</span><span class=\"den\">Mean</span></span>", when: "Comparing relative risk (risk per unit of return) across investments with different average returns.", given: ["Investment A: mean = 8%, std dev = 12%", "Investment B: mean = 20%, std dev = 18%"], worked: "CV(A) = 12 / 8 = 1.5\nCV(B) = 18 / 20 = 0.9\n\n(B has higher absolute risk but a lower CV \u2014\nless risk per unit of expected return than A)" },
         ],
       },
       {
@@ -1118,7 +1437,7 @@ const CHAPTERS = [
           `Bayes' formula is the formal tool for updating a probability once new evidence arrives — starting from a prior probability (your belief before the new information) and combining it with how likely that evidence would be under different scenarios, to arrive at a posterior probability (your updated belief after the new information).`,
         ],
         formulas: [
-          { id: "probstat-5c-bayes", name: "Bayes' formula", expression: "P(Event | Info) = <span class=\"frac\"><span class=\"num\">P(Info | Event) \u00D7 P(Event)</span><span class=\"den\">P(Info)</span></span>", when: "Updating a probability once new information arrives.", worked: "A fund's prior probability of beating its benchmark in any given year is 30%. Historically, in years when the fund does beat the benchmark, its manager holds a large cash position 20% of the time; in years it does not beat the benchmark, the manager holds a large cash position 50% of the time. Overall probability of a large cash position: (0.20 \u00D7 0.30) + (0.50 \u00D7 0.70) = 0.06 + 0.35 = 0.41. Given that the manager currently holds a large cash position, updated probability of beating the benchmark = (0.20 \u00D7 0.30) / 0.41 \u2248 14.6% \u2014 notably lower than the 30% prior, since a large cash position is more typical of years the fund underperforms." },
+          { id: "probstat-5c-bayes", name: "Bayes' formula", expression: "P(Event | Info) = <span class=\"frac\"><span class=\"num\">P(Info | Event) \u00D7 P(Event)</span><span class=\"den\">P(Info)</span></span>", when: "Updating a probability once new information arrives.", given: ["P(Event) = 0.30 (prior: beats benchmark)", "P(Info | Event) = 0.20 (large cash position, given it beat benchmark)", "P(Info | not Event) = 0.50 (large cash position, given it did not)", "P(not Event) = 0.70"], worked: "P(Info) = (0.20\u00D70.30) + (0.50\u00D70.70)\nP(Info) = 0.06 + 0.35 = 0.41\n\nP(Event | Info) = (0.20 \u00D7 0.30) / 0.41\nP(Event | Info) \u2248 14.6%\n\n(well below the 30% prior \u2014 a large cash position\nis more typical of years the fund underperforms)" },
         ],
       },
       {
@@ -1129,7 +1448,7 @@ const CHAPTERS = [
           `A confidence interval uses that idea to give a range, rather than a single point estimate, for an unknown population parameter — for example, "we're 95% confident the true mean return lies between 6% and 10%," rather than just claiming a single number.`,
         ],
         formulas: [
-          { id: "probstat-5d-ci", name: "Confidence interval for the mean", expression: "CI = Sample mean \u00B1 (z \u00D7 <span class=\"frac\"><span class=\"num\">Standard deviation</span><span class=\"den\">\u221An</span></span>)", when: "Estimating a range for the true population mean from a sample. z is a constant based on the desired confidence level (about 1.96 for 95% confidence).", worked: "A sample of 100 monthly returns has a mean of 1.2% and a standard deviation of 4%. For a 95% confidence interval: 1.2% \u00B1 (1.96 \u00D7 4%/\u221A100) = 1.2% \u00B1 (1.96 \u00D7 0.4%) = 1.2% \u00B1 0.784%. The 95% confidence interval runs from about 0.42% to 1.98%." },
+          { id: "probstat-5d-ci", name: "Confidence interval for the mean", expression: "CI = Sample mean \u00B1 (z \u00D7 <span class=\"frac\"><span class=\"num\">Standard deviation</span><span class=\"den\">\u221An</span></span>)", when: "Estimating a range for the true population mean from a sample. z is a constant based on the desired confidence level (about 1.96 for 95% confidence).", given: ["Sample mean = 1.2%", "Std dev = 4%", "n = 100", "z = 1.96 (95% confidence)"], worked: "CI = 1.2% \u00B1 (1.96 \u00D7 4%/\u221A100)\nCI = 1.2% \u00B1 (1.96 \u00D7 0.4%)\nCI = 1.2% \u00B1 0.784%\n\n95% CI: about 0.42% to 1.98%" },
         ],
       },
       {
@@ -1194,7 +1513,7 @@ const CHAPTERS = [
           `From there, several variations matter: a gross return is before fees and expenses; a net return is after them. A pre-tax return ignores taxes; an after-tax return accounts for them. A real return adjusts for inflation, while a nominal return does not — the same distinction from the effective annual rate discussion earlier, just applied to investment performance rather than a borrowing rate. A leveraged return uses borrowed money to amplify a position, which magnifies both gains and losses relative to the unleveraged return.`,
         ],
         formulas: [
-          { id: "returns-2-hpr", name: "Holding period return", expression: "HPR = <span class=\"frac\"><span class=\"num\">Ending value \u2212 Beginning value + Income</span><span class=\"den\">Beginning value</span></span>", when: "Measuring the total return earned over a single holding period.", worked: "You buy a stock for $50, receive a $1 dividend, and sell it for $54. HPR = (54 \u2212 50 + 1) / 50 = 5/50 = 10%." },
+          { id: "returns-2-hpr", name: "Holding period return", expression: "HPR = <span class=\"frac\"><span class=\"num\">Ending value \u2212 Beginning value + Income</span><span class=\"den\">Beginning value</span></span>", when: "Measuring the total return earned over a single holding period.", given: ["Beginning value = $50", "Ending value = $54", "Income = $1 (dividend)"], worked: "HPR = (54 \u2212 50 + 1) / 50\nHPR = 5 / 50\nHPR = 10%" },
         ],
       },
       {
@@ -1202,7 +1521,7 @@ const CHAPTERS = [
         title: "Required rate of return",
         body: [`The required rate of return an investor demands is built from two pieces: the risk-free rate (the return available on a virtually riskless investment, like a short-term government bill) plus a risk premium (extra return demanded for bearing the additional risk of this specific investment over the risk-free alternative). Inflation is embedded in the risk-free rate itself — a nominal risk-free rate compensates for both the pure time value of money and expected inflation, which is exactly why Chapter 02's real-vs-nominal distinction resurfaces constantly throughout the curriculum.`],
         formulas: [
-          { id: "returns-3-required", name: "Required rate of return", expression: "Required return = Risk-free rate + Risk premium", when: "Building up the discount rate used to value a risky investment." },
+          { id: "returns-3-required", name: "Required rate of return", expression: "Required return = Risk-free rate + Risk premium", when: "Building up the discount rate used to value a risky investment.", given: ["Risk-free rate = 3%", "Risk premium = 5%"], worked: "Required return = 3% + 5%\nRequired return = 8%" },
         ],
       },
       {
@@ -1332,7 +1651,7 @@ const CHAPTERS = [
           `The least squares criterion is how the "best" line is actually chosen: out of every possible line you could draw through a scatter of data points, least squares picks the one that minimizes the sum of the squared vertical distances between each actual data point and the line — squaring ensures points above and below the line don't cancel out, and penalizes large misses more heavily than small ones.`,
         ],
         formulas: [
-          { id: "reg-2-slope", name: "Regression slope (b1)", expression: "b1 = <span class=\"frac\"><span class=\"num\">Covariance(X,Y)</span><span class=\"den\">Variance(X)</span></span>", when: "Estimating how much Y changes, on average, for a one-unit change in X — this is exactly how a stock's beta is calculated.", worked: "A stock's returns are regressed against market returns. Covariance(stock, market) = 0.008, Variance(market) = 0.005. Slope (beta) = 0.008 / 0.005 = 1.6. This means the stock's returns tend to move 1.6% for every 1% move in the market — a more aggressive, higher-beta stock than the market itself. This exact number is what plugs directly into the CAPM formula you'll see in Portfolio Management." },
+          { id: "reg-2-slope", name: "Regression slope (b1)", expression: "b1 = <span class=\"frac\"><span class=\"num\">Covariance(X,Y)</span><span class=\"den\">Variance(X)</span></span>", when: "Estimating how much Y changes, on average, for a one-unit change in X — this is exactly how a stock's beta is calculated.", given: ["Covariance(stock, market) = 0.008", "Variance(market) = 0.005"], worked: "b1 = 0.008 / 0.005\nb1 = 1.6\n\n(this beta plugs directly into the CAPM\nformula you'll see in Portfolio Management)" },
         ],
       },
       {
@@ -1342,7 +1661,7 @@ const CHAPTERS = [
           `Not every regression line fits its data equally well. R\u00B2 (the coefficient of determination) measures the proportion of the variation in Y that's explained by the model's relationship with X, ranging from 0 (the model explains none of the variation) to 1 (it explains all of it). The standard error of estimate measures the typical size of the model's prediction errors, in the same units as Y itself — a smaller standard error means predictions cluster more tightly around the fitted line.`,
         ],
         formulas: [
-          { id: "reg-3-r2", name: "R\u00B2 (coefficient of determination)", expression: "R\u00B2 = <span class=\"frac\"><span class=\"num\">Explained variation</span><span class=\"den\">Total variation</span></span>", when: "Measuring how much of Y's variation the regression model actually explains.", worked: "A regression of a stock's returns on market returns produces an R\u00B2 of 0.36. This means 36% of the variation in the stock's returns is explained by movements in the overall market — the remaining 64% is due to factors specific to that stock, unrelated to the broad market." },
+          { id: "reg-3-r2", name: "R\u00B2 (coefficient of determination)", expression: "R\u00B2 = <span class=\"frac\"><span class=\"num\">Explained variation</span><span class=\"den\">Total variation</span></span>", when: "Measuring how much of Y's variation the regression model actually explains.", given: ["R\u00B2 = 0.36 (from a stock-vs-market regression)"], worked: "36% of the stock's return variation is explained\nby the market.\n\nThe remaining 64% is due to factors specific\nto that stock, unrelated to the broad market." },
         ],
       },
       {
@@ -1452,7 +1771,7 @@ const CHAPTERS = [
           `Elasticity measures how sensitive quantity is to a change in price. Demand is elastic if a small price increase causes a large drop in quantity purchased. Demand is inelastic if quantity barely changes even with a large price increase.`,
         ],
         formulas: [
-          { id: "econ-3-elasticity", name: "Price elasticity of demand", expression: "Elasticity = <span class=\"frac\"><span class=\"num\">% change in quantity demanded</span><span class=\"den\">% change in price</span></span>", when: "Measuring how sensitive demand is to a price change.", worked: "A 10% price increase causes a 25% drop in quantity demanded. Elasticity = \u221225% / 10% = \u22122.5 (elastic)." },
+          { id: "econ-3-elasticity", name: "Price elasticity of demand", expression: "Elasticity = <span class=\"frac\"><span class=\"num\">% change in quantity demanded</span><span class=\"den\">% change in price</span></span>", when: "Measuring how sensitive demand is to a price change.", given: ["% change in price = +10%", "% change in quantity = \u221225%"], worked: "Elasticity = \u221225% / 10%\nElasticity = \u22122.5 (elastic)" },
         ],
       },
       {
@@ -1505,8 +1824,8 @@ const CHAPTERS = [
           `A forward exchange rate is the rate agreed today for a currency exchange at a future date, and it's linked to today's spot rate through interest rate parity — the same no-arbitrage logic from the implied forward rate discussion in Quantitative Methods, just applied across two currencies instead of two maturities of the same currency. The currency with the higher interest rate will trade at a forward discount (its forward rate is weaker than its spot rate); the currency with the lower interest rate will trade at a forward premium.`,
         ],
         formulas: [
-          { id: "econ-8b-cross", name: "Cross rate calculation", expression: "(A/B) = (A/C) \u00D7 (C/B)", when: "Finding the exchange rate between two currencies, given each one's rate against a common third currency.", worked: "EUR/USD = 1.10 (1.10 US dollars per euro) and GBP/USD = 1.25 (1.25 US dollars per pound). To find EUR/GBP: EUR/GBP = (EUR/USD) \u00F7 (GBP/USD) = 1.10 / 1.25 = 0.88 \u2014 meaning 0.88 euros are needed to buy 1 British pound." },
-          { id: "econ-8b-forward", name: "Forward premium/discount (interest rate parity, approximate)", expression: "Forward premium/discount \u2248 Domestic interest rate \u2212 Foreign interest rate", when: "Estimating whether a currency should trade at a forward premium or discount, based on the interest rate differential between the two countries.", worked: "The US risk-free rate is 5% and the eurozone risk-free rate is 2%. The euro's approximate forward premium against the dollar \u2248 5% \u2212 2% = 3% \u2014 the euro (the lower-rate currency) is expected to strengthen against the dollar in the forward market, consistent with interest rate parity: the currency offering the lower interest rate trades at a forward premium." },
+          { id: "econ-8b-cross", name: "Cross rate calculation", expression: "(A/B) = (A/C) \u00D7 (C/B)", when: "Finding the exchange rate between two currencies, given each one's rate against a common third currency.", given: ["EUR/USD = 1.10", "GBP/USD = 1.25"], worked: "EUR/GBP = (EUR/USD) \u00F7 (GBP/USD)\nEUR/GBP = 1.10 / 1.25\nEUR/GBP = 0.88" },
+          { id: "econ-8b-forward", name: "Forward premium/discount (interest rate parity, approximate)", expression: "Forward premium/discount \u2248 Domestic interest rate \u2212 Foreign interest rate", when: "Estimating whether a currency should trade at a forward premium or discount, based on the interest rate differential between the two countries.", given: ["US risk-free rate = 5%", "Eurozone risk-free rate = 2%"], worked: "Forward premium (EUR) \u2248 5% \u2212 2%\nForward premium (EUR) \u2248 3%\n\n(the lower-rate currency, EUR, is expected\nto strengthen \u2014 trades at a forward premium)" },
         ],
       },
       {
@@ -1597,7 +1916,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 3, svg: EXHIBIT_INVENTORY_COMPARISON }],
         formulas: [
-          { id: "fsa-3b-methods", name: "Cost of goods sold and ending inventory (rising-price example)", expression: "COGS + Ending inventory = Total cost of goods available for sale", when: "The three methods always split the same total cost differently between COGS and ending inventory — they never change the total.", worked: "A company buys 100 units at $10 and then 100 units at $12 (rising prices), and sells 150 units. FIFO: COGS = (100\u00D7$10) + (50\u00D7$12) = $1,600; ending inventory = 50\u00D7$12 = $600. LIFO: COGS = (100\u00D7$12) + (50\u00D7$10) = $1,700; ending inventory = 50\u00D7$10 = $500. Weighted average: average cost = $2,200 / 200 units = $11/unit; COGS = 150\u00D7$11 = $1,650; ending inventory = 50\u00D7$11 = $550. Notice LIFO's higher COGS (and therefore lower reported profit) during rising prices — the opposite would be true if prices were falling instead." },
+          { id: "fsa-3b-methods", name: "Cost of goods sold and ending inventory (rising-price example)", expression: "COGS + Ending inventory = Total cost of goods available for sale", when: "The three methods always split the same total cost differently between COGS and ending inventory — they never change the total.", given: ["100 units purchased @ $10", "100 units purchased @ $12", "150 units sold"], worked: "FIFO: COGS = (100\u00D7$10)+(50\u00D7$12) = $1,600\n      Ending inventory = 50\u00D7$12 = $600\n\nLIFO: COGS = (100\u00D7$12)+(50\u00D7$10) = $1,700\n      Ending inventory = 50\u00D7$10 = $500\n\nWeighted avg: avg cost = $2,200/200 = $11/unit\n      COGS = 150\u00D7$11 = $1,650\n      Ending inventory = 50\u00D7$11 = $550" },
         ],
       },
       {
@@ -1610,8 +1929,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 2, svg: EXHIBIT_DEPRECIATION_COMPARISON }],
         formulas: [
-          { id: "fsa-3c-sl", name: "Straight-line depreciation", expression: "Annual depreciation = <span class=\"frac\"><span class=\"num\">Cost \u2212 Salvage value</span><span class=\"den\">Useful life</span></span>", when: "Spreading an asset's cost evenly across its useful life.", worked: "A machine costs $50,000, has an estimated salvage value of $5,000, and a 5-year useful life. Annual depreciation = (50,000 \u2212 5,000) / 5 = $9,000 every year." },
-          { id: "fsa-3c-ddb", name: "Double-declining balance (accelerated) — advanced", expression: "Annual depreciation = 2 \u00D7 <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">Useful life</span></span> \u00D7 Beginning book value", when: "Front-loading more depreciation into earlier years.", worked: "The same $50,000 machine, 5-year life, using double-declining balance (rate = 2/5 = 40% of book value each year). Year 1: 50,000 \u00D7 0.40 = $20,000. Year 2: (50,000 \u2212 20,000) \u00D7 0.40 = $12,000. Year 3: (30,000\u221212,000) \u00D7 0.40 = $7,200 \u2014 and so on, declining each year, unlike straight-line's flat $9,000." },
+          { id: "fsa-3c-sl", name: "Straight-line depreciation", expression: "Annual depreciation = <span class=\"frac\"><span class=\"num\">Cost \u2212 Salvage value</span><span class=\"den\">Useful life</span></span>", when: "Spreading an asset's cost evenly across its useful life.", given: ["Cost = $50,000", "Salvage value = $5,000", "Useful life = 5 years"], worked: "Annual depreciation = (50,000 \u2212 5,000) / 5\nAnnual depreciation = $9,000 every year" },
+          { id: "fsa-3c-ddb", name: "Double-declining balance (accelerated) — advanced", expression: "Annual depreciation = 2 \u00D7 <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">Useful life</span></span> \u00D7 Beginning book value", when: "Front-loading more depreciation into earlier years.", given: ["Cost = $50,000", "Useful life = 5 years (rate = 2/5 = 40%)"], worked: "Year 1: 50,000 \u00D7 0.40 = $20,000\nYear 2: (50,000\u221220,000) \u00D7 0.40 = $12,000\nYear 3: (30,000\u221212,000) \u00D7 0.40 = $7,200\n\n(declining each year, unlike straight-line's flat $9,000)" },
         ],
       },
       {
@@ -1622,7 +1941,7 @@ const CHAPTERS = [
           `When book income and taxable income differ due to timing (rather than permanently), the company records a deferred tax liability (it paid less tax now than its book income would suggest, and will effectively "catch up" later) or a deferred tax asset (the reverse — it paid more tax now and expects a future tax benefit).`,
         ],
         formulas: [
-          { id: "fsa-3d-deferred", name: "Deferred tax liability from a timing difference", expression: "Deferred tax liability created = (Tax depreciation \u2212 Book depreciation) \u00D7 Tax rate", when: "Estimating the deferred tax impact of using different depreciation methods for book vs. tax purposes.", worked: "A company uses straight-line depreciation for its books ($9,000 in year 1) but accelerated depreciation for tax purposes ($15,000 in year 1), and the tax rate is 25%. The extra $6,000 of tax depreciation ($15,000 \u2212 $9,000) reduces taxable income now without reducing book income by the same amount, creating a deferred tax liability of 6,000 \u00D7 0.25 = $1,500 — tax the company will effectively pay in a later year, once tax depreciation falls below book depreciation." },
+          { id: "fsa-3d-deferred", name: "Deferred tax liability from a timing difference", expression: "Deferred tax liability created = (Tax depreciation \u2212 Book depreciation) \u00D7 Tax rate", when: "Estimating the deferred tax impact of using different depreciation methods for book vs. tax purposes.", given: ["Book depreciation = $9,000", "Tax depreciation = $15,000", "Tax rate = 0.25"], worked: "DTL = (15,000 \u2212 9,000) \u00D7 0.25\nDTL = 6,000 \u00D7 0.25\nDTL = $1,500\n\n(tax the company will effectively pay later, once\ntax depreciation falls below book depreciation)" },
         ],
       },
       {
@@ -1642,10 +1961,10 @@ const CHAPTERS = [
           `Liquidity ratios ask: can the company meet short-term obligations? Solvency ratios ask: can it meet long-term obligations? Profitability ratios ask: how efficiently does it turn sales into profit? Activity ratios ask: how efficiently does it use its assets?`,
         ],
         formulas: [
-          { id: "fsa-4-current", name: "Current ratio (liquidity)", expression: "<span class=\"frac\"><span class=\"num\">Current assets</span><span class=\"den\">Current liabilities</span></span>", when: "Assessing ability to meet short-term obligations.", worked: "Current assets of $500,000 and current liabilities of $250,000. Current ratio = 500,000 / 250,000 = 2.0." },
-          { id: "fsa-4-de", name: "Debt-to-equity ratio (solvency)", expression: "<span class=\"frac\"><span class=\"num\">Total debt</span><span class=\"den\">Total equity</span></span>", when: "Assessing leverage / ability to meet long-term obligations.", worked: "Total debt of $3 million and total equity of $2 million. Debt-to-equity = 3,000,000 / 2,000,000 = 1.5." },
-          { id: "fsa-4-margin", name: "Net profit margin (profitability)", expression: "<span class=\"frac\"><span class=\"num\">Net income</span><span class=\"den\">Revenue</span></span>", when: "Assessing how much profit is generated per dollar of sales.", worked: "Net income of $400,000 on revenue of $5,000,000. Net profit margin = 400,000 / 5,000,000 = 8%." },
-          { id: "fsa-4-turnover", name: "Inventory turnover (activity)", expression: "<span class=\"frac\"><span class=\"num\">Cost of goods sold</span><span class=\"den\">Average inventory</span></span>", when: "Assessing how efficiently inventory is used.", worked: "COGS of $2,000,000 and average inventory of $400,000. Inventory turnover = 2,000,000 / 400,000 = 5 times per year." },
+          { id: "fsa-4-current", name: "Current ratio (liquidity)", expression: "<span class=\"frac\"><span class=\"num\">Current assets</span><span class=\"den\">Current liabilities</span></span>", when: "Assessing ability to meet short-term obligations.", given: ["Current assets = $500,000", "Current liabilities = $250,000"], worked: "Current ratio = 500,000 / 250,000\nCurrent ratio = 2.0" },
+          { id: "fsa-4-de", name: "Debt-to-equity ratio (solvency)", expression: "<span class=\"frac\"><span class=\"num\">Total debt</span><span class=\"den\">Total equity</span></span>", when: "Assessing leverage / ability to meet long-term obligations.", given: ["Total debt = $3,000,000", "Total equity = $2,000,000"], worked: "Debt-to-equity = 3,000,000 / 2,000,000\nDebt-to-equity = 1.5" },
+          { id: "fsa-4-margin", name: "Net profit margin (profitability)", expression: "<span class=\"frac\"><span class=\"num\">Net income</span><span class=\"den\">Revenue</span></span>", when: "Assessing how much profit is generated per dollar of sales.", given: ["Net income = $400,000", "Revenue = $5,000,000"], worked: "Net profit margin = 400,000 / 5,000,000\nNet profit margin = 8%" },
+          { id: "fsa-4-turnover", name: "Inventory turnover (activity)", expression: "<span class=\"frac\"><span class=\"num\">Cost of goods sold</span><span class=\"den\">Average inventory</span></span>", when: "Assessing how efficiently inventory is used.", given: ["COGS = $2,000,000", "Average inventory = $400,000"], worked: "Inventory turnover = 2,000,000 / 400,000\nInventory turnover = 5 times per year" },
         ],
       },
       {
@@ -1663,7 +1982,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 1, svg: EXHIBIT_COMMONSIZE_COMPARISON }],
         formulas: [
-          { id: "fsa-5b-commonsize", name: "Common-size income statement line item", expression: "Common-size % = <span class=\"frac\"><span class=\"num\">Line item</span><span class=\"den\">Total revenue</span></span>", when: "Restating an income statement line as a percentage of revenue, to compare companies of different sizes.", worked: "Company A has $10 million revenue and $6 million cost of goods sold: COGS common-size = 6/10 = 60%. Company B has $100 million revenue and $65 million cost of goods sold: COGS common-size = 65/100 = 65%. Despite Company B being ten times larger in dollar terms, common-sizing reveals it actually runs a slightly less efficient cost structure (65% vs. 60%) — a comparison the raw dollar figures alone would have obscured." },
+          { id: "fsa-5b-commonsize", name: "Common-size income statement line item", expression: "Common-size % = <span class=\"frac\"><span class=\"num\">Line item</span><span class=\"den\">Total revenue</span></span>", when: "Restating an income statement line as a percentage of revenue, to compare companies of different sizes.", given: ["Company A: revenue = $10M, COGS = $6M", "Company B: revenue = $100M, COGS = $65M"], worked: "Company A: COGS % = 6/10 = 60%\nCompany B: COGS % = 65/100 = 65%\n\n(despite being 10x larger, Company B actually runs\na slightly less efficient cost structure)" },
         ],
       },
       {
@@ -1673,7 +1992,7 @@ const CHAPTERS = [
           `Return on equity (ROE) — net income divided by shareholders' equity — is one of the single most-watched profitability numbers, but on its own it doesn't explain *why* a company's ROE is high or low. DuPont analysis breaks ROE apart into three drivers, each answering a different question: how profitable is each sale (net profit margin), how efficiently are assets used to generate sales (asset turnover), and how much leverage is the company using (the equity multiplier)? Two companies can have identical ROE for completely different reasons — one earning it through genuine operating efficiency, another through aggressive leverage — and DuPont analysis is what reveals the difference.`,
         ],
         formulas: [
-          { id: "fsa-5c-dupont", name: "DuPont analysis (3-factor ROE decomposition)", expression: "ROE = <span class=\"frac\"><span class=\"num\">Net income</span><span class=\"den\">Revenue</span></span> \u00D7 <span class=\"frac\"><span class=\"num\">Revenue</span><span class=\"den\">Total assets</span></span> \u00D7 <span class=\"frac\"><span class=\"num\">Total assets</span><span class=\"den\">Total equity</span></span>", when: "Breaking ROE into net profit margin \u00D7 asset turnover \u00D7 the equity multiplier (leverage), to see what's actually driving it.", worked: "A company has a 6% net profit margin, an asset turnover of 1.5 (meaning $1.50 of revenue per $1 of assets), and an equity multiplier of 2.0 (meaning assets are twice equity, implying half the balance sheet is debt-financed). ROE = 6% \u00D7 1.5 \u00D7 2.0 = 18%. A competitor could reach the same 18% ROE with only a 4% margin and 1.0 asset turnover, but a much higher equity multiplier of 4.5 — the same headline number, driven almost entirely by leverage instead of operating performance." },
+          { id: "fsa-5c-dupont", name: "DuPont analysis (3-factor ROE decomposition)", expression: "ROE = <span class=\"frac\"><span class=\"num\">Net income</span><span class=\"den\">Revenue</span></span> \u00D7 <span class=\"frac\"><span class=\"num\">Revenue</span><span class=\"den\">Total assets</span></span> \u00D7 <span class=\"frac\"><span class=\"num\">Total assets</span><span class=\"den\">Total equity</span></span>", when: "Breaking ROE into net profit margin \u00D7 asset turnover \u00D7 the equity multiplier (leverage), to see what's actually driving it.", given: ["Net profit margin = 6%", "Asset turnover = 1.5", "Equity multiplier = 2.0"], worked: "ROE = 6% \u00D7 1.5 \u00D7 2.0\nROE = 18%\n\n(a competitor could reach the same 18% ROE with only\na 4% margin and 1.0 turnover, but a 4.5 multiplier \u2014\nsame headline number, driven mostly by leverage)" },
         ],
       },
       {
@@ -1683,7 +2002,7 @@ const CHAPTERS = [
           `Earnings per share restates net income on a per-share basis, making it possible to compare profitability across companies regardless of how many shares each happens to have outstanding. Basic EPS uses only the shares currently outstanding; diluted EPS additionally accounts for securities that could convert into new common shares (like convertible bonds, covered in Fixed Income, or employee stock options), showing what EPS would look like if all of that potential dilution actually happened. Diluted EPS is always less than or equal to basic EPS, since adding potential shares can only spread the same net income more thinly, never less.`,
         ],
         formulas: [
-          { id: "fsa-5d-eps", name: "Basic earnings per share", expression: "Basic EPS = <span class=\"frac\"><span class=\"num\">Net income \u2212 Preferred dividends</span><span class=\"den\">Weighted average shares outstanding</span></span>", when: "Preferred dividends are subtracted first because that income belongs to preferred shareholders, not common shareholders.", worked: "A company has net income of $5,000,000, pays $500,000 in preferred dividends, and has a weighted average of 2,000,000 common shares outstanding. Basic EPS = (5,000,000 \u2212 500,000) / 2,000,000 = 4,500,000 / 2,000,000 = $2.25 per share." },
+          { id: "fsa-5d-eps", name: "Basic earnings per share", expression: "Basic EPS = <span class=\"frac\"><span class=\"num\">Net income \u2212 Preferred dividends</span><span class=\"den\">Weighted average shares outstanding</span></span>", when: "Preferred dividends are subtracted first because that income belongs to preferred shareholders, not common shareholders.", given: ["Net income = $5,000,000", "Preferred dividends = $500,000", "Weighted avg. shares = 2,000,000"], worked: "Basic EPS = (5,000,000 \u2212 500,000) / 2,000,000\nBasic EPS = 4,500,000 / 2,000,000\nBasic EPS = $2.25 per share" },
         ],
       },
       {
@@ -1694,7 +2013,7 @@ const CHAPTERS = [
           `Free cash flow to the firm (FCFF) is the cash available to all of the company's capital providers — both debt and equity holders — after covering operating expenses and the capital investment needed to sustain the business. Free cash flow to equity (FCFE) narrows that down to just what's available to equity holders specifically, after also accounting for net payments to debtholders.`,
         ],
         formulas: [
-          { id: "fsa-5e-fcff", name: "FCFF (starting from net income) — advanced", expression: "FCFF = Net income + Non-cash charges + Interest \u00D7 (1 \u2212 tax rate) \u2212 Capital expenditures \u2212 Increase in working capital", when: "Estimating cash available to all capital providers (debt and equity) combined.", worked: "A company has net income of $2,000,000, non-cash depreciation of $400,000, interest expense of $300,000, a 25% tax rate, capital expenditures of $600,000, and a $100,000 increase in working capital. FCFF = 2,000,000 + 400,000 + 300,000\u00D7(1\u22120.25) \u2212 600,000 \u2212 100,000 = 2,000,000 + 400,000 + 225,000 \u2212 600,000 \u2212 100,000 = $1,925,000." },
+          { id: "fsa-5e-fcff", name: "FCFF (starting from net income) — advanced", expression: "FCFF = Net income + Non-cash charges + Interest \u00D7 (1 \u2212 tax rate) \u2212 Capital expenditures \u2212 Increase in working capital", when: "Estimating cash available to all capital providers (debt and equity) combined.", given: ["Net income = $2,000,000", "Non-cash depreciation = $400,000", "Interest expense = $300,000", "Tax rate = 0.25", "CapEx = $600,000", "Increase in working capital = $100,000"], worked: "FCFF = 2,000,000 + 400,000 + 300,000\u00D7(1\u22120.25) \u2212 600,000 \u2212 100,000\nFCFF = 2,000,000 + 400,000 + 225,000 \u2212 600,000 \u2212 100,000\nFCFF = $1,925,000" },
         ],
       },
       {
@@ -1735,6 +2054,15 @@ const CHAPTERS = [
         ],
         formulas: [],
       },
+      {
+        id: "fsa-8",
+        title: "Addendum: Interactive Formula Mind Map",
+        body: [
+          `DuPont analysis is the natural center of the FSA ratio toolkit — it's literally built from three of the ratios covered in this chapter (margin, turnover, leverage), so it's a useful anchor for seeing how liquidity, profitability, and per-share metrics all relate. Click any box to see a full worked word problem.`,
+        ],
+        interactiveExhibit: "fsaMindmap",
+        formulas: [],
+      },
     ],
   },
   {
@@ -1771,8 +2099,8 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_NPV }],
         formulas: [
-          { id: "corp-3-npv", name: "Net present value (NPV)", expression: "NPV = (PV of future cash inflows) \u2212 (initial investment)", when: "Positive NPV = expected to add value; negative NPV = expected to destroy value.", worked: "A project costs $50,000 today and generates $15,000/year for 5 years. At 10%, PV of that annuity \u2248 15,000 \u00D7 3.7908 \u2248 $56,862. NPV \u2248 56,862 \u2212 50,000 \u2248 $6,862 — positive." },
-          { id: "corp-3-roic", name: "Return on invested capital (ROIC)", expression: "ROIC = <span class=\"frac\"><span class=\"num\">Net operating profit after tax</span><span class=\"den\">Invested capital</span></span>", when: "Assessing how efficiently a company's existing capital has been deployed — compare to the cost of capital to judge whether value is being created.", worked: "A company has net operating profit after tax of $18 million and invested capital of $150 million. ROIC = 18/150 = 12%. If the company's cost of capital is 9%, this 12% ROIC suggests it is genuinely creating value with its existing capital base, not just growing revenue." },
+          { id: "corp-3-npv", name: "Net present value (NPV)", expression: "NPV = (PV of future cash inflows) \u2212 (initial investment)", when: "Positive NPV = expected to add value; negative NPV = expected to destroy value.", given: ["Initial investment = $50,000", "PMT = $15,000/year", "n = 5", "r = 0.10"], worked: "PV of annuity \u2248 15,000 \u00D7 3.7908 \u2248 $56,862\n\nNPV \u2248 56,862 \u2212 50,000\nNPV \u2248 $6,862 (positive)" },
+          { id: "corp-3-roic", name: "Return on invested capital (ROIC)", expression: "ROIC = <span class=\"frac\"><span class=\"num\">Net operating profit after tax</span><span class=\"den\">Invested capital</span></span>", when: "Assessing how efficiently a company's existing capital has been deployed — compare to the cost of capital to judge whether value is being created.", given: ["NOPAT = $18M", "Invested capital = $150M", "Cost of capital = 9% (for comparison)"], worked: "ROIC = 18 / 150\nROIC = 12%\n\n(above the 9% cost of capital \u2014 genuinely\ncreating value with existing capital)" },
         ],
       },
       {
@@ -1798,7 +2126,7 @@ const CHAPTERS = [
           `The cash conversion cycle turns that general idea into a concrete number: the time it takes a company to convert its investments in inventory back into cash. It combines how long inventory sits before being sold, how long it takes to collect cash from customers afterward, and how long the company itself takes to pay its own suppliers — a shorter cash conversion cycle generally means working capital is being managed more efficiently.`,
         ],
         formulas: [
-          { id: "corp-6-ccc", name: "Cash conversion cycle", expression: "CCC = Days inventory outstanding + Days sales outstanding \u2212 Days payables outstanding", when: "Measuring how long cash is tied up in the operating cycle before returning as cash from customers.", worked: "A company holds inventory for an average of 60 days, collects receivables in 45 days, and pays its own suppliers in 30 days. CCC = 60 + 45 \u2212 30 = 75 days \u2014 cash is tied up in the operating cycle for about 75 days before it's fully converted back to cash." },
+          { id: "corp-6-ccc", name: "Cash conversion cycle", expression: "CCC = Days inventory outstanding + Days sales outstanding \u2212 Days payables outstanding", when: "Measuring how long cash is tied up in the operating cycle before returning as cash from customers.", given: ["Days inventory outstanding = 60", "Days sales outstanding = 45", "Days payables outstanding = 30"], worked: "CCC = 60 + 45 \u2212 30\nCCC = 75 days" },
         ],
       },
       {
@@ -1866,7 +2194,7 @@ const CHAPTERS = [
           `Buying on margin means borrowing part of a purchase price from a broker, using the securities themselves as collateral — this leverages returns in both directions, exactly like the leveraged return concept from Quantitative Methods. If the position's value falls enough, the broker issues a margin call, requiring the investor to deposit more funds or sell part of the position; the price at which this happens can be calculated directly from the initial margin percentage and the maintenance margin requirement.`,
         ],
         formulas: [
-          { id: "equity-3-margin", name: "Margin call price", expression: "Margin call price = Purchase price \u00D7 <span class=\"frac\"><span class=\"num\">1 \u2212 Initial margin</span><span class=\"den\">1 \u2212 Maintenance margin</span></span>", when: "Finding the stock price at which a margin call will be triggered.", worked: "An investor buys a stock at $80/share using 60% initial margin (borrowing the other 40%), with a 30% maintenance margin requirement. Margin call price = 80 \u00D7 [(1 \u2212 0.60) / (1 \u2212 0.30)] = 80 \u00D7 (0.40/0.70) \u2248 80 \u00D7 0.571 \u2248 $45.71. If the stock falls to about $45.71, the investor will receive a margin call." },
+          { id: "equity-3-margin", name: "Margin call price", expression: "Margin call price = Purchase price \u00D7 <span class=\"frac\"><span class=\"num\">1 \u2212 Initial margin</span><span class=\"den\">1 \u2212 Maintenance margin</span></span>", when: "Finding the stock price at which a margin call will be triggered.", given: ["Purchase price = $80", "Initial margin = 0.60", "Maintenance margin = 0.30"], worked: "Margin call price = 80 \u00D7 [(1\u22120.60)/(1\u22120.30)]\nMargin call price = 80 \u00D7 (0.40/0.70)\nMargin call price \u2248 $45.71" },
         ],
       },
       {
@@ -1875,7 +2203,7 @@ const CHAPTERS = [
         body: [`If a company pays dividends, its shares can be valued using the exact same perpetuity logic from Chapter 02 — a share of stock is just a claim on a stream of future dividends, discounted back to today.`],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_DDM }],
         formulas: [
-          { id: "equity-4-ggm", name: "Gordon growth (constant-growth dividend discount) model", expression: "V0 = <span class=\"frac\"><span class=\"num\">D1</span><span class=\"den\">r \u2212 g</span></span>", when: "Values a stock as a growing perpetuity of dividends.", worked: "A stock just paid a $2.00 dividend, growing 4% per year forever. D1 = 2.00 \u00D7 1.04 = $2.08. At a 10% required return, V0 = 2.08 / (0.10 \u2212 0.04) \u2248 $34.67." },
+          { id: "equity-4-ggm", name: "Gordon growth (constant-growth dividend discount) model", expression: "V0 = <span class=\"frac\"><span class=\"num\">D1</span><span class=\"den\">r \u2212 g</span></span>", when: "Values a stock as a growing perpetuity of dividends.", given: ["D0 = $2.00 (just paid)", "g = 0.04", "r = 0.10"], worked: "D1 = 2.00 \u00D7 1.04 = $2.08\n\nV0 = 2.08 / (0.10 \u2212 0.04)\nV0 \u2248 $34.67" },
         ],
       },
       {
@@ -1892,8 +2220,8 @@ const CHAPTERS = [
         title: "Relative valuation: multiples",
         body: [`Rather than discounting cash flows directly, analysts often value a stock by comparing it to similar companies using a multiple — a ratio of price to some fundamental metric.`],
         formulas: [
-          { id: "equity-5-pe", name: "Price-to-earnings (P/E) ratio", expression: "<span class=\"frac\"><span class=\"num\">Price per share</span><span class=\"den\">Earnings per share</span></span>", when: "Comparing a stock's price to its earnings, relative to similar companies.", worked: "A stock trades at $60 with earnings per share of $4.00. P/E = 60 / 4 = 15." },
-          { id: "equity-5-ev", name: "Enterprise value multiple — advanced", expression: "EV/EBITDA = <span class=\"frac\"><span class=\"num\">Enterprise value</span><span class=\"den\">EBITDA</span></span>", when: "Comparing companies with very different capital structures (debt levels), since enterprise value captures both debt and equity claims, sidestepping the leverage differences that can distort a pure equity-price-based multiple like P/E.", worked: "A company has a market cap of $800 million, total debt of $300 million, and cash of $100 million (enterprise value = 800 + 300 \u2212 100 = $1,000 million). Its EBITDA is $125 million. EV/EBITDA = 1,000 / 125 = 8.0." },
+          { id: "equity-5-pe", name: "Price-to-earnings (P/E) ratio", expression: "<span class=\"frac\"><span class=\"num\">Price per share</span><span class=\"den\">Earnings per share</span></span>", when: "Comparing a stock's price to its earnings, relative to similar companies.", given: ["Price = $60", "EPS = $4.00"], worked: "P/E = 60 / 4\nP/E = 15" },
+          { id: "equity-5-ev", name: "Enterprise value multiple — advanced", expression: "EV/EBITDA = <span class=\"frac\"><span class=\"num\">Enterprise value</span><span class=\"den\">EBITDA</span></span>", when: "Comparing companies with very different capital structures (debt levels), since enterprise value captures both debt and equity claims, sidestepping the leverage differences that can distort a pure equity-price-based multiple like P/E.", given: ["Market cap = $800M", "Total debt = $300M", "Cash = $100M", "EBITDA = $125M"], worked: "EV = 800 + 300 \u2212 100 = $1,000M\n\nEV/EBITDA = 1,000 / 125\nEV/EBITDA = 8.0" },
         ],
       },
       {
@@ -1970,7 +2298,7 @@ const CHAPTERS = [
           `A floating-rate bond (or "floater") resets its coupon periodically based on a reference rate plus a fixed spread — for example, "SOFR + 1.5%," recalculated every quarter. Because the coupon adjusts to match current market rates, a floater's price stays much closer to par than a fixed-rate bond's does when rates move.`,
         ],
         formulas: [
-          { id: "fi-2b-zero", name: "Zero-coupon bond price", expression: "Price = <span class=\"frac\"><span class=\"num\">Face value</span><span class=\"den\">(1 + r)<sup>n</sup></span></span>", when: "No coupon payments at all — just a single lump sum at maturity.", worked: "A $1,000 face value zero-coupon bond matures in 5 years; the market yield is 6%. Price = 1,000 / (1.06)<sup>5</sup> \u2248 1,000 / 1.3382 \u2248 $747.26. The investor pays $747.26 today and receives $1,000 in 5 years — the entire $252.74 gain is the return, with no coupons along the way." },
+          { id: "fi-2b-zero", name: "Zero-coupon bond price", expression: "Price = <span class=\"frac\"><span class=\"num\">Face value</span><span class=\"den\">(1 + r)<sup>n</sup></span></span>", when: "No coupon payments at all — just a single lump sum at maturity.", given: ["Face value = $1,000", "r = 0.06", "n = 5"], worked: "Price = 1,000 / (1.06)<sup>5</sup>\nPrice \u2248 1,000 / 1.3382\nPrice \u2248 $747.26\n\n(the entire $252.74 gain over 5 years is the\nreturn \u2014 no coupons paid along the way)" },
         ],
       },
       {
@@ -1982,7 +2310,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_BOND }, { afterParagraph: 1, svg: EXHIBIT_BOND_PRICE_MAP }],
         formulas: [
-          { id: "fi-3-price", name: "Bond price", expression: "Price = PV(coupon annuity) + PV(face value)", when: "Finding a bond's fair price given its coupon, face value, maturity, and required yield.", worked: "A $1,000 face value bond, 6% annual coupon ($60/yr), 3 years to maturity, market yield 8%. PV of coupons \u2248 $154.63. PV of face value \u2248 $793.83. Price \u2248 $948.46 — a discount, since coupon (6%) < yield (8%)." },
+          { id: "fi-3-price", name: "Bond price", expression: "Price = PV(coupon annuity) + PV(face value)", when: "Finding a bond's fair price given its coupon, face value, maturity, and required yield.", given: ["Face value = $1,000", "Coupon = $60/year (6%)", "n = 3 years", "r = 0.08"], worked: "PV(coupons) \u2248 $154.63\nPV(face value) \u2248 $793.83\nPrice \u2248 154.63 + 793.83\nPrice \u2248 $948.46\n\n(a discount, since the 6% coupon is below the 8% yield)" },
         ],
       },
       {
@@ -2004,7 +2332,7 @@ const CHAPTERS = [
           `The yield to maturity (YTM) is the more complete measure — the single discount rate that makes the PV of all remaining cash flows equal the current price. YTM is effectively the bond's own IRR (see Corporate Issuers) and, unlike current yield, it captures the full return including any built-in price gain or loss to maturity. Like IRR, YTM typically has no simple closed-form formula — in practice it's found by iteration (or with a financial calculator's TVM worksheet, entering price as PV and solving for I/Y).`,
         ],
         formulas: [
-          { id: "fi-4-current", name: "Current yield", expression: "Current yield = <span class=\"frac\"><span class=\"num\">Annual coupon payment</span><span class=\"den\">Current bond price</span></span>", when: "A quick, rough yield estimate — ignores any price gain/loss to maturity.", worked: "A bond with a $60 annual coupon currently trades at $948. Current yield = 60 / 948 \u2248 6.33% — note this is higher than the 6% coupon rate, simply because the bond is trading below face value." },
+          { id: "fi-4-current", name: "Current yield", expression: "Current yield = <span class=\"frac\"><span class=\"num\">Annual coupon payment</span><span class=\"den\">Current bond price</span></span>", when: "A quick, rough yield estimate — ignores any price gain/loss to maturity.", given: ["Annual coupon = $60", "Current price = $948"], worked: "Current yield = 60 / 948\nCurrent yield \u2248 6.33%\n\n(higher than the 6% coupon rate, simply because\nthe bond is trading below face value)" },
         ],
       },
       {
@@ -2015,7 +2343,7 @@ const CHAPTERS = [
           `Accrued interest is that in-between amount: the portion of the next coupon the seller has already earned. The clean price is a bond's quoted price excluding accrued interest (what you typically see quoted); the dirty price (or "full" or "invoice" price) is the clean price plus accrued interest — the actual amount the buyer pays at settlement.`,
         ],
         formulas: [
-          { id: "fi-4b-accrued", name: "Accrued interest (approximate)", expression: "Accrued interest = Annual coupon \u00D7 <span class=\"frac\"><span class=\"num\">Days since last coupon</span><span class=\"den\">Days in coupon period</span></span>", when: "Finding how much of the next coupon the seller has already earned.", worked: "A bond pays a $60 annual coupon (once a year, 360-day convention) and it has been 90 days since the last coupon payment. Accrued interest = 60 \u00D7 (90/360) = $15. If the quoted (clean) price is $980, the buyer actually pays the dirty price: $980 + $15 = $995 at settlement." },
+          { id: "fi-4b-accrued", name: "Accrued interest (approximate)", expression: "Accrued interest = Annual coupon \u00D7 <span class=\"frac\"><span class=\"num\">Days since last coupon</span><span class=\"den\">Days in coupon period</span></span>", when: "Finding how much of the next coupon the seller has already earned.", given: ["Annual coupon = $60", "Days since last coupon = 90", "Days in coupon period = 360", "Clean price = $980"], worked: "Accrued interest = 60 \u00D7 (90/360)\nAccrued interest = $15\n\nDirty price = 980 + 15 = $995\n(the actual amount the buyer pays at settlement)" },
         ],
       },
       {
@@ -2034,8 +2362,8 @@ const CHAPTERS = [
           `Modified duration adjusts Macaulay duration to directly estimate price sensitivity to yield changes — it's Macaulay duration scaled down by the periodic yield, and it's the version that plugs directly into the price-change approximation below. Longer-maturity bonds and lower-coupon bonds generally have higher duration (of either kind), because more of their value sits further out in time, where discounting has a bigger effect on present value.`,
         ],
         formulas: [
-          { id: "fi-6-modified", name: "Modified duration (from Macaulay duration)", expression: "Modified duration = <span class=\"frac\"><span class=\"num\">Macaulay duration</span><span class=\"den\">1 + periodic yield</span></span>", when: "Converting Macaulay duration into the form used to directly estimate price sensitivity.", worked: "A bond has a Macaulay duration of 4.5 years and a periodic (annual) yield of 6%. Modified duration = 4.5 / 1.06 \u2248 4.25." },
-          { id: "fi-6-duration", name: "Approximate price change from duration", expression: "% change in price \u2248 \u2212 Modified duration \u00D7 (change in yield)", when: "Estimating how much a bond's price will move for a given change in market yield.", worked: "A bond has a modified duration of 7 and market yields rise by 0.50 percentage points (0.005). % change in price \u2248 \u22127 \u00D7 0.005 = \u22123.5% — the bond's price is expected to fall about 3.5%." },
+          { id: "fi-6-modified", name: "Modified duration (from Macaulay duration)", expression: "Modified duration = <span class=\"frac\"><span class=\"num\">Macaulay duration</span><span class=\"den\">1 + periodic yield</span></span>", when: "Converting Macaulay duration into the form used to directly estimate price sensitivity.", given: ["Macaulay duration = 4.5 years", "Periodic yield = 0.06"], worked: "Modified duration = 4.5 / 1.06\nModified duration \u2248 4.25" },
+          { id: "fi-6-duration", name: "Approximate price change from duration", expression: "% change in price \u2248 \u2212 Modified duration \u00D7 (change in yield)", when: "Estimating how much a bond's price will move for a given change in market yield.", given: ["Modified duration = 7", "Change in yield = 0.005 (+0.50 percentage points)"], worked: "% change in price \u2248 \u22127 \u00D7 0.005\n% change in price \u2248 \u22123.5%" },
         ],
       },
       {
@@ -2047,7 +2375,7 @@ const CHAPTERS = [
           `Bonds with embedded options behave differently: a callable bond's price gains are capped as yields fall (since the issuer becomes more likely to call it away), giving it negative convexity in that range — one more reason embedded call features are a risk to the bondholder, not just the reinvestment-timing risk covered earlier.`,
         ],
         formulas: [
-          { id: "fi-6a2-adj", name: "Full price change estimate (duration + convexity)", expression: "% change in price \u2248 [\u2212 Modified duration \u00D7 \u0394y] + [\u00BD \u00D7 Convexity \u00D7 (\u0394y)<sup>2</sup>]", when: "Getting a more accurate price-change estimate than duration alone provides, especially for larger yield changes.", worked: "A bond has modified duration of 7, convexity of 65, and yields rise by 2 percentage points (0.02). Duration-only estimate: \u22127 \u00D7 0.02 = \u221214%. Convexity adjustment: \u00BD \u00D7 65 \u00D7 (0.02)\u00B2 = \u00BD \u00D7 65 \u00D7 0.0004 \u2248 0.013 = +1.3%. Combined estimate: \u221214% + 1.3% = \u221212.7% \u2014 a noticeably smaller loss than the duration-only estimate suggested, because positive convexity cushions the downside." },
+          { id: "fi-6a2-adj", name: "Full price change estimate (duration + convexity)", expression: "% change in price \u2248 [\u2212 Modified duration \u00D7 \u0394y] + [\u00BD \u00D7 Convexity \u00D7 (\u0394y)<sup>2</sup>]", when: "Getting a more accurate price-change estimate than duration alone provides, especially for larger yield changes.", given: ["Modified duration = 7", "Convexity = 65", "\u0394y = 0.02 (+2 percentage points)"], worked: "Duration-only: \u22127 \u00D7 0.02 = \u221214%\nConvexity adj.: \u00BD \u00D7 65 \u00D7 (0.02)<sup>2</sup> \u2248 +1.3%\n\nCombined: \u221214% + 1.3% = \u221212.7%\n\n(a noticeably smaller loss than duration alone\nsuggested \u2014 positive convexity cushions the downside)" },
         ],
       },
       {
@@ -2114,6 +2442,15 @@ const CHAPTERS = [
         ],
         formulas: [],
       },
+      {
+        id: "fi-10",
+        title: "Addendum: Interactive Formula Mind Map",
+        body: [
+          `Fixed income has three formula families that each branch off a shared idea: pricing a bond, measuring its yield, and measuring how sensitive its price is to rate changes. The map below organizes every Fixed Income formula in this chapter by which of those three questions it answers. Click any box to see a full worked word problem.`,
+        ],
+        interactiveExhibit: "fiMindmap",
+        formulas: [],
+      },
     ],
   },
   {
@@ -2157,7 +2494,7 @@ const CHAPTERS = [
         title: "Put-call parity",
         body: [`Put-call parity is a direct application of the no-arbitrage principle from Quantitative Methods: a call option, a put option (same strike, same expiration, same underlying), and the underlying stock and a bond are all linked by one fixed relationship. If the actual market prices ever drifted away from this relationship, an arbitrageur could combine these instruments to lock in a riskless profit — which is exactly why the relationship holds in efficient markets.`],
         formulas: [
-          { id: "deriv-3c-parity", name: "Put-call parity", expression: "Call price + <span class=\"frac\"><span class=\"num\">Strike price</span><span class=\"den\">(1+r)<sup>t</sup></span></span> = Put price + Stock price", when: "Checking whether call price, put price, strike, and stock price are mutually consistent — or backing out one of them given the other three.", worked: "A stock trades at $52. A 1-year call and put, both with a $50 strike, exist in a market with a 4% risk-free rate. The put trades at $2.50. Put-call parity: Call + 50/(1.04) = 2.50 + 52. Call + 48.08 = 54.50. Call \u2248 $6.42. If the actual call price differs meaningfully from $6.42, an arbitrage opportunity exists." },
+          { id: "deriv-3c-parity", name: "Put-call parity", expression: "Call price + <span class=\"frac\"><span class=\"num\">Strike price</span><span class=\"den\">(1+r)<sup>t</sup></span></span> = Put price + Stock price", when: "Checking whether call price, put price, strike, and stock price are mutually consistent — or backing out one of them given the other three.", given: ["Stock price = $52", "Strike = $50", "r = 0.04", "t = 1 year", "Put price = $2.50"], worked: "Call + 50/(1.04) = 2.50 + 52\nCall + 48.08 = 54.50\nCall \u2248 $6.42" },
         ],
       },
       {
@@ -2165,7 +2502,7 @@ const CHAPTERS = [
         title: "The cost of carry model",
         body: [`The cost of carry model explains how a forward or futures price relates to the underlying asset's current spot price: the forward price should equal the spot price grown forward at the risk-free rate, adjusted for any costs of holding the asset (like storage costs for a physical commodity) minus any benefits of holding it (like dividends received on a stock, or convenience yield for a commodity in short supply). If a forward price ever strayed from this no-arbitrage relationship, the same kind of arbitrage described in put-call parity would again be available.`],
         formulas: [
-          { id: "deriv-3d-carry", name: "Cost of carry (forward price)", expression: "Forward price = Spot price \u00D7 (1+r)<sup>t</sup> + Carry costs \u2212 Carry benefits", when: "Finding the no-arbitrage forward price of an asset, given its spot price and the costs/benefits of holding it.", worked: "A stock trades at $100 today, the risk-free rate is 5%, the forward contract matures in 1 year, and the stock pays no dividend. Forward price = 100 \u00D7 (1.05) = $105. If the stock instead paid a $2 dividend over the year (a carry benefit), the forward price would be 105 \u2212 2 = $103 \u2014 lower, since holding the stock directly captures that dividend, which a forward buyer forgoes." },
+          { id: "deriv-3d-carry", name: "Cost of carry (forward price)", expression: "Forward price = Spot price \u00D7 (1+r)<sup>t</sup> + Carry costs \u2212 Carry benefits", when: "Finding the no-arbitrage forward price of an asset, given its spot price and the costs/benefits of holding it.", given: ["Spot price = $100", "r = 0.05", "t = 1 year", "Carry benefits = $0 (no dividend)"], worked: "Forward price = 100 \u00D7 (1.05)\nForward price = $105\n\n(if the stock instead paid a $2 dividend,\nforward price = 105 \u2212 2 = $103)" },
         ],
       },
       {
@@ -2341,8 +2678,8 @@ const CHAPTERS = [
           `Among every possible two-asset portfolio you could build from a given pair of stocks, one specific mix produces the lowest possible risk — the global minimum-variance portfolio. It isn't necessarily the mix with the highest return; it's simply the one where the assets' offsetting movements cancel out as much risk as mathematically possible.`,
         ],
         formulas: [
-          { id: "port-3-return", name: "Portfolio expected return", expression: "E(Rp) = \u03A3 [ wi \u00D7 E(Ri) ]", when: "Finding a portfolio's overall expected return from its holdings' weights and expected returns.", worked: "A portfolio is 60% Stock A (10% expected return) and 40% Stock B (6% expected return). E(Rp) = (0.60\u00D710%) + (0.40\u00D76%) = 8.4%." },
-          { id: "port-3-minvar", name: "Minimum-variance weight (two-asset portfolio) — advanced", expression: "w1 = <span class=\"frac\"><span class=\"num\">\u03C32\u00B2 \u2212 Cov(1,2)</span><span class=\"den\">\u03C31\u00B2 + \u03C32\u00B2 \u2212 2 \u00D7 Cov(1,2)</span></span>", when: "Finding the weight in asset 1 that minimizes the overall portfolio's variance, for a two-asset portfolio.", worked: "Stock 1 has variance 0.04, Stock 2 has variance 0.09, and their covariance is 0.02. w1 = (0.09 \u2212 0.02) / (0.04 + 0.09 \u2212 2\u00D70.02) = 0.07 / 0.09 \u2248 77.8%. The minimum-variance portfolio holds about 78% Stock 1 and 22% Stock 2 \u2014 not necessarily the highest-return mix, just the lowest-risk one." },
+          { id: "port-3-return", name: "Portfolio expected return", expression: "E(Rp) = \u03A3 [ wi \u00D7 E(Ri) ]", when: "Finding a portfolio's overall expected return from its holdings' weights and expected returns.", given: ["wA = 0.60, E(RA) = 10%", "wB = 0.40, E(RB) = 6%"], worked: "E(Rp) = (0.60\u00D710%) + (0.40\u00D76%)\nE(Rp) = 6% + 2.4%\nE(Rp) = 8.4%" },
+          { id: "port-3-minvar", name: "Minimum-variance weight (two-asset portfolio) — advanced", expression: "w1 = <span class=\"frac\"><span class=\"num\">\u03C32\u00B2 \u2212 Cov(1,2)</span><span class=\"den\">\u03C31\u00B2 + \u03C32\u00B2 \u2212 2 \u00D7 Cov(1,2)</span></span>", when: "Finding the weight in asset 1 that minimizes the overall portfolio's variance, for a two-asset portfolio.", given: ["\u03C31\u00B2 = 0.04", "\u03C32\u00B2 = 0.09", "Cov(1,2) = 0.02"], worked: "w1 = (0.09 \u2212 0.02) / (0.04 + 0.09 \u2212 2\u00D70.02)\nw1 = 0.07 / 0.09\nw1 \u2248 77.8%\n\n(holds about 78% Stock 1, 22% Stock 2 \u2014\nnot the highest-return mix, just the lowest-risk one)" },
         ],
       },
       {
@@ -2380,7 +2717,7 @@ const CHAPTERS = [
         ],
         exhibits: [{ afterParagraph: 1, svg: EXHIBIT_SML }],
         formulas: [
-          { id: "port-5c-capm", name: "Capital asset pricing model (CAPM)", expression: "E(Ri) = Rf + \u03B2i \u00D7 [E(Rm) \u2212 Rf]", when: "Finding an asset's required return based purely on its systematic risk (beta).", worked: "The risk-free rate is 3%, the expected market return is 9%, and a stock has a beta of 1.4. E(Ri) = 3% + 1.4 \u00D7 (9% \u2212 3%) = 3% + 1.4\u00D76% = 3% + 8.4% = 11.4%. This stock's higher-than-market systematic risk (beta of 1.4) means the market requires a higher return from it than the market's own 9%." },
+          { id: "port-5c-capm", name: "Capital asset pricing model (CAPM)", expression: "E(Ri) = Rf + \u03B2i \u00D7 [E(Rm) \u2212 Rf]", when: "Finding an asset's required return based purely on its systematic risk (beta).", given: ["Rf = 3%", "E(Rm) = 9%", "\u03B2i = 1.4"], worked: "E(Ri) = 3% + 1.4 \u00D7 (9% \u2212 3%)\nE(Ri) = 3% + 1.4 \u00D7 6%\nE(Ri) = 3% + 8.4%\nE(Ri) = 11.4%" },
         ],
       },
       {
@@ -2391,9 +2728,9 @@ const CHAPTERS = [
           `The Sharpe ratio measures excess return (over the risk-free rate) per unit of total risk (standard deviation) — appropriate when evaluating a portfolio that represents an investor's entire holdings. The Treynor ratio measures excess return per unit of systematic risk (beta) only — more appropriate when evaluating one holding that's part of a larger, already-diversified portfolio, where unsystematic risk is less relevant. Jensen's alpha measures the actual return earned above and beyond what CAPM would have predicted for that level of systematic risk — a positive alpha suggests genuine outperformance after adjusting for risk.`,
         ],
         formulas: [
-          { id: "port-5d-sharpe", name: "Sharpe ratio", expression: "Sharpe = <span class=\"frac\"><span class=\"num\">Rp \u2212 Rf</span><span class=\"den\">\u03C3p</span></span>", when: "Comparing risk-adjusted return using total risk — appropriate for an investor's entire portfolio.", worked: "A portfolio returns 11%, the risk-free rate is 3%, and the portfolio's standard deviation is 16%. Sharpe = (11% \u2212 3%) / 16% = 8/16 = 0.50 \u2014 half a unit of excess return for every unit of total risk taken." },
-          { id: "port-5d-treynor", name: "Treynor ratio", expression: "Treynor = <span class=\"frac\"><span class=\"num\">Rp \u2212 Rf</span><span class=\"den\">\u03B2p</span></span>", when: "Comparing risk-adjusted return using only systematic risk — appropriate for one holding within a larger diversified portfolio.", worked: "Same portfolio: 11% return, 3% risk-free rate, and a beta of 1.2. Treynor = (11% \u2212 3%) / 1.2 = 8/1.2 \u2248 6.67 (expressed as a percentage-point return per unit of beta)." },
-          { id: "port-5d-jensen", name: "Jensen's alpha", expression: "\u03B1p = Rp \u2212 [Rf + \u03B2p \u00D7 (Rm \u2212 Rf)]", when: "Measuring return earned above or below what CAPM predicts for that level of systematic risk.", worked: "The same portfolio returns 11%, has a beta of 1.2, the risk-free rate is 3%, and the market return is 9%. CAPM-predicted return = 3% + 1.2\u00D7(9%\u22123%) = 3% + 7.2% = 10.2%. Jensen's alpha = 11% \u2212 10.2% = 0.8% \u2014 a small positive alpha, suggesting modest outperformance after adjusting for systematic risk." },
+          { id: "port-5d-sharpe", name: "Sharpe ratio", expression: "Sharpe = <span class=\"frac\"><span class=\"num\">Rp \u2212 Rf</span><span class=\"den\">\u03C3p</span></span>", when: "Comparing risk-adjusted return using total risk — appropriate for an investor's entire portfolio.", given: ["Rp = 11%", "Rf = 3%", "\u03C3p = 16%"], worked: "Sharpe = (11% \u2212 3%) / 16%\nSharpe = 8/16\nSharpe = 0.50" },
+          { id: "port-5d-treynor", name: "Treynor ratio", expression: "Treynor = <span class=\"frac\"><span class=\"num\">Rp \u2212 Rf</span><span class=\"den\">\u03B2p</span></span>", when: "Comparing risk-adjusted return using only systematic risk — appropriate for one holding within a larger diversified portfolio.", given: ["Rp = 11%", "Rf = 3%", "\u03B2p = 1.2"], worked: "Treynor = (11% \u2212 3%) / 1.2\nTreynor = 8 / 1.2\nTreynor \u2248 6.67" },
+          { id: "port-5d-jensen", name: "Jensen's alpha", expression: "\u03B1p = Rp \u2212 [Rf + \u03B2p \u00D7 (Rm \u2212 Rf)]", when: "Measuring return earned above or below what CAPM predicts for that level of systematic risk.", given: ["Rp = 11%", "\u03B2p = 1.2", "Rf = 3%", "Rm = 9%"], worked: "CAPM-predicted = 3% + 1.2\u00D7(9%\u22123%)\nCAPM-predicted = 3% + 7.2% = 10.2%\n\n\u03B1p = 11% \u2212 10.2%\n\u03B1p = 0.8%\n\n(small positive alpha \u2014 modest outperformance\nafter adjusting for systematic risk)" },
         ],
       },
       {
@@ -2461,6 +2798,15 @@ const CHAPTERS = [
           { item: "Assuming willingness and ability to take risk always agree", detail: "When they conflict, the more conservative of the two generally governs the IPS's risk objective." },
           { item: "Assuming behavioral biases only affect uninformed investors", detail: "Cognitive errors and emotional biases affect even highly sophisticated investors — recognizing them is the main defense." },
         ],
+        formulas: [],
+      },
+      {
+        id: "port-8",
+        title: "Addendum: Interactive Formula Mind Map",
+        body: [
+          `CAPM sits at the center of Portfolio Management's quantitative toolkit — it's what you use to build a portfolio in the first place, and it's the benchmark every performance ratio measures against. The map below shows that relationship directly. Click any box to see a full worked word problem.`,
+        ],
+        interactiveExhibit: "pmMindmap",
         formulas: [],
       },
     ],
@@ -2972,12 +3318,16 @@ function renderReading() {
   if (section.formulas && section.formulas.length) {
     section.formulas.forEach((f) => {
       const isAdv = f.name.toLowerCase().includes("advanced");
+      const givenHtml = f.given && f.given.length
+        ? `<div class="led-given"><div class="led-given-title">Given</div>${f.given.map((g) => `<div class="led-given-line">${g}</div>`).join("")}</div>`
+        : "";
       html += `<span class="led-tag ${isAdv ? "advanced" : "basic"}">${isAdv ? "Advanced" : "Basic"}</span>
         <div class="led">
           <div class="led-name">${f.name}</div>
+          ${givenHtml}
           <div class="led-expr">${f.expression}</div>
           <div class="led-when">${f.when}</div>
-          ${f.worked ? `<div class="led-worked"><strong>Worked example:</strong> ${f.worked}</div>` : ""}
+          ${f.worked ? `<div class="led-worked"><strong>Calculation:</strong> ${f.worked}</div>` : ""}
         </div>
         ${f.workedExhibit ? `<div class="exhibit">${f.workedExhibit}</div>` : ""}`;
     });
@@ -3005,6 +3355,15 @@ function renderReading() {
   if (section.interactiveExhibit === "tvmMindmap") {
     html += `<div class="exhibit" id="tvm-mindmap-mount"></div>`;
   }
+  if (section.interactiveExhibit === "fiMindmap") {
+    html += `<div class="exhibit" id="fi-mindmap-mount"></div>`;
+  }
+  if (section.interactiveExhibit === "pmMindmap") {
+    html += `<div class="exhibit" id="pm-mindmap-mount"></div>`;
+  }
+  if (section.interactiveExhibit === "fsaMindmap") {
+    html += `<div class="exhibit" id="fsa-mindmap-mount"></div>`;
+  }
 
   html += `<div class="nav-buttons">`;
   html += prev ? `<button class="btn btn-ghost" data-navprev="${prev.id}">&#8592; ${prev.title}</button>` : `<span></span>`;
@@ -3022,6 +3381,9 @@ function renderReading() {
 
   if (section.interactiveExhibit === "rpnStepper") mountRpnStepper();
   if (section.interactiveExhibit === "tvmMindmap") mountTVMMindmap();
+  if (section.interactiveExhibit === "fiMindmap") mountFixedIncomeMindmap();
+  if (section.interactiveExhibit === "pmMindmap") mountPortfolioMindmap();
+  if (section.interactiveExhibit === "fsaMindmap") mountFSAMindmap();
   renderSidebar();
 }
 
@@ -3085,37 +3447,33 @@ function mountRpnStepper() {
    TVM FORMULA MIND MAP (interactive exhibit)
    ============================================================ */
 const TVM_MINDMAP_EXAMPLES = {
-  "pv-single": { title: "Single Sum — Present Value", problem: "You will inherit $50,000 in 8 years. At a 6% discount rate, what is that inheritance worth today?", solution: "PV = 50,000 / (1.06)^8\n   = 50,000 / 1.5938\n   \u2248 $31,371" },
-  "pv-ordinary": { title: "Ordinary Annuity — Present Value", problem: "A structured settlement pays $2,000 at the end of each year for 10 years. At a 5% discount rate, what is the settlement worth today?", solution: "PV = 2,000 \u00D7 [1 \u2212 (1.05)^\u221210] / 0.05\n   = 2,000 \u00D7 7.7217\n   \u2248 $15,443" },
-  "pv-due": { title: "Annuity Due — Present Value", problem: "A lease requires $1,500 payments at the beginning of each year for 5 years. At a 4% rate, what is the lease worth today?", solution: "PV(ordinary) = 1,500 \u00D7 [1 \u2212 (1.04)^\u22125] / 0.04 \u2248 $6,678\nPV(due) = 6,678 \u00D7 1.04 \u2248 $6,945\n\n(worth about $267 more than the ordinary version,\nsince every payment lands one period earlier)" },
-  "pv-perpetuity": { title: "Perpetuity — Present Value", problem: "A preferred stock pays a level $5 dividend forever, starting next year, at an 8% required return. What is it worth today?", solution: "PV = 5 / 0.08\n   = $62.50" },
-  "pv-growing": { title: "Growing Perpetuity — Present Value", problem: "A stock's next dividend is expected to be $3, growing 4% annually forever, at a 10% required return. What is its value today?", solution: "PV = 3 / (0.10 \u2212 0.04)\n   = 3 / 0.06\n   = $50.00" },
-  "pv-uneven": { title: "Uneven Cash Flows — Present Value", problem: "A project returns $4,000 in year 1, $6,000 in year 2, and $3,000 in year 3, at a 7% discount rate. What is its present value?", solution: "PV = 4,000/(1.07)^1 + 6,000/(1.07)^2 + 3,000/(1.07)^3\n   \u2248 3,738 + 5,241 + 2,449\n   \u2248 $11,428" },
-  "fv-single": { title: "Single Sum — Future Value", problem: "You deposit $8,000 today at 5.5% annual interest for 12 years. What will it grow to?", solution: "FV = 8,000 \u00D7 (1.055)^12\n   \u2248 8,000 \u00D7 1.898\n   \u2248 $15,184" },
-  "fv-ordinary": { title: "Ordinary Annuity — Future Value", problem: "You contribute $3,000 to a retirement account at the end of each year for 20 years, earning 7%. What is the account worth at the end?", solution: "FV = 3,000 \u00D7 [(1.07)^20 \u2212 1] / 0.07\n   \u2248 3,000 \u00D7 40.995\n   \u2248 $122,986" },
-  "fv-due": { title: "Annuity Due — Future Value", problem: "Same contributions as before ($3,000/year, 20 years, 7%), but made at the beginning of each year instead. What is the account worth?", solution: "FV(due) = 122,986 \u00D7 1.07\n        \u2248 $131,595\n\n(about $8,609 more, just from each\ndeposit having one extra year to grow)" },
-  "rate-implied": { title: "Implied Return / Yield", problem: "A zero-coupon bond costs $700 today and pays $1,000 in 5 years. What annual return (yield) does it offer?", solution: "700 = 1,000 / (1+r)^5\n(1+r)^5 = 1,000/700 = 1.4286\n1+r = 1.4286^(1/5) \u2248 1.0739\nr \u2248 7.39%\n\n(this is exactly the same idea as YTM in\nFixed Income, or IRR in Corporate Issuers \u2014\nsolving for the rate instead of a dollar amount)" },
-  "solve-n": { title: "Solving for n", problem: "You invest $5,000 today at 8% annual interest. How many years will it take to double to $10,000?", solution: "10,000 = 5,000 \u00D7 (1.08)^n\n2 = (1.08)^n\nn = ln(2) / ln(1.08)\nn \u2248 9.0 years\n\n(the quick \"Rule of 72\" estimate: 72/8 = 9 years \u2014\nmatches closely, and is a useful sanity check)" },
-  "solve-pmt": { title: "Solving for PMT", problem: "You want to have $200,000 in 25 years for retirement, earning 7% annually. How much must you deposit at the end of each year?", solution: "200,000 = PMT \u00D7 [(1.07)^25 \u2212 1] / 0.07\n200,000 = PMT \u00D7 63.249\nPMT \u2248 $3,162 per year" },
-  "rate-ear": { title: "Effective Annual Rate", problem: "A credit card quotes 24% annual interest, compounded monthly. What is the effective annual rate?", solution: "EAR = (1 + 0.24/12)^12 \u2212 1\n    = (1.02)^12 \u2212 1\n    \u2248 26.82%" },
-  "rate-continuous": { title: "Continuous Compounding", problem: "A bank offers 6% interest compounded continuously. What is the effective annual rate?", solution: "EAR = e^0.06 \u2212 1\n    \u2248 6.18%" },
-  "rate-periodic": { title: "Periodic Rate", problem: "A loan's stated annual rate is 9%, compounded monthly. What periodic (monthly) rate should you use in a TVM calculation?", solution: "Periodic rate = 9% / 12\n             = 0.75% per month" },
-  "freq-monthly": { title: "Monthly vs. Annual Payments", problem: "You want to accumulate $50,000 in 6 years by making equal monthly deposits, earning 6% annual interest compounded monthly. What n and r do you use before applying the FV annuity formula?", solution: "n = 6 years \u00D7 12 = 72 months\nr = 6% / 12 = 0.5% per month\n\nThen solve: 50,000 = PMT \u00D7 [(1.005)^72 \u2212 1] / 0.005\nfor the required monthly deposit." },
-  "freq-beginning": { title: "Beginning vs. End of Period", problem: "Two rent contracts each require $1,000/month for 3 years at 6% annual (0.5% monthly). Contract A pays at the start of each month; Contract B pays at the end. Which is worth more today, and by how much?", solution: "PV(B, ordinary) = 1,000 \u00D7 [1\u2212(1.005)^\u221236]/0.005 \u2248 $32,871\nPV(A, due) = 32,871 \u00D7 1.005 \u2248 $33,035\n\nContract A is worth about $164 more \u2014\nsame payments, just one period earlier throughout." },
-  "freq-semiannual": { title: "Semiannual / Quarterly Compounding", problem: "A bond pays semiannual coupons at a stated annual rate of 8%, and has 5 years to maturity. What n and r should you use to find its price?", solution: "n = 5 years \u00D7 2 = 10 periods\nr = 8% / 2 = 4% per period\n\nThen apply the bond pricing formula\n(PV of coupon annuity + PV of face value)\nusing these converted values." },
-  "value-bond": { title: "Valuing a Bond", problem: "A $1,000 face value bond pays a 5% annual coupon and matures in 4 years. The market requires a 7% yield. What is the bond's price?", solution: "PV(coupons) = 50 \u00D7 [1\u2212(1.07)^\u22124]/0.07 \u2248 $169.36\nPV(face) = 1,000 / (1.07)^4 \u2248 $762.90\nPrice \u2248 169.36 + 762.90 \u2248 $932.26\n\n(a discount bond, since the 5% coupon\nis below the 7% market yield)" },
-  "value-stock": { title: "Valuing a Stock (Dividend Discount Model)", problem: "A stock just paid a $1.80 dividend, expected to grow 3% forever. At a 9% required return, what is the stock worth today?", solution: "D1 = 1.80 \u00D7 1.03 = $1.854\nV0 = 1.854 / (0.09 \u2212 0.03)\n   = 1.854 / 0.06\n   \u2248 $30.90\n\n(the exact same growing perpetuity formula\nfrom the PV branch \u2014 just applied to a stock)" },
-  "forward-implied": { title: "Implied Forward Rate", problem: "The 1-year spot rate is 3% and the 2-year spot rate is 4.5%. What 1-year rate is implied for the period starting one year from now?", solution: "(1.03) \u00D7 (1+f) = (1.045)^2 = 1.092\n1+f = 1.092 / 1.03 \u2248 1.0602\nf \u2248 6.02%\n\n(from cash flow additivity / no-arbitrage:\ntwo 1-year investments back-to-back must earn\nthe same total return as one 2-year investment)" },
+  "pv-single": { title: "Single Sum — Present Value", problem: "You will inherit $50,000 in 8 years. At a 6% discount rate, what is that inheritance worth today?", given: ["FV = $50,000", "r = 0.06", "n = 8"], formula: "PV = FV / (1+r)^n", calc: "PV = 50,000 / (1.06)^8\nPV = 50,000 / 1.5938\nPV \u2248 $31,371" },
+  "pv-ordinary": { title: "Ordinary Annuity — Present Value", problem: "A structured settlement pays $2,000 at the end of each year for 10 years. At a 5% discount rate, what is the settlement worth today?", given: ["PMT = $2,000", "r = 0.05", "n = 10"], formula: "PV = PMT \u00D7 [1 \u2212 (1+r)^\u2212n] / r", calc: "PV = 2,000 \u00D7 [1\u2212(1.05)^\u221210] / 0.05\nPV = 2,000 \u00D7 7.7217\nPV \u2248 $15,443" },
+  "pv-due": { title: "Annuity Due — Present Value", problem: "A lease requires $1,500 payments at the beginning of each year for 5 years. At a 4% rate, what is the lease worth today?", given: ["PMT = $1,500", "r = 0.04", "n = 5"], formula: "PVdue = PVordinary \u00D7 (1+r)", calc: "PV(ordinary) = 1,500\u00D7[1\u2212(1.04)^\u22125]/0.04 \u2248 $6,678\nPV(due) = 6,678 \u00D7 1.04 \u2248 $6,945\n\n(about $267 more, since every payment\nlands one period earlier)" },
+  "pv-perpetuity": { title: "Perpetuity — Present Value", problem: "A preferred stock pays a level $5 dividend forever, starting next year, at an 8% required return. What is it worth today?", given: ["PMT = $5", "r = 0.08"], formula: "PV = PMT / r", calc: "PV = 5 / 0.08\nPV = $62.50" },
+  "pv-growing": { title: "Growing Perpetuity — Present Value", problem: "A stock's next dividend is expected to be $3, growing 4% annually forever, at a 10% required return. What is its value today?", given: ["PMT1 = $3", "r = 0.10", "g = 0.04"], formula: "PV = PMT1 / (r \u2212 g)", calc: "PV = 3 / (0.10\u22120.04)\nPV = 3 / 0.06\nPV = $50.00" },
+  "pv-uneven": { title: "Uneven Cash Flows — Present Value", problem: "A project returns $4,000 in year 1, $6,000 in year 2, and $3,000 in year 3, at a 7% discount rate. What is its present value?", given: ["CF1 = $4,000", "CF2 = $6,000", "CF3 = $3,000", "r = 0.07"], formula: "PV = \u03A3 CFt / (1+r)^t", calc: "PV = 4,000/(1.07)^1 + 6,000/(1.07)^2 + 3,000/(1.07)^3\nPV \u2248 3,738 + 5,241 + 2,449\nPV \u2248 $11,428" },
+  "fv-single": { title: "Single Sum — Future Value", problem: "You deposit $8,000 today at 5.5% annual interest for 12 years. What will it grow to?", given: ["PV = $8,000", "r = 0.055", "n = 12"], formula: "FV = PV \u00D7 (1+r)^n", calc: "FV = 8,000 \u00D7 (1.055)^12\nFV \u2248 8,000 \u00D7 1.898\nFV \u2248 $15,184" },
+  "fv-ordinary": { title: "Ordinary Annuity — Future Value", problem: "You contribute $3,000 to a retirement account at the end of each year for 20 years, earning 7%. What is the account worth at the end?", given: ["PMT = $3,000", "r = 0.07", "n = 20"], formula: "FV = PMT \u00D7 [(1+r)^n \u2212 1] / r", calc: "FV = 3,000\u00D7[(1.07)^20\u22121]/0.07\nFV \u2248 3,000 \u00D7 40.995\nFV \u2248 $122,986" },
+  "fv-due": { title: "Annuity Due — Future Value", problem: "Same contributions as before ($3,000/year, 20 years, 7%), but made at the beginning of each year instead. What is the account worth?", given: ["FVordinary = $122,986 (from the example above)", "r = 0.07"], formula: "FVdue = FVordinary \u00D7 (1+r)", calc: "FV(due) = 122,986 \u00D7 1.07\nFV(due) \u2248 $131,595\n\n(about $8,609 more, just from each deposit\nhaving one extra year to grow)" },
+  "rate-implied": { title: "Implied Return / Yield", problem: "A zero-coupon bond costs $700 today and pays $1,000 in 5 years. What annual return (yield) does it offer?", given: ["PV = $700", "FV = $1,000", "n = 5"], formula: "PV = FV / (1+r)^n, solve for r", calc: "700 = 1,000 / (1+r)^5\n(1+r)^5 = 1,000/700 = 1.4286\n1+r = 1.4286^(1/5) \u2248 1.0739\nr \u2248 7.39%\n\n(same idea as YTM in Fixed Income, or IRR\nin Corporate Issuers \u2014 solving for the rate)" },
+  "solve-n": { title: "Solving for n", problem: "You invest $5,000 today at 8% annual interest. How many years will it take to double to $10,000?", given: ["PV = $5,000", "FV = $10,000", "r = 0.08"], formula: "FV = PV \u00D7 (1+r)^n, solve for n", calc: "10,000 = 5,000 \u00D7 (1.08)^n\n2 = (1.08)^n\nn = ln(2) / ln(1.08)\nn \u2248 9.0 years\n\n(Rule of 72 estimate: 72/8 = 9 years \u2014 matches)" },
+  "solve-pmt": { title: "Solving for PMT", problem: "You want to have $200,000 in 25 years for retirement, earning 7% annually. How much must you deposit at the end of each year?", given: ["FV = $200,000", "r = 0.07", "n = 25"], formula: "FV = PMT \u00D7 [(1+r)^n \u2212 1] / r, solve for PMT", calc: "200,000 = PMT \u00D7 [(1.07)^25\u22121]/0.07\n200,000 = PMT \u00D7 63.249\nPMT \u2248 $3,162 per year" },
+  "rate-ear": { title: "Effective Annual Rate", problem: "A credit card quotes 24% annual interest, compounded monthly. What is the effective annual rate?", given: ["rstated = 0.24", "m = 12"], formula: "EAR = (1 + r/m)^m \u2212 1", calc: "EAR = (1+0.24/12)^12 \u2212 1\nEAR = (1.02)^12 \u2212 1\nEAR \u2248 26.82%" },
+  "rate-continuous": { title: "Continuous Compounding", problem: "A bank offers 6% interest compounded continuously. What is the effective annual rate?", given: ["rstated = 0.06"], formula: "EAR = e^r \u2212 1", calc: "EAR = e^0.06 \u2212 1\nEAR \u2248 6.18%" },
+  "rate-periodic": { title: "Periodic Rate", problem: "A loan's stated annual rate is 9%, compounded monthly. What periodic (monthly) rate should you use in a TVM calculation?", given: ["rstated = 0.09", "m = 12"], formula: "Periodic rate = r / m", calc: "Periodic rate = 9% / 12\nPeriodic rate = 0.75% per month" },
+  "freq-monthly": { title: "Monthly vs. Annual Payments", problem: "You want to accumulate $50,000 in 6 years by making equal monthly deposits, earning 6% annual interest compounded monthly. What n and r do you use before applying the FV annuity formula?", given: ["Goal (FV) = $50,000", "Term = 6 years", "rstated = 0.06", "m = 12"], formula: "n = years \u00D7 m, r = rstated / m", calc: "n = 6 \u00D7 12 = 72 months\nr = 6% / 12 = 0.5% per month\n\nThen solve 50,000 = PMT\u00D7[(1.005)^72\u22121]/0.005\nfor the required monthly deposit." },
+  "freq-beginning": { title: "Beginning vs. End of Period", problem: "Two rent contracts each require $1,000/month for 3 years at 6% annual (0.5% monthly). Contract A pays at the start of each month; Contract B pays at the end. Which is worth more today, and by how much?", given: ["PMT = $1,000/month", "n = 36 months", "r = 0.005/month"], formula: "PVdue = PVordinary \u00D7 (1+r)", calc: "PV(B, ordinary) = 1,000\u00D7[1\u2212(1.005)^\u221236]/0.005 \u2248 $32,871\nPV(A, due) = 32,871 \u00D7 1.005 \u2248 $33,035\n\nContract A is worth about $164 more \u2014\nsame payments, one period earlier throughout." },
+  "freq-semiannual": { title: "Semiannual / Quarterly Compounding", problem: "A bond pays semiannual coupons at a stated annual rate of 8%, and has 5 years to maturity. What n and r should you use to find its price?", given: ["Term = 5 years", "rstated = 0.08", "m = 2 (semiannual)"], formula: "n = years \u00D7 m, r = rstated / m", calc: "n = 5 \u00D7 2 = 10 periods\nr = 8% / 2 = 4% per period\n\nThen apply the bond pricing formula\n(PV of coupon annuity + PV of face value)\nusing these converted values." },
+  "value-bond": { title: "Valuing a Bond", problem: "A $1,000 face value bond pays a 5% annual coupon and matures in 4 years. The market requires a 7% yield. What is the bond's price?", given: ["Face value = $1,000", "Coupon = $50/year (5%)", "n = 4", "r = 0.07"], formula: "Price = PV(coupon annuity) + PV(face value)", calc: "PV(coupons) = 50\u00D7[1\u2212(1.07)^\u22124]/0.07 \u2248 $169.36\nPV(face) = 1,000/(1.07)^4 \u2248 $762.90\nPrice \u2248 169.36 + 762.90 \u2248 $932.26\n\n(a discount bond \u2014 the 5% coupon is below\nthe 7% market yield)" },
+  "value-stock": { title: "Valuing a Stock (Dividend Discount Model)", problem: "A stock just paid a $1.80 dividend, expected to grow 3% forever. At a 9% required return, what is the stock worth today?", given: ["D0 = $1.80 (just paid)", "g = 0.03", "r = 0.09"], formula: "V0 = D1 / (r \u2212 g)", calc: "D1 = 1.80 \u00D7 1.03 = $1.854\nV0 = 1.854 / (0.09\u22120.03)\nV0 \u2248 $30.90\n\n(the exact same growing perpetuity formula\nfrom the PV branch \u2014 just applied to a stock)" },
+  "forward-implied": { title: "Implied Forward Rate", problem: "The 1-year spot rate is 3% and the 2-year spot rate is 4.5%. What 1-year rate is implied for the period starting one year from now?", given: ["S1 = 0.03 (1-year spot rate)", "S2 = 0.045 (2-year spot rate)"], formula: "(1+S1) \u00D7 (1+f) = (1+S2)^2", calc: "(1.03) \u00D7 (1+f) = (1.045)^2 = 1.092\n1+f = 1.092 / 1.03 \u2248 1.0602\nf \u2248 6.02%\n\n(from no-arbitrage: two 1-year investments\nback-to-back must earn the same total return\nas one 2-year investment)" },
 };
 
 function showTVMExample(id) {
   const d = TVM_MINDMAP_EXAMPLES[id];
   if (!d) return;
-  document.getElementById("mm-detail-title").textContent = d.title;
-  document.getElementById("mm-detail-problem").textContent = d.problem;
-  document.getElementById("mm-detail-solution").textContent = d.solution;
-  document.getElementById("mm-detail-panel").classList.add("visible");
-  document.getElementById("mm-placeholder").style.display = "none";
+  renderMindmapDetail("mm", d);
   document.querySelectorAll(".mm-leaf-group").forEach((el) => el.classList.remove("selected"));
   document.getElementById("mm-grp-" + id).classList.add("selected");
 }
@@ -3124,6 +3482,87 @@ function mountTVMMindmap() {
   const mount = document.getElementById("tvm-mindmap-mount");
   if (!mount) return;
   mount.innerHTML = EXHIBIT_TVM_MINDMAP_SVG;
+}
+
+/* ---- shared renderer for Given/Formula/Calculation detail panels ---- */
+function renderMindmapDetail(prefix, d) {
+  document.getElementById(prefix + "-detail-title").textContent = d.title;
+  document.getElementById(prefix + "-detail-problem").textContent = d.problem;
+  document.getElementById(prefix + "-detail-given").textContent = d.given.join("\n");
+  document.getElementById(prefix + "-detail-formula").textContent = d.formula;
+  document.getElementById(prefix + "-detail-solution").textContent = d.calc;
+  document.getElementById(prefix + "-detail-panel").classList.add("visible");
+  const ph = document.getElementById(prefix + "-placeholder");
+  if (ph) ph.style.display = "none";
+}
+
+/* ---- Fixed Income mind map ---- */
+const FI_MINDMAP_EXAMPLES = {
+  "coupon-bond": { title: "Pricing a Coupon Bond", problem: "A $1,000 face value bond pays a 6% annual coupon and matures in 3 years. The market requires an 8% yield. What is the bond's price?", given: ["Face value = $1,000", "Coupon = $60/year (6%)", "n = 3", "r = 0.08"], formula: "Price = PV(coupon annuity) + PV(face value)", calc: "PV(coupons) \u2248 $154.63\nPV(face value) \u2248 $793.83\nPrice \u2248 154.63 + 793.83\nPrice \u2248 $948.46" },
+  "zero-coupon": { title: "Pricing a Zero-Coupon Bond", problem: "A $1,000 face value zero-coupon bond matures in 5 years. The market yield is 6%. What is its price?", given: ["Face value = $1,000", "r = 0.06", "n = 5"], formula: "Price = Face value / (1+r)^n", calc: "Price = 1,000 / (1.06)^5\nPrice \u2248 1,000 / 1.3382\nPrice \u2248 $747.26" },
+  "current-yield": { title: "Current Yield", problem: "A bond with a $60 annual coupon currently trades at $948. What is its current yield?", given: ["Annual coupon = $60", "Current price = $948"], formula: "Current yield = Annual coupon / Current price", calc: "Current yield = 60 / 948\nCurrent yield \u2248 6.33%" },
+  "accrued-interest": { title: "Accrued Interest", problem: "A bond pays a $60 annual coupon (360-day convention), and it has been 90 days since the last coupon payment. The quoted (clean) price is $980. What is the dirty price?", given: ["Annual coupon = $60", "Days since last coupon = 90", "Days in coupon period = 360", "Clean price = $980"], formula: "Accrued interest = Annual coupon \u00D7 (days since / days in period)", calc: "Accrued interest = 60 \u00D7 (90/360) = $15\nDirty price = 980 + 15\nDirty price = $995" },
+  "modified-duration": { title: "Modified Duration", problem: "A bond has a Macaulay duration of 4.5 years and a periodic (annual) yield of 6%. What is its modified duration?", given: ["Macaulay duration = 4.5 years", "Periodic yield = 0.06"], formula: "Modified duration = Macaulay duration / (1 + periodic yield)", calc: "Modified duration = 4.5 / 1.06\nModified duration \u2248 4.25" },
+  "duration-price": { title: "Price Change from Duration", problem: "A bond has a modified duration of 7, and market yields rise by 0.50 percentage points. Estimate the price change.", given: ["Modified duration = 7", "\u0394y = 0.005 (+0.50 pp)"], formula: "% change in price \u2248 \u2212 Modified duration \u00D7 \u0394y", calc: "% change \u2248 \u22127 \u00D7 0.005\n% change \u2248 \u22123.5%" },
+  "duration-convexity": { title: "Duration + Convexity Adjustment", problem: "A bond has modified duration of 7, convexity of 65, and yields rise by 2 percentage points. Estimate the price change including convexity.", given: ["Modified duration = 7", "Convexity = 65", "\u0394y = 0.02 (+2 pp)"], formula: "% change \u2248 [\u2212Dur \u00D7 \u0394y] + [\u00BD \u00D7 Convexity \u00D7 (\u0394y)^2]", calc: "Duration-only: \u22127 \u00D7 0.02 = \u221214%\nConvexity adj.: \u00BD \u00D7 65 \u00D7 0.0004 \u2248 +1.3%\n\nCombined: \u221214% + 1.3% = \u221212.7%" },
+};
+function showFIExample(id) {
+  const d = FI_MINDMAP_EXAMPLES[id];
+  if (!d) return;
+  renderMindmapDetail("fi-mm", d);
+  document.querySelectorAll(".fi-mm-leaf-group").forEach((el) => el.classList.remove("selected"));
+  document.getElementById("fi-mm-grp-" + id).classList.add("selected");
+}
+function mountFixedIncomeMindmap() {
+  const mount = document.getElementById("fi-mindmap-mount");
+  if (!mount) return;
+  mount.innerHTML = EXHIBIT_FI_MINDMAP_SVG;
+}
+
+/* ---- Portfolio Management mind map ---- */
+const PM_MINDMAP_EXAMPLES = {
+  "capm": { title: "CAPM Required Return", problem: "The risk-free rate is 3%, the expected market return is 9%, and a stock has a beta of 1.4. What return does CAPM require?", given: ["Rf = 3%", "E(Rm) = 9%", "\u03B2i = 1.4"], formula: "E(Ri) = Rf + \u03B2i \u00D7 [E(Rm) \u2212 Rf]", calc: "E(Ri) = 3% + 1.4 \u00D7 (9%\u22123%)\nE(Ri) = 3% + 8.4%\nE(Ri) = 11.4%" },
+  "port-return": { title: "Portfolio Expected Return", problem: "A portfolio is 60% Stock A (10% expected return) and 40% Stock B (6% expected return). What is the portfolio's expected return?", given: ["wA = 0.60, E(RA) = 10%", "wB = 0.40, E(RB) = 6%"], formula: "E(Rp) = \u03A3 [wi \u00D7 E(Ri)]", calc: "E(Rp) = (0.60\u00D710%) + (0.40\u00D76%)\nE(Rp) = 6% + 2.4%\nE(Rp) = 8.4%" },
+  "min-var": { title: "Minimum-Variance Weight", problem: "Stock 1 has variance 0.04, Stock 2 has variance 0.09, and their covariance is 0.02. What weight in Stock 1 minimizes portfolio variance?", given: ["\u03C31\u00B2 = 0.04", "\u03C32\u00B2 = 0.09", "Cov(1,2) = 0.02"], formula: "w1 = (\u03C32\u00B2 \u2212 Cov) / (\u03C31\u00B2 + \u03C32\u00B2 \u2212 2\u00D7Cov)", calc: "w1 = (0.09\u22120.02) / (0.04+0.09\u22120.04)\nw1 = 0.07 / 0.09\nw1 \u2248 77.8%" },
+  "sharpe": { title: "Sharpe Ratio", problem: "A portfolio returns 11%, the risk-free rate is 3%, and the portfolio's standard deviation is 16%. What is its Sharpe ratio?", given: ["Rp = 11%", "Rf = 3%", "\u03C3p = 16%"], formula: "Sharpe = (Rp \u2212 Rf) / \u03C3p", calc: "Sharpe = (11%\u22123%) / 16%\nSharpe = 8/16\nSharpe = 0.50" },
+  "treynor": { title: "Treynor Ratio", problem: "The same portfolio returns 11%, the risk-free rate is 3%, and its beta is 1.2. What is its Treynor ratio?", given: ["Rp = 11%", "Rf = 3%", "\u03B2p = 1.2"], formula: "Treynor = (Rp \u2212 Rf) / \u03B2p", calc: "Treynor = (11%\u22123%) / 1.2\nTreynor = 8/1.2\nTreynor \u2248 6.67" },
+  "jensen": { title: "Jensen's Alpha", problem: "The same portfolio returns 11%, has a beta of 1.2, the risk-free rate is 3%, and the market return is 9%. What is its Jensen's alpha?", given: ["Rp = 11%", "\u03B2p = 1.2", "Rf = 3%", "Rm = 9%"], formula: "\u03B1p = Rp \u2212 [Rf + \u03B2p \u00D7 (Rm \u2212 Rf)]", calc: "CAPM-predicted = 3% + 1.2\u00D76% = 10.2%\n\n\u03B1p = 11% \u2212 10.2%\n\u03B1p = 0.8%" },
+};
+function showPMExample(id) {
+  const d = PM_MINDMAP_EXAMPLES[id];
+  if (!d) return;
+  renderMindmapDetail("pm-mm", d);
+  document.querySelectorAll(".pm-mm-leaf-group").forEach((el) => el.classList.remove("selected"));
+  document.getElementById("pm-mm-grp-" + id).classList.add("selected");
+}
+function mountPortfolioMindmap() {
+  const mount = document.getElementById("pm-mindmap-mount");
+  if (!mount) return;
+  mount.innerHTML = EXHIBIT_PM_MINDMAP_SVG;
+}
+
+/* ---- FSA mind map ---- */
+const FSA_MINDMAP_EXAMPLES = {
+  "dupont": { title: "DuPont Analysis (ROE Decomposition)", problem: "A company has a 6% net profit margin, an asset turnover of 1.5, and an equity multiplier of 2.0. What is its ROE?", given: ["Net profit margin = 6%", "Asset turnover = 1.5", "Equity multiplier = 2.0"], formula: "ROE = Margin \u00D7 Turnover \u00D7 Equity multiplier", calc: "ROE = 6% \u00D7 1.5 \u00D7 2.0\nROE = 18%" },
+  "current-ratio": { title: "Current Ratio", problem: "A company has current assets of $500,000 and current liabilities of $250,000. What is its current ratio?", given: ["Current assets = $500,000", "Current liabilities = $250,000"], formula: "Current ratio = Current assets / Current liabilities", calc: "Current ratio = 500,000 / 250,000\nCurrent ratio = 2.0" },
+  "debt-equity": { title: "Debt-to-Equity Ratio", problem: "A company has total debt of $3 million and total equity of $2 million. What is its debt-to-equity ratio?", given: ["Total debt = $3,000,000", "Total equity = $2,000,000"], formula: "Debt-to-equity = Total debt / Total equity", calc: "Debt-to-equity = 3,000,000 / 2,000,000\nDebt-to-equity = 1.5" },
+  "net-margin": { title: "Net Profit Margin", problem: "A company has net income of $400,000 on revenue of $5,000,000. What is its net profit margin?", given: ["Net income = $400,000", "Revenue = $5,000,000"], formula: "Net profit margin = Net income / Revenue", calc: "Net profit margin = 400,000 / 5,000,000\nNet profit margin = 8%" },
+  "inv-turnover": { title: "Inventory Turnover", problem: "A company has cost of goods sold of $2,000,000 and average inventory of $400,000. What is its inventory turnover?", given: ["COGS = $2,000,000", "Average inventory = $400,000"], formula: "Inventory turnover = COGS / Average inventory", calc: "Inventory turnover = 2,000,000 / 400,000\nInventory turnover = 5 times per year" },
+  "common-size": { title: "Common-Size Percentage", problem: "Company A has $10 million revenue and $6 million cost of goods sold. What is its COGS common-size percentage?", given: ["Revenue = $10,000,000", "COGS = $6,000,000"], formula: "Common-size % = Line item / Total revenue", calc: "COGS % = 6,000,000 / 10,000,000\nCOGS % = 60%" },
+  "eps": { title: "Basic Earnings Per Share", problem: "A company has net income of $5,000,000, pays $500,000 in preferred dividends, and has a weighted average of 2,000,000 common shares outstanding. What is basic EPS?", given: ["Net income = $5,000,000", "Preferred dividends = $500,000", "Weighted avg. shares = 2,000,000"], formula: "Basic EPS = (Net income \u2212 Preferred dividends) / Weighted avg. shares", calc: "Basic EPS = (5,000,000\u2212500,000) / 2,000,000\nBasic EPS = 4,500,000 / 2,000,000\nBasic EPS = $2.25" },
+  "fcff": { title: "Free Cash Flow to the Firm", problem: "A company has net income of $2,000,000, non-cash depreciation of $400,000, interest expense of $300,000, a 25% tax rate, capital expenditures of $600,000, and a $100,000 increase in working capital. What is FCFF?", given: ["Net income = $2,000,000", "Non-cash depreciation = $400,000", "Interest expense = $300,000", "Tax rate = 0.25", "CapEx = $600,000", "\u0394 Working capital = $100,000"], formula: "FCFF = NI + Non-cash + Interest\u00D7(1\u2212tax) \u2212 CapEx \u2212 \u0394WC", calc: "FCFF = 2,000,000+400,000+225,000\u2212600,000\u2212100,000\nFCFF = $1,925,000" },
+};
+function showFSAExample(id) {
+  const d = FSA_MINDMAP_EXAMPLES[id];
+  if (!d) return;
+  renderMindmapDetail("fsa-mm", d);
+  document.querySelectorAll(".fsa-mm-leaf-group").forEach((el) => el.classList.remove("selected"));
+  document.getElementById("fsa-mm-grp-" + id).classList.add("selected");
+}
+function mountFSAMindmap() {
+  const mount = document.getElementById("fsa-mindmap-mount");
+  if (!mount) return;
+  mount.innerHTML = EXHIBIT_FSA_MINDMAP_SVG;
 }
 
 /* ============================================================
