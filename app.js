@@ -562,9 +562,9 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
   #mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
   .mm-detail-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #B9AE8F; margin: 12px 0 4px; }
   .mm-detail-label:first-of-type { margin-top: 0; }
-  #mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; color: #F7F4EA; }
   #mm-detail-given, #mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
-  #mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; color: #F7F4EA; }
   #mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
 </style>
 <div class="mm-scroll"><div class="mm-svg-wrap">
@@ -829,9 +829,9 @@ const EXHIBIT_FI_MINDMAP_SVG = `
   #fi-mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
   .mm-detail-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #B9AE8F; margin: 12px 0 4px; }
   .mm-detail-label:first-of-type { margin-top: 0; }
-  #fi-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #fi-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; color: #F7F4EA; }
   #fi-mm-detail-given, #fi-mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
-  #fi-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #fi-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; color: #F7F4EA; }
   #fi-mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
 </style>
 <div class="fi-mm-scroll"><div class="fi-mm-svg-wrap">
@@ -935,9 +935,9 @@ const EXHIBIT_PM_MINDMAP_SVG = `
   #pm-mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
   #pm-mm-detail-panel.visible { display: block; }
   #pm-mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
-  #pm-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #pm-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; color: #F7F4EA; }
   #pm-mm-detail-given, #pm-mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
-  #pm-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #pm-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; color: #F7F4EA; }
   #pm-mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
 </style>
 <div class="pm-mm-scroll"><div class="pm-mm-svg-wrap">
@@ -1025,9 +1025,9 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
   #fsa-mm-detail-panel { margin-top: 14px; background: #1C2333; border-radius: 10px; padding: 20px 26px; color: #F7F4EA; display: none; }
   #fsa-mm-detail-panel.visible { display: block; }
   #fsa-mm-detail-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; color: #E8A33D; margin: 0 0 10px; }
-  #fsa-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; }
+  #fsa-mm-detail-problem { font-size: 13.5px; line-height: 1.5; margin: 0; color: #F7F4EA; }
   #fsa-mm-detail-given, #fsa-mm-detail-formula { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-line; color: #F7F4EA; }
-  #fsa-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; }
+  #fsa-mm-detail-solution { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.6; background: rgba(255,255,255,0.06); padding: 11px 13px; border-radius: 6px; border-left: 3px solid #B67A22; white-space: pre-wrap; color: #F7F4EA; }
   #fsa-mm-placeholder { color: #4B5468; font-size: 13px; font-style: italic; padding: 12px 0 0; }
 </style>
 <div class="fsa-mm-scroll"><div class="fsa-mm-svg-wrap">
