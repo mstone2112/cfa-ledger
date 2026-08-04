@@ -612,7 +612,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <line x1="150" y1="536" x2="150" y2="550" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="150" y1="636" x2="150" y2="650" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="150" y1="736" x2="150" y2="750" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="mm-leaf-group" id="mm-grp-pv-single" onclick="showTVMExample('pv-single')">
+<g class="mm-leaf-group" id="mm-grp-pv-single" data-mmid="pv-single">
 <rect class="mm-leaf-box" x="45" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="45" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="150" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Single Sum</text>
@@ -621,7 +621,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="150" y="314" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">(1+r)<tspan font-size="8" dy="-5">n</tspan></text>
 <text x="150" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-pv-ordinary" onclick="showTVMExample('pv-ordinary')">
+<g class="mm-leaf-group" id="mm-grp-pv-ordinary" data-mmid="pv-ordinary">
 <rect class="mm-leaf-box" x="45" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="45" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="150" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Ordinary Annuity</text>
@@ -630,7 +630,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="150" y="412" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r</text>
 <text x="150" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-pv-due" onclick="showTVMExample('pv-due')">
+<g class="mm-leaf-group" id="mm-grp-pv-due" data-mmid="pv-due">
 <rect class="mm-leaf-box" x="45" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="45" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="150" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Annuity Due</text>
@@ -638,7 +638,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="150" y="512" text-anchor="middle" font-size="9.5" fill="#4B5468">(beginning of period)</text>
 <text x="150" y="530" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-pv-perpetuity" onclick="showTVMExample('pv-perpetuity')">
+<g class="mm-leaf-group" id="mm-grp-pv-perpetuity" data-mmid="pv-perpetuity">
 <rect class="mm-leaf-box" x="45" y="550" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="45" y="550" width="3" height="86" fill="#B67A22"/>
 <text x="150" y="570" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Perpetuity</text>
@@ -647,7 +647,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="150" y="614" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r</text>
 <text x="150" y="632" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-pv-growing" onclick="showTVMExample('pv-growing')">
+<g class="mm-leaf-group" id="mm-grp-pv-growing" data-mmid="pv-growing">
 <rect class="mm-leaf-box" x="45" y="650" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="45" y="650" width="3" height="86" fill="#B67A22"/>
 <text x="150" y="670" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Growing Perpetuity</text>
@@ -656,7 +656,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="150" y="714" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r &#8722; g</text>
 <text x="150" y="732" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-pv-uneven" onclick="showTVMExample('pv-uneven')">
+<g class="mm-leaf-group" id="mm-grp-pv-uneven" data-mmid="pv-uneven">
 <rect class="mm-leaf-box" x="45" y="750" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="45" y="750" width="3" height="86" fill="#B67A22"/>
 <text x="150" y="770" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Uneven Cash Flows</text>
@@ -668,14 +668,14 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <line x1="380" y1="212" x2="380" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
 <line x1="380" y1="336" x2="380" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="380" y1="436" x2="380" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="mm-leaf-group" id="mm-grp-fv-single" onclick="showTVMExample('fv-single')">
+<g class="mm-leaf-group" id="mm-grp-fv-single" data-mmid="fv-single">
 <rect class="mm-leaf-box" x="275" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="275" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="380" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Single Sum</text>
 <text x="380" y="300" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">FV=PV&#215;(1+r)<tspan font-size="8" dy="-6">n</tspan></text>
 <text x="380" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-fv-ordinary" onclick="showTVMExample('fv-ordinary')">
+<g class="mm-leaf-group" id="mm-grp-fv-ordinary" data-mmid="fv-ordinary">
 <rect class="mm-leaf-box" x="275" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="275" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="380" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Ordinary Annuity</text>
@@ -684,7 +684,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="380" y="412" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r</text>
 <text x="380" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-fv-due" onclick="showTVMExample('fv-due')">
+<g class="mm-leaf-group" id="mm-grp-fv-due" data-mmid="fv-due">
 <rect class="mm-leaf-box" x="275" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="275" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="380" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Annuity Due</text>
@@ -695,7 +695,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <line x1="610" y1="212" x2="610" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
 <line x1="610" y1="336" x2="610" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="610" y1="436" x2="610" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="mm-leaf-group" id="mm-grp-rate-implied" onclick="showTVMExample('rate-implied')">
+<g class="mm-leaf-group" id="mm-grp-rate-implied" data-mmid="rate-implied">
 <rect class="mm-leaf-box" x="505" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="505" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="610" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Implied Return / Yield</text>
@@ -703,7 +703,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="610" y="312" text-anchor="middle" font-size="10.5" fill="#4B5468">PV, cash flows, n</text>
 <text x="610" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-solve-n" onclick="showTVMExample('solve-n')">
+<g class="mm-leaf-group" id="mm-grp-solve-n" data-mmid="solve-n">
 <rect class="mm-leaf-box" x="505" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="505" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="610" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Solving for n</text>
@@ -711,7 +711,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="610" y="410" text-anchor="middle" font-size="10.5" fill="#4B5468">e.g. doubling time</text>
 <text x="610" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-solve-pmt" onclick="showTVMExample('solve-pmt')">
+<g class="mm-leaf-group" id="mm-grp-solve-pmt" data-mmid="solve-pmt">
 <rect class="mm-leaf-box" x="505" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="505" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="610" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Solving for PMT</text>
@@ -722,21 +722,21 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <line x1="840" y1="212" x2="840" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
 <line x1="840" y1="336" x2="840" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="840" y1="436" x2="840" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="mm-leaf-group" id="mm-grp-rate-ear" onclick="showTVMExample('rate-ear')">
+<g class="mm-leaf-group" id="mm-grp-rate-ear" data-mmid="rate-ear">
 <rect class="mm-leaf-box" x="735" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="735" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="840" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Effective Annual Rate</text>
 <text x="840" y="300" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">EAR=(1+r/m)<tspan font-size="7" dy="-6">m</tspan><tspan dy="6">&#8722;1</tspan></text>
 <text x="840" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-rate-continuous" onclick="showTVMExample('rate-continuous')">
+<g class="mm-leaf-group" id="mm-grp-rate-continuous" data-mmid="rate-continuous">
 <rect class="mm-leaf-box" x="735" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="735" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="840" y="370" text-anchor="middle" font-size="11" font-weight="700" fill="#232C42">Continuous Compounding</text>
 <text x="840" y="404" text-anchor="middle" font-size="12.5" font-family="monospace" fill="#232C42">EAR=e<tspan font-size="9" dy="-6">r</tspan><tspan dy="6">&#8722;1</tspan></text>
 <text x="840" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-rate-periodic" onclick="showTVMExample('rate-periodic')">
+<g class="mm-leaf-group" id="mm-grp-rate-periodic" data-mmid="rate-periodic">
 <rect class="mm-leaf-box" x="735" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="735" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="840" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Periodic Rate</text>
@@ -748,7 +748,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <line x1="1070" y1="212" x2="1070" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
 <line x1="1070" y1="336" x2="1070" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="1070" y1="436" x2="1070" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="mm-leaf-group" id="mm-grp-freq-monthly" onclick="showTVMExample('freq-monthly')">
+<g class="mm-leaf-group" id="mm-grp-freq-monthly" data-mmid="freq-monthly">
 <rect class="mm-leaf-box" x="965" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="965" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="1070" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Monthly vs. Annual</text>
@@ -756,7 +756,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="1070" y="314" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">r = rate &#247; 12</text>
 <text x="1070" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-freq-beginning" onclick="showTVMExample('freq-beginning')">
+<g class="mm-leaf-group" id="mm-grp-freq-beginning" data-mmid="freq-beginning">
 <rect class="mm-leaf-box" x="965" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="965" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="1070" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Beginning vs. End</text>
@@ -764,7 +764,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="1070" y="410" text-anchor="middle" font-size="9.5" fill="#4B5468">of each period</text>
 <text x="1070" y="430" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-freq-semiannual" onclick="showTVMExample('freq-semiannual')">
+<g class="mm-leaf-group" id="mm-grp-freq-semiannual" data-mmid="freq-semiannual">
 <rect class="mm-leaf-box" x="965" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="965" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="1070" y="470" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Semiannual/Quarterly</text>
@@ -775,7 +775,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <line x1="1300" y1="212" x2="1300" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#mm-arrow)"/>
 <line x1="1300" y1="336" x2="1300" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="1300" y1="436" x2="1300" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="mm-leaf-group" id="mm-grp-value-bond" onclick="showTVMExample('value-bond')">
+<g class="mm-leaf-group" id="mm-grp-value-bond" data-mmid="value-bond">
 <rect class="mm-leaf-box" x="1195" y="250" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="1195" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="1300" y="270" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Valuing a Bond</text>
@@ -783,7 +783,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="1300" y="310" text-anchor="middle" font-size="10" fill="#4B5468">+ PV(face value)</text>
 <text x="1300" y="332" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-value-stock" onclick="showTVMExample('value-stock')">
+<g class="mm-leaf-group" id="mm-grp-value-stock" data-mmid="value-stock">
 <rect class="mm-leaf-box" x="1195" y="350" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="1195" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="1300" y="368" text-anchor="middle" font-size="11.5" font-weight="700" fill="#232C42">Valuing a Stock (DDM)</text>
@@ -792,7 +792,7 @@ const EXHIBIT_TVM_MINDMAP_SVG = `
 <text x="1300" y="414" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">r &#8722; g</text>
 <text x="1300" y="432" text-anchor="middle" font-size="9.5" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="mm-leaf-group" id="mm-grp-forward-implied" onclick="showTVMExample('forward-implied')">
+<g class="mm-leaf-group" id="mm-grp-forward-implied" data-mmid="forward-implied">
 <rect class="mm-leaf-box" x="1195" y="450" width="210" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/>
 <rect x="1195" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="1300" y="470" text-anchor="middle" font-size="11" font-weight="700" fill="#232C42">Implied Forward Rate</text>
@@ -852,14 +852,14 @@ const EXHIBIT_FI_MINDMAP_SVG = `
 <text x="905" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Interest Rate Risk</text>
 <line x1="175" y1="212" x2="175" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
 <line x1="175" y1="336" x2="175" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-coupon-bond" onclick="showFIExample('coupon-bond')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-coupon-bond" data-mmid="coupon-bond">
 <rect class="fi-mm-leaf-box" x="45" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="175" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Coupon Bond</text>
 <text x="175" y="296" text-anchor="middle" font-size="11" fill="#4B5468">PV(coupon annuity)</text>
 <text x="175" y="312" text-anchor="middle" font-size="11" fill="#4B5468">+ PV(face value)</text>
 <text x="175" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-zero-coupon" onclick="showFIExample('zero-coupon')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-zero-coupon" data-mmid="zero-coupon">
 <rect class="fi-mm-leaf-box" x="45" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="175" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Zero-Coupon Bond</text>
 <text x="175" y="396" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Face</text>
@@ -869,7 +869,7 @@ const EXHIBIT_FI_MINDMAP_SVG = `
 </g>
 <line x1="540" y1="212" x2="540" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
 <line x1="540" y1="336" x2="540" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-current-yield" onclick="showFIExample('current-yield')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-current-yield" data-mmid="current-yield">
 <rect class="fi-mm-leaf-box" x="410" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="540" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Current Yield</text>
 <text x="540" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Coupon</text>
@@ -877,7 +877,7 @@ const EXHIBIT_FI_MINDMAP_SVG = `
 <text x="540" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Price</text>
 <text x="540" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-accrued-interest" onclick="showFIExample('accrued-interest')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-accrued-interest" data-mmid="accrued-interest">
 <rect class="fi-mm-leaf-box" x="410" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="540" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Accrued Interest</text>
 <text x="540" y="396" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Coupon &#215; (days/360)</text>
@@ -887,7 +887,7 @@ const EXHIBIT_FI_MINDMAP_SVG = `
 <line x1="905" y1="212" x2="905" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fi-mm-arrow)"/>
 <line x1="905" y1="336" x2="905" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="905" y1="436" x2="905" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-modified-duration" onclick="showFIExample('modified-duration')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-modified-duration" data-mmid="modified-duration">
 <rect class="fi-mm-leaf-box" x="775" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="905" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Modified Duration</text>
 <text x="905" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Macaulay</text>
@@ -895,13 +895,13 @@ const EXHIBIT_FI_MINDMAP_SVG = `
 <text x="905" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">1 + yield</text>
 <text x="905" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-duration-price" onclick="showFIExample('duration-price')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-duration-price" data-mmid="duration-price">
 <rect class="fi-mm-leaf-box" x="775" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="905" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Price Chg. from Duration</text>
 <text x="905" y="400" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">%\u0394P \u2248 \u2212Dur \u00D7 \u0394y</text>
 <text x="905" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fi-mm-leaf-group" id="fi-mm-grp-duration-convexity" onclick="showFIExample('duration-convexity')">
+<g class="fi-mm-leaf-group" id="fi-mm-grp-duration-convexity" data-mmid="duration-convexity">
 <rect class="fi-mm-leaf-box" x="775" y="450" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="905" y="470" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Duration + Convexity</text>
 <text x="905" y="492" text-anchor="middle" font-size="10.5" fill="#4B5468">Adds a convexity term</text>
@@ -944,7 +944,7 @@ const EXHIBIT_PM_MINDMAP_SVG = `
 <svg width="100%" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img">
 <title>Portfolio management formula mind map with two branches</title>
 <defs><marker id="pm-mm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#B67A22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<g class="pm-mm-leaf-group" id="pm-mm-grp-capm" onclick="showPMExample('capm')" style="cursor:pointer">
+<g class="pm-mm-leaf-group" id="pm-mm-grp-capm" data-mmid="capm" style="cursor:pointer">
 <rect class="pm-mm-leaf-box" x="270" y="15" width="360" height="80" rx="8" fill="#1C2333"/>
 <text x="450" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EA">Core: CAPM</text>
 <text x="450" y="66" text-anchor="middle" font-size="13" font-family="monospace" fill="#E8A33D">E(Ri) = Rf + \u03B2i&#215;[E(Rm)\u2212Rf]</text>
@@ -958,13 +958,13 @@ const EXHIBIT_PM_MINDMAP_SVG = `
 <text x="670" y="187" text-anchor="middle" font-size="12.5" font-weight="700" fill="#232C42">Evaluating Performance</text>
 <line x1="230" y1="212" x2="230" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#pm-mm-arrow)"/>
 <line x1="230" y1="336" x2="230" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="pm-mm-leaf-group" id="pm-mm-grp-port-return" onclick="showPMExample('port-return')">
+<g class="pm-mm-leaf-group" id="pm-mm-grp-port-return" data-mmid="port-return">
 <rect class="pm-mm-leaf-box" x="65" y="250" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="65" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="230" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Portfolio Expected Return</text>
 <text x="230" y="298" text-anchor="middle" font-size="13" font-family="monospace" fill="#232C42">E(Rp) = \u03A3 [wi &#215; E(Ri)]</text>
 <text x="230" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="pm-mm-leaf-group" id="pm-mm-grp-min-var" onclick="showPMExample('min-var')">
+<g class="pm-mm-leaf-group" id="pm-mm-grp-min-var" data-mmid="min-var">
 <rect class="pm-mm-leaf-box" x="65" y="350" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="65" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="230" y="370" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Minimum-Variance Weight</text>
 <text x="230" y="394" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">\u03C32\u00B2 \u2212 Cov(1,2)</text>
@@ -975,7 +975,7 @@ const EXHIBIT_PM_MINDMAP_SVG = `
 <line x1="670" y1="212" x2="670" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#pm-mm-arrow)"/>
 <line x1="670" y1="336" x2="670" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="670" y1="436" x2="670" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="pm-mm-leaf-group" id="pm-mm-grp-sharpe" onclick="showPMExample('sharpe')">
+<g class="pm-mm-leaf-group" id="pm-mm-grp-sharpe" data-mmid="sharpe">
 <rect class="pm-mm-leaf-box" x="505" y="250" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="505" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="670" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Sharpe Ratio</text>
 <text x="670" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Rp \u2212 Rf</text>
@@ -983,7 +983,7 @@ const EXHIBIT_PM_MINDMAP_SVG = `
 <text x="670" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">\u03C3p (total risk)</text>
 <text x="670" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="pm-mm-leaf-group" id="pm-mm-grp-treynor" onclick="showPMExample('treynor')">
+<g class="pm-mm-leaf-group" id="pm-mm-grp-treynor" data-mmid="treynor">
 <rect class="pm-mm-leaf-box" x="505" y="350" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="505" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="670" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Treynor Ratio</text>
 <text x="670" y="396" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Rp \u2212 Rf</text>
@@ -991,7 +991,7 @@ const EXHIBIT_PM_MINDMAP_SVG = `
 <text x="670" y="418" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">\u03B2p (systematic risk)</text>
 <text x="670" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="pm-mm-leaf-group" id="pm-mm-grp-jensen" onclick="showPMExample('jensen')">
+<g class="pm-mm-leaf-group" id="pm-mm-grp-jensen" data-mmid="jensen">
 <rect class="pm-mm-leaf-box" x="505" y="450" width="330" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="505" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="670" y="472" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Jensen's Alpha</text>
 <text x="670" y="500" text-anchor="middle" font-size="11" fill="#4B5468">Actual return \u2212</text>
@@ -1034,7 +1034,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <svg width="100%" viewBox="0 0 1080 600" xmlns="http://www.w3.org/2000/svg" role="img">
 <title>Financial statement analysis formula mind map with three branches</title>
 <defs><marker id="fsa-mm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#B67A22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-dupont" onclick="showFSAExample('dupont')" style="cursor:pointer">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-dupont" data-mmid="dupont" style="cursor:pointer">
 <rect class="fsa-mm-leaf-box" x="370" y="15" width="340" height="80" rx="8" fill="#1C2333"/>
 <text x="540" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EA">Core: DuPont Analysis</text>
 <text x="540" y="66" text-anchor="middle" font-size="12.5" font-family="monospace" fill="#E8A33D">ROE = Margin &#215; Turnover &#215; Leverage</text>
@@ -1053,7 +1053,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <text x="905" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Cash Flow</text>
 <line x1="175" y1="212" x2="175" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
 <line x1="175" y1="336" x2="175" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-current-ratio" onclick="showFSAExample('current-ratio')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-current-ratio" data-mmid="current-ratio">
 <rect class="fsa-mm-leaf-box" x="45" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="175" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Current Ratio</text>
 <text x="175" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Current assets</text>
@@ -1061,7 +1061,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <text x="175" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Current liabilities</text>
 <text x="175" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-debt-equity" onclick="showFSAExample('debt-equity')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-debt-equity" data-mmid="debt-equity">
 <rect class="fsa-mm-leaf-box" x="45" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="45" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="175" y="372" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Debt-to-Equity</text>
 <text x="175" y="396" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Total debt</text>
@@ -1072,7 +1072,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <line x1="540" y1="212" x2="540" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
 <line x1="540" y1="336" x2="540" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
 <line x1="540" y1="436" x2="540" y2="450" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-net-margin" onclick="showFSAExample('net-margin')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-net-margin" data-mmid="net-margin">
 <rect class="fsa-mm-leaf-box" x="410" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="540" y="272" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Net Profit Margin</text>
 <text x="540" y="296" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Net income</text>
@@ -1080,7 +1080,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <text x="540" y="318" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Revenue</text>
 <text x="540" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-inv-turnover" onclick="showFSAExample('inv-turnover')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-inv-turnover" data-mmid="inv-turnover">
 <rect class="fsa-mm-leaf-box" x="410" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="540" y="370" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Inventory Turnover</text>
 <text x="540" y="394" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">COGS</text>
@@ -1088,7 +1088,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <text x="540" y="416" text-anchor="middle" font-size="11" font-family="monospace" fill="#232C42">Avg. inventory</text>
 <text x="540" y="432" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-common-size" onclick="showFSAExample('common-size')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-common-size" data-mmid="common-size">
 <rect class="fsa-mm-leaf-box" x="410" y="450" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="410" y="450" width="3" height="86" fill="#B67A22"/>
 <text x="540" y="472" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Common-Size %</text>
 <text x="540" y="496" text-anchor="middle" font-size="12" font-family="monospace" fill="#232C42">Line item</text>
@@ -1098,7 +1098,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 </g>
 <line x1="905" y1="212" x2="905" y2="250" stroke="#CFC7AE" stroke-width="1.5" marker-end="url(#fsa-mm-arrow)"/>
 <line x1="905" y1="336" x2="905" y2="350" stroke="#CFC7AE" stroke-width="1.5"/>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-eps" onclick="showFSAExample('eps')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-eps" data-mmid="eps">
 <rect class="fsa-mm-leaf-box" x="775" y="250" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="250" width="3" height="86" fill="#B67A22"/>
 <text x="905" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Basic EPS</text>
 <text x="905" y="292" text-anchor="middle" font-size="10.5" font-family="monospace" fill="#232C42">NI \u2212 Pref. div.</text>
@@ -1106,7 +1106,7 @@ const EXHIBIT_FSA_MINDMAP_SVG = `
 <text x="905" y="314" text-anchor="middle" font-size="10" font-family="monospace" fill="#232C42">Wtd. avg. shares</text>
 <text x="905" y="332" text-anchor="middle" font-size="10" font-style="italic" fill="#B67A22">Example &#8594;</text>
 </g>
-<g class="fsa-mm-leaf-group" id="fsa-mm-grp-fcff" onclick="showFSAExample('fcff')">
+<g class="fsa-mm-leaf-group" id="fsa-mm-grp-fcff" data-mmid="fcff">
 <rect class="fsa-mm-leaf-box" x="775" y="350" width="260" height="86" rx="6" fill="#FDFCF8" stroke="#CFC7AE"/><rect x="775" y="350" width="3" height="86" fill="#B67A22"/>
 <text x="905" y="370" text-anchor="middle" font-size="12" font-weight="700" fill="#232C42">Free Cash Flow (FCFF)</text>
 <text x="905" y="392" text-anchor="middle" font-size="10" fill="#4B5468">NI + Non-cash + Int(1\u2212t)</text>
@@ -3789,6 +3789,15 @@ function mountTVMMindmap() {
   const mount = document.getElementById("tvm-mindmap-mount");
   if (!mount) return;
   mount.innerHTML = EXHIBIT_TVM_MINDMAP_SVG;
+  wireMindmapClicks(mount, showTVMExample);
+}
+
+/* ---- shared: attach one delegated click listener instead of per-box inline onclick attributes ---- */
+function wireMindmapClicks(mount, handler) {
+  mount.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-mmid]");
+    if (el) handler(el.getAttribute("data-mmid"));
+  });
 }
 
 /* ---- shared renderer for Given/Formula/Calculation detail panels ---- */
@@ -3824,6 +3833,7 @@ function mountFixedIncomeMindmap() {
   const mount = document.getElementById("fi-mindmap-mount");
   if (!mount) return;
   mount.innerHTML = EXHIBIT_FI_MINDMAP_SVG;
+  wireMindmapClicks(mount, showFIExample);
 }
 
 /* ---- Portfolio Management mind map ---- */
@@ -3846,6 +3856,7 @@ function mountPortfolioMindmap() {
   const mount = document.getElementById("pm-mindmap-mount");
   if (!mount) return;
   mount.innerHTML = EXHIBIT_PM_MINDMAP_SVG;
+  wireMindmapClicks(mount, showPMExample);
 }
 
 /* ---- FSA mind map ---- */
@@ -3870,6 +3881,7 @@ function mountFSAMindmap() {
   const mount = document.getElementById("fsa-mindmap-mount");
   if (!mount) return;
   mount.innerHTML = EXHIBIT_FSA_MINDMAP_SVG;
+  wireMindmapClicks(mount, showFSAExample);
 }
 
 /* ============================================================
