@@ -2118,85 +2118,28 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "fsa-3b",
-        title: "Module 2 — Inventory accounting: FIFO, LIFO, and weighted average",
+        id: "fsa-5d",
+        title: "Module 2 — Earnings per share: basic and diluted",
         body: [
-          `When a company sells inventory, it has to decide which of its purchased units it's "selling" for accounting purposes — a real question, since identical units were often bought at different prices over time. Three methods handle this, and the choice meaningfully changes reported profit and balance sheet values, especially when prices are rising or falling.`,
-          `FIFO (first-in, first-out) assumes the oldest inventory costs are sold first, leaving the most recently purchased (and, in a rising-price environment, most expensive) costs on the balance sheet as ending inventory. This tends to report higher profit and a more current-looking inventory value during inflation.`,
-          `LIFO (last-in, first-out) assumes the newest inventory costs are sold first, leaving the oldest (and, in a rising-price environment, cheapest) costs as ending inventory. This tends to report lower profit — and therefore lower taxes — during inflation, but leaves a stale, understated inventory value on the balance sheet.`,
-          `Weighted average blends all purchase costs into a single average cost per unit, landing between FIFO and LIFO for both cost of goods sold and ending inventory value.`,
-        ],
-        exhibits: [{ afterParagraph: 3, svg: EXHIBIT_INVENTORY_COMPARISON }],
-        formulas: [
-          { id: "fsa-3b-methods", name: "Cost of goods sold and ending inventory (rising-price example)", expression: "COGS + Ending inventory = Total cost of goods available for sale", when: "The three methods always split the same total cost differently between COGS and ending inventory — they never change the total.", problem: "A company buys 100 units at $10 and then 100 units at $12 (rising prices), and sells 150 units. What are COGS and ending inventory under FIFO, LIFO, and weighted average?", given: ["100 units purchased @ $10", "100 units purchased @ $12", "150 units sold"], worked: "FIFO: COGS = (100\u00D7$10)+(50\u00D7$12) = $1,600\n      Ending inventory = 50\u00D7$12 = $600\n\nLIFO: COGS = (100\u00D7$12)+(50\u00D7$10) = $1,700\n      Ending inventory = 50\u00D7$10 = $500\n\nWeighted avg: avg cost = $2,200/200 = $11/unit\n      COGS = 150\u00D7$11 = $1,650\n      Ending inventory = 50\u00D7$11 = $550" },
-        ],
-      },
-      {
-        id: "fsa-3b2",
-        title: "Module 6 — Lower of cost and net realizable value",
-        body: [`Regardless of which cost method (FIFO, LIFO, weighted average) a company uses, inventory can never be reported above its net realizable value — the estimated selling price less any remaining costs to complete and sell it. If net realizable value falls below the inventory's recorded cost (due to damage, obsolescence, or falling market prices), the company must write the inventory down to that lower value, and recognize the resulting loss immediately in the income statement. This asymmetric treatment — inventory can be written down but never written back up above original cost, even if its value later recovers under US GAAP — is a deliberately conservative convention, reflecting the accounting principle of not overstating asset values.`],
-        formulas: [],
-      },
-      {
-        id: "fsa-3b3",
-        title: "Module 6 — Inventory presentation and disclosures",
-        body: [`Inventory disclosures in the notes typically reveal the specific cost method used (essential, since it can't always be inferred from the balance sheet alone), any inventory write-downs taken during the period, and — for companies using LIFO under US GAAP — a required "LIFO reserve" disclosure showing the difference between the LIFO-based inventory value and what it would have been under FIFO, letting analysts adjust a LIFO reporter's numbers onto a FIFO-equivalent basis for more direct comparison against FIFO-reporting peers. Given how much reported profit and inventory value can shift purely based on which method is chosen (as the earlier worked example showed), checking these disclosures is a routine, high-value step whenever inventory is a meaningful part of a company's balance sheet.`],
-        formulas: [],
-      },
-      {
-        id: "fsa-3c",
-        title: "Module 7 — Long-lived assets and depreciation",
-        body: [
-          `When a company buys a long-lived asset (equipment, a building, a vehicle), it doesn't expense the full cost immediately — it spreads that cost over the asset's useful life as depreciation, matching the expense to the periods the asset actually helps generate revenue.`,
-          `Straight-line depreciation spreads the cost evenly across every year of the asset's useful life — the simplest and most common method.`,
-          `Accelerated methods (such as declining balance) front-load more depreciation expense into the early years and less into later years — often used because many assets genuinely lose more of their value/usefulness early on, and because it can reduce taxable income (and therefore taxes owed) sooner.`,
-        ],
-        exhibits: [{ afterParagraph: 2, svg: EXHIBIT_DEPRECIATION_COMPARISON }],
-        formulas: [
-          { id: "fsa-3c-sl", name: "Straight-line depreciation", expression: "Annual depreciation = <span class=\"frac\"><span class=\"num\">Cost \u2212 Salvage value</span><span class=\"den\">Useful life</span></span>", when: "Spreading an asset's cost evenly across its useful life.", problem: "A machine costs $50,000, has an estimated salvage value of $5,000, and a 5-year useful life. What is the annual straight-line depreciation?", given: ["Cost = $50,000", "Salvage value = $5,000", "Useful life = 5 years"], worked: "Annual depreciation = (50,000 \u2212 5,000) / 5\nAnnual depreciation = $9,000 every year" },
-          { id: "fsa-3c-ddb", name: "Double-declining balance (accelerated) — advanced", expression: "Annual depreciation = 2 \u00D7 <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">Useful life</span></span> \u00D7 Beginning book value", when: "Front-loading more depreciation into earlier years.", problem: "The same $50,000 machine, 5-year life, using double-declining balance instead of straight-line. What is the depreciation in each of the first three years?", given: ["Cost = $50,000", "Useful life = 5 years (rate = 2/5 = 40%)"], worked: "Year 1: 50,000 \u00D7 0.40 = $20,000\nYear 2: (50,000\u221220,000) \u00D7 0.40 = $12,000\nYear 3: (30,000\u221212,000) \u00D7 0.40 = $7,200\n\n(declining each year, unlike straight-line's flat $9,000)" },
-        ],
-      },
-      {
-        id: "fsa-3c2",
-        title: "Module 7 — Impairment and derecognition of long-term assets",
-        body: [
-          `Impairment occurs when a long-lived asset's carrying (book) value on the balance sheet exceeds its recoverable value — the asset is worth less than the books currently say, and accounting rules require writing it down, with the loss recognized immediately in the income statement. Both tangible assets (property, plant, and equipment) and intangible assets (excluding goodwill, which follows its own annual test covered above) are subject to impairment testing when events or circumstances suggest their value may have declined — a factory closure, a sharp drop in expected future cash flows, or obsolete technology are typical triggers.`,
-          `Derecognition happens when an asset is removed from the balance sheet entirely — through sale, disposal, or having reached the end of its useful life with no remaining value. On disposal, any gain or loss (the difference between sale proceeds and the asset's remaining book value) is recognized in the income statement. Both impairment and derecognition directly affect reported profitability and asset turnover ratios in the period they occur, and analysts typically distinguish these one-time effects from the company's ongoing, sustainable operating performance — the same "non-recurring items" logic introduced in Module 2.`,
-        ],
-        formulas: [],
-      },
-      {
-        id: "fsa-3c3",
-        title: "Module 7 — Long-term asset disclosures",
-        body: [`Property, plant, and equipment and intangible asset disclosures typically reveal the depreciation/amortization method and useful lives assumed (both involving real management judgment, and both worth comparing across peer companies), a breakdown of gross cost versus accumulated depreciation (revealing roughly how "old," on average, a company's asset base is), and any impairment charges taken during the period. A company with an unusually old asset base (accumulated depreciation close to gross cost) may face upcoming capital expenditure needs not yet reflected in current cash flow projections — a detail visible only by reading the disclosure notes, not the summary balance sheet line alone.`],
-        formulas: [],
-      },
-      {
-        id: "fsa-3d",
-        title: "Module 9 — Income taxes: book income vs. taxable income",
-        body: [
-          `The profit a company reports to shareholders (book income, following GAAP or IFRS) is often different from the profit it reports to tax authorities (taxable income, following tax law) — timing differences like depreciation method choices are a common cause, since a company can legally use straight-line depreciation for its financial statements while using an accelerated method for its tax return. Taxes payable is the actual amount currently owed to tax authorities, based on taxable income; income tax expense is what appears on the income statement, based on book income — the two are rarely identical.`,
-          `The gap between book and taxable income splits into two categories. Temporary differences (like the depreciation timing example above) reverse over time — the total tax paid over an asset's full life ends up the same either way, just shifted between periods, which is exactly what deferred tax accounting exists to track. Permanent differences never reverse — some income or expense items are recognized for book purposes but never for tax purposes (or vice versa), such as tax-exempt municipal bond interest that boosts book income but is never taxed. Permanent differences don't create a deferred tax asset or liability at all, since there's nothing to "catch up" on in a future period.`,
-          `When book income and taxable income differ due to timing (rather than permanently), the company records a deferred tax liability (it paid less tax now than its book income would suggest, and will effectively "catch up" later) or a deferred tax asset (the reverse — it paid more tax now and expects a future tax benefit).`,
+          `Earnings per share restates net income on a per-share basis, making it possible to compare profitability across companies regardless of how many shares each happens to have outstanding. A company with a simple capital structure (no securities that could convert into common shares) only needs to report basic EPS. A company with a complex capital structure (convertible bonds, convertible preferred stock, stock options, or warrants — any of which could turn into new common shares) must also report diluted EPS, showing what EPS would look like if all of that potential dilution actually happened.`,
+          `Diluted EPS is always less than or equal to basic EPS, since adding potential shares can only spread the same net income more thinly, never less. There's an important exception, though: if including a convertible security would actually increase EPS rather than decrease it, that security is antidilutive, and it must be excluded from the diluted EPS calculation — diluted EPS is meant to show the most conservative (lowest) plausible EPS figure, so any security that would push the number the wrong direction doesn't get included.`,
         ],
         formulas: [
-          { id: "fsa-3d-deferred", name: "Deferred tax liability from a timing difference", expression: "Deferred tax liability created = (Tax depreciation \u2212 Book depreciation) \u00D7 Tax rate", when: "Estimating the deferred tax impact of using different depreciation methods for book vs. tax purposes.", problem: "A company uses straight-line depreciation for its books ($9,000 in year 1) but accelerated depreciation for tax purposes ($15,000 in year 1), at a 25% tax rate. What deferred tax liability does this create?", given: ["Book depreciation = $9,000", "Tax depreciation = $15,000", "Tax rate = 0.25"], worked: "DTL = (15,000 \u2212 9,000) \u00D7 0.25\nDTL = 6,000 \u00D7 0.25\nDTL = $1,500\n\n(tax the company will effectively pay later, once\ntax depreciation falls below book depreciation)" },
+          { id: "fsa-5d-eps", name: "Basic earnings per share", expression: "Basic EPS = <span class=\"frac\"><span class=\"num\">Net income \u2212 Preferred dividends</span><span class=\"den\">Weighted average shares outstanding</span></span>", when: "Preferred dividends are subtracted first because that income belongs to preferred shareholders, not common shareholders.", problem: "A company has net income of $5,000,000, pays $500,000 in preferred dividends, and has a weighted average of 2,000,000 common shares outstanding. What is basic EPS?", given: ["Net income = $5,000,000", "Preferred dividends = $500,000", "Weighted avg. shares = 2,000,000"], worked: "Basic EPS = (5,000,000 \u2212 500,000) / 2,000,000\nBasic EPS = 4,500,000 / 2,000,000\nBasic EPS = $2.25 per share" },
+          { id: "fsa-5d-diluted", name: "Diluted EPS (if-converted method) — advanced", expression: "Diluted EPS = <span class=\"frac\"><span class=\"num\">(Net income \u2212 Preferred dividends) + Convertible debt interest \u00D7 (1\u2212tax)</span><span class=\"den\">Weighted avg. shares + Shares from conversion</span></span>", when: "Assuming every convertible security actually converts, to find the most conservative (lowest, non-antidilutive) EPS figure.", problem: "The same company also has convertible bonds outstanding that pay $200,000 of after-tax interest and would convert into 300,000 new shares. What is diluted EPS?", given: ["Basic EPS numerator = $4,500,000", "Weighted avg. shares = 2,000,000", "After-tax interest saved on conversion = $200,000", "New shares from conversion = 300,000"], worked: "Diluted EPS = (4,500,000 + 200,000) / (2,000,000 + 300,000)\nDiluted EPS = 4,700,000 / 2,300,000\nDiluted EPS \u2248 $2.04 per share\n\n(lower than the $2.25 basic EPS, as expected \u2014\nif this had come out higher than $2.25, the bonds\nwould be antidilutive and excluded entirely)" },
         ],
       },
       {
-        id: "fsa-3d2",
-        title: "Module 9 — Effective, statutory, and cash tax rates",
-        body: [`Three distinct "tax rate" figures show up in analysis, and confusing them is a common error. The statutory tax rate is the tax rate set by law in the jurisdiction where the company is taxed — a known, published number. The effective tax rate is income tax expense divided by pre-tax income, as actually reported on the income statement — it reflects the company's real overall tax burden after all the credits, permanent differences, and multi-jurisdiction effects that make it different from the simple statutory rate. The cash tax rate goes a step further, using taxes actually paid in cash (from the cash flow statement or disclosures) divided by pre-tax income — capturing the effect of timing differences that the effective tax rate (an accrual-based figure) does not. A large, persistent gap between a company's effective tax rate and its cash tax rate is worth investigating, since it often signals a meaningful buildup (or reversal) of deferred tax balances.`],
+        id: "fsa-5b",
+        title: "Module 2 — Common-size income statements",
+        body: [
+          `Comparing two companies' raw dollar figures side by side is often misleading if the companies are different sizes — a $6 million cost of goods sold means something very different for a $10 million company than a $100 million one. Common-size statements solve this by expressing every line item as a percentage of a base figure: revenue, for the income statement, or total assets, for the balance sheet.`,
+          `This lets you compare cost structure and efficiency across companies of very different sizes, or track how a single company's own structure changes over time, without the raw dollar figures getting in the way.`,
+        ],
+        exhibits: [{ afterParagraph: 1, svg: EXHIBIT_COMMONSIZE_COMPARISON }],
         formulas: [
-          { id: "fsa-3d2-rates", name: "Effective tax rate", expression: "Effective tax rate = <span class=\"frac\"><span class=\"num\">Income tax expense</span><span class=\"den\">Pre-tax income</span></span>", when: "Finding a company's actual overall tax burden as reported on the income statement, for comparison against the statutory rate.", problem: "A company has pre-tax income of $10,000,000 and reports income tax expense of $2,200,000, in a jurisdiction with a 25% statutory tax rate. What is its effective tax rate, and how does it compare to the statutory rate?", given: ["Pre-tax income = $10,000,000", "Income tax expense = $2,200,000", "Statutory rate = 25%"], worked: "Effective tax rate = 2,200,000 / 10,000,000\nEffective tax rate = 22%\n\n(below the 25% statutory rate \u2014 the gap suggests\ncredits or permanent differences reducing the\ncompany's overall tax burden below the statutory level)" },
+          { id: "fsa-5b-commonsize", name: "Common-size income statement line item", expression: "Common-size % = <span class=\"frac\"><span class=\"num\">Line item</span><span class=\"den\">Total revenue</span></span>", when: "Restating an income statement line as a percentage of revenue, to compare companies of different sizes.", problem: "Company A has $10 million revenue and $6 million COGS. Company B has $100 million revenue and $65 million COGS. Which has the more efficient cost structure?", given: ["Company A: revenue = $10M, COGS = $6M", "Company B: revenue = $100M, COGS = $65M"], worked: "Company A: COGS % = 6/10 = 60%\nCompany B: COGS % = 65/100 = 65%\n\n(despite being 10x larger, Company B actually runs\na slightly less efficient cost structure)" },
         ],
-      },
-      {
-        id: "fsa-3d3",
-        title: "Module 9 — Tax disclosures and the effective tax rate reconciliation",
-        body: [`Tax footnote disclosures typically include a reconciliation, starting from the statutory rate and walking through each factor (foreign tax rate differences, tax credits, permanent differences, and others) that explains the gap to the actual effective rate reported — a genuinely useful tool for understanding whether a company's current effective rate is likely sustainable or reflects temporary, one-time factors that might not repeat. Disclosures also break down the components of deferred tax assets and liabilities by source (which specific temporary differences are driving them), and often include a valuation allowance against deferred tax assets when management believes some portion may not actually be realized (for example, if the company doesn't expect to generate enough future taxable income to use an accumulated tax-loss carryforward) — a judgment call worth scrutinizing, since a large or growing valuation allowance can itself be an earnings-quality warning sign.`],
-        formulas: [],
       },
       {
         id: "fsa-3e",
@@ -2214,23 +2157,6 @@ const CHAPTERS = [
         id: "fsa-3g",
         title: "Module 3 — Financial instruments: reporting and disclosures",
         body: [`Financial instruments (investments in another company's debt or equity securities, and certain derivative instruments) are reported on the balance sheet using one of a few measurement approaches, depending on the instrument and management's intent in holding it: amortized cost (for debt instruments the company intends to hold to collect contractual cash flows, reported at cost adjusted over time rather than current market value), fair value through other comprehensive income (unrealized gains/losses bypass the income statement, appearing instead in equity until realized), and fair value through profit or loss (unrealized gains/losses flow directly through the income statement each period). This classification matters enormously for analysis: two companies holding economically identical securities can show very different reported income and balance sheet values purely based on which classification applies, making the disclosure notes essential reading whenever financial instruments are a meaningful part of a company's balance sheet.`],
-        formulas: [],
-      },
-      {
-        id: "fsa-3e2",
-        title: "Module 3 — Non-current liabilities: leases, pensions, and disclosures",
-        body: [
-          `Beyond bonds (covered in Fixed Income), two other non-current liability types show up often on a company's balance sheet.`,
-          `Leases: rather than buying an asset outright, a company may lease it instead. Modern accounting rules require most leases to appear on the balance sheet as a lease liability (the obligation to make future payments) alongside a matching right-of-use asset — effectively treating a lease much like a loan used to buy the same asset.`,
-          `Pensions: when a company promises employees future retirement benefits, it creates a liability today equal to the present value of that promise — a direct application of the time value of money from Quantitative Methods. A defined benefit plan promises a specific future payout (putting the funding-shortfall risk on the company); a defined contribution plan only promises to contribute a certain amount today (putting the investment-outcome risk on the employee).`,
-          `Non-current liability disclosures typically detail the maturity schedule of outstanding debt, interest rates, covenants (restrictions the borrower agrees to, like maintaining a minimum liquidity ratio), and — for leases and pensions specifically — the key assumptions (discount rate, expected return on plan assets for pensions) driving the reported liability value. Since these assumptions involve real management judgment, comparing them across companies is often a worthwhile analytical step, since more optimistic assumptions can make a liability look smaller than an economically comparable one at a more conservative peer.`,
-        ],
-        formulas: [],
-      },
-      {
-        id: "fsa-3e3",
-        title: "Module 8 — Stock-based compensation",
-        body: [`Stock-based compensation (paying employees partly with company stock or stock options rather than cash alone) is a real economic cost to existing shareholders — it dilutes their ownership stake — even though it doesn't require an immediate cash outlay from the company. Accounting rules require the fair value of stock-based compensation to be recognized as an expense on the income statement over the vesting period (the time employees must wait before the award is fully theirs), spreading the cost over the service period it's meant to compensate. Because this expense is non-cash, it gets added back in the indirect-method cash flow statement (similar to depreciation), which is exactly why analysts sometimes point out that a company's operating cash flow can look considerably stronger than its net income specifically because of heavy stock-based compensation — real economic cost to shareholders through dilution, but invisible in the cash flow figures themselves.`],
         formulas: [],
       },
       {
@@ -2302,6 +2228,115 @@ const CHAPTERS = [
         ],
       },
       {
+        id: "fsa-5e",
+        title: "Module 5 — Free cash flow to the firm (FCFF)",
+        body: [
+          `Net income and operating cash flow both matter, but neither directly answers the question "how much cash could this company actually distribute to its investors without harming the business?" Free cash flow fills that gap, and comes in two versions depending on which investors you're asking about.`,
+          `Free cash flow to the firm (FCFF) is the cash available to all of the company's capital providers — both debt and equity holders — after covering operating expenses and the capital investment needed to sustain the business. Free cash flow to equity (FCFE) narrows that down to just what's available to equity holders specifically, after also accounting for net payments to debtholders.`,
+        ],
+        formulas: [
+          { id: "fsa-5e-fcff", name: "FCFF (starting from net income) — advanced", expression: "FCFF = Net income + Non-cash charges + Interest \u00D7 (1 \u2212 tax rate) \u2212 Capital expenditures \u2212 Increase in working capital", when: "Estimating cash available to all capital providers (debt and equity) combined.", problem: "A company has net income of $2,000,000, non-cash depreciation of $400,000, interest expense of $300,000, a 25% tax rate, capital expenditures of $600,000, and a $100,000 increase in working capital. What is its FCFF?", given: ["Net income = $2,000,000", "Non-cash depreciation = $400,000", "Interest expense = $300,000", "Tax rate = 0.25", "CapEx = $600,000", "Increase in working capital = $100,000"], worked: "FCFF = 2,000,000 + 400,000 + 300,000\u00D7(1\u22120.25) \u2212 600,000 \u2212 100,000\nFCFF = 2,000,000 + 400,000 + 225,000 \u2212 600,000 \u2212 100,000\nFCFF = $1,925,000" },
+        ],
+      },
+      {
+        id: "fsa-3b",
+        title: "Module 6 — Inventory accounting: FIFO, LIFO, and weighted average",
+        body: [
+          `When a company sells inventory, it has to decide which of its purchased units it's "selling" for accounting purposes — a real question, since identical units were often bought at different prices over time. Three methods handle this, and the choice meaningfully changes reported profit and balance sheet values, especially when prices are rising or falling.`,
+          `FIFO (first-in, first-out) assumes the oldest inventory costs are sold first, leaving the most recently purchased (and, in a rising-price environment, most expensive) costs on the balance sheet as ending inventory. This tends to report higher profit and a more current-looking inventory value during inflation.`,
+          `LIFO (last-in, first-out) assumes the newest inventory costs are sold first, leaving the oldest (and, in a rising-price environment, cheapest) costs as ending inventory. This tends to report lower profit — and therefore lower taxes — during inflation, but leaves a stale, understated inventory value on the balance sheet.`,
+          `Weighted average blends all purchase costs into a single average cost per unit, landing between FIFO and LIFO for both cost of goods sold and ending inventory value.`,
+        ],
+        exhibits: [{ afterParagraph: 3, svg: EXHIBIT_INVENTORY_COMPARISON }],
+        formulas: [
+          { id: "fsa-3b-methods", name: "Cost of goods sold and ending inventory (rising-price example)", expression: "COGS + Ending inventory = Total cost of goods available for sale", when: "The three methods always split the same total cost differently between COGS and ending inventory — they never change the total.", problem: "A company buys 100 units at $10 and then 100 units at $12 (rising prices), and sells 150 units. What are COGS and ending inventory under FIFO, LIFO, and weighted average?", given: ["100 units purchased @ $10", "100 units purchased @ $12", "150 units sold"], worked: "FIFO: COGS = (100\u00D7$10)+(50\u00D7$12) = $1,600\n      Ending inventory = 50\u00D7$12 = $600\n\nLIFO: COGS = (100\u00D7$12)+(50\u00D7$10) = $1,700\n      Ending inventory = 50\u00D7$10 = $500\n\nWeighted avg: avg cost = $2,200/200 = $11/unit\n      COGS = 150\u00D7$11 = $1,650\n      Ending inventory = 50\u00D7$11 = $550" },
+        ],
+      },
+      {
+        id: "fsa-3b2",
+        title: "Module 6 — Lower of cost and net realizable value",
+        body: [`Regardless of which cost method (FIFO, LIFO, weighted average) a company uses, inventory can never be reported above its net realizable value — the estimated selling price less any remaining costs to complete and sell it. If net realizable value falls below the inventory's recorded cost (due to damage, obsolescence, or falling market prices), the company must write the inventory down to that lower value, and recognize the resulting loss immediately in the income statement. This asymmetric treatment — inventory can be written down but never written back up above original cost, even if its value later recovers under US GAAP — is a deliberately conservative convention, reflecting the accounting principle of not overstating asset values.`],
+        formulas: [],
+      },
+      {
+        id: "fsa-3b3",
+        title: "Module 6 — Inventory presentation and disclosures",
+        body: [`Inventory disclosures in the notes typically reveal the specific cost method used (essential, since it can't always be inferred from the balance sheet alone), any inventory write-downs taken during the period, and — for companies using LIFO under US GAAP — a required "LIFO reserve" disclosure showing the difference between the LIFO-based inventory value and what it would have been under FIFO, letting analysts adjust a LIFO reporter's numbers onto a FIFO-equivalent basis for more direct comparison against FIFO-reporting peers. Given how much reported profit and inventory value can shift purely based on which method is chosen (as the earlier worked example showed), checking these disclosures is a routine, high-value step whenever inventory is a meaningful part of a company's balance sheet.`],
+        formulas: [],
+      },
+      {
+        id: "fsa-3c",
+        title: "Module 7 — Long-lived assets and depreciation",
+        body: [
+          `When a company buys a long-lived asset (equipment, a building, a vehicle), it doesn't expense the full cost immediately — it spreads that cost over the asset's useful life as depreciation, matching the expense to the periods the asset actually helps generate revenue.`,
+          `Straight-line depreciation spreads the cost evenly across every year of the asset's useful life — the simplest and most common method.`,
+          `Accelerated methods (such as declining balance) front-load more depreciation expense into the early years and less into later years — often used because many assets genuinely lose more of their value/usefulness early on, and because it can reduce taxable income (and therefore taxes owed) sooner.`,
+        ],
+        exhibits: [{ afterParagraph: 2, svg: EXHIBIT_DEPRECIATION_COMPARISON }],
+        formulas: [
+          { id: "fsa-3c-sl", name: "Straight-line depreciation", expression: "Annual depreciation = <span class=\"frac\"><span class=\"num\">Cost \u2212 Salvage value</span><span class=\"den\">Useful life</span></span>", when: "Spreading an asset's cost evenly across its useful life.", problem: "A machine costs $50,000, has an estimated salvage value of $5,000, and a 5-year useful life. What is the annual straight-line depreciation?", given: ["Cost = $50,000", "Salvage value = $5,000", "Useful life = 5 years"], worked: "Annual depreciation = (50,000 \u2212 5,000) / 5\nAnnual depreciation = $9,000 every year" },
+          { id: "fsa-3c-ddb", name: "Double-declining balance (accelerated) — advanced", expression: "Annual depreciation = 2 \u00D7 <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">Useful life</span></span> \u00D7 Beginning book value", when: "Front-loading more depreciation into earlier years.", problem: "The same $50,000 machine, 5-year life, using double-declining balance instead of straight-line. What is the depreciation in each of the first three years?", given: ["Cost = $50,000", "Useful life = 5 years (rate = 2/5 = 40%)"], worked: "Year 1: 50,000 \u00D7 0.40 = $20,000\nYear 2: (50,000\u221220,000) \u00D7 0.40 = $12,000\nYear 3: (30,000\u221212,000) \u00D7 0.40 = $7,200\n\n(declining each year, unlike straight-line's flat $9,000)" },
+        ],
+      },
+      {
+        id: "fsa-3c2",
+        title: "Module 7 — Impairment and derecognition of long-term assets",
+        body: [
+          `Impairment occurs when a long-lived asset's carrying (book) value on the balance sheet exceeds its recoverable value — the asset is worth less than the books currently say, and accounting rules require writing it down, with the loss recognized immediately in the income statement. Both tangible assets (property, plant, and equipment) and intangible assets (excluding goodwill, which follows its own annual test covered above) are subject to impairment testing when events or circumstances suggest their value may have declined — a factory closure, a sharp drop in expected future cash flows, or obsolete technology are typical triggers.`,
+          `Derecognition happens when an asset is removed from the balance sheet entirely — through sale, disposal, or having reached the end of its useful life with no remaining value. On disposal, any gain or loss (the difference between sale proceeds and the asset's remaining book value) is recognized in the income statement. Both impairment and derecognition directly affect reported profitability and asset turnover ratios in the period they occur, and analysts typically distinguish these one-time effects from the company's ongoing, sustainable operating performance — the same "non-recurring items" logic introduced in Module 2.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "fsa-3c3",
+        title: "Module 7 — Long-term asset disclosures",
+        body: [`Property, plant, and equipment and intangible asset disclosures typically reveal the depreciation/amortization method and useful lives assumed (both involving real management judgment, and both worth comparing across peer companies), a breakdown of gross cost versus accumulated depreciation (revealing roughly how "old," on average, a company's asset base is), and any impairment charges taken during the period. A company with an unusually old asset base (accumulated depreciation close to gross cost) may face upcoming capital expenditure needs not yet reflected in current cash flow projections — a detail visible only by reading the disclosure notes, not the summary balance sheet line alone.`],
+        formulas: [],
+      },
+      {
+        id: "fsa-3e3",
+        title: "Module 8 — Stock-based compensation",
+        body: [`Stock-based compensation (paying employees partly with company stock or stock options rather than cash alone) is a real economic cost to existing shareholders — it dilutes their ownership stake — even though it doesn't require an immediate cash outlay from the company. Accounting rules require the fair value of stock-based compensation to be recognized as an expense on the income statement over the vesting period (the time employees must wait before the award is fully theirs), spreading the cost over the service period it's meant to compensate. Because this expense is non-cash, it gets added back in the indirect-method cash flow statement (similar to depreciation), which is exactly why analysts sometimes point out that a company's operating cash flow can look considerably stronger than its net income specifically because of heavy stock-based compensation — real economic cost to shareholders through dilution, but invisible in the cash flow figures themselves.`],
+        formulas: [],
+      },
+      {
+        id: "fsa-3e2",
+        title: "Module 3 & 8 — Non-current liabilities: leases, pensions, and disclosures",
+        body: [
+          `Beyond bonds (covered in Fixed Income), two other non-current liability types show up often on a company's balance sheet.`,
+          `Leases: rather than buying an asset outright, a company may lease it instead. Modern accounting rules require most leases to appear on the balance sheet as a lease liability (the obligation to make future payments) alongside a matching right-of-use asset — effectively treating a lease much like a loan used to buy the same asset.`,
+          `Pensions: when a company promises employees future retirement benefits, it creates a liability today equal to the present value of that promise — a direct application of the time value of money from Quantitative Methods. A defined benefit plan promises a specific future payout (putting the funding-shortfall risk on the company); a defined contribution plan only promises to contribute a certain amount today (putting the investment-outcome risk on the employee).`,
+          `Non-current liability disclosures typically detail the maturity schedule of outstanding debt, interest rates, covenants (restrictions the borrower agrees to, like maintaining a minimum liquidity ratio), and — for leases and pensions specifically — the key assumptions (discount rate, expected return on plan assets for pensions) driving the reported liability value. Since these assumptions involve real management judgment, comparing them across companies is often a worthwhile analytical step, since more optimistic assumptions can make a liability look smaller than an economically comparable one at a more conservative peer.`,
+        ],
+        formulas: [],
+      },
+      {
+        id: "fsa-3d",
+        title: "Module 9 — Income taxes: book income vs. taxable income",
+        body: [
+          `The profit a company reports to shareholders (book income, following GAAP or IFRS) is often different from the profit it reports to tax authorities (taxable income, following tax law) — timing differences like depreciation method choices are a common cause, since a company can legally use straight-line depreciation for its financial statements while using an accelerated method for its tax return. Taxes payable is the actual amount currently owed to tax authorities, based on taxable income; income tax expense is what appears on the income statement, based on book income — the two are rarely identical.`,
+          `The gap between book and taxable income splits into two categories. Temporary differences (like the depreciation timing example above) reverse over time — the total tax paid over an asset's full life ends up the same either way, just shifted between periods, which is exactly what deferred tax accounting exists to track. Permanent differences never reverse — some income or expense items are recognized for book purposes but never for tax purposes (or vice versa), such as tax-exempt municipal bond interest that boosts book income but is never taxed. Permanent differences don't create a deferred tax asset or liability at all, since there's nothing to "catch up" on in a future period.`,
+          `When book income and taxable income differ due to timing (rather than permanently), the company records a deferred tax liability (it paid less tax now than its book income would suggest, and will effectively "catch up" later) or a deferred tax asset (the reverse — it paid more tax now and expects a future tax benefit).`,
+        ],
+        formulas: [
+          { id: "fsa-3d-deferred", name: "Deferred tax liability from a timing difference", expression: "Deferred tax liability created = (Tax depreciation \u2212 Book depreciation) \u00D7 Tax rate", when: "Estimating the deferred tax impact of using different depreciation methods for book vs. tax purposes.", problem: "A company uses straight-line depreciation for its books ($9,000 in year 1) but accelerated depreciation for tax purposes ($15,000 in year 1), at a 25% tax rate. What deferred tax liability does this create?", given: ["Book depreciation = $9,000", "Tax depreciation = $15,000", "Tax rate = 0.25"], worked: "DTL = (15,000 \u2212 9,000) \u00D7 0.25\nDTL = 6,000 \u00D7 0.25\nDTL = $1,500\n\n(tax the company will effectively pay later, once\ntax depreciation falls below book depreciation)" },
+        ],
+      },
+      {
+        id: "fsa-3d2",
+        title: "Module 9 — Effective, statutory, and cash tax rates",
+        body: [`Three distinct "tax rate" figures show up in analysis, and confusing them is a common error. The statutory tax rate is the tax rate set by law in the jurisdiction where the company is taxed — a known, published number. The effective tax rate is income tax expense divided by pre-tax income, as actually reported on the income statement — it reflects the company's real overall tax burden after all the credits, permanent differences, and multi-jurisdiction effects that make it different from the simple statutory rate. The cash tax rate goes a step further, using taxes actually paid in cash (from the cash flow statement or disclosures) divided by pre-tax income — capturing the effect of timing differences that the effective tax rate (an accrual-based figure) does not. A large, persistent gap between a company's effective tax rate and its cash tax rate is worth investigating, since it often signals a meaningful buildup (or reversal) of deferred tax balances.`],
+        formulas: [
+          { id: "fsa-3d2-rates", name: "Effective tax rate", expression: "Effective tax rate = <span class=\"frac\"><span class=\"num\">Income tax expense</span><span class=\"den\">Pre-tax income</span></span>", when: "Finding a company's actual overall tax burden as reported on the income statement, for comparison against the statutory rate.", problem: "A company has pre-tax income of $10,000,000 and reports income tax expense of $2,200,000, in a jurisdiction with a 25% statutory tax rate. What is its effective tax rate, and how does it compare to the statutory rate?", given: ["Pre-tax income = $10,000,000", "Income tax expense = $2,200,000", "Statutory rate = 25%"], worked: "Effective tax rate = 2,200,000 / 10,000,000\nEffective tax rate = 22%\n\n(below the 25% statutory rate \u2014 the gap suggests\ncredits or permanent differences reducing the\ncompany's overall tax burden below the statutory level)" },
+        ],
+      },
+      {
+        id: "fsa-3d3",
+        title: "Module 9 — Tax disclosures and the effective tax rate reconciliation",
+        body: [`Tax footnote disclosures typically include a reconciliation, starting from the statutory rate and walking through each factor (foreign tax rate differences, tax credits, permanent differences, and others) that explains the gap to the actual effective rate reported — a genuinely useful tool for understanding whether a company's current effective rate is likely sustainable or reflects temporary, one-time factors that might not repeat. Disclosures also break down the components of deferred tax assets and liabilities by source (which specific temporary differences are driving them), and often include a valuation allowance against deferred tax assets when management believes some portion may not actually be realized (for example, if the company doesn't expect to generate enough future taxable income to use an accumulated tax-loss carryforward) — a judgment call worth scrutinizing, since a large or growing valuation allowance can itself be an earnings-quality warning sign.`],
+        formulas: [],
+      },
+      {
         id: "fsa-5",
         title: "Module 10 — Financial reporting quality vs. the quality of results",
         body: [
@@ -2345,18 +2380,6 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "fsa-5b",
-        title: "Analysis technique: common-size statements",
-        body: [
-          `Comparing two companies' raw dollar figures side by side is often misleading if the companies are different sizes — a $6 million cost of goods sold means something very different for a $10 million company than a $100 million one. Common-size statements solve this by expressing every line item as a percentage of a base figure: revenue, for the income statement, or total assets, for the balance sheet.`,
-          `This lets you compare cost structure and efficiency across companies of very different sizes, or track how a single company's own structure changes over time, without the raw dollar figures getting in the way.`,
-        ],
-        exhibits: [{ afterParagraph: 1, svg: EXHIBIT_COMMONSIZE_COMPARISON }],
-        formulas: [
-          { id: "fsa-5b-commonsize", name: "Common-size income statement line item", expression: "Common-size % = <span class=\"frac\"><span class=\"num\">Line item</span><span class=\"den\">Total revenue</span></span>", when: "Restating an income statement line as a percentage of revenue, to compare companies of different sizes.", problem: "Company A has $10 million revenue and $6 million COGS. Company B has $100 million revenue and $65 million COGS. Which has the more efficient cost structure?", given: ["Company A: revenue = $10M, COGS = $6M", "Company B: revenue = $100M, COGS = $65M"], worked: "Company A: COGS % = 6/10 = 60%\nCompany B: COGS % = 65/100 = 65%\n\n(despite being 10x larger, Company B actually runs\na slightly less efficient cost structure)" },
-        ],
-      },
-      {
         id: "fsa-5k",
         title: "Module 11 — Financial analysis tools and techniques",
         body: [`Beyond the individual ratio categories covered throughout this chapter, it's worth stepping back to see the broader toolkit and its limits. Ratio analysis (the focus of most of this chapter) is powerful precisely because it standardizes comparisons across companies of different sizes, but ratios calculated from manipulated or low-quality inputs (Module 10's whole subject) are only as trustworthy as the numbers behind them. Common-size analysis (covered earlier) similarly standardizes for size, but can mask absolute-dollar differences that still matter for some purposes. Cross-sectional analysis compares a company against its peers at a single point in time; time-series (trend) analysis tracks a single company's own ratios over multiple periods — both are useful, and used together, since a ratio that looks fine relative to history might still look weak relative to peers, or vice versa. No single technique tells the whole story; skilled analysis typically triangulates across several of these approaches, cross-checked against the qualitative context (industry conditions, competitive position, and the notes/disclosures covered throughout this chapter) rather than relying on ratios in isolation.`],
@@ -2383,29 +2406,6 @@ const CHAPTERS = [
           `Ratio analysis and other techniques covered in this chapter also feed directly into forecasting: trend analysis of margins, turnover ratios, and growth rates provides a starting basis for projecting future performance, a theme picked up in depth in Module 12's treatment of financial statement modeling.`,
         ],
         formulas: [],
-      },
-      {
-        id: "fsa-5d",
-        title: "Module 2 — Earnings per share: basic and diluted",
-        body: [
-          `Earnings per share restates net income on a per-share basis, making it possible to compare profitability across companies regardless of how many shares each happens to have outstanding. A company with a simple capital structure (no securities that could convert into common shares) only needs to report basic EPS. A company with a complex capital structure (convertible bonds, convertible preferred stock, stock options, or warrants — any of which could turn into new common shares) must also report diluted EPS, showing what EPS would look like if all of that potential dilution actually happened.`,
-          `Diluted EPS is always less than or equal to basic EPS, since adding potential shares can only spread the same net income more thinly, never less. There's an important exception, though: if including a convertible security would actually increase EPS rather than decrease it, that security is antidilutive, and it must be excluded from the diluted EPS calculation — diluted EPS is meant to show the most conservative (lowest) plausible EPS figure, so any security that would push the number the wrong direction doesn't get included.`,
-        ],
-        formulas: [
-          { id: "fsa-5d-eps", name: "Basic earnings per share", expression: "Basic EPS = <span class=\"frac\"><span class=\"num\">Net income \u2212 Preferred dividends</span><span class=\"den\">Weighted average shares outstanding</span></span>", when: "Preferred dividends are subtracted first because that income belongs to preferred shareholders, not common shareholders.", problem: "A company has net income of $5,000,000, pays $500,000 in preferred dividends, and has a weighted average of 2,000,000 common shares outstanding. What is basic EPS?", given: ["Net income = $5,000,000", "Preferred dividends = $500,000", "Weighted avg. shares = 2,000,000"], worked: "Basic EPS = (5,000,000 \u2212 500,000) / 2,000,000\nBasic EPS = 4,500,000 / 2,000,000\nBasic EPS = $2.25 per share" },
-          { id: "fsa-5d-diluted", name: "Diluted EPS (if-converted method) — advanced", expression: "Diluted EPS = <span class=\"frac\"><span class=\"num\">(Net income \u2212 Preferred dividends) + Convertible debt interest \u00D7 (1\u2212tax)</span><span class=\"den\">Weighted avg. shares + Shares from conversion</span></span>", when: "Assuming every convertible security actually converts, to find the most conservative (lowest, non-antidilutive) EPS figure.", problem: "The same company also has convertible bonds outstanding that pay $200,000 of after-tax interest and would convert into 300,000 new shares. What is diluted EPS?", given: ["Basic EPS numerator = $4,500,000", "Weighted avg. shares = 2,000,000", "After-tax interest saved on conversion = $200,000", "New shares from conversion = 300,000"], worked: "Diluted EPS = (4,500,000 + 200,000) / (2,000,000 + 300,000)\nDiluted EPS = 4,700,000 / 2,300,000\nDiluted EPS \u2248 $2.04 per share\n\n(lower than the $2.25 basic EPS, as expected \u2014\nif this had come out higher than $2.25, the bonds\nwould be antidilutive and excluded entirely)" },
-        ],
-      },
-      {
-        id: "fsa-5e",
-        title: "Free cash flow: FCFF and FCFE",
-        body: [
-          `Net income and operating cash flow both matter, but neither directly answers the question "how much cash could this company actually distribute to its investors without harming the business?" Free cash flow fills that gap, and comes in two versions depending on which investors you're asking about.`,
-          `Free cash flow to the firm (FCFF) is the cash available to all of the company's capital providers — both debt and equity holders — after covering operating expenses and the capital investment needed to sustain the business. Free cash flow to equity (FCFE) narrows that down to just what's available to equity holders specifically, after also accounting for net payments to debtholders.`,
-        ],
-        formulas: [
-          { id: "fsa-5e-fcff", name: "FCFF (starting from net income) — advanced", expression: "FCFF = Net income + Non-cash charges + Interest \u00D7 (1 \u2212 tax rate) \u2212 Capital expenditures \u2212 Increase in working capital", when: "Estimating cash available to all capital providers (debt and equity) combined.", problem: "A company has net income of $2,000,000, non-cash depreciation of $400,000, interest expense of $300,000, a 25% tax rate, capital expenditures of $600,000, and a $100,000 increase in working capital. What is its FCFF?", given: ["Net income = $2,000,000", "Non-cash depreciation = $400,000", "Interest expense = $300,000", "Tax rate = 0.25", "CapEx = $600,000", "Increase in working capital = $100,000"], worked: "FCFF = 2,000,000 + 400,000 + 300,000\u00D7(1\u22120.25) \u2212 600,000 \u2212 100,000\nFCFF = 2,000,000 + 400,000 + 225,000 \u2212 600,000 \u2212 100,000\nFCFF = $1,925,000" },
-        ],
       },
       {
         id: "fsa-12a",
