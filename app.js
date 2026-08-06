@@ -3806,8 +3806,12 @@ function renderSectionsAndQuiz(ch) {
   let html = `<div class="nav-sections">`;
   ch.sections.forEach((s) => {
     const active = view === "reading" && sectionId === s.id ? " active" : "";
+    const modMatch = s.title.match(/^Module ([\d\s&]+)\s*[—-]\s*(.+)$/);
+    const titleHtml = modMatch
+      ? `<span class="nav-module-badge">M${modMatch[1].replace(/\s+/g, "")}</span>${modMatch[2]}`
+      : s.title;
     html += `<div class="nav-section${active}" data-chapter="${ch.id}" data-section="${s.id}">
-      <span class="nav-check">${completed.includes(s.id) ? "&#10003;" : ""}</span>${s.title}
+      <span class="nav-check">${completed.includes(s.id) ? "&#10003;" : ""}</span>${titleHtml}
     </div>`;
   });
   html += `</div><div class="nav-quiz" data-quizchapter="${ch.id}">Take ${ch.title} quiz</div>`;
