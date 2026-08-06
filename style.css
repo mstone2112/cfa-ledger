@@ -149,6 +149,11 @@ body { display: flex; line-height: 1.55; }
 }
 .nav-chapter-head:hover { background: rgba(238,234,224,0.06); }
 .nav-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--amber-bright); opacity: 0.85; }
+.nav-module-badge {
+  display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700;
+  color: #1C2333; background: var(--amber-bright); border-radius: 3px; padding: 1px 5px;
+  margin-right: 6px; letter-spacing: 0.3px; vertical-align: 1px;
+}
 .nav-chapter-title { font-weight: 600; font-size: 14px; }
 .nav-sections { padding-left: 22px; }
 .nav-section {
