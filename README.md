@@ -104,4 +104,4 @@ This is a separate step from everything above — the app works fully as a home-
 
 ## What's in this version
 
-Two chapters are fully built out: **Calculator Fundamentals** and **Time Value of Money**, each with reading sections, formulas, timeline exhibits, a formula decision guide (TVM), and a quiz that routes wrong answers back to the exact section that taught the concept. The code is structured so additional chapters can be added the same way later — nothing here is hardcoded to "exactly two chapters."
+Two chapters are fully built out: **Calculator Fundamentals** and **Time Value of Money**, each with reading sections, formulas, timeline exhibits, a formula decision guide (TVM), and a quiz that routes wrong answers back to the exact section that taught the concept. The code is structured so additional chapters can be added the same way later — nothing here is hardcoded to "exactly two chapters." 
