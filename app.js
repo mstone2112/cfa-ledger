@@ -3251,101 +3251,669 @@ const CHAPTERS = [
     subtitle: "Contracts whose value is derived from something else",
     sections: [
       {
-        id: "deriv-1",
-        title: "Overview",
-        body: [`A derivative is a financial contract whose value depends on ("derives from") the price of some other underlying asset — a stock, a bond, a commodity, an interest rate. This chapter covers the four main derivative types and why investors use them.`],
-        formulas: [],
-      },
-      {
-        id: "deriv-2",
-        title: "Forwards and futures",
-        body: [
-          `A forward contract is a private agreement between two parties to buy or sell an asset at a specified price on a specified future date. A futures contract does the same thing, but is standardized and exchange-traded, which adds liquidity and reduces counterparty risk.`,
-          `Worked example: a wheat farmer and a bakery agree today on a forward contract to exchange 10,000 bushels of wheat in 6 months at $6.00/bushel. Regardless of the market price of wheat in 6 months, both sides are obligated to transact at $6.00.`,
+        "id": "deriv-m1a",
+        "title": "Module 1 — What a derivative is and its basic features",
+        "body": [
+          "A derivative is a financial instrument whose value depends on (derives from) the performance of an underlying — a stock, bond, commodity, currency, interest rate, index, credit event, or even weather. The underlying can be a price, a rate, or an index level.",
+          "Basic features: (1) it is a contract between a buyer and a seller; (2) its value is tied to the underlying; (3) it has a limited life and an expiration (maturity) date; (4) it is usually settled at expiration either by physical delivery of the underlying or by cash settlement of the difference; (5) it requires little or no upfront investment relative to the exposure it creates (leverage) — a forward or swap costs nothing at initiation, an option costs only the premium.",
+          "Terminology: the long is the buyer (holds the right or obligation to buy); the short is the seller. The spot price is today's price of the underlying; the forward/futures/strike price is the price fixed in the contract; the notional is the reference amount on which payments are computed (mainly swaps)."
         ],
-        formulas: [],
+        "formulas": []
       },
       {
-        id: "deriv-3",
-        title: "Options",
-        body: [
-          `An option gives its buyer the right, but not the obligation, to buy or sell the underlying asset at a specified strike price. A call option gives the right to buy; a put option gives the right to sell. The buyer pays an upfront premium for this right.`,
-          `Worked example: an investor buys a call option with a $50 strike price, paying a $3 premium. If the stock rises to $60, exercising nets a $10 gain minus the $3 premium = $7 profit per share. If the stock falls to $40, the investor lets the option expire, losing only the $3 premium — never more.`,
+        "id": "deriv-m1b",
+        "title": "Module 1 — Derivative markets: OTC versus exchange-traded",
+        "body": [
+          "Exchange-traded derivatives (futures and many options) are standardized in size, maturity, and delivery terms, trade on a regulated exchange with transparent prices, and are guaranteed by a clearinghouse that stands between buyer and seller. Participants post margin, and positions are marked to market daily. Counterparty (credit) risk is therefore very low.",
+          "Over-the-counter (OTC) derivatives (forwards, swaps, many options, credit derivatives) are privately negotiated between two parties — usually a dealer and a client. They can be customized to exact needs, are less transparent and less regulated, and carry counterparty credit risk because each side relies on the other to perform. After the 2008 crisis many standard OTC derivatives (e.g., plain vanilla swaps) moved to central clearing, which narrows this gap.",
+          "The clearinghouse is the buyer to every seller and the seller to every buyer, so the original parties never face each other. This is why exchange-traded contracts are fungible: a position can be closed by taking the offsetting trade."
         ],
-        formulas: [],
+        "formulas": [],
+        "exhibits": null
       },
       {
-        id: "deriv-3b",
-        title: "Intrinsic value and time value",
-        body: [`An option's premium splits into two components. Intrinsic value is what the option would be worth if exercised right now — for a call, the amount by which the stock price exceeds the strike price (zero if the stock is below the strike); for a put, the reverse. Time value is whatever's left of the premium beyond intrinsic value — compensation for the possibility that the option becomes more valuable before it expires. Time value shrinks toward zero as expiration approaches, since less time remains for the underlying price to move favorably — an effect commonly called time decay.`],
-        formulas: [],
-      },
-      {
-        id: "deriv-3c",
-        title: "Put-call parity",
-        body: [`Put-call parity is a direct application of the no-arbitrage principle from Quantitative Methods: a call option, a put option (same strike, same expiration, same underlying), and the underlying stock and a bond are all linked by one fixed relationship. If the actual market prices ever drifted away from this relationship, an arbitrageur could combine these instruments to lock in a riskless profit — which is exactly why the relationship holds in efficient markets.`],
-        formulas: [
-          { id: "deriv-3c-parity", name: "Put-call parity", expression: "Call price + <span class=\"frac\"><span class=\"num\">Strike price</span><span class=\"den\">(1+r)<sup>t</sup></span></span> = Put price + Stock price", when: "Checking whether call price, put price, strike, and stock price are mutually consistent — or backing out one of them given the other three.", problem: "A stock trades at $52. A 1-year call and put, both with a $50 strike, exist in a market with a 4% risk-free rate, and the put trades at $2.50. What should the call be worth?", given: ["Stock price = $52", "Strike = $50", "r = 0.04", "t = 1 year", "Put price = $2.50"], worked: "Call + 50/(1.04) = 2.50 + 52\nCall + 48.08 = 54.50\nCall \u2248 $6.42" },
+        "id": "deriv-m1c",
+        "title": "Module 1 — OTC vs exchange-traded comparison",
+        "body": [
+          "Side-by-side comparison."
         ],
-      },
-      {
-        id: "deriv-3d",
-        title: "The cost of carry model",
-        body: [`The cost of carry model explains how a forward or futures price relates to the underlying asset's current spot price: the forward price should equal the spot price grown forward at the risk-free rate, adjusted for any costs of holding the asset (like storage costs for a physical commodity) minus any benefits of holding it (like dividends received on a stock, or convenience yield for a commodity in short supply). If a forward price ever strayed from this no-arbitrage relationship, the same kind of arbitrage described in put-call parity would again be available.`],
-        formulas: [
-          { id: "deriv-3d-carry", name: "Cost of carry (forward price)", expression: "Forward price = Spot price \u00D7 (1+r)<sup>t</sup> + Carry costs \u2212 Carry benefits", when: "Finding the no-arbitrage forward price of an asset, given its spot price and the costs/benefits of holding it.", problem: "A stock trades at $100 today, the risk-free rate is 5%, the forward contract matures in 1 year, and the stock pays no dividend. What is the no-arbitrage forward price?", given: ["Spot price = $100", "r = 0.05", "t = 1 year", "Carry benefits = $0 (no dividend)"], worked: "Forward price = 100 \u00D7 (1.05)\nForward price = $105\n\n(if the stock instead paid a $2 dividend,\nforward price = 105 \u2212 2 = $103)" },
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Contract terms",
+            "detail": "OTC: customized. Exchange-traded: standardized."
+          },
+          {
+            "item": "Counterparty (credit) risk",
+            "detail": "OTC: significant — bilateral. Exchange-traded: minimal — clearinghouse guarantees performance."
+          },
+          {
+            "item": "Regulation and transparency",
+            "detail": "OTC: lightly regulated, private. Exchange-traded: regulated, prices public."
+          },
+          {
+            "item": "Liquidity / closing out",
+            "detail": "OTC: must negotiate with the counterparty. Exchange-traded: easily offset in a liquid market."
+          },
+          {
+            "item": "Margin / mark-to-market",
+            "detail": "OTC: negotiated (collateral). Exchange-traded: required, settled daily."
+          },
+          {
+            "item": "Typical instruments",
+            "detail": "OTC: forwards, swaps, many options, credit derivatives. Exchange: futures, listed options."
+          }
         ],
+        "formulas": []
       },
       {
-        id: "deriv-3e",
-        title: "The one-period binomial model — advanced",
-        body: [`The binomial model prices an option by imagining just two possible outcomes for the underlying asset over one period: an "up" move or a "down" move, each with an assumed size and probability. Working backward from the option's known payoff in each of those two future states, the model finds today's option value using the same no-arbitrage logic behind put-call parity and cost of carry — constructing a riskless combination of the option and the underlying stock, which must therefore earn exactly the risk-free rate. Extending this same idea across many small periods, rather than just one, is the conceptual bridge toward more advanced option pricing models used at later levels of the curriculum.`],
-        formulas: [],
-      },
-      {
-        id: "deriv-4",
-        title: "Swaps",
-        body: [`A swap is an agreement between two parties to exchange cash flows over time. The most common type, an interest rate swap, typically involves one party paying a fixed rate while receiving a floating rate from the other, often used to change interest rate exposure without refinancing.`],
-        formulas: [],
-      },
-      {
-        id: "deriv-5",
-        title: "Why investors use derivatives",
-        body: [`Derivatives are generally used for hedging (reducing an existing risk) or speculation (taking on new risk in pursuit of profit).`],
-        formulas: [],
-      },
-      {
-        id: "deriv-6",
-        title: "Formula/concept decision guide",
-        type: "decision-guide",
-        body: [`Match the question to the concept.`],
-        decisionRows: [
-          { cue: "An obligation for both sides to transact at a set price/date, privately negotiated", formula: "Forward", section: "deriv-2" },
-          { cue: "Same obligation, but standardized and exchange-traded", formula: "Futures", section: "deriv-2" },
-          { cue: "The right, not the obligation, to buy at a set price", formula: "Call option", section: "deriv-3" },
-          { cue: "The right, not the obligation, to sell at a set price", formula: "Put option", section: "deriv-3" },
-          { cue: "What an option would be worth if exercised right now", formula: "Intrinsic value", section: "deriv-3b" },
-          { cue: "Checking whether call/put/stock/strike prices are mutually consistent", formula: "Put-call parity", section: "deriv-3c" },
-          { cue: "Finding a forward price from the spot price plus/minus holding costs", formula: "Cost of carry model", section: "deriv-3d" },
-          { cue: "Pricing an option using two possible future outcomes", formula: "One-period binomial model", section: "deriv-3e" },
-          { cue: "Exchanging fixed for floating interest payments over time", formula: "Interest rate swap", section: "deriv-4" },
-          { cue: "Reducing an existing risk", formula: "Hedging", section: "deriv-5" },
-          { cue: "Taking on new risk for potential profit", formula: "Speculation", section: "deriv-5" },
+        "id": "deriv-m2a",
+        "title": "Module 2 — Forwards, futures, swaps, options and credit derivatives",
+        "body": [
+          "Forward commitment: an obligation to transact in the future at a price agreed today. Includes forward contracts, futures contracts, and swaps. Both parties are obligated, and the contract normally has zero value at initiation.",
+          "Forward contract: customized OTC agreement to buy/sell an asset at a fixed price on a future date. The long gains when the spot price at expiration exceeds the forward price; the short gains when it is lower. Payoff to long = ST − F0; payoff to short = F0 − ST.",
+          "Futures contract: a standardized, exchange-traded forward with daily settlement (mark-to-market) and a clearinghouse guarantee.",
+          "Swap: an agreement to exchange a series of cash flows over time — equivalent to a series of forward contracts. Example: a plain vanilla interest rate swap exchanges fixed payments for floating payments on a notional principal. Only the net difference is paid.",
+          "Option (contingent claim): the buyer pays a premium for the right, not obligation, to buy (call) or sell (put) the underlying at the exercise (strike) price. European options can be exercised only at expiration; American options any time up to expiration. The seller (writer) is obligated to perform if the buyer exercises.",
+          "Credit derivative: a contract in which one party (the protection buyer) makes periodic payments in exchange for compensation from the other (the protection seller) if a credit event occurs on a reference entity. The main type is the credit default swap (CDS) — it behaves like insurance on a bond. Credit events include bankruptcy, failure to pay, and restructuring.",
+          "Contrast: forward commitments obligate both sides (symmetric payoffs, zero cost at start); contingent claims (options, and credit derivatives which pay only on a credit event) give one side a right and the other an obligation (asymmetric payoffs, premium paid upfront)."
         ],
-        formulas: [],
+        "formulas": []
       },
       {
-        id: "deriv-7",
-        title: "Common traps",
-        type: "reference",
-        body: [`Watch for these.`],
-        referenceRows: [
-          { item: "Confusing options with forwards/futures", detail: "Options give a right; forwards and futures are obligations for both parties." },
-          { item: "Assuming an option buyer's loss is unlimited", detail: "An option buyer's maximum loss is the premium paid, full stop." },
-          { item: "Mixing up hedging and speculation", detail: "The same instrument can be either — the intent is what defines it." },
+        "id": "deriv-m2b",
+        "title": "Module 2 — Payoff and profit at expiration: calls and puts",
+        "body": [
+          "At expiration the value of a European option equals its exercise value. For a call: max(0, ST − X). For a put: max(0, X − ST). Profit equals value at expiration minus the premium paid (for the long), or premium received minus value paid out (for the short).",
+          "Long call: loss limited to the premium; gain unlimited; breakeven = X + premium. Short call: gain limited to the premium; loss unlimited; breakeven = X + premium. Long put: loss limited to the premium; maximum gain = X − premium (stock to zero); breakeven = X − premium. Short put: gain limited to the premium; maximum loss = X − premium.",
+          "The long and short positions are zero-sum: the long's profit equals the short's loss, at every price."
         ],
-        formulas: [],
+        "formulas": [
+          {
+            "id": "deriv-m2b-call",
+            "name": "Call option: value and profit at expiration",
+            "expression": "Value<sub>T</sub> = max(0, S<sub>T</sub> − X) &nbsp;&nbsp; Profit (long) = Value<sub>T</sub> − c<sub>0</sub> &nbsp;&nbsp; Profit (short) = c<sub>0</sub> − Value<sub>T</sub>",
+            "when": "Any call: find what it is worth at expiration and the profit after the premium. Short side is the mirror image.",
+            "problem": "An investor buys a call with exercise price $50 for a $3 premium. At expiration the stock is at (a) $60 and (b) $45. What is the value and profit for the long and the short?",
+            "given": [
+              "X = $50",
+              "c<sub>0</sub> = $3",
+              "S<sub>T</sub> = $60 or $45"
+            ],
+            "worked": "(a) Value = max(0, 60 − 50) = $10\nLong profit = 10 − 3 = +$7\nShort profit = 3 − 10 = −$7\n(b) Value = max(0, 45 − 50) = $0\nLong profit = 0 − 3 = −$3 (premium lost)\nShort profit = +$3\nBreakeven = 50 + 3 = $53"
+          },
+          {
+            "id": "deriv-m2b-put",
+            "name": "Put option: value and profit at expiration",
+            "expression": "Value<sub>T</sub> = max(0, X − S<sub>T</sub>) &nbsp;&nbsp; Profit (long) = Value<sub>T</sub> − p<sub>0</sub> &nbsp;&nbsp; Profit (short) = p<sub>0</sub> − Value<sub>T</sub>",
+            "when": "Any put: payoff rises as the underlying falls below the exercise price.",
+            "problem": "An investor buys a put with exercise price $40 for a $2.50 premium. At expiration the stock is at (a) $30 and (b) $48. Find value and profit for long and short.",
+            "given": [
+              "X = $40",
+              "p<sub>0</sub> = $2.50",
+              "S<sub>T</sub> = $30 or $48"
+            ],
+            "worked": "(a) Value = max(0, 40 − 30) = $10\nLong profit = 10 − 2.50 = +$7.50\nShort profit = −$7.50\n(b) Value = max(0, 40 − 48) = $0\nLong profit = −$2.50\nShort profit = +$2.50\nBreakeven = 40 − 2.50 = $37.50"
+          },
+          {
+            "id": "deriv-m2b-fwd",
+            "name": "Forward contract: payoff at expiration",
+            "expression": "Long payoff = S<sub>T</sub> − F<sub>0</sub> &nbsp;&nbsp; Short payoff = F<sub>0</sub> − S<sub>T</sub>",
+            "when": "A forward has no premium; payoff is symmetric and can be negative for either side.",
+            "problem": "A long forward on a stock has forward price $100. At expiration the stock is $92. What is each side's payoff?",
+            "given": [
+              "F<sub>0</sub> = $100",
+              "S<sub>T</sub> = $92"
+            ],
+            "worked": "Long = 92 − 100 = −$8\nShort = 100 − 92 = +$8\nCompare to a long call with X = 100: payoff would be $0 (cannot go negative)."
+          }
+        ]
       },
+      {
+        "id": "deriv-m3a",
+        "title": "Module 3 — Benefits and risks of derivatives",
+        "body": [
+          "Benefits: (1) Risk allocation, transfer, and management — derivatives let risk move from those who do not want it (hedgers) to those who do (speculators). (2) Information discovery — futures prices reveal market expectations. (3) Operational advantages — lower transaction costs, greater liquidity, easy short-selling and leverage. (4) Market efficiency — derivatives link markets, pushing prices toward no-arbitrage levels.",
+          "Risks: (1) Leverage — large exposure for a small outlay can magnify losses. (2) Basis risk — the hedge instrument and the exposure do not move perfectly together. (3) Counterparty credit risk (mainly OTC). (4) Complexity and misuse — speculation disguised as hedging, hidden risk, and systemic linkages that spread losses (e.g., 2008)."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "deriv-m3b",
+        "title": "Module 3 — Uses by issuers versus investors",
+        "body": [
+          "Issuers (corporations, financial institutions, governments) use derivatives mainly to manage risk arising from their business: interest rate swaps convert floating-rate debt to fixed (or vice versa); currency forwards and swaps hedge foreign cash flows; commodity forwards/futures lock in input costs or output prices; credit derivatives manage credit exposures. The goal is stable cash flows and lower borrowing cost.",
+          "Investors (asset managers, hedge funds) use derivatives to adjust portfolio exposure cheaply and quickly (e.g., equity index futures to change equity beta without trading stocks), to hedge portfolio risk (put options as insurance), to gain access to markets or exposures that are hard to trade (commodities, volatility), to enhance return (covered calls), and to speculate."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "deriv-m4a",
+        "title": "Module 4 — Arbitrage and replication",
+        "body": [
+          "Arbitrage is a transaction that earns a riskless profit with no net investment. Derivatives pricing relies on the law of one price / no-arbitrage rule: two assets or portfolios with identical future cash flows must have the same price. If not, buy the cheap one, sell the expensive one, and keep the difference.",
+          "Replication means constructing a position that duplicates the payoff of another instrument using other instruments. Example: a long forward can be replicated by buying the asset with borrowed money — payoff at expiration is ST minus the loan repaid. A risk-free bond can be replicated by combining the asset, a forward, and cash. Because replicas have the same payoff, they must have the same price; the derivative's price is the cost of its replicating portfolio.",
+          "Spot price versus expected future spot price: the forward/futures price is NOT a forecast of the future spot price. It is set by no-arbitrage (spot price plus carrying costs). An investor who bets on the expected future price bears risk and earns a risk premium; the arbitrageur using the forward price earns a certain return. Under normal conditions F0 may be above or below the expected spot price depending on the risk premium."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "deriv-m4b",
+        "title": "Module 4 — Cost of carry",
+        "body": [
+          "Cost of carry = costs of holding the underlying (financing at the risk-free rate, storage, insurance) minus benefits of holding it (dividends, interest, convenience yield). The forward price is the spot price compounded at the risk-free rate, adjusted for these. Benefits (dividends) lower the forward price; costs (storage) raise it.",
+          "If F0 is too high: sell the forward, borrow, buy the asset (cash-and-carry arbitrage). If F0 is too low: buy the forward, short the asset, lend the proceeds (reverse cash-and-carry)."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-3d-carry",
+            "name": "Forward price via cost of carry",
+            "expression": "F<sub>0</sub> = (S<sub>0</sub> − PV(benefits) + PV(costs)) × (1 + r)<sup>T</sup>",
+            "when": "Finding the no-arbitrage forward price of an asset from spot, the risk-free rate, and holding costs/benefits.",
+            "problem": "A stock trades at $100, the risk-free rate is 5%, and the forward matures in 1 year. (a) Find the forward price with no dividends. (b) Find it if the stock pays a $2 dividend at the end of the year.",
+            "given": [
+              "S<sub>0</sub> = $100",
+              "r = 0.05",
+              "T = 1",
+              "Dividend = $2 at T"
+            ],
+            "worked": "(a) F0 = 100 × (1.05)^1 = $105.00\n(b) PV(dividend) = 2 / 1.05 = $1.905\nF0 = (100 − 1.905) × 1.05 = $103.00\n(Equivalent: 105 − 2 = $103)\nThe dividend lowers the forward price by the amount the long forgoes."
+          }
+        ]
+      },
+      {
+        "id": "deriv-m5a",
+        "title": "Module 5 — Forward contracts: price at initiation, value during life and at expiration",
+        "body": [
+          "Forward price versus forward value: the forward price F0 is the fixed price in the contract, set at initiation so the contract has zero value to both sides. Afterwards the contract's value changes as the spot price moves; the contract price does not change.",
+          "At initiation: value = 0. During life (time t before T): the long's value is the spot price less the present value of the forward price. At expiration: value = ST − F0 for the long (−(ST − F0) for the short).",
+          "With income or costs on the underlying: reduce the spot price by the PV of benefits (dividends) before computing."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-m5-price",
+            "name": "Forward price at initiation (no income)",
+            "expression": "F<sub>0</sub>(T) = S<sub>0</sub> × (1 + r)<sup>T</sup>",
+            "when": "Setting a forward price so initial value is zero (no dividends or costs).",
+            "problem": "A stock is $50. The risk-free rate is 4% and a forward matures in 6 months (T = 0.5). What forward price gives zero initial value?",
+            "given": [
+              "S<sub>0</sub> = $50",
+              "r = 0.04",
+              "T = 0.5"
+            ],
+            "worked": "F0 = 50 × (1.04)^0.5\n= 50 × 1.019804\n= $50.99"
+          },
+          {
+            "id": "deriv-m5-value",
+            "name": "Value of a long forward during its life",
+            "expression": "V<sub>t</sub>(T) = S<sub>t</sub> − <span class=\"frac\"><span class=\"num\">F<sub>0</sub>(T)</span><span class=\"den\">(1 + r)<sup>T − t</sup></span></span>",
+            "when": "Marking an existing forward to market partway through its life. Short value = −V<sub>t</sub>.",
+            "problem": "You went long a forward at $105 on a stock a year ago when the spot price was $100. Now (t) 6 months remain (T − t = 0.5), spot is $108, r = 5%. What is the long's value?",
+            "given": [
+              "F<sub>0</sub> = $105",
+              "S<sub>t</sub> = $108",
+              "r = 0.05",
+              "T − t = 0.5"
+            ],
+            "worked": "PV of forward price = 105 / (1.05)^0.5\n= 105 / 1.024695\n= $102.47\nV = 108 − 102.47 = +$5.53 to the long\nShort's value = −$5.53"
+          },
+          {
+            "id": "deriv-m5-exp",
+            "name": "Value of a forward at expiration",
+            "expression": "V<sub>T</sub>(T) = S<sub>T</sub> − F<sub>0</sub>(T)",
+            "when": "At expiration there is no time left to discount.",
+            "problem": "At expiration the stock is $98 and the forward price was $105. What is the long's value?",
+            "given": [
+              "S<sub>T</sub> = $98",
+              "F<sub>0</sub> = $105"
+            ],
+            "worked": "V = 98 − 105 = −$7 for the long (+$7 for the short)"
+          }
+        ]
+      },
+      {
+        "id": "deriv-m5b",
+        "title": "Module 5 — Forward rates and interest rate forward contracts",
+        "body": [
+          "A forward rate is the interest rate agreed today for borrowing or lending over a future period. It is implied by today's spot (zero) rates through no-arbitrage: investing for the long period must equal investing for the short period and then reinvesting at the forward rate.",
+          "Notation: f(a,b) is the rate for a period of b years starting a years from now. A forward rate agreement (FRA) is an OTC forward contract on an interest rate — one party pays a fixed rate, the other pays the floating rate at the future date. Uses: lock in a borrowing or lending rate, hedge floating-rate exposure, speculate on rates, and read the market's rate expectations from the yield curve."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-m5-fwdrate",
+            "name": "Implied forward rate from spot rates",
+            "expression": "(1 + z<sub>a+b</sub>)<sup>a+b</sup> = (1 + z<sub>a</sub>)<sup>a</sup> × (1 + f<sub>a,b</sub>)<sup>b</sup>",
+            "when": "Finding the one-year rate one year from now (or any forward period) from zero rates.",
+            "problem": "The 1-year spot rate is 3% and the 2-year spot rate is 4%. What is the 1-year forward rate starting in one year (1y1y)?",
+            "given": [
+              "z<sub>1</sub> = 0.03",
+              "z<sub>2</sub> = 0.04",
+              "a = 1, b = 1"
+            ],
+            "worked": "(1.04)^2 = (1.03)^1 × (1 + f)\n1.0816 = 1.03 × (1 + f)\n1 + f = 1.0816 / 1.03 = 1.05010\nf(1,1) = 5.01%"
+          },
+          {
+            "id": "deriv-m5-fra",
+            "name": "FRA settlement (fixed vs floating)",
+            "expression": "Payment = Notional × (Market rate − FRA rate) × <span class=\"frac\"><span class=\"num\">days/360</span><span class=\"den\">1 + Market rate × days/360</span></span>",
+            "when": "A long FRA gains when rates rise above the contract rate. The payment is discounted because it is made at the start of the loan period.",
+            "problem": "A company is long a 3×6 FRA at 4% on $10 million (90-day loan). At settlement the 90-day market rate is 5%. What does it receive?",
+            "given": [
+              "Notional = $10,000,000",
+              "FRA rate = 0.04",
+              "Market rate = 0.05",
+              "Days = 90"
+            ],
+            "worked": "Interest difference = 10,000,000 × (0.05 − 0.04) × 90/360 = $25,000\nDiscount: 1 + 0.05 × 0.25 = 1.0125\nPayment = 25,000 / 1.0125 = $24,691\nLong receives $24,691"
+          }
+        ]
+      },
+      {
+        "id": "deriv-m6",
+        "title": "Module 6 — Forwards versus futures: value, price and why they differ",
+        "body": [
+          "Both are forward commitments. The key difference is settlement. A forward is settled once, at expiration. A futures contract is marked to market daily: gains and losses are credited/debited to the margin account each day, and the futures price converges to the spot price at expiration. Futures value is reset to zero after each daily settlement; forward value builds up and is realized at expiration.",
+          "Price differences: if interest rates are constant (or uncorrelated with futures prices), the forward and futures prices are the same. If futures prices are positively correlated with interest rates, long futures gains are received when rates are high and can be reinvested at high rates; losses occur when rates are low and are cheaper to fund — so long futures are more attractive and the futures price is higher than the forward price. With negative correlation, the futures price is lower. Other differences: futures have standardization, exchange trading and clearinghouse guarantee, daily price limits, and lower credit risk.",
+          "Margin: initial margin is the deposit to open; maintenance margin is the minimum balance; if the account falls below maintenance a margin call requires a deposit back up to the initial margin level (variation margin)."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-m6-mtm",
+            "name": "Futures daily settlement gain/loss",
+            "expression": "Gain (long) = (F<sub>t</sub> − F<sub>t−1</sub>) × Contract size × Number of contracts",
+            "when": "Tracking a futures margin account day by day.",
+            "problem": "You are long 10 futures (50 units each). Yesterday settlement was 2,400; today it is 2,388. Initial margin was $4,000 per contract, maintenance $3,000, and the account stands at $4,000 per contract before today. What is today's gain and balance? Is there a margin call?",
+            "given": [
+              "F<sub>t−1</sub> = 2,400",
+              "F<sub>t</sub> = 2,388",
+              "Size = 50",
+              "Contracts = 10",
+              "Account = $40,000"
+            ],
+            "worked": "Gain = (2,388 − 2,400) × 50 × 10 = −$6,000\nBalance = 40,000 − 6,000 = $34,000 ($3,400 per contract)\nMaintenance = $3,000 per contract → no margin call yet\nA further drop of $400 per contract would trigger a call back to the initial margin."
+          }
+        ]
+      },
+      {
+        "id": "deriv-m7a",
+        "title": "Module 7 — Swaps: a series of forwards, and swap value versus price",
+        "body": [
+          "A swap is similar to a series of forward contracts: each payment date is like a forward settlement. Differences: a swap has one fixed rate for all dates (a forward series would have a different price for each date), so the individual 'forwards' inside a swap have non-zero values; only the swap as a whole has zero value at initiation. Early dates may be in-the-money and late dates out-of-the-money (or vice versa), which creates credit exposure between the parties.",
+          "Swap price (swap rate or fixed rate) is set at initiation so the swap has zero value: PV of fixed payments = PV of floating payments. Swap value later is the difference between the PVs of the remaining payments. The price (rate) stays fixed; the value changes as rates move.",
+          "Plain vanilla interest rate swap: fixed payer is 'long' (benefits when rates rise); floating payer benefits when rates fall. Value to the fixed payer = PV(floating) − PV(fixed)."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-m7-rate",
+            "name": "Fixed swap rate (price) at initiation",
+            "expression": "Fixed rate = <span class=\"frac\"><span class=\"num\">1 − Z<sub>n</sub></span><span class=\"den\">Z<sub>1</sub> + Z<sub>2</sub> + … + Z<sub>n</sub></span></span>&nbsp;&nbsp; where Z<sub>i</sub> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">(1 + z<sub>i</sub>)<sup>i</sup></span></span>",
+            "when": "Finding the fixed rate that makes a new swap worth zero, using discount factors from the spot curve.",
+            "problem": "Spot rates: 1y = 3%, 2y = 4%. Find the 2-year annual-pay fixed swap rate.",
+            "given": [
+              "z<sub>1</sub> = 0.03",
+              "z<sub>2</sub> = 0.04"
+            ],
+            "worked": "Z1 = 1/1.03 = 0.970874\nZ2 = 1/1.04^2 = 0.924556\nFixed rate = (1 − 0.924556) / (0.970874 + 0.924556)\n= 0.075444 / 1.895430\n= 3.98%"
+          },
+          {
+            "id": "deriv-m7-value",
+            "name": "Value of an existing swap",
+            "expression": "Value to fixed payer = (New market swap rate − Original fixed rate) × Σ Z<sub>i</sub> × Notional",
+            "when": "Marking a swap to market after rates have moved.",
+            "problem": "You entered a 2-year, $10 million swap as fixed payer at 4%. A year later the 1-year market swap rate is 3.5% and Z1 (remaining 1y) = 0.966184. What is the swap value to you?",
+            "given": [
+              "Original fixed = 0.04",
+              "New swap rate = 0.035",
+              "Σ Z = 0.966184",
+              "Notional = $10,000,000"
+            ],
+            "worked": "Value = (0.035 − 0.04) × 0.966184 × 10,000,000\n= −0.005 × 9,661,840\n= −$48,309\nFixed payer is out of the money; the floating payer (receiver of fixed 4%) holds +$48,309."
+          }
+        ]
+      },
+      {
+        "id": "deriv-m8a",
+        "title": "Module 8 — Exercise value, moneyness and time value",
+        "body": [
+          "Exercise value (intrinsic value) is the value if exercised now: call = max(0, S − X); put = max(0, X − S). Option premium = exercise value + time value. Time value is the extra amount buyers pay for the chance the option becomes more valuable before expiration; it is highest at-the-money and shrinks to zero at expiration.",
+          "Moneyness: in-the-money (ITM) = positive exercise value (call: S > X; put: S < X). At-the-money (ATM) = S ≈ X. Out-of-the-money (OTM) = zero exercise value (call: S < X; put: S > X). OTM options have only time value."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-m8-tv",
+            "name": "Option premium: time value",
+            "expression": "Time value = Option premium − Exercise value",
+            "when": "Splitting a quoted option price into intrinsic and time components.",
+            "problem": "A call with strike $40 trades at $8.50 premium while the stock is $45. A put with strike $40 trades at $1.20. Find exercise value and time value for each.",
+            "given": [
+              "X = $40",
+              "S = $45",
+              "Call premium = $8.50",
+              "Put premium = $1.20"
+            ],
+            "worked": "Call exercise value = max(0, 45 − 40) = $5.00 → ITM\nCall time value = 8.50 − 5.00 = $3.50\nPut exercise value = max(0, 40 − 45) = $0 → OTM\nPut time value = 1.20 − 0 = $1.20 (all time value)"
+          }
+        ]
+      },
+      {
+        "id": "deriv-m8b",
+        "title": "Module 8 — Arbitrage versus replication; factors that determine option value",
+        "body": [
+          "Forward commitments: arbitrage and replication give a single price that holds for both sides (the forward price is fixed so value at initiation is zero). Contingent claims: replication is also possible (stock plus borrowing/lending, as in the binomial model), but an option's price is not zero at initiation — it is the cost of the replicating portfolio, and the payoff is asymmetric. The price depends on the volatility of the underlying (a factor irrelevant to forwards).",
+          "Factors affecting option value (holding others constant) are shown in the reference table below. Volatility is the key factor that is unique to options: more volatility raises both call and put values because the holder keeps the upside but is protected from the downside."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "deriv-m8c",
+        "title": "Module 8 — Factors affecting option value (reference table)",
+        "body": [
+          "Effect of an increase in each factor, other things equal."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Underlying price ↑",
+            "detail": "Call value ↑; Put value ↓"
+          },
+          {
+            "item": "Exercise price ↑",
+            "detail": "Call value ↓; Put value ↑"
+          },
+          {
+            "item": "Time to expiration ↑",
+            "detail": "Call ↑; Put ↑ (generally; deep ITM European puts can decrease)"
+          },
+          {
+            "item": "Volatility of underlying ↑",
+            "detail": "Call ↑; Put ↑"
+          },
+          {
+            "item": "Risk-free rate ↑",
+            "detail": "Call ↑; Put ↓"
+          },
+          {
+            "item": "Dividends / benefits of holding underlying ↑",
+            "detail": "Call ↓; Put ↑"
+          },
+          {
+            "item": "Costs of holding underlying ↑",
+            "detail": "Call ↑; Put ↓"
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "deriv-m9",
+        "title": "Module 9 — Put–call parity and put–call forward parity",
+        "body": [
+          "Put–call parity (European options, same strike and expiry): a fiduciary call (call + zero-coupon bond paying X) has the same payoff as a protective put (put + the underlying). Therefore c + X/(1+r)^T = p + S. Rearranging gives synthetic positions: Call = Put + S − PV(X); Put = Call − S + PV(X); Stock = Call − Put + PV(X); Bond = Put + S − Call.",
+          "Put–call forward parity: replace the stock with a forward contract. Because a forward on the underlying with price F0 costs nothing, the stock equals PV(F0) plus the long forward. This gives c + PV(X) = p + PV(F0) (i.e., c − p = PV(F0 − X)). When the exercise price equals the forward price, call and put values are equal.",
+          "If parity is violated: sell the overpriced side and buy the underpriced side to lock in an arbitrage profit."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-3c-parity",
+            "name": "Put–call parity",
+            "expression": "c<sub>0</sub> + <span class=\"frac\"><span class=\"num\">X</span><span class=\"den\">(1 + r)<sup>T</sup></span></span> = p<sub>0</sub> + S<sub>0</sub>",
+            "when": "Checking consistency, or solving for one of call, put, stock or strike given the others.",
+            "problem": "A stock trades at $52. A 1-year European put with strike $50 costs $2.50. The risk-free rate is 4%. What should the matching call cost?",
+            "given": [
+              "S<sub>0</sub> = $52",
+              "X = $50",
+              "p<sub>0</sub> = $2.50",
+              "r = 0.04",
+              "T = 1"
+            ],
+            "worked": "c = p + S − X/(1+r)^T\nPV(X) = 50 / 1.04 = $48.077\nc = 2.50 + 52 − 48.077\n= $6.42"
+          },
+          {
+            "id": "deriv-m9-fwd",
+            "name": "Put–call forward parity",
+            "expression": "c<sub>0</sub> − p<sub>0</sub> = <span class=\"frac\"><span class=\"num\">F<sub>0</sub>(T) − X</span><span class=\"den\">(1 + r)<sup>T</sup></span></span>",
+            "when": "Parity when the underlying is represented by a forward (works for assets with income too).",
+            "problem": "A 1-year forward on a stock is $105. Options have strike $100, r = 5%, and the put costs $3. What should the call cost?",
+            "given": [
+              "F<sub>0</sub> = $105",
+              "X = $100",
+              "r = 0.05",
+              "T = 1",
+              "p<sub>0</sub> = $3"
+            ],
+            "worked": "c − p = (105 − 100) / 1.05 = $4.76\nc = 3 + 4.76 = $7.76\nCheck: if X were 105 (= F0), c − p = 0, so call = put."
+          },
+          {
+            "id": "deriv-m9-arb",
+            "name": "Parity arbitrage check",
+            "expression": "Mispricing = (c<sub>0</sub> + PV(X)) − (p<sub>0</sub> + S<sub>0</sub>)",
+            "when": "If positive: fiduciary call is overpriced → sell call + bond, buy put + stock.",
+            "problem": "S = $52, X = $50, r = 4%, T = 1, c = $7.00, p = $2.50. Is there arbitrage?",
+            "given": [
+              "S = $52",
+              "X = $50",
+              "c = $7.00",
+              "p = $2.50",
+              "r = 0.04"
+            ],
+            "worked": "Fiduciary call = 7.00 + 48.077 = $55.077\nProtective put = 2.50 + 52 = $54.50\nDifference = $0.577 > 0 → call overpriced\nArbitrage: sell call, borrow (short bond PV 48.077), buy put and stock. Profit ≈ $0.58 per share, risk-free."
+          }
+        ]
+      },
+      {
+        "id": "deriv-m10a",
+        "title": "Module 10 — One-period binomial model",
+        "body": [
+          "The binomial model assumes that over one period the underlying moves to one of two prices: up (Su = S0 × u) or down (Sd = S0 × d). The option's payoff in each state is known. A replicating portfolio of h shares of stock and a risk-free loan has the same payoff, so the option price equals the cost of that portfolio. The hedge ratio h = (cu − cd)/(Su − Sd).",
+          "Risk neutrality: because the option can be replicated, its value does not depend on investors' risk preferences. We may therefore price it as if investors were risk-neutral — using risk-neutral probabilities π (which make the stock earn the risk-free rate) and discounting at the risk-free rate. π is NOT the real-world probability of an up move."
+        ],
+        "formulas": [
+          {
+            "id": "deriv-m10-pi",
+            "name": "Risk-neutral probability",
+            "expression": "π = <span class=\"frac\"><span class=\"num\">(1 + r) − d</span><span class=\"den\">u − d</span></span>",
+            "when": "Used for risk-neutral valuation; probability of the down move is 1 − π.",
+            "problem": "A stock moves up by factor u = 1.20 or down by d = 0.80 in one period; r = 5%. Find π.",
+            "given": [
+              "u = 1.20",
+              "d = 0.80",
+              "r = 0.05"
+            ],
+            "worked": "π = (1.05 − 0.80) / (1.20 − 0.80)\n= 0.25 / 0.40\n= 0.625\n1 − π = 0.375"
+          },
+          {
+            "id": "deriv-m10-value",
+            "name": "Option value: risk-neutral expectation",
+            "expression": "Option value = <span class=\"frac\"><span class=\"num\">π × c<sub>u</sub> + (1 − π) × c<sub>d</sub></span><span class=\"den\">1 + r</span></span>",
+            "when": "Value any one-period option from payoffs in the up and down states.",
+            "problem": "S0 = $100, u = 1.20, d = 0.80, r = 5%, X = $100. Value a 1-period European call and put.",
+            "given": [
+              "S<sub>0</sub> = $100",
+              "u = 1.2, d = 0.8",
+              "r = 0.05",
+              "X = $100",
+              "π = 0.625"
+            ],
+            "worked": "Su = 120, Sd = 80\nCall payoffs: cu = 20, cd = 0\nc = (0.625×20 + 0.375×0)/1.05 = 12.5/1.05 = $11.90\nPut payoffs: pu = 0, pd = 20\np = (0.625×0 + 0.375×20)/1.05 = 7.5/1.05 = $7.14\nParity check: c + X/1.05 = 11.90 + 95.24 = 107.14 = p + S = 7.14 + 100 ✓"
+          },
+          {
+            "id": "deriv-m10-hedge",
+            "name": "Replication: hedge ratio and portfolio",
+            "expression": "h = <span class=\"frac\"><span class=\"num\">c<sub>u</sub> − c<sub>d</sub></span><span class=\"den\">S<sub>u</sub> − S<sub>d</sub></span></span> &nbsp;&nbsp; c<sub>0</sub> = h × S<sub>0</sub> − PV(h × S<sub>d</sub> − c<sub>d</sub>)",
+            "when": "Showing the call is replicated by buying h shares and borrowing.",
+            "problem": "Using the same data, build the replicating portfolio for the call.",
+            "given": [
+              "cu = 20",
+              "cd = 0",
+              "Su = 120",
+              "Sd = 80",
+              "S0 = 100",
+              "r = 0.05"
+            ],
+            "worked": "h = (20 − 0)/(120 − 80) = 0.5\nBorrowing = PV(0.5×80 − 0) = 40/1.05 = $38.10\nCall = 0.5×100 − 38.10 = $11.90 ✓ (same as risk-neutral value)"
+          }
+        ]
+      },
+      {
+        "id": "deriv-6",
+        "title": "Formula/concept decision guide",
+        "type": "decision-guide",
+        "body": [
+          "Match the question to the concept."
+        ],
+        "decisionRows": [
+          {
+            "cue": "Contract that trades on an exchange with a clearinghouse and daily margin",
+            "formula": "Exchange-traded (futures, listed options)",
+            "section": "deriv-m1c"
+          },
+          {
+            "cue": "Customized private contract with credit risk",
+            "formula": "OTC derivative",
+            "section": "deriv-m1c"
+          },
+          {
+            "cue": "Both sides obligated; zero value at start",
+            "formula": "Forward commitment (forward, futures, swap)",
+            "section": "deriv-m2a"
+          },
+          {
+            "cue": "Right but not obligation; premium upfront",
+            "formula": "Contingent claim (option)",
+            "section": "deriv-m2a"
+          },
+          {
+            "cue": "Insurance on default of a bond issuer",
+            "formula": "Credit default swap",
+            "section": "deriv-m2a"
+          },
+          {
+            "cue": "Value or profit of a call/put at expiration",
+            "formula": "max(0, S−X) / max(0, X−S), less premium",
+            "section": "deriv-m2b"
+          },
+          {
+            "cue": "Why a firm hedges, why an investor adjusts exposure",
+            "formula": "Benefits and uses",
+            "section": "deriv-m3b"
+          },
+          {
+            "cue": "Riskless profit with no investment",
+            "formula": "Arbitrage",
+            "section": "deriv-m4a"
+          },
+          {
+            "cue": "Forward price from spot, rate and dividends/storage",
+            "formula": "Cost of carry",
+            "section": "deriv-m4b"
+          },
+          {
+            "cue": "Forward price at initiation vs forward value later",
+            "formula": "F0 = S0(1+r)^T; Vt = St − F0/(1+r)^(T−t)",
+            "section": "deriv-m5a"
+          },
+          {
+            "cue": "Rate for a future period from today's spot curve",
+            "formula": "Implied forward rate / FRA",
+            "section": "deriv-m5b"
+          },
+          {
+            "cue": "Daily mark-to-market, margin call",
+            "formula": "Futures settlement",
+            "section": "deriv-m6"
+          },
+          {
+            "cue": "Fixed swap rate with zero initial value",
+            "formula": "(1 − Zn)/ΣZ",
+            "section": "deriv-m7a"
+          },
+          {
+            "cue": "Existing swap's value after rates change",
+            "formula": "(New rate − old rate) × ΣZ × notional",
+            "section": "deriv-m7a"
+          },
+          {
+            "cue": "Premium split into intrinsic and time value",
+            "formula": "Exercise value + time value",
+            "section": "deriv-m8a"
+          },
+          {
+            "cue": "Effect of volatility, rates, time or dividends on option value",
+            "formula": "Factor table",
+            "section": "deriv-m8c"
+          },
+          {
+            "cue": "Call, put, stock and strike consistent?",
+            "formula": "Put–call parity",
+            "section": "deriv-m9"
+          },
+          {
+            "cue": "Call minus put when a forward is used",
+            "formula": "Put–call forward parity",
+            "section": "deriv-m9"
+          },
+          {
+            "cue": "Price an option with two possible future prices",
+            "formula": "One-period binomial / risk-neutral π",
+            "section": "deriv-m10a"
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "deriv-7",
+        "title": "Common traps",
+        "type": "reference",
+        "body": [
+          "Watch for these."
+        ],
+        "referenceRows": [
+          {
+            "item": "Forward price vs forward value",
+            "detail": "The price is fixed at initiation; the value changes. Value is zero at initiation, not later."
+          },
+          {
+            "item": "Treating the forward price as a forecast",
+            "detail": "F0 is set by no-arbitrage (cost of carry), not by expected spot price."
+          },
+          {
+            "item": "Dividends and the forward price",
+            "detail": "Benefits of holding (dividends) LOWER the forward price; storage costs raise it."
+          },
+          {
+            "item": "Options as obligations",
+            "detail": "Only the writer is obligated. The buyer's maximum loss is the premium."
+          },
+          {
+            "item": "Profit vs payoff",
+            "detail": "Payoff ignores the premium; profit subtracts it (long) or adds it (short)."
+          },
+          {
+            "item": "Short call loss",
+            "detail": "Unlimited. Short put loss is limited to X − premium."
+          },
+          {
+            "item": "Swap price vs swap value",
+            "detail": "Price (fixed rate) is set so the value starts at zero; value changes with rates."
+          },
+          {
+            "item": "Futures vs forwards",
+            "detail": "Futures are settled daily; forwards only at expiration. Prices differ only when rates correlate with futures prices."
+          },
+          {
+            "item": "Volatility effect",
+            "detail": "Higher volatility raises BOTH calls and puts."
+          },
+          {
+            "item": "Risk-neutral probability",
+            "detail": "π is not the real probability; it's the one that makes the stock earn the risk-free rate."
+          },
+          {
+            "item": "Put–call parity signs",
+            "detail": "c + PV(X) = p + S. Call and put on the same strike only equal when X = forward price."
+          }
+        ],
+        "formulas": []
+      }
     ],
   },
   {
@@ -3900,17 +4468,35 @@ const QUIZZES = {
     { id: "fi-q18", question: "Homeowners refinancing and paying off mortgages early, right when rates have fallen, creates which risk for MBS investors?", options: ["Credit risk", "Prepayment risk", "Currency risk", "Convexity"], correct: 1, explanation: "Prepayment risk returns principal early, right when reinvesting at an equally attractive rate is hardest.", remediation: "fi-6c" },
   ],
   derivatives: [
-    { id: "deriv-q1", question: "Which derivative type standardizes the contract and trades it on an exchange?", options: ["Forward", "Futures", "Swap", "A private loan"], correct: 1, explanation: "Futures are standardized, exchange-traded contracts.", remediation: "deriv-2" },
-    { id: "deriv-q2", question: "A contract giving the right, but not the obligation, to buy at a set price is", options: ["A forward", "A call option", "A put option", "A swap"], correct: 1, explanation: "A call option gives the right to buy.", remediation: "deriv-3" },
-    { id: "deriv-q3", question: "An option buyer's maximum possible loss is", options: ["Unlimited", "The premium paid", "The strike price", "Twice the premium"], correct: 1, explanation: "An option buyer can never lose more than the premium paid.", remediation: "deriv-3" },
-    { id: "deriv-q4", question: "An agreement to exchange a fixed interest rate for a floating rate over time is", options: ["A forward", "A futures contract", "An interest rate swap", "A call option"], correct: 2, explanation: "This describes an interest rate swap.", remediation: "deriv-4" },
-    { id: "deriv-q5", question: "A farmer locking in a future selling price to protect against falling prices is engaging in", options: ["Speculation", "Hedging", "Arbitrage", "Leverage"], correct: 1, explanation: "Reducing an existing risk is hedging.", remediation: "deriv-5" },
-    { id: "deriv-q6", question: "Which derivative type carries an obligation for both parties, privately negotiated (not exchange-traded)?", options: ["Futures", "Option", "Forward", "None of these"], correct: 2, explanation: "A forward is a private, bilateral obligation.", remediation: "deriv-2" },
-    { id: "deriv-q7", question: "A call option has a $40 strike and the stock trades at $55. What is the option's intrinsic value?", options: ["$0", "$15", "$40", "$55"], correct: 1, explanation: "Intrinsic value of a call = stock price \u2212 strike = 55 \u2212 40 = $15.", remediation: "deriv-3b" },
-    { id: "deriv-q8", question: "As an option approaches expiration, its time value tends to", options: ["Increase", "Shrink toward zero", "Stay constant", "Become negative"], correct: 1, explanation: "Time decay causes time value to shrink as expiration approaches.", remediation: "deriv-3b" },
-    { id: "deriv-q9", question: "Put-call parity links which four things together?", options: ["Duration, convexity, yield, and price", "Call price, put price, strike price, and stock price", "Beta, alpha, Sharpe ratio, and Treynor ratio", "FIFO, LIFO, weighted average, and COGS"], correct: 1, explanation: "Put-call parity is a fixed no-arbitrage relationship between these four values.", remediation: "deriv-3c" },
-    { id: "deriv-q10", question: "According to the cost of carry model, a dividend paid on the underlying stock (a carry benefit) should make the no-arbitrage forward price", options: ["Higher", "Lower", "Unaffected", "Equal to the spot price exactly"], correct: 1, explanation: "Carry benefits like dividends reduce the forward price, since a forward buyer forgoes them.", remediation: "deriv-3d" },
-    { id: "deriv-q11", question: "The one-period binomial option pricing model assumes", options: ["Infinitely many possible future prices", "Exactly two possible future outcomes (up or down)", "The stock price cannot change", "No connection to no-arbitrage principles"], correct: 1, explanation: "The binomial model simplifies to two possible outcomes per period, using no-arbitrage logic to price the option.", remediation: "deriv-3e" },
+    {"id": "deriv-q1", "question": "Which feature best describes a derivative?", "options": ["It always pays dividends", "Its value depends on an underlying asset, rate, or index", "It has no expiration", "It can only be traded on exchanges"], "correct": 1, "explanation": "A derivative derives its value from an underlying.", "remediation": "deriv-m1a"},
+    {"id": "deriv-q2", "question": "A key advantage of exchange-traded over OTC derivatives is", "options": ["Fully customized terms", "Reduced counterparty credit risk through a clearinghouse", "No margin requirements", "Lack of regulation"], "correct": 1, "explanation": "The clearinghouse guarantees performance.", "remediation": "deriv-m1c"},
+    {"id": "deriv-q3", "question": "Which derivative is a forward commitment?", "options": ["Call option", "Put option", "Interest rate swap", "Credit default swap"], "correct": 2, "explanation": "Forwards, futures and swaps are forward commitments; options are contingent claims.", "remediation": "deriv-m2a"},
+    {"id": "deriv-q4", "question": "A credit default swap protection buyer", "options": ["Receives premiums and pays on default", "Pays periodic premiums and receives compensation if a credit event occurs", "Owns the reference bond outright", "Has an obligation to buy the bond at par"], "correct": 1, "explanation": "A CDS is insurance against a credit event.", "remediation": "deriv-m2a"},
+    {"id": "deriv-q5", "question": "A call has strike $50, premium $3. At expiration the stock is $60. Profit to the long is", "options": ["$10", "$7", "$3", "−$3"], "correct": 1, "explanation": "Value = 10; profit = 10 − 3 = 7.", "remediation": "deriv-m2b"},
+    {"id": "deriv-q6", "question": "A put has strike $40, premium $2.50. The breakeven stock price at expiration is", "options": ["$42.50", "$40.00", "$37.50", "$2.50"], "correct": 2, "explanation": "Breakeven for a long put = X − premium.", "remediation": "deriv-m2b"},
+    {"id": "deriv-q7", "question": "The maximum loss for the writer of an uncovered call is", "options": ["The premium received", "Unlimited", "The strike price", "Zero"], "correct": 1, "explanation": "A short call has unlimited upside exposure to the stock.", "remediation": "deriv-m2b"},
+    {"id": "deriv-q8", "question": "Which is a risk of derivatives?", "options": ["Reduced liquidity of the underlying", "Leverage that magnifies losses", "Higher transaction costs than cash markets", "Less price information"], "correct": 1, "explanation": "Leverage is a key risk; derivatives usually lower costs and improve information.", "remediation": "deriv-m3a"},
+    {"id": "deriv-q9", "question": "A corporation converts floating-rate debt to fixed using", "options": ["A long call on the stock", "An interest rate swap (pay fixed, receive floating)", "A long forward on equity", "A credit default swap"], "correct": 1, "explanation": "Pay fixed / receive floating offsets the floating interest owed.", "remediation": "deriv-m3b"},
+    {"id": "deriv-q10", "question": "An arbitrage is best defined as", "options": ["A high-return, high-risk trade", "A riskless profit with no net investment", "A hedge against interest rates", "A position funded by leverage"], "correct": 1, "explanation": "Arbitrage requires no net investment and no risk.", "remediation": "deriv-m4a"},
+    {"id": "deriv-q11", "question": "The forward price of an asset is determined primarily by", "options": ["The expected future spot price", "The spot price and the cost of carry", "The seller's required return", "The volatility of the asset"], "correct": 1, "explanation": "No-arbitrage sets the forward price from spot and carry.", "remediation": "deriv-m4b"},
+    {"id": "deriv-q12", "question": "A dividend paid on the underlying stock (a carry benefit) makes the no-arbitrage forward price", "options": ["Higher", "Lower", "Unaffected", "Equal to spot"], "correct": 1, "explanation": "A forward buyer forgoes dividends, so the forward price is lower.", "remediation": "deriv-m4b"},
+    {"id": "deriv-q13", "question": "A stock is $100, r = 5%, T = 1, no dividends. The forward price is", "options": ["$100.00", "$105.00", "$95.24", "$110.25"], "correct": 1, "explanation": "F0 = 100 × 1.05.", "remediation": "deriv-m5a"},
+    {"id": "deriv-q14", "question": "The value of a forward contract at initiation is", "options": ["Equal to the spot price", "The premium", "Zero", "The present value of the forward price"], "correct": 2, "explanation": "The forward price is set so the contract has zero initial value.", "remediation": "deriv-m5a"},
+    {"id": "deriv-q15", "question": "The 1-year spot rate is 3% and the 2-year rate is 4%. The 1y1y forward rate is closest to", "options": ["3.50%", "5.01%", "4.50%", "7.00%"], "correct": 1, "explanation": "(1.04²/1.03) − 1 = 5.01%.", "remediation": "deriv-m5b"},
+    {"id": "deriv-q16", "question": "Compared with forwards, futures are", "options": ["Settled only at expiration", "Marked to market daily", "Always cash-settled", "Customized OTC"], "correct": 1, "explanation": "Daily settlement is the key difference.", "remediation": "deriv-m6"},
+    {"id": "deriv-q17", "question": "If futures prices are positively correlated with interest rates, the futures price is relative to the forward price", "options": ["Lower", "Higher", "Equal", "Unrelated"], "correct": 1, "explanation": "Gains are received when rates are high so long futures are more valuable.", "remediation": "deriv-m6"},
+    {"id": "deriv-q18", "question": "A swap differs from a series of forwards because", "options": ["It has no credit risk", "All its payments use one fixed rate, so only the whole swap has zero initial value", "It is exchange-traded", "It settles daily"], "correct": 1, "explanation": "Individual implied forwards inside a swap generally have non-zero value.", "remediation": "deriv-m7a"},
+    {"id": "deriv-q19", "question": "The swap rate with Z1 = 0.9709 and Z2 = 0.9246 is closest to", "options": ["3.00%", "3.98%", "4.00%", "4.50%"], "correct": 1, "explanation": "(1 − 0.9246)/(0.9709+0.9246) = 3.98%.", "remediation": "deriv-m7a"},
+    {"id": "deriv-q20", "question": "A call has strike $40, stock $45, premium $8.50. Time value is", "options": ["$5.00", "$3.50", "$8.50", "$0"], "correct": 1, "explanation": "8.50 − 5.00.", "remediation": "deriv-m8a"},
+    {"id": "deriv-q21", "question": "An out-of-the-money put has", "options": ["Positive exercise value", "Zero exercise value and only time value", "Negative value", "No premium"], "correct": 1, "explanation": "OTM options are worth only their time value.", "remediation": "deriv-m8a"},
+    {"id": "deriv-q22", "question": "An increase in volatility of the underlying", "options": ["Decreases calls", "Increases both call and put values", "Decreases puts", "Affects only calls"], "correct": 1, "explanation": "Option holders gain from upside but are protected on the downside.", "remediation": "deriv-m8c"},
+    {"id": "deriv-q23", "question": "An increase in the risk-free rate, other things equal, causes", "options": ["Call ↓ and put ↑", "Call value ↑ and put value ↓", "Both ↑", "Both ↓"], "correct": 1, "explanation": "Higher r lowers PV(X), favoring calls.", "remediation": "deriv-m8c"},
+    {"id": "deriv-q24", "question": "Put–call parity (European): c + X/(1+r)^T equals", "options": ["p − S", "p + S", "S − p", "c − p"], "correct": 1, "explanation": "Fiduciary call = protective put.", "remediation": "deriv-m9"},
+    {"id": "deriv-q25", "question": "S = $52, X = $50, r = 4%, T = 1, put = $2.50. The call should be", "options": ["$4.50", "$6.42", "$8.50", "$2.50"], "correct": 1, "explanation": "c = 2.50 + 52 − 48.08.", "remediation": "deriv-m9"},
+    {"id": "deriv-q26", "question": "When the exercise price equals the forward price, the call and put values are", "options": ["Zero", "Equal", "Call greater", "Put greater"], "correct": 1, "explanation": "Put–call forward parity: c − p = PV(F0 − X) = 0.", "remediation": "deriv-m9"},
+    {"id": "deriv-q27", "question": "In the one-period binomial model with u = 1.2, d = 0.8, r = 5%, π is", "options": ["0.50", "0.625", "0.375", "0.75"], "correct": 1, "explanation": "π = (1.05 − 0.8)/0.4.", "remediation": "deriv-m10a"},
+    {"id": "deriv-q28", "question": "Risk-neutral valuation works because", "options": ["Investors are actually risk-neutral", "The option can be replicated, so its value doesn't depend on risk preferences", "π equals the real-world probability", "Volatility is zero"], "correct": 1, "explanation": "Replication makes pricing preference-free.", "remediation": "deriv-m10a"},
+    {"id": "deriv-q29", "question": "For the call in the example (u = 1.2, d = 0.8, r = 5%, S = X = 100) the value is", "options": ["$10.00", "$11.90", "$12.50", "$20.00"], "correct": 1, "explanation": "(0.625 × 20)/1.05.", "remediation": "deriv-m10a"},
   ],
   altinvest: [
     { id: "alt-q1", question: "A pooled fund using leverage and short-selling across flexible strategies is a", options: ["Mutual fund", "Hedge fund", "REIT", "Government bond fund"], correct: 1, explanation: "Hedge funds use flexible strategies including leverage and short-selling.", remediation: "alt-2" },
