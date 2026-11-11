@@ -3073,7 +3073,7 @@ const CHAPTERS = [
       },
       {
         id: "fi-2",
-        title: "Bond features and structure",
+        title: "Module 1 — Features of a fixed-income security",
         body: [
           `A bond has a face value (also called par value — the amount repaid at maturity, commonly $1,000), a coupon rate (the stated annual interest rate paid to the bondholder), and a maturity date (when the face value is repaid). The coupon rate, applied to face value, sets the dollar coupon payment: a 6% coupon rate on $1,000 face value pays $60 per year, usually split into two $30 semiannual payments in practice.`,
           `The bond's cash flows are simply the coupon payments (an annuity) plus the face value repayment (a single sum) at maturity — the exact same two building blocks from Chapter 02, just combined into one instrument.`,
@@ -3081,8 +3081,50 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        "id": "fi-m1b",
+        "title": "Module 1 — The bond indenture: contents, affirmative and negative covenants",
+        "body": [
+          "The bond indenture (trust deed) is the legal contract between the issuer and the bondholders. It is held by a trustee who monitors compliance and acts for bondholders. It spells out the bond's basic terms (who the issuer is, principal, coupon, maturity, currency, payment dates), the sources of repayment, the collateral or guarantees, the covenants, and the remedies if the issuer defaults.",
+          "Affirmative (positive) covenants are things the issuer promises to DO: make interest and principal payments on time, maintain assets and insurance, pay taxes, comply with laws, and deliver audited financial statements. They are generally administrative and cost little.",
+          "Negative (restrictive) covenants are things the issuer promises NOT to do: take on additional debt beyond set limits, pledge assets to other lenders (negative pledge), pay excessive dividends or repurchase shares, sell key assets, merge without conditions, or breach set financial ratios (for example, maximum debt/EBITDA). These constrain management and protect creditors, especially in high-yield bonds.",
+          "Covenants favor the lender; the issuer typically accepts tighter covenants only in exchange for a lower yield (investment-grade bonds have looser covenants than high-yield). Breach of a covenant is an event of default that lets the trustee demand acceleration of repayment."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m1c",
+        "title": "Module 1 — Affirmative vs. negative covenants (reference)",
+        "body": [
+          "Contrast and examples."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Affirmative covenant",
+            "detail": "What the issuer MUST do: pay interest/principal, maintain insurance and assets, comply with laws, provide financial statements."
+          },
+          {
+            "item": "Negative covenant",
+            "detail": "What the issuer must NOT do: add debt beyond limits, pledge collateral to others, overpay dividends/buybacks, sell core assets, breach ratio tests."
+          },
+          {
+            "item": "Who benefits",
+            "detail": "Bondholders (creditors); stricter covenants usually mean a lower yield for the issuer."
+          },
+          {
+            "item": "Features to know",
+            "detail": "Issuer, obligor, principal/par, coupon rate and frequency, maturity, currency, seniority, collateral, covenants, trustee."
+          },
+          {
+            "item": "Event of default",
+            "detail": "Missed payment or covenant breach; trustee can accelerate repayment and enforce claims."
+          }
+        ],
+        "formulas": []
+      },
+      {
         id: "fi-2b",
-        title: "Coupon structures: fixed, zero-coupon, and floating",
+        title: "Module 2 — Coupon structures: fixed, zero-coupon, and floating",
         body: [
           `Most bonds you'll encounter pay a fixed coupon rate for the bond's entire life — the $60/year example above. But two other coupon structures show up often enough to know by name.`,
           `A zero-coupon bond pays no periodic interest at all. It's sold for less than face value and simply repays the full face value at maturity; the entire return comes from that built-in price discount. Since there's no coupon annuity to value, pricing one is just the single-sum PV formula from Chapter 02.`,
@@ -3093,8 +3135,195 @@ const CHAPTERS = [
         ],
       },
       {
+        "id": "fi-m2a",
+        "title": "Module 2 — Cash flow structures: bullet, amortizing, sinking fund, step-up, deferred",
+        "body": [
+          "A bullet bond pays only interest during its life and repays all principal at maturity. A fully amortizing bond (or loan) repays principal gradually in level installments, so there is no balloon at maturity; a partially amortizing bond leaves a balloon payment at maturity.",
+          "A sinking fund provision requires the issuer to retire a portion of the bond each year (through repurchases or call at par), reducing credit risk but exposing the investor to reinvestment and possible early retirement. A waterfall of structures exists for coupons too: step-up coupons rise on a schedule; deferred-coupon (zero or payment-in-kind) bonds delay cash interest; floating-rate notes reset to a reference rate plus a spread; inflation-linked bonds adjust principal or coupon with a price index; index-linked, credit-linked and others tie cash flows to an external variable.",
+          "Fixed-income cash flows therefore come in three sets: periodic interest, scheduled principal repayment, and any contingent payments. Valuation is always the PV of those cash flows at the required yield."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m2-amort",
+            "name": "Level payment on a fully amortizing loan",
+            "expression": "Payment = <span class=\"frac\"><span class=\"num\">Principal × r</span><span class=\"den\">1 − (1 + r)<sup>−n</sup></span></span>",
+            "when": "Finding the constant payment on a fully amortizing bond, loan or mortgage (same annuity math as TVM).",
+            "problem": "A 5-year, fully amortizing $100,000 bond pays annually at 6%. What is the level annual payment and the first year's interest and principal?",
+            "given": [
+              "Principal = $100,000",
+              "r = 0.06",
+              "n = 5"
+            ],
+            "worked": "Payment = 100,000 × 0.06 / (1 − 1.06^−5)\n= 6,000 / 0.252742\n= $23,739.64\nYear 1 interest = 100,000 × 6% = $6,000\nYear 1 principal = 23,739.64 − 6,000 = $17,739.64"
+          }
+        ]
+      },
+      {
+        id: "fi-6b",
+        title: "Module 2 — Contingency provisions: callable, putable, and convertible bonds",
+        body: [
+          `Beyond the plain, fixed-maturity structure covered so far, three common embedded features change a bond's risk profile.`,
+          `A callable bond gives the issuer the right to repay the bond early — typically used when rates have fallen and the issuer wants to refinance at a lower rate. This is a risk to the bondholder: the bond is most likely to get called away right when reinvesting the proceeds at an equally attractive rate has become hardest.`,
+          `A putable bond gives the bondholder the right to sell the bond back to the issuer early, at a preset price — the mirror image of callable, and a benefit to the bondholder rather than the issuer.`,
+          `A convertible bond gives the bondholder the right to convert the bond into a predetermined number of the issuer's common shares — effectively bundling a bond with a call option on the stock.`,
+        ],
+        formulas: [],
+      },
+      {
+        "id": "fi-m2b",
+        "title": "Module 2 — Contingent provisions: who benefits (reference)",
+        "body": [
+          "Contingency provisions that benefit issuers and investors."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Call provision (benefits issuer)",
+            "detail": "Issuer may redeem early, usually when yields fall. Investor faces reinvestment risk and capped price appreciation. Types: American, European, Bermudan; make-whole call."
+          },
+          {
+            "item": "Put provision (benefits investor)",
+            "detail": "Investor may sell back at a set price, usually when yields rise. Price rises relative to an otherwise identical straight bond."
+          },
+          {
+            "item": "Conversion provision (benefits investor)",
+            "detail": "Bond can be exchanged for shares; investor gets equity upside, and accepts a lower coupon."
+          },
+          {
+            "item": "Warrants",
+            "detail": "Long-dated options attached to a bond, detachable and tradable separately; give the right to buy shares at a set price."
+          },
+          {
+            "item": "Contingent convertible (CoCo)",
+            "detail": "Converts to equity or is written down if the issuer's capital ratio falls below a trigger; used in bank capital."
+          },
+          {
+            "item": "Sinking fund / extension",
+            "detail": "Sinking fund reduces credit risk; extendible/retractable features change maturity."
+          },
+          {
+            "item": "Pricing consequence",
+            "detail": "Callable bond price = straight bond price − call option value; putable = straight + put option value; convertible = straight + conversion option."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m2c",
+        "title": "Module 2 — Legal, regulatory and tax considerations",
+        "body": [
+          "Legal and regulatory: bonds are issued under securities law and subject to registration (public offerings) or private placement exemptions; the domicile of the issuer and the governing law of the contract determine creditor rights; trustees and indentures are regulated; sovereign issues may be governed by foreign law and cannot easily be enforced by seizure of assets.",
+          "Tax: interest income is usually taxable as ordinary income, while capital gains may be taxed differently. Some government bonds (e.g., US municipal bonds) are exempt from some taxes, so they offer lower yields; investors compare them using the taxable-equivalent yield. A bond issued at a discount creates original issue discount (OID); the accretion of the discount is often taxable income each year even if no cash is received, and a premium may be amortized to reduce taxable interest. Withholding taxes on foreign investors affect after-tax yields."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m2-tey",
+            "name": "Taxable-equivalent yield",
+            "expression": "Taxable-equivalent yield = <span class=\"frac\"><span class=\"num\">Tax-exempt yield</span><span class=\"den\">1 − Marginal tax rate</span></span>",
+            "when": "Comparing a tax-exempt municipal bond with a taxable bond for a given investor.",
+            "problem": "A tax-exempt municipal bond yields 3.6%. An investor's marginal tax rate is 30%. What taxable yield matches it?",
+            "given": [
+              "Tax-exempt yield = 0.036",
+              "Tax rate = 0.30"
+            ],
+            "worked": "TEY = 0.036 / (1 − 0.30)\n= 0.036 / 0.70\n= 5.14%\nA taxable bond must yield above this to beat the muni."
+          }
+        ]
+      },
+      {
+        "id": "fi-m3a",
+        "title": "Module 3 — Fixed-income market segments and participants",
+        "body": [
+          "Bond markets are segmented by issuer type (sovereign, quasi-government, supranational, non-sovereign government, corporate, financial, securitized), credit quality (investment grade vs high yield), maturity (money market: under one year; capital market: longer), currency, coupon type (fixed, floating, inflation-linked), and geography/market (domestic, foreign, Eurobond/international).",
+          "Issuers: governments (fund deficits), corporations (investment and working capital), financial institutions and SPEs (funding and securitization). Investors: central banks, pension funds, insurers (long-dated liabilities), asset managers and mutual funds, banks (liquidity and treasury), hedge funds, sovereign wealth funds, and retail investors, typically through funds.",
+          "Domestic bonds are issued and traded in the issuer's home country and currency; foreign bonds are issued by a non-resident in the local market (e.g., a Yankee bond); Eurobonds are issued outside any single country's jurisdiction, often in a currency other than that of the market where they trade, and are less regulated."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m3b",
+        "title": "Module 3 — Types of fixed-income indexes",
+        "body": [
+          "Fixed-income indexes measure market or segment performance and serve as benchmarks. Types include broad market indexes (aggregate of investment-grade bonds), sector indexes (treasury, corporate, MBS, municipal), high-yield, emerging market, inflation-linked, and money-market indexes.",
+          "Constructing bond indexes is harder than equity indexes: there are far more securities, many trade rarely (so prices are matrix-estimated), securities mature and are replaced every month (turnover), the index composition changes with issuance (more debt means a larger weight), and bonds are heterogeneous in coupon and call features. Indexes may be market-value weighted (most), equally weighted, or fundamentally weighted. Rules govern minimum size, rating, maturity, and liquidity. Replicating an index is costly, so funds use stratified sampling."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m3c",
+        "title": "Module 3 — Primary and secondary markets; comparison with equity markets",
+        "body": [
+          "Primary market: issuer sells new bonds to investors. Public offerings are underwritten (best-efforts, bought deal) or sold by auction (typical for sovereign bonds); shelf registration allows an issuer to pre-register and sell over time; private placements go to a limited number of investors and are exempt from registration, so they are less liquid.",
+          "Secondary market: investors trade existing bonds. Most trading is over-the-counter through dealers (who quote bid and ask prices and hold inventory), with electronic platforms growing; some bonds list on exchanges, but volumes are small. Settlement typically T+1 to T+2 (sovereigns often T+1 or same day).",
+          "Compared with equities: bond markets are mostly OTC and dealer-based (not order-driven exchanges), liquidity is lower and varies by issue and market conditions, price transparency is weaker, each issuer may have many bond issues (versus one equity ticker), bonds mature and are redeemed, and the investor base is dominated by institutions."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m4a",
+        "title": "Module 4 — Short-term funding for corporations and financial institutions",
+        "body": [
+          "Corporations raise short-term funds to bridge working capital needs. Sources: a bank line of credit (uncommitted, committed, or revolving credit facility), commercial paper (unsecured short-term notes issued by large creditworthy firms, usually backed by a bank liquidity line), asset-backed commercial paper, and trade credit. Financial institutions also use deposits, certificates of deposit, interbank loans (reference rates), repurchase agreements, and central bank facilities.",
+          "Backup liquidity lines protect commercial paper rollover risk (the risk the issuer cannot refinance). A committed line costs a fee but guarantees funds; an uncommitted line can be withdrawn. Commercial paper is cheaper than bank borrowing but is available only to strong issuers and carries rollover risk."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m4b",
+        "title": "Module 4 — Repurchase agreements (repos)",
+        "body": [
+          "A repo is a short-term collateralized loan: one party sells a security and agrees to repurchase it at a higher price on a later date. Economically it is a loan from the cash lender (buying the security, a reverse repo) to the borrower (selling the security, a repo). The price difference is the interest (the repo rate).",
+          "Uses: the borrower obtains cheaper secured funding, finances securities inventory, or obtains leverage; the lender earns a return with low risk (the security is collateral) and can also source a specific security. Overnight repos roll daily; term repos last longer.",
+          "Benefits: low cost, high liquidity, safe for the lender. Risks: counterparty risk if the collateral falls in value (hence haircut and margin calls), collateral valuation, rollover risk, and leverage amplifies losses; wrong-way risk if collateral is the borrower's own debt."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m4-repo",
+            "name": "Repo interest and repurchase price",
+            "expression": "Repurchase price = Loan × (1 + repo rate × <span class=\"frac\"><span class=\"num\">days</span><span class=\"den\">360</span></span>) &nbsp;&nbsp; Loan = Collateral × (1 − haircut)",
+            "when": "Finding what the borrower repays in a repo and how much cash a collateral pool supports after the haircut.",
+            "problem": "A dealer repos $10.5 million of bonds with a 5% haircut for 7 days at a 4.5% repo rate. How much cash does the dealer receive, and what does it repay?",
+            "given": [
+              "Collateral = $10,500,000",
+              "Haircut = 0.05",
+              "Repo rate = 0.045",
+              "Days = 7",
+              "Day-count = 360"
+            ],
+            "worked": "Loan = 10,500,000 × (1 − 0.05) = $9,975,000\nInterest = 9,975,000 × 0.045 × 7/360 = $8,728.12\nRepurchase price = $9,983,728.12"
+          }
+        ]
+      },
+      {
+        "id": "fi-m4c",
+        "title": "Module 4 — Long-term funding: investment-grade vs. high-yield issuers",
+        "body": [
+          "Investment-grade (IG) issuers (BBB−/Baa3 and above) can issue long-dated, fixed-rate, unsecured bonds with few covenants (incurrence-based, e.g., negative pledge), and borrow cheaply in public markets. They use bank loans mainly for short-term needs and have wide access to capital markets, including in stressed periods.",
+          "High-yield (HY) issuers (below BBB−/Baa3) rely on a mix of senior secured bank loans (leveraged loans), second-lien debt, senior unsecured and subordinated notes, and sometimes PIK or toggle structures. Their bonds carry tighter covenants (restricting additional debt, dividends and asset sales), call protection, higher coupons, shorter maturities, and sometimes a clause that gives investors the right to put the bond at 101 upon a change of control. They are more dependent on market conditions (market access can close) and refinancing risk is higher."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m5a",
+        "title": "Module 5 — Funding choices of sovereign, non-sovereign, quasi-government and supranational issuers",
+        "body": [
+          "Sovereign governments fund budget deficits and refinance debt by issuing bills (under 1 year, discount instruments), notes and bonds (fixed, floating, inflation-linked), usually via regular auctions. They can also borrow from other countries or the IMF, and in emerging markets issue foreign-currency debt (which creates currency risk). They may sell debt to their central bank, but that raises independence concerns.",
+          "Non-sovereign governments (states, provinces, municipalities) issue general obligation bonds (backed by taxing authority) and revenue bonds (backed by project or facility revenues such as toll roads or utilities). Quasi-government entities (agencies, government-sponsored enterprises) are government-owned or sponsored and may carry an implicit or explicit guarantee. Supranational agencies (World Bank, IMF, European Investment Bank) are owned by member countries, fund development, and generally enjoy high credit quality and a stable funding base through member support."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m5b",
+        "title": "Module 5 — Government vs. corporate issuance and trading",
+        "body": [
+          "Government bonds, especially sovereign benchmarks, are highly liquid, issued regularly by auction, fall in a standardized maturity schedule, and have a transparent, centralized pricing process; they are the benchmark (risk-free reference) used for yield spreads on other bonds. Corporate bonds are issued opportunistically by underwriters, in many different structures and maturities, and trade less often and OTC, with wider bid-ask spreads and lower liquidity.",
+          "Non-benchmark governments (local governments, agencies, quasi-sovereigns) trade at yields above the sovereign curve that reflect additional credit and liquidity risk. In emerging markets, sovereign bonds may be denominated in a foreign currency, adding currency and political risk."
+        ],
+        "formulas": []
+      },
+      {
         id: "fi-3",
-        title: "Bond pricing",
+        title: "Module 6 — Bond pricing",
         body: [
           `A bond's price is the present value of all its future cash flows: the coupon payments (an annuity) plus the face value (a single sum), both discounted at the market's required yield.`,
           `Core relationship: when market yields rise above a bond's coupon rate, its price falls below face value (a discount); when yields fall below the coupon rate, price rises above face value (a premium); when yields exactly equal the coupon rate, the bond prices at exactly face value (par). Bond prices and yields always move in opposite directions.`,
@@ -3106,7 +3335,7 @@ const CHAPTERS = [
       },
       {
         id: "fi-3b",
-        title: "Par, discount, and premium bonds",
+        title: "Module 6 — Par, discount, and premium bonds",
         body: [
           `These three terms describe where a bond's price sits relative to its face value, and they follow directly from the pricing relationship above — worth naming explicitly since exam questions use this vocabulary constantly.`,
           `A par bond trades at exactly its face value, which happens when the coupon rate equals the current market yield.`,
@@ -3116,19 +3345,8 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "fi-4",
-        title: "Yield measures",
-        body: [
-          `The current yield is a quick, rough measure of return, using only the coupon and today's price — it ignores any gain or loss from the price eventually converging to face value at maturity.`,
-          `The yield to maturity (YTM) is the more complete measure — the single discount rate that makes the PV of all remaining cash flows equal the current price. YTM is effectively the bond's own IRR (see Corporate Issuers) and, unlike current yield, it captures the full return including any built-in price gain or loss to maturity. Like IRR, YTM typically has no simple closed-form formula — in practice it's found by iteration (or with a financial calculator's TVM worksheet, entering price as PV and solving for I/Y).`,
-        ],
-        formulas: [
-          { id: "fi-4-current", name: "Current yield", expression: "Current yield = <span class=\"frac\"><span class=\"num\">Annual coupon payment</span><span class=\"den\">Current bond price</span></span>", when: "A quick, rough yield estimate — ignores any price gain/loss to maturity.", problem: "A bond with a $60 annual coupon currently trades at $948. What is its current yield?", given: ["Annual coupon = $60", "Current price = $948"], worked: "Current yield = 60 / 948\nCurrent yield \u2248 6.33%\n\n(higher than the 6% coupon rate, simply because\nthe bond is trading below face value)" },
-        ],
-      },
-      {
         id: "fi-4b",
-        title: "Accrued interest and clean vs. dirty price",
+        title: "Module 6 — Accrued interest and clean vs. dirty price",
         body: [
           `Bonds usually don't trade exactly on a coupon payment date — most trades happen somewhere in between. The seller has earned a portion of the next coupon simply by holding the bond since the last payment, and the buyer needs to compensate the seller for that, even though the buyer will eventually receive the full next coupon.`,
           `Accrued interest is that in-between amount: the portion of the next coupon the seller has already earned. The clean price is a bond's quoted price excluding accrued interest (what you typically see quoted); the dirty price (or "full" or "invoice" price) is the clean price plus accrued interest — the actual amount the buyer pays at settlement.`,
@@ -3138,15 +3356,375 @@ const CHAPTERS = [
         ],
       },
       {
+        "id": "fi-m6a",
+        "title": "Module 6 — Pricing between coupon dates and semiannual compounding",
+        "body": [
+          "Pricing on a coupon date uses the standard formula (see Bond pricing). Between coupon dates, the valuation date is a fraction of a period (t/T) after the last coupon: first compute the price at the last coupon date, then compound it forward. The result is the full (dirty) price. Subtract accrued interest to get the flat (clean) price quoted in the market.",
+          "For semiannual bonds, divide the annual coupon and annual yield by 2 and double the number of periods. The bond's quoted YTM is a stated annual rate with semiannual compounding (a bond-equivalent yield)."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m6-full",
+            "name": "Full price between coupon dates",
+            "expression": "PV<sup>Full</sup> = PV<sub>0</sub> × (1 + r)<sup>t/T</sup> &nbsp;&nbsp; PV<sup>Flat</sup> = PV<sup>Full</sup> − AI &nbsp;&nbsp; AI = <span class=\"frac\"><span class=\"num\">t</span><span class=\"den\">T</span></span> × Coupon",
+            "when": "Finding the settlement price when a trade happens partway through a coupon period.",
+            "problem": "A 5% annual-coupon bond (par 100) has 3 years left at the last coupon date. YTM is 4%. A trade settles 90 days into a 360-day period. Find the full and flat prices.",
+            "given": [
+              "Coupon = 5",
+              "YTM r = 0.04",
+              "n = 3 at last coupon date",
+              "t/T = 90/360 = 0.25"
+            ],
+            "worked": "PV0 = 5 × a(3, 4%) + 100/1.04³ = 102.7751\nFull = PV0 × 1.04^0.25 = 103.7878\nAI = 0.25 × 5 = 1.2500\nFlat = 103.7878 − 1.2500 = 102.5378"
+          },
+          {
+            "id": "fi-m6-semi",
+            "name": "Semiannual bond price",
+            "expression": "Price = <span class=\"frac\"><span class=\"num\">PMT</span><span class=\"den\">y/2</span></span> × [1 − (1 + y/2)<sup>−2N</sup>] + <span class=\"frac\"><span class=\"num\">FV</span><span class=\"den\">(1 + y/2)<sup>2N</sup></span></span>",
+            "when": "Pricing a bond that pays coupons twice a year given an annual YTM.",
+            "problem": "A 10-year bond has a 4% annual coupon (paid semiannually), par $1,000, and YTM 5%. What is its price?",
+            "given": [
+              "FV = 1,000",
+              "Coupon = $20 per half-year",
+              "y/2 = 0.025",
+              "2N = 20"
+            ],
+            "worked": "PV of coupons = 20 × (1 − 1.025^−20)/0.025 = 311.78\nPV of par = 1,000 / 1.025^20 = 610.27\nPrice = $922.05 (a discount, since coupon < yield)"
+          }
+        ]
+      },
+      {
+        "id": "fi-m6b",
+        "title": "Module 6 — Price, coupon, maturity and yield relationships",
+        "body": [
+          "Five relationships to know (the CFA 'bond price theorems'): (1) Price and yield are inversely related. (2) The price-yield relationship is convex, not linear: a yield decrease raises price by more than an equal yield increase lowers it. (3) For the same yield change, a longer-maturity bond has a larger price change. (4) For the same yield change, a lower-coupon bond has a larger price change. (5) Pull to par: a premium or discount bond's price moves toward par as maturity nears (assuming constant yield).",
+          "Coupon = yield → price = par. Coupon > yield → premium. Coupon < yield → discount. These relationships are what duration and convexity quantify."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m6c",
+        "title": "Module 6 — Matrix pricing",
+        "body": [
+          "Matrix pricing estimates the yield (and thus price) of an illiquid or newly issued bond that doesn't trade by using yields of comparable, actively traded bonds with the same credit quality, and interpolating across maturities (and coupon/liquidity). Steps: find comparable bonds (same rating, sector), interpolate to the subject's maturity, adjust the yield for differences (such as liquidity), then discount the bond's cash flows at that yield. Matrix pricing is also used to price bonds in underwriting and for valuation of illiquid holdings."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m6-matrix",
+            "name": "Matrix pricing: interpolated yield",
+            "expression": "Yield<sub>subject</sub> = Y<sub>1</sub> + <span class=\"frac\"><span class=\"num\">T − T<sub>1</sub></span><span class=\"den\">T<sub>2</sub> − T<sub>1</sub></span></span> × (Y<sub>2</sub> − Y<sub>1</sub>)",
+            "when": "Estimating the yield for a bond that doesn't trade, between two comparable bonds of the same rating.",
+            "problem": "An unquoted 4-year, 5% annual-coupon A-rated bond. Comparable A-rated bonds: 3-year at 4.2% and 5-year at 4.8%. Estimate the yield and price (par 100).",
+            "given": [
+              "T = 4",
+              "Y<sub>1</sub> (3yr) = 4.2%",
+              "Y<sub>2</sub> (5yr) = 4.8%",
+              "Coupon = 5"
+            ],
+            "worked": "Yield = 4.2% + (4−3)/(5−3) × (4.8% − 4.2%)\n= 4.2% + 0.5 × 0.6% = 4.5%\nPrice = 5 × a(4, 4.5%) + 100/1.045⁴\n= 101.7938"
+          }
+        ]
+      },
+      {
+        id: "fi-4",
+        title: "Module 7 — Yield measures: current yield and yield to maturity",
+        body: [
+          `The current yield is a quick, rough measure of return, using only the coupon and today's price — it ignores any gain or loss from the price eventually converging to face value at maturity.`,
+          `The yield to maturity (YTM) is the more complete measure — the single discount rate that makes the PV of all remaining cash flows equal the current price. YTM is effectively the bond's own IRR (see Corporate Issuers) and, unlike current yield, it captures the full return including any built-in price gain or loss to maturity. Like IRR, YTM typically has no simple closed-form formula — in practice it's found by iteration (or with a financial calculator's TVM worksheet, entering price as PV and solving for I/Y).`,
+        ],
+        formulas: [
+          { id: "fi-4-current", name: "Current yield", expression: "Current yield = <span class=\"frac\"><span class=\"num\">Annual coupon payment</span><span class=\"den\">Current bond price</span></span>", when: "A quick, rough yield estimate — ignores any price gain/loss to maturity.", problem: "A bond with a $60 annual coupon currently trades at $948. What is its current yield?", given: ["Annual coupon = $60", "Current price = $948"], worked: "Current yield = 60 / 948\nCurrent yield \u2248 6.33%\n\n(higher than the 6% coupon rate, simply because\nthe bond is trading below face value)" },
+        ],
+      },
+      {
+        "id": "fi-m7a",
+        "title": "Module 7 — Yield with different compounding periods",
+        "body": [
+          "Yields are quoted with a stated periodicity (annual, semiannual, quarterly, monthly). To compare bonds you must convert them to a common periodicity, most often the effective annual rate. A semiannual-pay bond's YTM is twice the semiannual yield (the bond-equivalent yield, BEY), which understates its effective annual yield.",
+          "Rule: yields with different periodicities are comparable only after conversion; more frequent compounding means a higher effective annual yield for the same stated rate."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m7-ear",
+            "name": "Converting between yield periodicities",
+            "expression": "(1 + y<sub>m1</sub>/m1)<sup>m1</sup> = (1 + y<sub>m2</sub>/m2)<sup>m2</sup>",
+            "when": "Making yields comparable across different compounding frequencies.",
+            "problem": "A bond has a 6% yield quoted semiannually. What are its effective annual yield and its equivalent quarterly-compounded stated yield?",
+            "given": [
+              "y (semiannual) = 6%, m1 = 2",
+              "Target periodicity m2 = 1, then 4"
+            ],
+            "worked": "Effective annual = (1 + 0.06/2)² − 1 = 6.0900%\nQuarterly: (1 + y/4)⁴ = 1.0609 → y = 4 × (1.0609^0.25 − 1) = 5.9557%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m7b",
+        "title": "Module 7 — Yield measures for fixed-rate bonds: YTM, yield to call, yield to worst",
+        "body": [
+          "Yield to maturity (YTM) assumes the bond is held to maturity, all coupons are paid on time, and coupons are reinvested at the YTM. Yield to call (YTC) uses the call date and call price instead of maturity and par; yield to put and yield to refunding are analogs. Yield to worst (YTW) is the lowest of the YTM and the yields to every possible call date — it is the conservative measure for callable bonds.",
+          "Current yield = annual coupon / price ignores price gain or loss. Simple yield and other street conventions add amortization of discount/premium. Yield spread measures (below) compare a bond's yield to a benchmark.",
+          "Which one to use: a bond priced above its call price will likely be called (premium bonds → YTW is usually YTC); a bond priced at a discount is unlikely to be called early, so the YTM is the worst yield."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m7-ytc",
+            "name": "Yield to call",
+            "expression": "Price = Σ <span class=\"frac\"><span class=\"num\">Coupon</span><span class=\"den\">(1 + y)<sup>t</sup></span></span> + <span class=\"frac\"><span class=\"num\">Call price</span><span class=\"den\">(1 + y)<sup>N<sub>call</sub></sup></span></span>",
+            "when": "Solving for the yield assuming the issuer calls the bond on the first call date.",
+            "problem": "A 5-year, 5% annual-coupon bond (par 100) trades at 102 and is callable in 3 years at 103. Find the yield to call and compare it with the yield to maturity. Which is the yield to worst?",
+            "given": [
+              "Price = 102",
+              "Coupon = 5",
+              "Call price = 103 at t = 3",
+              "Maturity = 5"
+            ],
+            "worked": "Solve 102 = 5/(1+y) + 5/(1+y)² + 108/(1+y)³ for y (calculator: N=3, PV=−102, PMT=5, FV=103, CPT I/Y)\nYTC = 5.2123%\nYTM (N=5, FV=100) = 4.5439%\nYTW = lower of the two = 4.5439% (the YTC), because the bond trades at a premium."
+          }
+        ]
+      },
+      {
+        "id": "fi-m7c",
+        "title": "Module 7 — Yield spread measures: G-spread, I-spread, Z-spread and OAS",
+        "body": [
+          "A yield spread is the bond's yield minus a benchmark yield, expressed in basis points; it compensates the investor for credit, liquidity and option risk. G-spread (government spread): bond YTM minus the yield on an actual or interpolated government bond of the same maturity. I-spread (interpolated spread): bond YTM minus the swap rate of the same maturity (the swap rate is the benchmark). Z-spread (zero-volatility spread): the constant spread added to every point of the benchmark spot curve so that the PV of the bond's cash flows equals its price. It is more accurate than the G-spread for steep curves or amortizing bonds.",
+          "Option-adjusted spread (OAS): the Z-spread minus the value of the embedded option, expressed as a spread (OAS = Z-spread − option cost for callable bonds). It isolates credit and liquidity compensation after removing the option. For a callable bond, OAS < Z-spread; for a putable bond, OAS > Z-spread."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m7-gspread",
+            "name": "G-spread and Z-spread",
+            "expression": "G-spread = YTM<sub>bond</sub> − YTM<sub>gov't</sub> &nbsp;&nbsp; Price = Σ <span class=\"frac\"><span class=\"num\">CF<sub>t</sub></span><span class=\"den\">(1 + z<sub>t</sub> + Z)<sup>t</sup></span></span>",
+            "when": "Measuring the credit/liquidity premium over a benchmark; Z-spread uses the whole spot curve.",
+            "problem": "A corporate bond yields 4.85%; the interpolated government yield is 4.20%. Separately, a 2-year 5% annual-coupon bond trades at the price implied by spot rates 2.0% and 3.0% plus a Z-spread of 1.0%. Find the G-spread and the bond's price.",
+            "given": [
+              "YTM bond = 4.85%",
+              "YTM gov't = 4.20%",
+              "Spot 1y = 2.0%, 2y = 3.0%",
+              "Z = 1.0%",
+              "Coupon = 5"
+            ],
+            "worked": "G-spread = 4.85% − 4.20% = 65 bp\nPrice = 5/(1 + 0.02 + 0.01)¹ + 105/(1 + 0.03 + 0.01)²\n= 4.8544 + 97.0784\n= 101.9328"
+          }
+        ]
+      },
+      {
+        "id": "fi-m8a",
+        "title": "Module 8 — Floating-rate instruments: quoted margin and discount margin",
+        "body": [
+          "A floating-rate note (FRN) pays a coupon = reference rate (SOFR, EURIBOR, etc.) + quoted margin (QM), reset each period. Its price stays near par because the coupon adjusts. When the issuer's credit risk (or required spread) changes, price moves: the discount margin (DM) is the market's required spread over the reference rate. If DM > QM, the FRN sells below par; if DM < QM, above par; if DM = QM, at par.",
+          "The FRN's discount margin is the floating-rate analog of the yield spread. Because the coupon floats, its interest rate (duration) risk is tiny — close to the time to the next reset — so most of the risk is credit/spread risk."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m8-dm",
+            "name": "FRN price from the discount margin",
+            "expression": "Price = Σ <span class=\"frac\"><span class=\"num\">Index + QM</span><span class=\"den\">(1 + Index + DM)<sup>t</sup></span></span> + <span class=\"frac\"><span class=\"num\">100</span><span class=\"den\">(1 + Index + DM)<sup>N</sup></span></span>",
+            "when": "Pricing a floater when the required margin differs from the quoted margin (using a flat index forecast).",
+            "problem": "A 2-year FRN pays annually at the index (3.0%, assumed flat) + 0.60% QM. The market requires a discount margin of 0.80%. What is its price?",
+            "given": [
+              "Index = 3.0%",
+              "QM = 0.60%",
+              "DM = 0.80%",
+              "N = 2, par = 100"
+            ],
+            "worked": "Coupon = 3.0% + 0.60% = 3.60\nDiscount rate = 3.0% + 0.80% = 3.80%\nPrice = 3.6/1.038 + 103.6/1.038²\n= 3.4682 + 96.1535 = 99.6217\nBelow par because DM > QM."
+          }
+        ]
+      },
+      {
+        "id": "fi-m8b",
+        "title": "Module 8 — Money market instruments: discount rate, add-on rate, bond-equivalent yield",
+        "body": [
+          "Money market instruments (T-bills, commercial paper, CDs, bankers' acceptances) mature within a year and quote yields in non-bond conventions. Three common conventions: discount rate (DR) — a percentage of face value, annualized on 360 days (used for T-bills and CP); add-on rate (AOR) — interest as a percentage of the amount invested, annualized on 360 days (used for CDs, repos, LIBOR-style rates); and bond-equivalent yield (BEY) — the add-on yield using 365 days, so it is comparable to the YTM of a bond.",
+          "Comparing money market instruments requires converting to the same basis: discount rate always understates the true investor yield since it divides by the face value rather than the price."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m8-mm",
+            "name": "Money market pricing and yield conversions",
+            "expression": "P = FV × (1 − DR × <span class=\"frac\"><span class=\"num\">days</span><span class=\"den\">360</span></span>) &nbsp;&nbsp; AOR = <span class=\"frac\"><span class=\"num\">FV − P</span><span class=\"den\">P</span></span> × <span class=\"frac\"><span class=\"num\">360</span><span class=\"den\">days</span></span> &nbsp;&nbsp; BEY = <span class=\"frac\"><span class=\"num\">FV − P</span><span class=\"den\">P</span></span> × <span class=\"frac\"><span class=\"num\">365</span><span class=\"den\">days</span></span>",
+            "when": "Pricing a T-bill from a discount rate, then converting to add-on and bond-equivalent yields.",
+            "problem": "A 91-day T-bill (face $100) is quoted at a discount rate of 2.40%. Find its price, add-on rate and bond-equivalent yield.",
+            "given": [
+              "FV = 100",
+              "DR = 0.024",
+              "Days = 91"
+            ],
+            "worked": "P = 100 × (1 − 0.024 × 91/360) = 99.3933\nAOR = (100 − 99.3933)/99.3933 × 360/91 = 2.4146%\nBEY = (100 − 99.3933)/99.3933 × 365/91 = 2.4482%"
+          }
+        ]
+      },
+      {
         id: "fi-5",
-        title: "The yield curve and term structure",
+        title: "Module 9 — The yield curve and term structure",
         body: [`The yield curve plots yields against maturities for otherwise similar bonds. A normal, upward-sloping yield curve reflects the extra compensation investors typically demand for tying up money longer. A flat yield curve shows little difference in yield across maturities. An inverted yield curve (short-term higher than long-term) is unusual and often watched as a potential signal of economic concern.`],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_YIELD_CURVE_SHAPES }],
         formulas: [],
       },
       {
+        "id": "fi-m9a",
+        "title": "Module 9 — Spot rates and pricing with the spot curve",
+        "body": [
+          "A spot rate is the yield on a zero-coupon bond for a given maturity: the single discount rate for one cash flow at that date. The spot curve (zero curve) plots spot rates against maturity. Because each cash flow of a coupon bond is discounted at the spot rate for its own maturity, spot-rate pricing is more accurate than a single YTM and is the basis of arbitrage-free valuation. Pricing with spot rates gives a price that is equal to the YTM-based price (the YTM is the single rate that produces the same price)."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m9-spotprice",
+            "name": "Bond price from spot rates",
+            "expression": "Price = <span class=\"frac\"><span class=\"num\">CF<sub>1</sub></span><span class=\"den\">(1 + z<sub>1</sub>)<sup>1</sup></span></span> + <span class=\"frac\"><span class=\"num\">CF<sub>2</sub></span><span class=\"den\">(1 + z<sub>2</sub>)<sup>2</sup></span></span> + … + <span class=\"frac\"><span class=\"num\">CF<sub>n</sub></span><span class=\"den\">(1 + z<sub>n</sub>)<sup>n</sup></span></span>",
+            "when": "Arbitrage-free pricing: each cash flow discounted at its own spot rate.",
+            "problem": "Spot rates are 1y 2%, 2y 3%, 3y 4%. Price a 3-year, 5% annual-coupon bond (par 100).",
+            "given": [
+              "z<sub>1</sub> = 0.02",
+              "z<sub>2</sub> = 0.03",
+              "z<sub>3</sub> = 0.04",
+              "Coupon = 5, par 100"
+            ],
+            "worked": "Price = 5/1.02 + 5/1.03² + 105/1.04³\n= 4.9020 + 4.7130 + 93.3446\n= 102.9596"
+          }
+        ]
+      },
+      {
+        "id": "fi-m9b",
+        "title": "Module 9 — Par rates and forward rates",
+        "body": [
+          "A forward rate is the rate for a loan or investment between two future dates, agreed today and implied by spot rates (no-arbitrage). The notation f(j,k) is the rate for a k-period loan starting j periods from now. The forward curve plots the one-period forward rates across future start dates. A par rate is the coupon rate at which a bond prices at par; the par curve plots par rates by maturity. The three curves are linked: forward rates come from spot rates; spot rates are built from forwards (as a geometric average); par rates are derived from the spot discount factors."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m9-fwd",
+            "name": "Forward rates from spot rates",
+            "expression": "(1 + z<sub>j+k</sub>)<sup>j+k</sup> = (1 + z<sub>j</sub>)<sup>j</sup> × (1 + f<sub>j,k</sub>)<sup>k</sup>",
+            "when": "Deriving the forward rate between two future dates from the spot curve (and, in reverse, the spot rate from forwards).",
+            "problem": "Using spot rates 1y 2%, 2y 3%, 3y 4%, find the 1y1y forward rate f(1,1) and the 2y1y forward rate f(2,1). Then confirm a 3-year spot rate from the forwards.",
+            "given": [
+              "z<sub>1</sub> = 0.02",
+              "z<sub>2</sub> = 0.03",
+              "z<sub>3</sub> = 0.04"
+            ],
+            "worked": "f(1,1) = 1.03²/1.02 − 1 = 4.0098%\nf(2,1) = 1.04³/1.03² − 1 = 6.0292%\nCheck 3y spot: [(1.02)(1+f(1,1))(1+f(2,1))]^(1/3) − 1 = [1.02 × 1.04010 × 1.06029]^(1/3) − 1 = 4.0000%"
+          },
+          {
+            "id": "fi-m9-par",
+            "name": "Par rate from spot discount factors",
+            "expression": "Par rate = <span class=\"frac\"><span class=\"num\">1 − Z<sub>n</sub></span><span class=\"den\">Z<sub>1</sub> + Z<sub>2</sub> + … + Z<sub>n</sub></span></span> &nbsp;&nbsp; Z<sub>t</sub> = <span class=\"frac\"><span class=\"num\">1</span><span class=\"den\">(1 + z<sub>t</sub>)<sup>t</sup></span></span>",
+            "when": "Finding the coupon that prices a bond at par given the spot curve (also the swap rate).",
+            "problem": "Using spot rates 2%, 3%, 4%, find the 3-year par rate.",
+            "given": [
+              "z<sub>1</sub> = 0.02",
+              "z<sub>2</sub> = 0.03",
+              "z<sub>3</sub> = 0.04"
+            ],
+            "worked": "Z1 = 0.980392, Z2 = 0.942596, Z3 = 0.888996\nPar rate = (1 − 0.888996) / (2.811984)\n= 3.9475%"
+          },
+          {
+            "id": "fi-m9-fwdprice",
+            "name": "Bond price using forward rates",
+            "expression": "Price = <span class=\"frac\"><span class=\"num\">CF<sub>1</sub></span><span class=\"den\">1 + f<sub>0,1</sub></span></span> + <span class=\"frac\"><span class=\"num\">CF<sub>2</sub></span><span class=\"den\">(1 + f<sub>0,1</sub>)(1 + f<sub>1,1</sub>)</span></span> + <span class=\"frac\"><span class=\"num\">CF<sub>3</sub></span><span class=\"den\">(1 + f<sub>0,1</sub>)(1 + f<sub>1,1</sub>)(1 + f<sub>2,1</sub>)</span></span>",
+            "when": "Discounting each cash flow at the chain of one-period forward rates; same price as spot pricing.",
+            "problem": "Price the 3-year 5% bond using the forwards above.",
+            "given": [
+              "f(0,1) = 2%",
+              "f(1,1) = 4.0098%",
+              "f(2,1) = 6.0292%",
+              "Coupon = 5, par 100"
+            ],
+            "worked": "DF1 = 1/1.02 = 0.980392\nDF2 = 1/(1.02 × 1.040098) = 0.942596\nDF3 = DF2/1.060292 = 0.888996\nPrice = 5 × DF1 + 5 × DF2 + 105 × DF3 = 102.9596 (matches spot pricing)"
+          }
+        ]
+      },
+      {
+        "id": "fi-m9c",
+        "title": "Module 9 — Comparing the spot, par and forward curves",
+        "body": [
+          "How the three curves relate."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Spot curve",
+            "detail": "Yields on zero-coupon bonds by maturity; the foundation for arbitrage-free pricing."
+          },
+          {
+            "item": "Par curve",
+            "detail": "Coupon rates of par bonds by maturity; sits between spot and forward in an upward-sloping market."
+          },
+          {
+            "item": "Forward curve",
+            "detail": "Implied one-period rates for future starting dates; derived from the spot curve."
+          },
+          {
+            "item": "Upward-sloping curve",
+            "detail": "Forward > spot > par at longer maturities."
+          },
+          {
+            "item": "Downward-sloping (inverted) curve",
+            "detail": "Forward < spot < par."
+          },
+          {
+            "item": "Flat curve",
+            "detail": "Spot = par = forward."
+          },
+          {
+            "item": "Why spot rates, not YTM",
+            "detail": "The YTM is a blended average that depends on the coupon; spot rates are the true time-specific discount rates."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m10a",
+        "title": "Module 10 — Sources of return and the holding-period return",
+        "body": [
+          "A bond investor earns from three sources: (1) coupon and principal payments received, (2) reinvestment income earned when coupons are reinvested, and (3) capital gain or loss when the bond is sold before maturity (or from the pull to par if held). A bond's YTM captures all three only if the bond is held to maturity and coupons are reinvested at the YTM.",
+          "Interest rate risk has two offsetting parts: price risk (a rate rise lowers the bond's price) and reinvestment risk (a rate rise raises the return on reinvested coupons). Which dominates depends on the investment horizon relative to the bond's Macaulay duration."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m10-hpr",
+            "name": "Horizon (holding-period) return",
+            "expression": "Horizon yield = (<span class=\"frac\"><span class=\"num\">Total future value</span><span class=\"den\">Purchase price</span></span>)<sup>1/H</sup> − 1 &nbsp;&nbsp; Total FV = Coupons + Reinvestment + Sale price",
+            "when": "Measuring the realized return over a holding period that is shorter than the bond's maturity.",
+            "problem": "A 5-year 6% annual-coupon bond is bought at par (100). Coupons are reinvested at 5%. It is sold after 3 years when the market yield is 5% (2 years remain). Find the horizon yield.",
+            "given": [
+              "Price = 100",
+              "Coupon = 6",
+              "Reinvestment rate = 5%",
+              "Horizon H = 3",
+              "Sale yield = 5%, 2 years left"
+            ],
+            "worked": "Coupons FV = 6 × (1.05³ − 1)/0.05 = 18.9150\nSale price = 6/1.05 + 106/1.05² = 101.8594\nTotal FV = 18.9150 + 101.8594 = 120.7744\nHorizon yield = (120.7744/100)^(1/3) − 1 = 6.4940%\n(The coupon was 6% but the realized yield is lower because the sale was at a yield of 5%.)"
+          }
+        ]
+      },
+      {
+        "id": "fi-m10b",
+        "title": "Module 10 — Macaulay duration and the investment horizon",
+        "body": [
+          "Macaulay duration is the weighted average time to receipt of a bond's cash flows, where each weight is the present value of that cash flow divided by the bond's price. It is measured in years. Properties: a zero-coupon bond's Macaulay duration equals its maturity; for coupon bonds it is less than maturity; higher coupon or higher yield lowers it; longer maturity raises it.",
+          "Link to the horizon: if the investment horizon equals the Macaulay duration, price risk and reinvestment risk approximately offset, so the realized return is close to the original YTM (immunization). Horizon shorter than the duration → price risk dominates (a rate rise hurts). Horizon longer than the duration → reinvestment risk dominates (a rate rise helps). This is why liability-matching portfolios (pensions, insurers) match asset duration to liability duration."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m10-mac",
+            "name": "Macaulay duration",
+            "expression": "MacDur = <span class=\"frac\"><span class=\"num\">Σ t × PV(CF<sub>t</sub>)</span><span class=\"den\">Price</span></span>",
+            "when": "Finding the weighted-average time to cash flows (in years) for a bond.",
+            "problem": "Compute the Macaulay duration of a 3-year 5% annual-coupon bond (par 100) with a 6% YTM.",
+            "given": [
+              "Coupon = 5",
+              "Par = 100",
+              "YTM = 0.06",
+              "n = 3"
+            ],
+            "worked": "PV1 = 5/1.06 = 4.7170\nPV2 = 5/1.06² = 4.4500\nPV3 = 105/1.06³ = 88.1600\nPrice = 97.3270\nΣ t×PV = 1×4.7170 + 2×4.4500 + 3×88.1600 = 278.0970\nMacDur = 278.0970/97.3270 = 2.8573 years\nModified duration = 2.8573/1.06 = 2.6956"
+          }
+        ]
+      },
+      {
         id: "fi-6",
-        title: "Macaulay duration and modified duration",
+        title: "Module 11 — Modified duration and the duration price-change approximation",
         body: [
           `Duration measures a bond's sensitivity to changes in interest rates, but the term actually covers a small family of related measures, and it's worth knowing which one is which.`,
           `Macaulay duration is the foundational version: the weighted-average time (in years) until a bondholder receives the bond's cash flows, where each cash flow's weight is the proportion of the bond's total present value that it represents. A bond with only a single cash flow (a zero-coupon bond) has a Macaulay duration exactly equal to its maturity, since there's only one cash flow to wait for; a coupon-paying bond's Macaulay duration is always shorter than its maturity, since some value arrives earlier via the coupons.`,
@@ -3158,8 +3736,69 @@ const CHAPTERS = [
         ],
       },
       {
+        "id": "fi-m11a",
+        "title": "Module 11 — Money duration and the price value of a basis point (PVBP)",
+        "body": [
+          "Modified duration is a percentage measure. Money duration (also called dollar duration) converts it into currency: money duration = modified duration × full price (market value). The PVBP (price value of a basis point, also called DV01 or BPV) is the money change in the bond's value for a 1 bp (0.0001) change in yield: PVBP = money duration × 0.0001. PVBP is used for hedging and sizing positions in terms of dollar exposure."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m11-money",
+            "name": "Money duration and PVBP",
+            "expression": "Money duration = ModDur × Full price &nbsp;&nbsp; PVBP = Money duration × 0.0001",
+            "when": "Measuring a position's dollar sensitivity to a yield change.",
+            "problem": "An investor holds $5 million par of a bond priced at 98.50 with a modified duration of 4.5. Find the money duration and the PVBP.",
+            "given": [
+              "Par = $5,000,000",
+              "Price = 98.50",
+              "ModDur = 4.5"
+            ],
+            "worked": "Market value = 5,000,000 × 0.9850 = $4,925,000\nMoney duration = 4.5 × 4,925,000 = $22,162,500\nPVBP = 22,162,500 × 0.0001 = $2,216.25\nA 25 bp rise → loss ≈ $55,406.25"
+          }
+        ]
+      },
+      {
+        "id": "fi-m11b",
+        "title": "Module 11 — What drives a bond's interest rate risk (reference)",
+        "body": [
+          "Effect on duration, holding other factors constant."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Longer maturity",
+            "detail": "Higher duration (more interest rate risk)."
+          },
+          {
+            "item": "Higher coupon",
+            "detail": "Lower duration (cash flows arrive sooner)."
+          },
+          {
+            "item": "Higher yield level",
+            "detail": "Lower duration (later cash flows are discounted more heavily)."
+          },
+          {
+            "item": "Zero-coupon bond",
+            "detail": "Macaulay duration = maturity; highest duration per maturity."
+          },
+          {
+            "item": "Floating-rate bond",
+            "detail": "Very low duration; roughly the time to next reset."
+          },
+          {
+            "item": "Callable bond",
+            "detail": "Lower effective duration than the straight bond when a call is likely."
+          },
+          {
+            "item": "Putable bond",
+            "detail": "Lower effective duration than the straight bond as yields rise."
+          }
+        ],
+        "formulas": []
+      },
+      {
         id: "fi-6a2",
-        title: "Convexity",
+        title: "Module 12 — Convexity and the convexity adjustment",
         body: [
           `Duration's price-change approximation is a straight-line estimate, but the true relationship between a bond's price and its yield is actually curved, not straight — convexity measures that curvature, and captures the part of the price change duration alone misses.`,
           `A bond with positive convexity (true of most ordinary, option-free bonds) gains more from a given yield decrease than it loses from an equal-sized yield increase — meaning duration alone tends to understate price gains and overstate price losses. Adding a convexity adjustment to the duration estimate corrects for this, and the correction matters more the larger the yield change is, since the "curve versus straight line" gap widens the further you move from the starting point.`,
@@ -3170,19 +3809,234 @@ const CHAPTERS = [
         ],
       },
       {
-        id: "fi-6b",
-        title: "Callable, putable, and convertible bonds",
-        body: [
-          `Beyond the plain, fixed-maturity structure covered so far, three common embedded features change a bond's risk profile.`,
-          `A callable bond gives the issuer the right to repay the bond early — typically used when rates have fallen and the issuer wants to refinance at a lower rate. This is a risk to the bondholder: the bond is most likely to get called away right when reinvesting the proceeds at an equally attractive rate has become hardest.`,
-          `A putable bond gives the bondholder the right to sell the bond back to the issuer early, at a preset price — the mirror image of callable, and a benefit to the bondholder rather than the issuer.`,
-          `A convertible bond gives the bondholder the right to convert the bond into a predetermined number of the issuer's common shares — effectively bundling a bond with a call option on the stock.`,
+        "id": "fi-m12a",
+        "title": "Module 12 — Approximate convexity and percentage price change",
+        "body": [
+          "Convexity measures how duration itself changes as yield changes. Approximate convexity: take prices for a yield decrease and increase of equal size, and use the second difference. The duration + convexity approximation estimates a bond's percentage price change: %ΔP ≈ −ModDur × Δy + ½ × Convexity × (Δy)². Convexity is always positive for option-free bonds; larger for longer maturity, lower coupon and lower yield. It is a benefit to the holder (more gain when yields fall, less loss when they rise)."
         ],
+        "formulas": [
+          {
+            "id": "fi-m12-conv",
+            "name": "Approximate convexity and price-change estimate",
+            "expression": "ApproxConvexity = <span class=\"frac\"><span class=\"num\">PV<sub>−</sub> + PV<sub>+</sub> − 2 PV<sub>0</sub></span><span class=\"den\">PV<sub>0</sub> × (Δy)<sup>2</sup></span></span> &nbsp;&nbsp; %ΔP ≈ −ModDur × Δy + ½ × Conv × (Δy)<sup>2</sup>",
+            "when": "Finding convexity from prices and estimating a price change that uses both duration and convexity.",
+            "problem": "A 5-year 5% annual-coupon bond yields 5%. Its price is 100.0000; at 4% it is 104.4518; at 6% it is 95.7876. Find the approximate modified duration, the convexity, and the estimated %ΔP for a +100 bp yield move.",
+            "given": [
+              "PV0 = 100.0000",
+              "PV− (4%) = 104.4518",
+              "PV+ (6%) = 95.7876",
+              "Δy = 0.01"
+            ],
+            "worked": "ModDur ≈ (PV− − PV+)/(2 × PV0 × Δy) = (104.4518 − 95.7876)/(2 × 100.0000 × 0.01) = 4.3321\nConvexity ≈ (104.4518 + 95.7876 − 2×100.0000)/(100.0000 × 0.0001) = 23.9459\n%ΔP (+100 bp) ≈ −4.3321 × 0.01 + 0.5 × 23.9459 × 0.0001\n= -4.2124%\nActual: (95.7876/100.0000) − 1 = -4.2124%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m12b",
+        "title": "Module 12 — Portfolio duration and convexity, and their limitations",
+        "body": [
+          "Portfolio duration is approximated as the market-value-weighted average of the durations of the individual bonds (the same for convexity). It assumes a parallel shift of the yield curve (all yields move by the same amount), which rarely happens. Limitations: it ignores non-parallel shifts (twists and butterflies), embedded options, and the fact that yield shifts differ across credit sectors; duration and convexity are most accurate for small yield changes. Key rate durations (Module 13) address non-parallel curve changes."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m12-port",
+            "name": "Portfolio duration and convexity",
+            "expression": "D<sub>p</sub> = Σ w<sub>i</sub> × D<sub>i</sub> &nbsp;&nbsp; C<sub>p</sub> = Σ w<sub>i</sub> × C<sub>i</sub>",
+            "when": "Computing a portfolio's overall duration and convexity from its holdings.",
+            "problem": "A portfolio is 40% in a bond with ModDur 3 and convexity 15, and 60% in a bond with ModDur 8 and convexity 90. Find portfolio duration and convexity, and the %ΔP for a +50 bp parallel shift (duration only).",
+            "given": [
+              "w1 = 0.40, D1 = 3, C1 = 15",
+              "w2 = 0.60, D2 = 8, C2 = 90",
+              "Δy = 0.005"
+            ],
+            "worked": "Dp = 0.4 × 3 + 0.6 × 8 = 6.00\nCp = 0.4 × 15 + 0.6 × 90 = 60.00\n%ΔP ≈ −6.00 × 0.005 = −3.00%\nWith convexity: + 0.5 × 60 × 0.005² = +0.0750% → -2.9250%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m13a",
+        "title": "Module 13 — Effective duration and effective convexity for bonds with embedded options",
+        "body": [
+          "For bonds with embedded options (callable, putable), cash flows change with interest rates, so modified duration (which assumes fixed cash flows) is not appropriate. Effective duration and effective convexity are computed by revaluing the bond with an option-pricing model after shifting the benchmark yield curve up and down by a small amount, holding the credit spread constant. They are the right measures for option-embedded bonds. A callable bond has lower effective duration than the straight bond (it shortens as yields fall) and negative convexity when yields are low; a putable bond has positive convexity."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m13-eff",
+            "name": "Effective duration and effective convexity",
+            "expression": "EffDur = <span class=\"frac\"><span class=\"num\">PV<sub>−</sub> − PV<sub>+</sub></span><span class=\"den\">2 × PV<sub>0</sub> × Δcurve</span></span> &nbsp;&nbsp; EffConv = <span class=\"frac\"><span class=\"num\">PV<sub>−</sub> + PV<sub>+</sub> − 2 PV<sub>0</sub></span><span class=\"den\">PV<sub>0</sub> × (Δcurve)<sup>2</sup></span></span>",
+            "when": "Measuring interest rate risk when cash flows depend on the yield curve (embedded options).",
+            "problem": "A bond has PV0 = 100. When the benchmark curve shifts down 50 bp its value is 101.20; up 50 bp it is 98.90. Find effective duration and convexity, then the %ΔP for a +100 bp move.",
+            "given": [
+              "PV0 = 100",
+              "PV− = 101.20",
+              "PV+ = 98.90",
+              "Δcurve = 0.005"
+            ],
+            "worked": "EffDur = (101.20 − 98.90)/(2 × 100 × 0.005) = 2.30\nEffConv = (101.20 + 98.90 − 200)/(100 × 0.005²) = 40.00\n%ΔP (+100 bp) ≈ −2.30 × 0.01 + 0.5 × 40.00 × 0.01²\n= -2.1000%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m13b",
+        "title": "Module 13 — Key rate duration",
+        "body": [
+          "Key rate duration (KRD) measures a bond's or portfolio's price sensitivity to a change in one specific point on the benchmark yield curve (for example, the 2-year, 5-year, 10-year or 30-year rate) while leaving all other points unchanged. The sum of the KRDs across all key rates approximately equals the effective duration. KRDs reveal exposure to curve steepening, flattening and twists (non-parallel shifts) and are used to hedge those exposures and to build barbell or bullet positions."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m13-krd",
+            "name": "Key rate duration",
+            "expression": "KRD<sub>k</sub> = <span class=\"frac\"><span class=\"num\">PV<sub>−,k</sub> − PV<sub>+,k</sub></span><span class=\"den\">2 × PV<sub>0</sub> × Δy<sub>k</sub></span></span>",
+            "when": "Measuring price sensitivity to a shift in a single key rate.",
+            "problem": "A portfolio is worth 200. Shifting only the 10-year key rate down 25 bp gives 201.00, up 25 bp gives 199.10. Find the 10-year KRD, and the loss for a 10-year-only rate increase of 40 bp.",
+            "given": [
+              "PV0 = 200",
+              "PV− = 201.00",
+              "PV+ = 199.10",
+              "Δy = 0.0025"
+            ],
+            "worked": "KRD(10y) = (201.00 − 199.10)/(2 × 200 × 0.0025) = 1.90\n%ΔP (+40 bp) ≈ −1.90 × 0.004 = -0.760%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m13c",
+        "title": "Module 13 — Empirical vs. analytical duration",
+        "body": [
+          "Analytical duration (modified, effective) is computed from a bond's cash flows and a yield-based or curve-based model, assuming a specified type of curve shift. Empirical duration is estimated statistically by regressing observed bond price changes on yield changes over a historical period. Empirical duration captures how bonds actually behave when yields change — including the effect of credit and liquidity — and is especially useful for bonds whose spreads co-move with rates, such as high-yield bonds and MBS: in times of stress, high-yield bonds can behave more like equities, so their empirical duration is lower than the analytical duration. Empirical estimates are noisy and depend on the sample period."
+        ],
+        "formulas": []
+      },
+      {
+        id: "fi-7",
+        title: "Module 14 — Credit risk",
+        body: [`Credit risk is the risk that a bond's issuer fails to make its promised payments (default). Credit rating agencies assign letter grades reflecting that risk: ratings from AAA down through BBB− are considered "investment grade," reflecting relatively low default risk and typically lower yields; ratings of BB+ and below are considered "high yield" or "junk," reflecting higher default risk and offering higher yields to compensate for that extra risk.`],
         formulas: [],
       },
       {
+        "id": "fi-m14a",
+        "title": "Module 14 — Credit risk: probability of default, loss given default, and expected loss",
+        "body": [
+          "Credit risk is the risk of loss from a borrower failing to pay in full and on time. Its two key components are the probability of default (PD) and the loss given default (LGD) — the fraction of exposure lost if default occurs (LGD = 1 − recovery rate). Expected loss = PD × LGD × exposure. Other dimensions: spread risk (the risk that credit spreads widen), downgrade (migration) risk, and market liquidity risk. The yield spread over a risk-free benchmark compensates investors for expected loss plus a risk premium for uncertainty and illiquidity."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m14-el",
+            "name": "Expected loss",
+            "expression": "Expected loss = PD × LGD &nbsp;&nbsp; LGD = 1 − Recovery rate",
+            "when": "Quantifying the expected credit loss of a bond or loan.",
+            "problem": "A bond has a 2% one-year probability of default and a 40% recovery rate. Exposure is $5 million. What are LGD and the expected loss?",
+            "given": [
+              "PD = 0.02",
+              "Recovery = 40%",
+              "Exposure = $5,000,000"
+            ],
+            "worked": "LGD = 1 − 0.40 = 60%\nExpected loss = 0.02 × 0.60 × 5,000,000 = $60,000\nAs a rate: 0.02 × 0.60 = 1.20% (roughly the minimum compensation within the spread)"
+          }
+        ]
+      },
+      {
+        "id": "fi-m14b",
+        "title": "Module 14 — Credit ratings: uses and limitations",
+        "body": [
+          "Rating agencies (S&P, Moody's, Fitch) assign letter ratings that summarize relative default risk and, for some, expected loss given default. Investment grade: BBB−/Baa3 and higher; high yield (speculative/non-investment grade): below. Ratings are used for investment mandates and eligibility, pricing (yield spreads), regulation (capital charges), and as a starting point for credit analysis. Issue ratings can be notched up or down from the issuer rating based on seniority and collateral.",
+          "Limitations: ratings are lagging (they may be changed after market spreads have moved), are point-in-time and may not capture changes in conditions (rating migration), can be inconsistent across agencies, have conflicts of interest (issuer pays), and may miss event risk (e.g., M&A, leveraged buyouts), and tail risk (ratings of structured products failed in 2008). Ratings do not address liquidity or market price risk. An analyst should use ratings as an input, not a substitute for independent analysis."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m14c",
+        "title": "Module 14 — What drives yield spreads (reference)",
+        "body": [
+          "Macro, market and issuer-specific factors."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Macroeconomic: business cycle",
+            "detail": "Spreads widen in recessions, narrow in expansions."
+          },
+          {
+            "item": "Macroeconomic: interest rates and monetary policy",
+            "detail": "Higher rates and tighter policy raise default risk; spreads widen."
+          },
+          {
+            "item": "Market: investor demand and risk appetite",
+            "detail": "Risk-off periods widen spreads (flight to quality)."
+          },
+          {
+            "item": "Market: liquidity and supply",
+            "detail": "Poor liquidity and heavy issuance widen spreads."
+          },
+          {
+            "item": "Issuer: credit quality / rating",
+            "detail": "Lower ratings = higher spreads; spreads reflect expected loss plus risk premium."
+          },
+          {
+            "item": "Issuer: seniority, collateral, maturity",
+            "detail": "Subordinated and unsecured debt carries wider spreads; longer maturity usually wider."
+          },
+          {
+            "item": "Volatility of spreads",
+            "detail": "Higher for lower-rated issuers and during economic stress."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m15a",
+        "title": "Module 15 — Credit analysis for sovereign and non-sovereign government issuers",
+        "body": [
+          "Sovereign credit analysis: willingness and ability to pay. Ability depends on the economy (size, growth, diversification, per capita income), fiscal strength (deficits, debt/GDP, debt affordability, interest/revenue, tax base), monetary and external position (currency regime, central bank credibility, inflation, reserves, current account, external debt), and institutional strength (rule of law, political stability, track record). Willingness is judged by political stability, institutional commitment, and past behavior (a sovereign can choose to default). Foreign-currency debt is riskier than local-currency debt because the government cannot print foreign currency. Sovereign recovery is based on negotiation, not courts.",
+          "Non-sovereign government analysis: general obligation bonds rely on the issuer's taxing power and economy — analyze the tax base, debt burden, pension liabilities, and budget flexibility. Revenue bonds rely on the project's cash flows — analyze service-area demand, rate-setting authority, operating costs, coverage ratio (net revenue / debt service), covenants and reserve funds. Supranational and quasi-government issuers depend on member or government support, capital adequacy, and mandate. Government support (explicit vs implicit guarantee) is key."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m16a",
+        "title": "Module 16 — Corporate credit analysis: qualitative and quantitative factors",
+        "body": [
+          "Corporate credit analysis traditionally uses the 'four Cs': capacity (ability to repay from cash flow, which depends on industry structure, competitive position, strategy, management and financial strength), collateral (assets pledged or available), covenants (protective terms), and character (management's integrity and track record). Qualitative factors: industry cyclicality and competition, business model, market share and diversification, management quality and governance, and ESG factors. Quantitative factors: profitability, cash flow, leverage, coverage, liquidity, and capital structure.",
+          "Analysts adjust reported numbers for leases, pensions and off-balance-sheet debt, compare to peers and trends, and look at the stability and quality of cash flows."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m16b",
+        "title": "Module 16 — Credit analysis ratios",
+        "body": [
+          "Common credit ratios fall into three groups: leverage (debt/EBITDA, debt/capital, debt/equity, net debt/EBITDA), coverage (EBITDA/interest, EBIT/interest, FFO/interest), and cash flow to debt (FFO/debt, retained cash flow/net debt, free cash flow/debt). Lower leverage and higher coverage indicate stronger credit. Ratios are compared against rating-category medians."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m16-ratios",
+            "name": "Credit ratios: leverage and coverage",
+            "expression": "Debt/EBITDA &nbsp;&nbsp; EBITDA/Interest &nbsp;&nbsp; FFO/Debt &nbsp;&nbsp; Net debt/EBITDA = (Debt − Cash)/EBITDA",
+            "when": "Gauging leverage, interest coverage and the cash-flow cushion for a corporate borrower.",
+            "problem": "A firm has EBITDA of $500 million, interest expense $100 million, total debt $1,500 million, funds from operations $380 million, and cash $300 million. Compute the credit ratios.",
+            "given": [
+              "EBITDA = $500m",
+              "Interest = $100m",
+              "Debt = $1,500m",
+              "FFO = $380m",
+              "Cash = $300m"
+            ],
+            "worked": "Debt/EBITDA = 1,500/500 = 3.00x\nEBITDA/Interest = 500/100 = 5.00x\nFFO/Debt = 380/1,500 = 25.33%\nNet debt/EBITDA = (1,500 − 300)/500 = 2.40x"
+          }
+        ]
+      },
+      {
+        "id": "fi-m16c",
+        "title": "Module 16 — Seniority, secured vs. unsecured, and priority of claims",
+        "body": [
+          "In bankruptcy, claims are paid in order of priority (the absolute priority rule, though actual outcomes often deviate): secured creditors (first-lien, then second-lien, from the pledged collateral), then senior unsecured, then subordinated (junior) debt, then preferred stock, then common equity. Secured debt has higher recovery than unsecured. Higher seniority → higher recovery → higher issue rating (notching): a senior secured bond may be rated above the issuer rating, while subordinated debt is rated below.",
+          "Structural subordination: debt issued by a holding company is junior to the debt of its operating subsidiaries, because subsidiary creditors have the first claim on subsidiary assets; holding-company bonds therefore have lower recovery and wider spreads. Pari passu means equal ranking. Different bankruptcy regimes (liquidation vs reorganization) change recovery and timing."
+        ],
+        "formulas": []
+      },
+      {
         id: "fi-6c",
-        title: "Securitization: ABS and MBS",
+        title: "Module 17 — Securitization: ABS and MBS (overview)",
         body: [
           `Securitization is the process of pooling many individual loans or receivables together (mortgages, auto loans, credit card debt) and converting that pool into tradable bonds, backed by the cash flows those underlying loans generate. This lets the original lender free up capital to make new loans, rather than holding every loan on its own balance sheet until maturity.`,
           `A mortgage-backed security (MBS) is securitized specifically from a pool of mortgage loans; the broader category, asset-backed security (ABS), covers securitization from other loan types, like auto loans or credit card receivables. A key risk specific to mortgage-related securitization: prepayment risk — homeowners can pay off their mortgages early (often by refinancing when rates fall), which returns principal to MBS investors earlier than expected, right when reinvesting it at an equally attractive rate is hardest — the same underlying problem as callable bond risk, just arising structurally from the pool of borrowers rather than from an explicit call feature.`,
@@ -3190,48 +4044,356 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "fi-7",
-        title: "Credit risk",
-        body: [`Credit risk is the risk that a bond's issuer fails to make its promised payments (default). Credit rating agencies assign letter grades reflecting that risk: ratings from AAA down through BBB− are considered "investment grade," reflecting relatively low default risk and typically lower yields; ratings of BB+ and below are considered "high yield" or "junk," reflecting higher default risk and offering higher yields to compensate for that extra risk.`],
-        formulas: [],
+        "id": "fi-m17a",
+        "title": "Module 17 — Securitization: parties, roles and benefits",
+        "body": [
+          "Securitization pools loans or receivables (the collateral) and transfers them to a special purpose entity (SPE/SPV, also called special purpose vehicle), which issues securities (tranches) backed by the cash flows. The SPE is legally separate from the seller, so the assets are bankruptcy-remote — if the originator fails, the assets are protected from the seller's creditors, and the securities' risk depends on the collateral only.",
+          "Parties: the seller/originator (originates the loans, sells the pool to the SPE); the SPE/issuer (issues the securities); the servicer (collects payments, manages delinquencies, and passes cash to investors); the trustee (protects investors' interests, holds the assets); the arranger/underwriter (structures and sells); rating agencies; guarantor/credit enhancer. 'True sale' of assets is crucial.",
+          "Benefits for issuers: access cheaper funding (the risk is the collateral, not the originator), free up capital and balance sheet to make more loans, diversify funding, and transfer risk. For investors: access to new asset classes and risk/return profiles and often a yield pick-up over comparably-rated bonds; tranching customizes risk. For the economy and markets: improved liquidity, lower funding costs and wider credit access for borrowers, and more efficient allocation of risk, though complexity and poor underwriting can create systemic risk (2008)."
+        ],
+        "formulas": []
       },
       {
-        id: "fi-8",
-        title: "Formula/concept decision guide",
-        type: "decision-guide",
-        body: [`Match the question to the concept.`],
-        decisionRows: [
-          { cue: "Finding a bond's price given coupon, face value, maturity, required yield", formula: "Bond pricing (PV of coupon annuity + PV of face value)", section: "fi-3" },
-          { cue: "A bond with no periodic coupon, just a lump sum at maturity", formula: "Zero-coupon bond pricing (single sum PV)", section: "fi-2b" },
-          { cue: "Whether a bond trades above, at, or below face value", formula: "Par / discount / premium bond", section: "fi-3b" },
-          { cue: "A quick yield estimate using only the coupon and current price", formula: "Current yield", section: "fi-4" },
-          { cue: "The full, precise annualized return if held to maturity", formula: "Yield to maturity (YTM)", section: "fi-4" },
-          { cue: "How much of the next coupon a seller has already earned mid-period", formula: "Accrued interest / dirty price", section: "fi-4b" },
-          { cue: "Comparing yields across different maturities", formula: "Yield curve", section: "fi-5" },
-          { cue: "Weighted-average time until a bond's cash flows are received", formula: "Macaulay duration", section: "fi-6" },
-          { cue: "Estimating a bond's price change from a change in yield", formula: "Modified duration", section: "fi-6" },
-          { cue: "Improving the price-change estimate for larger yield changes", formula: "Convexity adjustment", section: "fi-6a2" },
-          { cue: "An issuer's right to redeem a bond before maturity", formula: "Callable bond", section: "fi-6b" },
-          { cue: "A bond backed by a pool of mortgages or other loans", formula: "Securitization (MBS/ABS)", section: "fi-6c" },
-          { cue: "Risk that the issuer won't pay", formula: "Credit risk", section: "fi-7" },
+        "id": "fi-m18a",
+        "title": "Module 18 — Covered bonds",
+        "body": [
+          "A covered bond is a senior debt obligation of a financial institution backed by a segregated pool of high-quality assets (the cover pool), usually mortgages or public-sector loans, to which bondholders have a priority claim — and also a full-recourse claim on the issuer. This dual recourse differs from ABS, where investors only have a claim on the pool. The cover pool is dynamic: the issuer must replace non-performing or prepaid assets to keep it above required coverage, so covered bonds don't suffer prepayment risk like MBS. They have a bullet structure and often high credit ratings (AAA) and are governed by special legislation or contract. The issuer remains on the hook, and the assets stay on its balance sheet, unlike a true sale in ABS."
         ],
-        formulas: [],
+        "formulas": []
       },
       {
-        id: "fi-9",
-        title: "Common traps",
-        type: "reference",
-        body: [`Watch for these.`],
-        referenceRows: [
-          { item: "Assuming bond price and yield move together", detail: "They always move in opposite directions." },
-          { item: "Confusing coupon rate with yield to maturity", detail: "Coupon rate is fixed at issuance; YTM changes constantly with market prices." },
-          { item: "Assuming equal-maturity bonds have equal duration", detail: "Coupon rate matters too — lower coupons mean higher duration." },
-          { item: "Confusing clean price with the actual amount paid", detail: "The dirty price (clean price + accrued interest) is what the buyer actually pays at settlement." },
-          { item: "Assuming \"callable\" benefits the bondholder", detail: "Callable features favor the issuer; putable and convertible features favor the bondholder." },
-          { item: "Using Macaulay duration directly in the price-change formula", detail: "The price-change approximation needs modified duration, not Macaulay duration — convert first." },
-          { item: "Forgetting convexity on larger yield changes", detail: "Duration alone is a straight-line approximation; the convexity adjustment corrects for the true curved price-yield relationship, and matters more as the yield change grows." },
+        "id": "fi-m18b",
+        "title": "Module 18 — Credit enhancement structures",
+        "body": [
+          "Credit enhancement improves the credit quality of securities above that of the underlying pool. Internal enhancements are built into the deal: subordination (senior/mezzanine/equity or junior tranches absorb losses first), overcollateralization (collateral exceeds the face value of the bonds), excess spread (interest from the collateral exceeds the interest owed, and the excess builds a reserve), reserve accounts (cash cushion), and triggers that divert cash. External enhancements come from a third party: bond insurance (a monoline guarantee), letters of credit, and guarantees (e.g., government agencies) — these carry the counterparty risk of the guarantor."
         ],
-        formulas: [],
+        "formulas": [
+          {
+            "id": "fi-m18-loss",
+            "name": "Loss allocation across tranches (subordination)",
+            "expression": "Loss to tranche = min(Remaining loss, Tranche size), starting from the most junior tranche",
+            "when": "Allocating pool losses to tranches through the waterfall.",
+            "problem": "A $100 million pool is financed by a $80 million senior tranche, a $15 million mezzanine tranche and a $5 million equity tranche. The pool suffers $8 million of losses. Who bears them? What is the overcollateralization if the pool is $105 million?",
+            "given": [
+              "Senior = $80m",
+              "Mezzanine = $15m",
+              "Equity = $5m",
+              "Pool loss = $8m"
+            ],
+            "worked": "Equity absorbs first: min(8, 5) = $5m (wiped out)\nRemaining loss = 8 − 5 = $3m → mezzanine absorbs $3m (of 15)\nSenior bears $0 (protected by 20% subordination)\nOvercollateralization = (105 − 100)/100 = 5% extra collateral"
+          }
+        ]
+      },
+      {
+        "id": "fi-m18c",
+        "title": "Module 18 — Non-mortgage ABS: types, cash flows and risks",
+        "body": [
+          "Auto loan ABS: cash flows are scheduled loan payments plus prepayments (usually low and driven by early payoffs); the main risk is credit (defaults and loss on repossession). Credit card receivable ABS: a revolving structure — principal is not paid during the revolving period (new receivables replace paid ones), then an amortization period; features such as early amortization triggers protect investors; risks are credit losses and payment-rate changes. Student loan ABS: government-guaranteed and private; risk varies with guarantee and payment deferrals. Other: equipment, SBA loans, trade receivables, and similar. Collateral quality, servicer performance, credit enhancement and the interest rate (floating vs fixed) mismatch drive risk."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m18d",
+        "title": "Module 18 — Collateralized debt obligations (CDOs)",
+        "body": [
+          "A CDO is a securitization of a diversified pool of debt: bonds (CBO), bank loans (CLO), structured products or credit default swaps (synthetic CDO). The CDO manager sells tranches with different risk: senior, mezzanine and equity. Cash flows from the collateral pay senior tranches first; equity gets the residual and bears the first loss, and also earns the most upside. A CLO holds leveraged loans (floating rate, senior secured) with active management during a reinvestment period. Risks: collateral credit risk, correlation between assets (diversification may fail in a crisis), manager risk, complexity, interest rate mismatch, and loss of subordination protection. CDOs of structured products amplified losses in 2008."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m19a",
+        "title": "Module 19 — Prepayment risk and time tranching",
+        "body": [
+          "Prepayment risk is the uncertainty about the timing of principal return. When rates fall, borrowers refinance — principal comes back early (contraction risk: the investor must reinvest at lower rates, and price appreciation is capped, giving negative convexity). When rates rise, prepayments slow — the security's life extends (extension risk) just when investors would prefer shorter maturity.",
+          "Time tranching splits the pool's cash flows into tranches with different expected maturities and levels of prepayment protection — for example, sequential-pay tranches where Tranche A receives all principal first, then B, then C — reducing contraction and extension risk for the early tranches while concentrating it in the later ones. Tranching lets investors pick the maturity and risk they want."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-m19b",
+        "title": "Module 19 — Residential mortgage loans: features and cash flows",
+        "body": [
+          "Key features: loan term (e.g., 15 or 30 years), interest rate (fixed, adjustable), the amortization schedule (level payments of interest and principal, with interest dominating early), the loan-to-value (LTV = loan/property value), and lien status (first vs junior), prepayment options and penalties, and whether the loan is conforming (meets agency guidelines) or non-conforming. Mortgages are non-recourse in some countries (the lender can only seize the property) and recourse in others. Delinquency and default are driven by LTV, borrower credit, and house prices."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m19-pmt",
+            "name": "Level mortgage payment and LTV",
+            "expression": "Payment = <span class=\"frac\"><span class=\"num\">Loan × (r/12)</span><span class=\"den\">1 − (1 + r/12)<sup>−12N</sup></span></span> &nbsp;&nbsp; LTV = <span class=\"frac\"><span class=\"num\">Loan</span><span class=\"den\">Property value</span></span>",
+            "when": "Finding the monthly payment on a fixed-rate amortizing mortgage and splitting the first payment into interest and principal.",
+            "problem": "A $300,000, 30-year, 6% fixed-rate mortgage. Find the monthly payment, first month's interest and principal, and the LTV if the home is worth $375,000.",
+            "given": [
+              "Loan = $300,000",
+              "r = 0.06",
+              "N = 30",
+              "Value = $375,000"
+            ],
+            "worked": "r/12 = 0.005; n = 360\nPayment = 300,000 × 0.005 / (1 − 1.005^−360) = $1,798.65\nMonth 1 interest = 300,000 × 0.005 = $1,500.00\nMonth 1 principal = 1,798.65 − 1,500.00 = $298.65\nLTV = 300,000/375,000 = 80%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m19c",
+        "title": "Module 19 — Residential MBS: pass-throughs and collateralized mortgage obligations",
+        "body": [
+          "A mortgage pass-through security distributes the pool's monthly cash flows (net of servicing and guarantee fees) pro rata to investors: interest, scheduled principal, and prepayments. Its pass-through rate is below the weighted average coupon (WAC) of the underlying loans. Weighted average maturity (WAM) is the weighted remaining term. Prepayment speed is expressed as the single monthly mortality (SMM) or the conditional prepayment rate (CPR, annualized) or as a percentage of the PSA benchmark (100 PSA: CPR of 0.2% per month of age until 6% at month 30, then constant 6%).",
+          "Collateralized mortgage obligations (CMOs) redistribute the cash flows of pass-throughs among tranches: sequential-pay tranches (principal paid in order), planned amortization class (PAC) tranches (a scheduled principal path protected by support tranches within a prepayment band — less contraction and extension risk), support tranches (absorb prepayment variability — the riskiest), floaters and inverse floaters, accrual (Z) tranches, and interest-only/principal-only strips. Agency MBS carry no credit risk (government guarantee) but have prepayment risk; non-agency MBS carry both and use credit enhancement."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m19-cpr",
+            "name": "SMM, CPR and the PSA benchmark",
+            "expression": "CPR = 1 − (1 − SMM)<sup>12</sup> &nbsp;&nbsp; 100 PSA CPR = 6% × min(1, month/30)",
+            "when": "Converting between monthly and annual prepayment rates and applying the PSA convention.",
+            "problem": "A pool's SMM is 0.5%. Find the CPR. Also find the CPR at month 15 for 100 PSA and 150 PSA.",
+            "given": [
+              "SMM = 0.005",
+              "Month = 15"
+            ],
+            "worked": "CPR = 1 − (1 − 0.005)^12 = 5.8377%\n100 PSA at month 15 = 6% × 15/30 = 3.00%\n150 PSA = 1.5 × 3.00% = 4.50%"
+          }
+        ]
+      },
+      {
+        "id": "fi-m19d",
+        "title": "Module 19 — Commercial MBS (CMBS)",
+        "body": [
+          "CMBS are backed by commercial real estate loans (office, retail, multifamily, hotels). Unlike residential loans, commercial loans are non-recourse (the lender looks to the property), have balloon payments at maturity (refinancing risk), and have prepayment protection (lockouts, defeasance, yield maintenance), so CMBS investors face far less prepayment risk but more credit and balloon risk. Credit is assessed loan by loan using the debt service coverage ratio (DSCR = NOI/debt service) and the loan-to-value (LTV). Tranches are sequential, with subordination and call protection at both loan and structure levels. A tranche is paid in order from AAA down, with losses allocated from the most junior."
+        ],
+        "formulas": [
+          {
+            "id": "fi-m19-dscr",
+            "name": "DSCR and commercial LTV",
+            "expression": "DSCR = <span class=\"frac\"><span class=\"num\">NOI</span><span class=\"den\">Debt service</span></span> &nbsp;&nbsp; LTV = <span class=\"frac\"><span class=\"num\">Loan</span><span class=\"den\">Appraised value</span></span>",
+            "when": "Gauging whether a commercial property covers its debt payments and its leverage.",
+            "problem": "A property earns $1.2 million of net operating income. Annual debt service is $0.9 million. The loan is $7.5 million on a property valued at $10 million. Find DSCR and LTV.",
+            "given": [
+              "NOI = $1.2m",
+              "Debt service = $0.9m",
+              "Loan = $7.5m",
+              "Value = $10m"
+            ],
+            "worked": "DSCR = 1.2/0.9 = 1.33x\nLTV = 7.5/10 = 75%\nDSCR above 1.0 means NOI covers debt service; lenders typically require 1.25x or more."
+          }
+        ]
+      },
+      {
+        "id": "fi-8",
+        "title": "Formula/concept decision guide",
+        "type": "decision-guide",
+        "body": [
+          "Match the question to the concept."
+        ],
+        "decisionRows": [
+          {
+            "cue": "Terms of the legal contract; promises the issuer makes or must avoid",
+            "formula": "Indenture; affirmative vs negative covenants",
+            "section": "fi-m1b"
+          },
+          {
+            "cue": "Level payments that retire principal over time",
+            "formula": "Amortizing bond / annuity payment",
+            "section": "fi-m2a"
+          },
+          {
+            "cue": "Comparing a muni to a taxable bond",
+            "formula": "Taxable-equivalent yield",
+            "section": "fi-m2c"
+          },
+          {
+            "cue": "Issuer's right to repay early vs investor's right to sell back",
+            "formula": "Callable vs putable",
+            "section": "fi-m2b"
+          },
+          {
+            "cue": "Short-term collateralized loan with a repurchase price",
+            "formula": "Repo",
+            "section": "fi-m4b"
+          },
+          {
+            "cue": "Finding a bond's price from coupon, yield and maturity",
+            "formula": "Bond pricing",
+            "section": "fi-3"
+          },
+          {
+            "cue": "Trade settles mid-coupon period",
+            "formula": "Full price, accrued interest, flat price",
+            "section": "fi-m6a"
+          },
+          {
+            "cue": "Pricing an illiquid bond from comparable traded bonds",
+            "formula": "Matrix pricing",
+            "section": "fi-m6c"
+          },
+          {
+            "cue": "Comparing yields with different compounding periods",
+            "formula": "Periodicity conversion / effective annual yield",
+            "section": "fi-m7a"
+          },
+          {
+            "cue": "Lowest yield an investor can receive on a callable bond",
+            "formula": "Yield to worst",
+            "section": "fi-m7b"
+          },
+          {
+            "cue": "Spread over govt or swap curve; spread across whole spot curve; spread excluding option",
+            "formula": "G-spread / I-spread; Z-spread; OAS",
+            "section": "fi-m7c"
+          },
+          {
+            "cue": "Floater trading above or below par",
+            "formula": "Quoted margin vs discount margin",
+            "section": "fi-m8a"
+          },
+          {
+            "cue": "T-bill quoted as a discount rate",
+            "formula": "Discount rate, add-on rate, BEY",
+            "section": "fi-m8b"
+          },
+          {
+            "cue": "Rate for a future period from today's spot curve",
+            "formula": "Forward rate",
+            "section": "fi-m9b"
+          },
+          {
+            "cue": "Coupon that prices a bond at par from spot rates",
+            "formula": "Par rate",
+            "section": "fi-m9b"
+          },
+          {
+            "cue": "Return when selling before maturity",
+            "formula": "Horizon yield / holding-period return",
+            "section": "fi-m10a"
+          },
+          {
+            "cue": "Weighted-average time to cash flows; price and reinvestment risk offset",
+            "formula": "Macaulay duration",
+            "section": "fi-m10b"
+          },
+          {
+            "cue": "Dollar value change per 1 bp",
+            "formula": "PVBP / money duration",
+            "section": "fi-m11a"
+          },
+          {
+            "cue": "Curvature correction to the duration estimate",
+            "formula": "Convexity",
+            "section": "fi-m12a"
+          },
+          {
+            "cue": "Portfolio duration with parallel shifts",
+            "formula": "Weighted-average duration",
+            "section": "fi-m12b"
+          },
+          {
+            "cue": "Bond with embedded option",
+            "formula": "Effective duration and convexity",
+            "section": "fi-m13a"
+          },
+          {
+            "cue": "Non-parallel curve shifts",
+            "formula": "Key rate duration",
+            "section": "fi-m13b"
+          },
+          {
+            "cue": "Probability × severity of default",
+            "formula": "Expected loss",
+            "section": "fi-m14a"
+          },
+          {
+            "cue": "Debt coverage and leverage of a corporate issuer",
+            "formula": "Debt/EBITDA, EBITDA/interest, FFO/debt",
+            "section": "fi-m16b"
+          },
+          {
+            "cue": "Who gets paid first in bankruptcy",
+            "formula": "Priority of claims; structural subordination",
+            "section": "fi-m16c"
+          },
+          {
+            "cue": "Losses absorbed by junior tranches",
+            "formula": "Subordination / credit enhancement",
+            "section": "fi-m18b"
+          },
+          {
+            "cue": "Prepayment speed conventions",
+            "formula": "SMM, CPR, PSA",
+            "section": "fi-m19c"
+          },
+          {
+            "cue": "Commercial mortgage coverage and leverage",
+            "formula": "DSCR, LTV",
+            "section": "fi-m19d"
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "fi-9",
+        "title": "Common traps",
+        "type": "reference",
+        "body": [
+          "Watch for these."
+        ],
+        "referenceRows": [
+          {
+            "item": "Assuming bond price and yield move together",
+            "detail": "They move in opposite directions."
+          },
+          {
+            "item": "Confusing coupon rate with YTM",
+            "detail": "Coupon is fixed; YTM changes with price."
+          },
+          {
+            "item": "Mixing clean and dirty price",
+            "detail": "Buyer pays the full (dirty) price = flat + accrued interest."
+          },
+          {
+            "item": "Using YTM on a callable bond trading at a premium",
+            "detail": "Use yield to worst; the bond will likely be called."
+          },
+          {
+            "item": "Comparing yields with different compounding",
+            "detail": "Convert to the same periodicity first; semiannual BEY understates the effective annual yield."
+          },
+          {
+            "item": "Using Macaulay duration in the price-change formula",
+            "detail": "Use modified duration (or effective duration for embedded options)."
+          },
+          {
+            "item": "Using modified duration for a callable/putable bond",
+            "detail": "Use effective duration, which accounts for changing cash flows."
+          },
+          {
+            "item": "Z-spread vs OAS",
+            "detail": "OAS = Z-spread − option cost for a callable bond."
+          },
+          {
+            "item": "Floater trades at par",
+            "detail": "Only when the discount margin equals the quoted margin."
+          },
+          {
+            "item": "Discount rate vs yield",
+            "detail": "A T-bill's discount rate understates the investor's actual yield; convert to add-on or BEY."
+          },
+          {
+            "item": "Forgetting extension and contraction risk",
+            "detail": "MBS investors lose when rates fall (prepayments) and when rates rise (slowing)."
+          },
+          {
+            "item": "Treating covered bonds as ABS",
+            "detail": "Covered bonds have dual recourse (cover pool and issuer) and a dynamic pool."
+          },
+          {
+            "item": "Assuming holding-company debt ranks equally",
+            "detail": "Structural subordination: subsidiary creditors have first claim on subsidiary assets."
+          },
+          {
+            "item": "Treating ratings as a prediction",
+            "detail": "Ratings lag and have limits; they are an input to analysis."
+          }
+        ],
+        "formulas": []
       },
       {
         id: "fi-10",
@@ -3930,7 +5092,7 @@ const CHAPTERS = [
       },
       {
         id: "alt-2",
-        title: "Major categories",
+        title: "Module 1 — Features and categories of alternative investments",
         body: [
           `Real estate — direct property ownership, or shares in a real estate investment trust (REIT) that owns and manages properties on investors' behalf.`,
           `Private equity / venture capital — direct ownership stakes in companies not listed on public exchanges, often involving active involvement in company strategy.`,
@@ -3941,8 +5103,32 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        id: "alt-3",
+        title: "Module 1 — Key characteristics versus traditional investments",
+        body: [`Alternative investments typically share several traits: illiquidity (money often locked up for years), higher fees, limited transparency, and diversification potential — returns are often less correlated with traditional markets, which can improve a portfolio's overall risk-return profile. This connects directly to the correlation concept from Probability & Statistics and resurfaces in Portfolio Management.`],
+        formulas: [],
+      },
+      {
+        "id": "alt-m1b",
+        "title": "Module 1 — Investment methods: direct, co-investment and fund investment",
+        "body": [
+          "Alternative investments can be accessed three ways. Direct investment: the investor buys the asset itself (a building, a company stake). It gives full control, avoids a layer of fees and allows tailoring, but needs expertise, large capital, and results in concentration and illiquidity. Co-investment: an investor invests alongside a fund manager (general partner) in a specific deal, usually with lower or no fees and carry; it offers more control over exposure and concentrates risk, but requires fast decisions, resources to evaluate deals and adverse selection risk (managers may offer the deals they want less of). Fund investment: the investor commits capital to a pooled vehicle run by a manager (as a limited partner); it provides diversification, professional management and access, but adds fees, less control, and a lack of transparency.",
+          "Typical trade-off: more control and lower fees (direct/co-investment) versus more diversification and less required expertise (fund). Investors often build a program that mixes all three."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m1c",
+        "title": "Module 1 — Ownership and compensation structures: limited partnerships, fees and the waterfall",
+        "body": [
+          "Most private alternatives use a limited partnership: the general partner (GP) manages the fund and is liable (and typically invests a small amount); the limited partners (LPs) provide capital and have limited liability and limited say. Capital is committed up front and called by the GP as investments are made (drawdowns), then returned through distributions. Fund terms: a defined life (e.g., 10 years plus extensions), an investment period, and a management company.",
+          "Compensation: a management fee (a percentage of committed or invested capital or net asset value, regardless of performance), a performance (incentive) fee or carried interest (a share of profits above a hurdle rate — typically 20%), and sometimes transaction and monitoring fees. Key terms: hurdle rate (preferred return) — the minimum return LPs earn before the GP gets carry; catch-up — after the hurdle, the GP receives a larger share until it has its full 20% of total profit; high-water mark — the incentive fee is paid only on gains above the fund's previous peak value; clawback — the GP must return excess carry if later losses mean it was overpaid; and the distribution waterfall (whole-fund/'European' pays carry after LPs get back all capital plus pref; deal-by-deal/'American' pays carry deal by deal). Hedge funds typically use '2 and 20' with a high-water mark; private equity uses ~2% on commitments and 20% carry over an 8% hurdle."
+        ],
+        "formulas": []
+      },
+      {
         id: "alt-2b",
-        title: "Hedge fund fee structures and performance measurement",
+        title: "Module 1 — Hedge fund fee structures (management fee, incentive fee, hurdle, high-water mark)",
         body: [
           `Hedge funds typically charge fees very differently from traditional mutual funds — a structure often summarized as "2 and 20": roughly a 2% annual management fee (charged on assets under management, regardless of performance) plus a 20% performance fee (charged only on profits actually earned). Two additional features commonly attach to that performance fee: a hurdle rate (a minimum return the fund must clear before any performance fee is charged at all) and a high-water mark (ensuring a fund can't charge a performance fee on gains that merely recover a previous loss — the fund must exceed its prior peak value first).`,
           `This fee structure is also exactly why performance should always be evaluated both before and after fees: a fund's raw investment performance can look attractive before fees, but a heavy 2-and-20 structure can meaningfully erode what an investor actually keeps, especially in a fund with high turnover or frequent profitable periods.`,
@@ -3950,53 +5136,425 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        "id": "alt-m1d",
+        "title": "Module 1 — Structures and terms (reference)",
+        "body": [
+          "Key terms."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "General partner (GP)",
+            "detail": "Manages the fund; unlimited liability; earns fees and carry."
+          },
+          {
+            "item": "Limited partner (LP)",
+            "detail": "Provides capital; limited liability; passive."
+          },
+          {
+            "item": "Management fee",
+            "detail": "Percentage of committed capital or AUM; paid regardless of performance."
+          },
+          {
+            "item": "Carried interest / incentive fee",
+            "detail": "Typically 20% of profits above the hurdle."
+          },
+          {
+            "item": "Hurdle rate (preferred return)",
+            "detail": "Minimum return LPs earn before carry (often 8% in PE)."
+          },
+          {
+            "item": "Catch-up",
+            "detail": "GP receives most/all distributions after the hurdle until it has its full share."
+          },
+          {
+            "item": "High-water mark",
+            "detail": "Incentive fees only on gains above the prior peak value."
+          },
+          {
+            "item": "Clawback",
+            "detail": "GP returns carry if overpaid relative to total fund performance."
+          },
+          {
+            "item": "Drawdown / capital call",
+            "detail": "GP calls committed capital as needed; creates cash drag and liquidity needs."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m2a",
+        "title": "Module 2 — Performance appraisal of alternative investments",
+        "body": [
+          "Appraising alternatives is harder than for traditional assets. Problems: returns are often based on appraisals (not market prices), so they are smoothed and understate volatility and correlation to markets; illiquidity means the NAV may be stale; survivorship, backfill and selection bias in databases; non-normal returns (fat tails, skewness) make Sharpe ratio and standard deviation misleading; and the irregular cash flows of private funds mean time-weighted returns are inappropriate. Instead, private funds use internal rate of return (IRR) and multiples.",
+          "Since-inception IRR (SI-IRR) uses the timing of capital calls and distributions; it depends on timing and ignores the reinvestment-rate assumption, and is distorted early in the fund's life (the J-curve: negative early returns due to fees and unrealized investments). Multiples: PIC (paid-in capital to date as a share of commitment), DPI (distributions relative to paid-in capital — realized), RVPI (residual value relative to paid-in — unrealized), and TVPI (total value relative to paid-in) = DPI + RVPI. Multiples ignore timing, so they should be used with the IRR. Benchmarks should use appropriate peer groups, preferably with public market equivalents."
+        ],
+        "formulas": [
+          {
+            "id": "alt-m2-mult",
+            "name": "PE performance multiples: PIC, DPI, RVPI, TVPI",
+            "expression": "PIC = <span class=\"frac\"><span class=\"num\">Paid-in capital</span><span class=\"den\">Committed capital</span></span> &nbsp;&nbsp; DPI = <span class=\"frac\"><span class=\"num\">Cumulative distributions</span><span class=\"den\">Paid-in capital</span></span> &nbsp;&nbsp; RVPI = <span class=\"frac\"><span class=\"num\">Residual NAV</span><span class=\"den\">Paid-in capital</span></span> &nbsp;&nbsp; TVPI = DPI + RVPI",
+            "when": "Summarizing a private fund's realized and unrealized performance.",
+            "problem": "An LP committed $20 million. $15 million has been called. The LP has received $9 million in distributions, and the fund's remaining NAV attributable to the LP is $12 million. Find PIC, DPI, RVPI, TVPI.",
+            "given": [
+              "Committed = $20m",
+              "Paid-in = $15m",
+              "Distributions = $9m",
+              "Residual NAV = $12m"
+            ],
+            "worked": "PIC = 15/20 = 0.75\nDPI = 9/15 = 0.60x\nRVPI = 12/15 = 0.80x\nTVPI = 0.60 + 0.80 = 1.40x"
+          }
+        ]
+      },
+      {
+        "id": "alt-m2b",
+        "title": "Module 2 — Returns before and after fees",
+        "body": [
+          "Always compare returns net of fees. A manager's gross return is the return from investments before fees; the net return is what the investor keeps: net return = gross return − management fee − incentive fee. The incentive fee is computed on profits above the hurdle (if any) and above the high-water mark, and depends on whether the fee is calculated before or after the management fee. A high fee structure can consume a large share of gross returns, especially in years of moderate performance."
+        ],
+        "formulas": [
+          {
+            "id": "alt-m2-net",
+            "name": "Net return after management and incentive fees",
+            "expression": "Net return = R<sub>gross</sub> − Mgmt fee − Incentive fee &nbsp;&nbsp; Incentive fee = Rate × max(0, R<sub>gross</sub> − Mgmt fee − Hurdle)",
+            "when": "Computing the investor's return after a 2-and-20 fee with a hurdle rate (incentive fee charged on returns above the hurdle, after the management fee).",
+            "problem": "A hedge fund earns a 15% gross return. It charges a 2% management fee and a 20% incentive fee over a 5% hurdle (calculated after the management fee). What is the net return?",
+            "given": [
+              "Gross = 15%",
+              "Mgmt fee = 2%",
+              "Incentive rate = 20%",
+              "Hurdle = 5%"
+            ],
+            "worked": "Return after mgmt fee = 15% − 2% = 13%\nExcess over hurdle = 13% − 5% = 8%\nIncentive fee = 20% × 8% = 1.6%\nNet return = 13% − 1.6% = 11.4%\nFees consumed 3.6% of the 15% gross return (24%)."
+          },
+          {
+            "id": "alt-m2-hwm",
+            "name": "High-water mark incentive fee",
+            "expression": "Incentive fee = Rate × max(0, NAV<sub>end</sub> − max(NAV<sub>start</sub>, High-water mark))",
+            "when": "Fee applies only to gains that exceed the fund's previous peak value.",
+            "problem": "A fund's high-water mark is $120 per unit. NAV was $110 at the start of the year and $130 at the end. With a 20% incentive fee, what fee is due?",
+            "given": [
+              "HWM = $120",
+              "NAV start = $110",
+              "NAV end = $130",
+              "Rate = 20%"
+            ],
+            "worked": "Gain above HWM = 130 − max(110, 120) = $10\nFee = 20% × 10 = $2.00 per unit\n(Not 20% × 20 = $4: the first $10 recovers prior losses.)"
+          }
+        ]
+      },
+      {
         id: "alt-2c",
-        title: "Private capital: equity vs. debt",
+        title: "Module 3 — Private capital: equity vs. debt (overview)",
         body: [`Private capital splits into two distinct categories worth telling apart. Private equity takes ownership stakes in companies, and itself divides further by company stage: venture capital funds early-stage, often pre-profitable companies in exchange for equity, accepting high risk for the chance at outsized returns; buyout funds (sometimes called leveraged buyouts) instead acquire mature, established companies, often using significant debt financing to fund the purchase. Private debt, by contrast, involves lending directly to companies (frequently smaller or mid-sized ones that may have limited access to public bond markets or bank loans) rather than taking an ownership stake — occupying a different, generally more senior position in a company's capital structure than private equity does.`],
         formulas: [],
       },
       {
-        id: "alt-3",
-        title: "Key characteristics versus traditional investments",
-        body: [`Alternative investments typically share several traits: illiquidity (money often locked up for years), higher fees, limited transparency, and diversification potential — returns are often less correlated with traditional markets, which can improve a portfolio's overall risk-return profile. This connects directly to the correlation concept from Probability & Statistics and resurfaces in Portfolio Management.`],
-        formulas: [],
+        "id": "alt-m3a",
+        "title": "Module 3 — Private equity: features and investment characteristics",
+        "body": [
+          "Private equity (PE) is equity ownership in companies not listed on public exchanges. Main strategies: leveraged buyouts (LBOs — acquiring mature companies using significant debt and improving operations; management buyouts, MBOs, and management buy-ins, MBIs), venture capital (funding young, high-growth, often pre-profit companies in stages: pre-seed, seed, early-stage, later-stage), growth equity (minority investments in established, growing firms), and other such as distressed, and secondaries. Value creation: operational improvements, financial engineering, growth and multiple expansion.",
+          "Investment characteristics: long horizon (7–12 years), illiquidity, J-curve, high dispersion between top- and bottom-quartile managers, return driven by exit. Exit strategies: IPO, trade sale (sale to a strategic buyer), secondary buyout (sale to another PE firm), recapitalization, and write-off. Risks: leverage, valuation uncertainty, concentration, and blind-pool risk (investors commit before knowing the investments). Returns are typically higher than public equities to compensate for illiquidity, but dispersion is wide."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m3b",
+        "title": "Module 3 — Private debt: features and investment characteristics",
+        "body": [
+          "Private debt is lending outside public bond markets. Types: direct lending (loans from non-bank funds to middle-market companies, often senior secured, floating-rate), mezzanine debt (subordinated, often with equity warrants; higher yield), venture debt (loans to venture-backed companies), distressed debt (buying debt of troubled issuers at a discount to profit from recovery or reorganization), and unitranche (a blend of senior and junior in one facility). Characteristics: higher yield than public debt (illiquidity and complexity premium), floating rates (low interest-rate risk), covenants and collateral, shorter durations (3–7 years), and credit risk, illiquidity, and valuation challenges. Returns come mostly from interest (income) rather than capital gains."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m3c",
+        "title": "Module 3 — Diversification benefits of private capital",
+        "body": [
+          "Private capital can diversify a portfolio through exposure to different companies, strategies and return drivers (the illiquidity premium, operational improvement, vintage-year diversification), and the appraisal-based valuations lower measured volatility. However, reported low correlations partly reflect smoothing: after unsmoothing, private equity correlation with public equity is substantial, since the underlying companies face the same economic cycle. Diversification should be evaluated across vintage years, strategies, sectors and geographies. Private debt diversifies away from public bond duration because of floating rates and different credit exposures."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m4a",
+        "title": "Module 4 — Real estate: features and types",
+        "body": [
+          "Real estate is land and buildings. Categories: residential (single-family, multifamily), commercial (office, retail, industrial/warehouse, hotels, data centers, healthcare), and land/development. Forms of investment: private equity (direct ownership or funds), private debt (mortgages), public equity (REITs, real estate operating companies), and public debt (MBS). Features: heterogeneity (no two properties alike), high unit value, local markets, illiquidity and high transaction costs, leverage use, and income from rent plus appreciation. Property types differ in lease length, cyclicality and income stability. REITs trade like stocks and distribute most of their taxable income.",
+          "Valuation approaches: (1) Comparable (sales comparison) approach: value from recent sales of similar properties. (2) Income approach: capitalizing net operating income (direct capitalization) or discounting cash flows (DCF). (3) Cost approach: replacement cost minus depreciation plus land value."
+        ],
+        "formulas": [
+          {
+            "id": "alt-m4-cap",
+            "name": "Direct capitalization (income approach)",
+            "expression": "Value = <span class=\"frac\"><span class=\"num\">NOI</span><span class=\"den\">Cap rate</span></span> &nbsp;&nbsp; Cap rate = <span class=\"frac\"><span class=\"num\">NOI</span><span class=\"den\">Value</span></span>",
+            "when": "Valuing an income-producing property or inferring the cap rate from a sale.",
+            "problem": "A building generates annual net operating income of $600,000. Comparable properties sell at a 6% cap rate. What is its value? If it actually sells for $9.5 million, what is the implied cap rate?",
+            "given": [
+              "NOI = $600,000",
+              "Cap rate = 0.06"
+            ],
+            "worked": "Value = 600,000 / 0.06 = $10,000,000\nImplied cap rate at $9.5M = 600,000 / 9,500,000 = 6.32%\nHigher cap rate → lower value."
+          }
+        ]
+      },
+      {
+        "id": "alt-m4b",
+        "title": "Module 4 — Real estate investment characteristics",
+        "body": [
+          "Return sources: income (rent), appreciation, and leverage effects. Total return depends on market rent growth, vacancy, operating expenses, and cap rate movements. Characteristics by form: private equity real estate has appraisal-based, smoothed returns, high costs, and illiquidity; private real estate debt earns interest with the property as collateral; REITs have daily liquidity, volatility closer to equities and higher correlation with stocks short term, but track property values in the long term. Real estate often serves as an inflation hedge, because rents and values tend to rise with inflation, and it can diversify a portfolio. Risks: market and credit cycles, interest rates, leverage, liquidity, tenant concentration, environmental and regulatory risks."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m4c",
+        "title": "Module 4 — Infrastructure: features, forms and investment characteristics",
+        "body": [
+          "Infrastructure comprises long-lived physical assets that provide essential services. Economic infrastructure: transportation (toll roads, airports, ports), utilities (power, water, pipelines), communications (towers, data centers), energy transition assets. Social infrastructure: schools, hospitals, prisons — often availability-based payments from governments. Features: high capital intensity, long lives, monopoly-like or regulated positions with high barriers to entry, stable, inflation-linked cash flows, and high leverage use. Projects are 'greenfield' (new construction; development risk) or 'brownfield' (existing assets; stable cash flows and lower risk).",
+          "Investment forms: private equity (direct, funds), private debt (project finance loans, bonds), and public (listed infrastructure securities, MLPs, ETFs). Characteristics: stable income, low volatility, partial inflation protection, long horizon, illiquidity, regulatory/political risk, construction and demand risk (for user-pay assets), and valuation based on DCF with long-term cash flows."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m5a",
+        "title": "Module 5 — Raw land, timberland and farmland",
+        "body": [
+          "Raw land: undeveloped land held for appreciation or later development; no income, so returns depend on price changes; sensitive to zoning, entitlements, and development cycles; illiquid with holding costs (taxes). Timberland: land with trees; returns come from biological growth of timber (volume increases and moves to higher-value sizes), price changes, and land value; owners can defer harvest when prices are low (flexibility, a natural hedge against inflation). Income arises on harvest. Farmland: land used for crops or livestock; returns from crop sales or rent (income) and land appreciation; affected by commodity prices, weather, water, and subsidies; low correlation with traditional assets and good inflation protection. Common to all: illiquid, valued by appraisal or comparable sales, return depends on local markets."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m5b",
+        "title": "Module 5 — Commodities: features and investment characteristics",
+        "body": [
+          "Commodities are physical goods: energy, metals (precious, industrial), agriculture, and livestock. Investors typically gain exposure through derivatives (futures, swaps), commodity-linked equities, exchange-traded products, or physical holdings (storage costs). They produce no income. Futures prices relate to the spot price through the cost of carry; the futures curve is in contango when futures prices are above spot (negative roll yield for a long holder as the contract converges down) and in backwardation when futures are below spot (positive roll yield). The total return of a fully collateralized futures position = spot price return + roll return + collateral yield.",
+          "Commodity returns come from price changes and the roll yield, not income. They are driven by supply and demand shocks (weather, geopolitics, inventories), they often rise with inflation and can diversify a portfolio. They carry high volatility and basis risk."
+        ],
+        "formulas": [
+          {
+            "id": "alt-m5-roll",
+            "name": "Commodity futures total return",
+            "expression": "Total return = Spot return + Roll yield + Collateral yield &nbsp;&nbsp; Roll yield ≈ <span class=\"frac\"><span class=\"num\">F<sub>near</sub> − F<sub>far</sub></span><span class=\"den\">F<sub>near</sub></span></span>",
+            "when": "Decomposing the return of a collateralized long futures position.",
+            "problem": "A commodity's spot price rises 4% over a year. The investor rolls from the near contract at $100 to the next at $102 (contango) once per year, and the collateral earns 3%. Estimate total return.",
+            "given": [
+              "Spot return = 4%",
+              "F near = $100",
+              "F far = $102",
+              "Collateral yield = 3%"
+            ],
+            "worked": "Roll yield ≈ (100 − 102)/100 = −2.0%\nTotal return ≈ 4% + (−2%) + 3% = 5.0%\nContango reduces the return; backwardation adds to it."
+          }
+        ]
+      },
+      {
+        "id": "alt-m5c",
+        "title": "Module 5 — Natural resources: sources of risk, return and diversification",
+        "body": [
+          "Sources of return: price changes (spot), the income from rent or harvest (timber, farmland), roll yield (commodity futures), land appreciation, and biological growth (timberland). Sources of risk: commodity price volatility, weather/natural disasters, regulation, geopolitics, illiquidity, valuation uncertainty, and storage costs. Diversification: low correlation with stocks and bonds (differences in demand drivers), positive correlation with inflation (an inflation hedge), but short-term correlation can rise in crises (commodity prices fall alongside equities in a demand shock). Land-based assets are less volatile than commodity futures because appraisal values are smoothed."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m6a",
+        "title": "Module 6 — Hedge funds: features and strategies",
+        "body": [
+          "Hedge funds are privately organized, lightly regulated pooled vehicles using flexible strategies: short selling, leverage, derivatives, and concentrated positions, with the goal of absolute returns (return independent of the market) rather than beating a benchmark. Compared with traditional funds: fewer investment restrictions, performance-based fees, limited liquidity (lockups, notice periods), lower transparency, and higher fees. Compared with private equity: more liquid, shorter horizon and trading-oriented.",
+          "Strategy families: (1) Equity hedge — long/short equity, market neutral, short bias. (2) Event-driven — merger arbitrage, distressed/restructuring, activist. (3) Relative value — fixed-income arbitrage, convertible arbitrage, volatility arbitrage (exploit pricing differences). (4) Opportunistic — global macro, managed futures (CTAs; trend following). (5) Specialist — reinsurance, other niche. Multi-strategy funds blend them."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m6b",
+        "title": "Module 6 — Hedge fund forms and vehicles",
+        "body": [
+          "Forms: single-manager funds (one strategy or manager), multi-strategy funds (one manager allocates across strategies), funds of funds (an allocator invests in several hedge funds: diversification and due diligence, but a second layer of fees), and separately managed accounts (customized, more transparent and controlled, but needing size). Structures: onshore LP and offshore corporations; master-feeder structures for taxes; UCITS-like liquid alternatives for retail investors with leverage limits. Liquidity terms: subscription and redemption periods, lockup (initial period with no redemptions), notice period, redemption gates (limits on withdrawals), and side pockets (illiquid assets segregated). Fees: management fee plus incentive fee with high-water mark and hurdle."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-m6c",
+        "title": "Module 6 — Hedge funds: sources of risk, return and diversification",
+        "body": [
+          "Return sources: manager skill (alpha), market exposure (beta), exposure to risk premia (carry, illiquidity, volatility), and leverage. Risks: leverage and liquidity (forced selling in crises), model and manager risk, short-squeeze, counterparty and funding risk, operational risk and fraud, tail risk (negative skewness, fat tails), and style drift. Reported returns are smoothed in illiquid strategies and affected by survivorship, backfill and selection bias; fees reduce net return substantially.",
+          "Diversification: low long-run correlation with traditional assets for many strategies, but correlations can increase in market crises. Funds of funds provide diversification at an additional fee. Hedge funds can enhance risk-adjusted returns but should be assessed on a net-of-fee, risk-adjusted, tail-aware basis rather than the Sharpe ratio alone."
+        ],
+        "formulas": []
       },
       {
         id: "alt-3b",
-        title: "Digital assets",
+        title: "Module 7 — Digital assets (overview)",
         body: [`Digital assets — cryptocurrencies and other blockchain-based instruments — are one of the newer additions to the alternative investment landscape. Cryptocurrencies (like Bitcoin) function as a digital medium of exchange or store of value without relying on a central issuing authority like a government or central bank, instead relying on a distributed ledger (blockchain) maintained across a decentralized network of computers to record and verify transactions. Investment characteristics that set digital assets apart from traditional alternatives: extremely high price volatility, a relatively short historical track record to draw on, evolving and still-developing regulatory treatment across different countries, and valuation approaches that remain far less settled than those used for traditional assets like stocks, bonds, or real estate.`],
         formulas: [],
       },
       {
-        id: "alt-4",
-        title: "Decision guide",
-        type: "decision-guide",
-        body: [`Match the description to the category.`],
-        decisionRows: [
-          { cue: "Direct property ownership or a REIT", formula: "Real estate", section: "alt-2" },
-          { cue: "An ownership stake in a private, non-listed company", formula: "Private equity / venture capital", section: "alt-2" },
-          { cue: "A flexible pooled fund using leverage or short-selling", formula: "Hedge fund", section: "alt-2" },
-          { cue: "Physical goods like oil, gold, or crops", formula: "Commodities", section: "alt-2" },
-          { cue: "Long-lived physical assets like toll roads or utilities", formula: "Infrastructure", section: "alt-2" },
-          { cue: "A fund charging roughly 2% management + 20% of profits", formula: "\"2 and 20\" hedge fund fee structure", section: "alt-2b" },
-          { cue: "A minimum return that must be cleared before performance fees apply", formula: "Hurdle rate", section: "alt-2b" },
-          { cue: "Funding an early-stage, pre-profitable company for equity", formula: "Venture capital", section: "alt-2c" },
-          { cue: "Lending directly to a company rather than taking an ownership stake", formula: "Private debt", section: "alt-2c" },
-          { cue: "Cryptocurrency and blockchain-based instruments", formula: "Digital assets", section: "alt-3b" },
+        "id": "alt-m7a",
+        "title": "Module 7 — Distributed ledger technology and its financial applications",
+        "body": [
+          "A distributed ledger is a shared database maintained by many participants (nodes) without a central administrator. Entries are validated by a consensus mechanism (proof of work, proof of stake), and recorded in cryptographically linked blocks (a blockchain) that are immutable and transparent. Permissionless ledgers are open to anyone; permissioned ledgers restrict participants. Smart contracts are self-executing code on the ledger.",
+          "Applications: cryptocurrencies and tokens, tokenization of assets (real estate, securities), faster and cheaper settlement and clearing, trade finance, cross-border payments, record keeping and provenance, decentralized finance (DeFi — lending, exchange without intermediaries), and central bank digital currencies. Benefits: efficiency, transparency, disintermediation; limitations: scalability, energy use (for proof of work), regulatory uncertainty, security risk and privacy."
         ],
-        formulas: [],
+        "formulas": []
       },
       {
-        id: "alt-5",
-        title: "Common traps",
-        type: "reference",
-        body: [`Watch for these.`],
-        referenceRows: [
-          { item: "Assuming \"alternative\" means \"riskier\" across the board", detail: "Risk varies enormously — infrastructure can be quite stable, while venture capital can be extremely volatile." },
-          { item: "Assuming alternatives are always a good diversifier", detail: "Depends on genuinely low correlation with the rest of the portfolio — not automatic." },
-          { item: "Forgetting the illiquidity trade-off", detail: "Investors typically demand an \"illiquidity premium\" for not being able to access money quickly." },
+        "id": "alt-m7b",
+        "title": "Module 7 — Digital assets: types, investment features and vehicles",
+        "body": [
+          "Types: cryptocurrencies (Bitcoin, Ether — native tokens of a blockchain, used as a medium of exchange or store of value), stablecoins (pegged to fiat currency or assets), utility and security tokens, non-fungible tokens (NFTs — unique assets), and central bank digital currencies (CBDCs). They have no cash flows (except staking rewards or protocol revenue) and are valued by network adoption, scarcity and speculation, so intrinsic valuation is hard and volatility is extreme.",
+          "Investment forms and vehicles: direct holding (custody in wallets, or at exchanges), futures and other derivatives, exchange-traded products (spot and futures ETFs), trusts and funds, and equity in digital-asset companies (miners, exchanges). Considerations: custody and security, regulation, liquidity and market structure (fragmented, 24/7), counterparty risk (exchange failures), and tax treatment.",
+          "Risk, return and diversification: very high volatility and fat tails; returns driven by sentiment, adoption, regulation and liquidity; correlation with equities has been unstable and rose in stress periods, so diversification benefits are uncertain; theft, fraud, hacking and regulatory bans are idiosyncratic risks."
         ],
-        formulas: [],
+        "formulas": []
+      },
+      {
+        "id": "alt-4",
+        "title": "Decision guide",
+        "type": "decision-guide",
+        "body": [
+          "Match the description to the category."
+        ],
+        "decisionRows": [
+          {
+            "cue": "Investor buys the asset itself; full control but concentrated and illiquid",
+            "formula": "Direct investment",
+            "section": "alt-m1b"
+          },
+          {
+            "cue": "Investing beside a GP in one specific deal, with reduced fees",
+            "formula": "Co-investment",
+            "section": "alt-m1b"
+          },
+          {
+            "cue": "Pooled vehicle run by a manager, LP commits capital",
+            "formula": "Fund investment (limited partnership)",
+            "section": "alt-m1c"
+          },
+          {
+            "cue": "Manager earns fees only above a prior peak",
+            "formula": "High-water mark",
+            "section": "alt-m2b"
+          },
+          {
+            "cue": "Minimum return before carried interest",
+            "formula": "Hurdle rate",
+            "section": "alt-m1d"
+          },
+          {
+            "cue": "Fee drag on gross return",
+            "formula": "Net return after fees",
+            "section": "alt-m2b"
+          },
+          {
+            "cue": "Realized vs unrealized value in a private fund",
+            "formula": "DPI, RVPI, TVPI",
+            "section": "alt-m2a"
+          },
+          {
+            "cue": "Buying mature companies with debt",
+            "formula": "Leveraged buyout",
+            "section": "alt-m3a"
+          },
+          {
+            "cue": "Funding young, high-growth firms",
+            "formula": "Venture capital",
+            "section": "alt-m3a"
+          },
+          {
+            "cue": "Lending outside public markets",
+            "formula": "Private debt",
+            "section": "alt-m3b"
+          },
+          {
+            "cue": "Property value from net operating income",
+            "formula": "Direct capitalization (NOI / cap rate)",
+            "section": "alt-m4a"
+          },
+          {
+            "cue": "Long-lived essential assets with inflation-linked cash flows",
+            "formula": "Infrastructure",
+            "section": "alt-m4c"
+          },
+          {
+            "cue": "Return from price rise, roll yield and collateral",
+            "formula": "Commodity futures total return",
+            "section": "alt-m5b"
+          },
+          {
+            "cue": "Trees growing over time",
+            "formula": "Timberland",
+            "section": "alt-m5a"
+          },
+          {
+            "cue": "Absolute return through leverage and short selling",
+            "formula": "Hedge fund",
+            "section": "alt-m6a"
+          },
+          {
+            "cue": "Redemption limits and lockups",
+            "formula": "Hedge fund liquidity terms",
+            "section": "alt-m6b"
+          },
+          {
+            "cue": "Shared database validated by consensus",
+            "formula": "Distributed ledger / blockchain",
+            "section": "alt-m7a"
+          },
+          {
+            "cue": "Crypto, stablecoins, tokens and NFTs",
+            "formula": "Digital assets",
+            "section": "alt-m7b"
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "alt-5",
+        "title": "Common traps",
+        "type": "reference",
+        "body": [
+          "Watch for these."
+        ],
+        "referenceRows": [
+          {
+            "item": "Assuming 'alternative' means riskier everywhere",
+            "detail": "Risk varies widely: infrastructure can be stable; venture capital is highly volatile."
+          },
+          {
+            "item": "Trusting smoothed returns",
+            "detail": "Appraisal-based returns understate volatility and correlation; unsmooth before comparing."
+          },
+          {
+            "item": "Comparing gross returns",
+            "detail": "Always evaluate returns net of management and incentive fees."
+          },
+          {
+            "item": "Using IRR alone or multiples alone",
+            "detail": "IRR reflects timing but is distorted early; multiples ignore timing."
+          },
+          {
+            "item": "Confusing DPI and TVPI",
+            "detail": "DPI = realized; TVPI = realized + unrealized."
+          },
+          {
+            "item": "Charging incentive fees below the high-water mark",
+            "detail": "Fees apply only to gains above the previous peak."
+          },
+          {
+            "item": "Treating REIT diversification like private real estate",
+            "detail": "Listed REITs behave more like stocks in the short run."
+          },
+          {
+            "item": "Roll yield sign",
+            "detail": "Contango = negative roll yield; backwardation = positive."
+          },
+          {
+            "item": "Assuming crypto diversifies in crises",
+            "detail": "Correlations have risen when markets are stressed."
+          },
+          {
+            "item": "Overlooking the fund-of-funds fee layer",
+            "detail": "Extra fees reduce net returns."
+          }
+        ],
+        "formulas": []
       },
     ],
   },
@@ -4013,24 +5571,62 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "port-2",
-        title: "The portfolio management process",
-        body: [`Professional portfolio management typically follows a repeating cycle: planning (understanding the investor's goals, constraints, and risk tolerance), execution (selecting and combining specific investments), and feedback (monitoring performance and rebalancing) — then returning to planning as circumstances change.`],
-        formulas: [],
+        "id": "port-m1a",
+        "title": "Module 1 — Major asset classes and their characteristics",
+        "body": [
+          "Investors form portfolios from several asset classes, each with distinct return, risk, liquidity and income characteristics. Cash and equivalents: lowest risk and return, highly liquid, exposed to inflation. Developed- and emerging-market equities: higher expected return and volatility, income from dividends, growth with the economy; emerging markets add currency and political risk. Fixed income (government, corporate, high yield, inflation-linked): income and capital preservation, exposure to interest rate and credit risk. Real assets (real estate, infrastructure, commodities): inflation protection and diversification, lower liquidity. Alternatives (private equity, private debt, hedge funds, digital assets): illiquidity and complexity premia, diversification, higher fees. Historical data show higher-risk assets have higher average returns (risk premium), but also deeper drawdowns and wide dispersion.",
+          "Practical dimensions: expected return, volatility, correlation with other asset classes, liquidity, transaction costs, taxes, and whether the asset is investable at scale. Asset classes should be mutually exclusive, diversifying and collectively exhaustive."
+        ],
+        "formulas": []
       },
       {
-        id: "port-2b",
-        title: "Investor types and the asset management industry",
-        body: [
-          `Investors come in two broad categories with meaningfully different needs: individual investors manage their own wealth (or have it managed) toward personal goals like retirement or a home purchase; institutional investors manage large pools of money on behalf of others — pension funds, endowments, insurance companies, and sovereign wealth funds among them.`,
-          `Pension plans split into two structures with very different risk allocation: a defined benefit (DB) plan promises retirees a specific future payout, putting the funding-shortfall risk on the sponsoring company (the same distinction introduced in Financial Statement Analysis); a defined contribution (DC) plan only promises to contribute a set amount today, putting investment-outcome risk on the employee.`,
-          `Retail investors can also access professionally managed portfolios through pooled vehicles — mutual funds (actively or passively managed, priced once daily) and exchange-traded funds, or ETFs (which trade throughout the day like a stock and are most commonly passively managed to track an index).`,
+        "id": "port-m1b",
+        "title": "Module 1 — Risk aversion, utility and the optimal portfolio",
+        "body": [
+          "A risk-averse investor prefers less risk for the same expected return and requires extra expected return for taking on more risk. Risk-neutral investors consider only return; risk-seeking investors like risk. Risk-averse preferences are captured by a utility function. A common mean-variance utility function is U = E(R) − 0.5 × A × σ², where A is the risk aversion coefficient (higher A = more averse). Utility is the certainty-equivalent return: the guaranteed return that gives the same satisfaction as the risky portfolio. Indifference curves show combinations of risk and return with equal utility; the optimal portfolio is where the investor's highest attainable indifference curve is tangent to the capital allocation line."
         ],
-        formulas: [],
+        "formulas": [
+          {
+            "id": "port-m1-util",
+            "name": "Utility and the optimal weight in the risky portfolio",
+            "expression": "U = E(R<sub>p</sub>) − 0.5 × A × σ<sub>p</sub><sup>2</sup> &nbsp;&nbsp; y* = <span class=\"frac\"><span class=\"num\">E(R<sub>risky</sub>) − R<sub>f</sub></span><span class=\"den\">A × σ<sub>risky</sub><sup>2</sup></span></span>",
+            "when": "Comparing portfolios for a risk-averse investor and finding the optimal allocation between the risk-free asset and a risky portfolio on the CAL.",
+            "problem": "A risky portfolio has expected return 10% and standard deviation 20%. The risk-free rate is 3%. An investor has risk aversion A = 4. Find the optimal weight y* in the risky portfolio and the utility of the resulting portfolio.",
+            "given": [
+              "E(R risky) = 0.10",
+              "σ = 0.20",
+              "Rf = 0.03",
+              "A = 4"
+            ],
+            "worked": "y* = (0.10 − 0.03) / (4 × 0.20²) = 0.07 / 0.16 = 0.4375 (43.75% risky, 56.25% risk-free)\nE(Rp) = 0.03 + 0.4375 × 0.07 = 0.06062\nσp = 0.4375 × 0.20 = 0.0875\nU = 0.06062 − 0.5 × 4 × 0.0875² = 0.04531"
+          }
+        ]
+      },
+      {
+        "id": "port-m1c",
+        "title": "Module 1 — Mean, variance, covariance and correlation from historical data",
+        "body": [
+          "Historical statistics estimate the inputs to portfolio theory. The mean return is the arithmetic average of observed returns. The sample variance divides squared deviations by n − 1; the standard deviation is its square root. Covariance measures how two assets' returns move together (in the units of returns squared); correlation scales covariance by both standard deviations to a range of −1 to +1. Estimates depend on the sample period and are noisy."
+        ],
+        "formulas": [
+          {
+            "id": "port-m1-stats",
+            "name": "Sample mean, variance, covariance and correlation",
+            "expression": "R̄ = <span class=\"frac\"><span class=\"num\">Σ R<sub>t</sub></span><span class=\"den\">n</span></span> &nbsp;&nbsp; s² = <span class=\"frac\"><span class=\"num\">Σ (R<sub>t</sub> − R̄)²</span><span class=\"den\">n − 1</span></span> &nbsp;&nbsp; Cov(A,B) = <span class=\"frac\"><span class=\"num\">Σ (R<sub>A,t</sub> − R̄<sub>A</sub>)(R<sub>B,t</sub> − R̄<sub>B</sub>)</span><span class=\"den\">n − 1</span></span> &nbsp;&nbsp; ρ = <span class=\"frac\"><span class=\"num\">Cov(A,B)</span><span class=\"den\">s<sub>A</sub> s<sub>B</sub></span></span>",
+            "when": "Estimating risk and co-movement of two assets from a short history.",
+            "problem": "Four annual returns: Asset A: 10%, 4%, 14%, 8%. Asset B: 6%, 2%, 10%, 6%. Find each mean and standard deviation, the covariance and the correlation.",
+            "given": [
+              "A: 0.10, 0.04, 0.14, 0.08",
+              "B: 0.06, 0.02, 0.10, 0.06",
+              "n = 4"
+            ],
+            "worked": "Mean A = 0.0900; Mean B = 0.0600\nVar A = [(0.10−0.09)² + (0.04−0.09)² + (0.14−0.09)² + (0.08−0.09)²]/3 = 0.001733 → s_A = 0.0416\nVar B = 0.001067 → s_B = 0.0327\nCov = Σ products / 3 = 0.001333\nρ = 0.001333 / (0.0416 × 0.0327) = 0.9806"
+          }
+        ]
       },
       {
         id: "port-3",
-        title: "Risk and return of a portfolio",
+        title: "Module 1 — Risk and return of a portfolio (expected return and minimum-variance weights)",
         body: [
           `A portfolio's expected return is simply the weighted average of the expected returns of its individual holdings, weighted by how much of the portfolio's value each holding represents.`,
           `A portfolio's risk, however, is not simply the weighted average of the individual risks — because how the holdings move together (their covariance/correlation) affects the portfolio's overall variance. This is the mathematical foundation of diversification.`,
@@ -4042,15 +5638,71 @@ const CHAPTERS = [
         ],
       },
       {
+        "id": "port-m1d",
+        "title": "Module 1 — Portfolio standard deviation and the effect of correlation",
+        "body": [
+          "Portfolio variance for two assets includes both individual variances and the covariance term. As correlation falls below +1 the portfolio standard deviation falls below the weighted average of the standard deviations — the diversification benefit. At correlation +1 there is no benefit; at −1 risk can be eliminated with the right weights. With many assets, the portfolio variance depends mostly on average covariance, not individual variances."
+        ],
+        "formulas": [
+          {
+            "id": "port-m1-sd",
+            "name": "Two-asset portfolio standard deviation",
+            "expression": "σ<sub>p</sub> = √[ w<sub>1</sub>²σ<sub>1</sub>² + w<sub>2</sub>²σ<sub>2</sub>² + 2 w<sub>1</sub> w<sub>2</sub> ρ<sub>1,2</sub> σ<sub>1</sub> σ<sub>2</sub> ]",
+            "when": "Computing portfolio risk from weights, standard deviations and correlation.",
+            "problem": "A portfolio is 60% Asset 1 (σ = 20%) and 40% Asset 2 (σ = 10%). The correlation is 0.30. Find portfolio standard deviation, and compare with the weighted average of the standard deviations.",
+            "given": [
+              "w1 = 0.60",
+              "w2 = 0.40",
+              "σ1 = 0.20",
+              "σ2 = 0.10",
+              "ρ = 0.30"
+            ],
+            "worked": "Variance = 0.6²×0.2² + 0.4²×0.1² + 2×0.6×0.4×0.3×0.2×0.1\n= 0.0144 + 0.0016 + 0.0029 = 0.0189\nσp = √0.0189 = 0.1374 (13.74%)\nWeighted average σ = 0.6×20% + 0.4×10% = 16.00%\nDiversification benefit = 16.00% − 13.74% = 2.26%"
+          }
+        ]
+      },
+      {
         id: "port-4",
-        title: "Diversification, in plain terms",
+        title: "Module 1 — Diversification and imperfect correlation",
         body: [`If two stocks are perfectly positively correlated (correlation = +1), combining them provides no risk-reduction benefit. But if two stocks have a correlation below +1 (especially if negative), combining them can reduce the portfolio's overall risk below either stock's individual risk, since their ups and downs partially offset each other. The lower the correlation between holdings, the greater the diversification benefit.`],
         exhibits: [{ afterParagraph: 0, svg: EXHIBIT_WORKED_DIVERSIFICATION }],
         formulas: [],
       },
       {
+        "id": "port-m1e",
+        "title": "Module 1 — Minimum-variance frontier, efficient frontier and the global minimum-variance portfolio",
+        "body": [
+          "The minimum-variance frontier is the set of risky portfolios with the lowest variance for each level of expected return (the hyperbola-shaped curve in risk-return space). The global minimum-variance portfolio (GMVP) is the leftmost point — the lowest risk of any risky portfolio. The efficient frontier is the part of the minimum-variance frontier above the GMVP: portfolios with the highest return for each level of risk. Portfolios below the GMVP on the minimum-variance frontier are inefficient (the same risk is available with a higher return). Lower correlation shifts the frontier left (more diversification); with ρ = −1 the GMVP can have zero risk. Adding more asset classes expands the frontier."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m2a",
+        "title": "Module 2 — Combining a risk-free asset with a risky portfolio",
+        "body": [
+          "Combining a risk-free asset with a risky portfolio produces a straight line in expected return-standard deviation space: expected return = Rf + w × (E(R_risky) − Rf) and standard deviation = w × σ_risky (the risk-free asset has zero variance and zero covariance with the risky portfolio). This line is the capital allocation line (CAL). The slope of the CAL is the Sharpe ratio of the risky portfolio: the extra return per unit of risk. Weights above 100% represent borrowing at the risk-free rate to leverage (the line continues up and to the right, with a kink if borrowing costs more).",
+          "When the risky portfolio is the tangency (market) portfolio, the CAL is the capital market line (CML). Under CAPM assumptions, all investors hold the market portfolio and adjust risk by mixing it with the risk-free asset (separation theorem): the investment decision (the best risky portfolio) is separate from the financing decision (how much to lever or hold in cash)."
+        ],
+        "formulas": [
+          {
+            "id": "port-m2-cal",
+            "name": "Return and risk on the CAL / CML",
+            "expression": "E(R<sub>p</sub>) = R<sub>f</sub> + w × [E(R<sub>m</sub>) − R<sub>f</sub>] &nbsp;&nbsp; σ<sub>p</sub> = w × σ<sub>m</sub> &nbsp;&nbsp; E(R<sub>p</sub>) = R<sub>f</sub> + <span class=\"frac\"><span class=\"num\">E(R<sub>m</sub>) − R<sub>f</sub></span><span class=\"den\">σ<sub>m</sub></span></span> × σ<sub>p</sub>",
+            "when": "Finding expected return and risk for a mix of the market portfolio and the risk-free asset (including leverage).",
+            "problem": "The risk-free rate is 3%, the market portfolio's expected return is 9% and its standard deviation is 15%. Find expected return and risk for (a) 70% in the market and 30% in cash, and (b) 130% in the market (borrowing 30% at the risk-free rate). Also give the CML slope.",
+            "given": [
+              "Rf = 0.03",
+              "E(Rm) = 0.09",
+              "σm = 0.15",
+              "w = 0.7 or 1.3"
+            ],
+            "worked": "Slope = (0.09 − 0.03)/0.15 = 0.40\n(a) E(R) = 0.03 + 0.7 × 0.06 = 0.072; σ = 0.7 × 0.15 = 0.105\n(b) E(R) = 0.03 + 1.3 × 0.06 = 0.108; σ = 1.3 × 0.15 = 0.195"
+          }
+        ]
+      },
+      {
         id: "port-5",
-        title: "The efficient frontier, capital allocation line, and capital market line",
+        title: "Module 2 — Efficient frontier, capital allocation line (CAL) and capital market line (CML)",
         body: [
           `Plotting every possible portfolio combination of risky assets by risk and expected return traces out a curve; the efficient frontier is the upper-left edge — the set of portfolios offering the highest expected return for each level of risk.`,
           `Adding a risk-free asset creates the capital allocation line (CAL) — a straight line from the risk-free rate through a chosen risky portfolio, representing every risk-free/risky blend an investor could choose. When that chosen risky portfolio is specifically the market portfolio (the single risky portfolio every rational investor would hold, under the theory's assumptions), that particular CAL gets its own name: the capital market line (CML). Every investor, in this framework, ends up holding some blend of the risk-free asset and that same market portfolio — differing only in how much of each, based on their personal risk tolerance.`,
@@ -4060,7 +5712,7 @@ const CHAPTERS = [
       },
       {
         id: "port-5b",
-        title: "Systematic vs. unsystematic risk",
+        title: "Module 2 — Systematic vs. unsystematic risk",
         body: [
           `Not all risk behaves the same way once you're holding a diversified portfolio. Unsystematic risk (also called diversifiable or firm-specific risk) is risk unique to one company or industry — a factory fire, a product recall, a lawsuit — and diversification genuinely eliminates most of it, since one company's bad luck tends to be offset by another's good luck across a large enough portfolio.`,
           `Systematic risk (also called market or non-diversifiable risk) is risk that affects the entire market at once — a recession, a broad interest rate change — and no amount of diversification removes it, since it moves every holding in the same direction simultaneously. This distinction matters enormously: an investor should only expect to be compensated with extra return for bearing systematic risk, since unsystematic risk could have been diversified away for free.`,
@@ -4068,8 +5720,31 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        "id": "port-m2b",
+        "title": "Module 2 — Return generating models: the market model and beta",
+        "body": [
+          "Return generating models estimate the expected return of an asset from risk factors. The single-index (market) model: R_i = α_i + β_i R_m + ε_i, where alpha is the intercept, beta the sensitivity to the market return, and ε the firm-specific residual (mean zero). Multifactor models add factors (size, value, momentum, inflation, interest rates). They are used to estimate expected returns, risk, and to attribute performance. The market model implies that the variance of a stock splits into systematic variance β²σ_m² and non-systematic variance σ_ε².",
+          "Beta measures systematic risk: β = Cov(R_i, R_m)/σ_m² = ρ_{i,m} × σ_i/σ_m. It is the slope of the regression of the asset's returns on the market's returns. β = 1: moves with the market; β > 1: amplifies; β < 1: dampens; β = 0: uncorrelated with the market; β < 0: moves opposite."
+        ],
+        "formulas": [
+          {
+            "id": "port-m2-beta",
+            "name": "Beta",
+            "expression": "β<sub>i</sub> = <span class=\"frac\"><span class=\"num\">Cov(R<sub>i</sub>, R<sub>m</sub>)</span><span class=\"den\">σ<sub>m</sub>²</span></span> = ρ<sub>i,m</sub> × <span class=\"frac\"><span class=\"num\">σ<sub>i</sub></span><span class=\"den\">σ<sub>m</sub></span></span>",
+            "when": "Estimating an asset's market sensitivity from covariance or from correlation and volatilities.",
+            "problem": "A stock has a standard deviation of 30%, the market has 20%, and their correlation is 0.60. Find the stock's beta, and the proportion of its variance that is systematic.",
+            "given": [
+              "σ_i = 0.30",
+              "σ_m = 0.20",
+              "ρ = 0.60"
+            ],
+            "worked": "β = 0.60 × 0.30/0.20 = 0.90\nSystematic variance = β²σm² = 0.8100 × 0.04 = 0.0324\nTotal variance = 0.30² = 0.0900\nSystematic share = 36% (= ρ²)"
+          }
+        ]
+      },
+      {
         id: "port-5c",
-        title: "CAPM and the security market line",
+        title: "Module 2 — CAPM and the security market line",
         body: [
           `The capital asset pricing model (CAPM) formalizes the idea from the previous section: an asset's required return depends only on its systematic risk, measured by beta — the same beta calculated via regression in the Quantitative Methods chapter. A beta of 1.0 means the asset moves in line with the market; a beta above 1.0 means it amplifies market moves; a beta below 1.0 means it dampens them.`,
           `Plotting CAPM's required return against beta for every possible value of beta traces out the security market line (SML) — a straight line starting at the risk-free rate (where beta is zero) and rising through the market return (where beta equals one). Any asset priced so that it sits above the SML is offering more return than its systematic risk justifies (undervalued); any asset below the line is offering less (overvalued) — at least according to the model.`,
@@ -4080,8 +5755,32 @@ const CHAPTERS = [
         ],
       },
       {
+        "id": "port-m2c",
+        "title": "Module 2 — CAPM assumptions and applications of the SML",
+        "body": [
+          "CAPM assumptions: investors are risk averse, rational, and use mean-variance analysis; they have homogeneous expectations; one-period horizon; unlimited borrowing and lending at the risk-free rate; frictionless markets (no taxes or transaction costs); assets are infinitely divisible; investors are price-takers. Under these assumptions the market portfolio is the tangency portfolio, and expected return is a linear function of beta: the security market line (SML).",
+          "Applications: (1) estimate the required return (cost of equity) for valuation (discount rate); (2) security selection: compare the expected return from analysis with the required return from the SML — an asset above the SML is undervalued (positive alpha: buy); below is overvalued (negative alpha: sell); (3) performance evaluation (Jensen's alpha); (4) portfolio construction (choosing beta); (5) capital budgeting and regulation (setting allowed returns). The SML applies to individual securities and portfolios (beta as risk); the CML applies only to efficient portfolios (standard deviation as risk)."
+        ],
+        "formulas": [
+          {
+            "id": "port-m2-sml",
+            "name": "SML security selection (alpha)",
+            "expression": "Required return = R<sub>f</sub> + β × [E(R<sub>m</sub>) − R<sub>f</sub>] &nbsp;&nbsp; α = E(R)<sub>forecast</sub> − Required return",
+            "when": "Deciding whether a stock is under- or overvalued relative to the SML.",
+            "problem": "Rf = 3%, E(Rm) = 8%. Stock X has β = 1.2 and an analyst forecast of 10%. Stock Y has β = 0.8 and a forecast of 6%. Which is under- or overvalued?",
+            "given": [
+              "Rf = 0.03",
+              "E(Rm) = 0.08",
+              "β_X = 1.2, forecast 10%",
+              "β_Y = 0.8, forecast 6%"
+            ],
+            "worked": "Required X = 3% + 1.2 × 5% = 9.0%; α_X = 10% − 9.0% = +1.0% (undervalued — buy)\nRequired Y = 3% + 0.8 × 5% = 7.0%; α_Y = 6% − 7.0% = -1.0% (overvalued — sell)"
+          }
+        ]
+      },
+      {
         id: "port-5d",
-        title: "Evaluating portfolio performance",
+        title: "Module 2 — Evaluating portfolio performance: Sharpe, Treynor and Jensen's alpha",
         body: [
           `Raw return alone doesn't tell you whether a portfolio manager did a good job — a higher return earned by taking on much more risk isn't necessarily better. Several ratios adjust return for risk to make a fairer comparison.`,
           `The Sharpe ratio measures excess return (over the risk-free rate) per unit of total risk (standard deviation) — appropriate when evaluating a portfolio that represents an investor's entire holdings. The Treynor ratio measures excess return per unit of systematic risk (beta) only — more appropriate when evaluating one holding that's part of a larger, already-diversified portfolio, where unsystematic risk is less relevant. Jensen's alpha measures the actual return earned above and beyond what CAPM would have predicted for that level of systematic risk — a positive alpha suggests genuine outperformance after adjusting for risk.`,
@@ -4093,8 +5792,154 @@ const CHAPTERS = [
         ],
       },
       {
+        "id": "port-m2d",
+        "title": "Module 2 — M² (Modigliani–Modigliani) risk-adjusted performance",
+        "body": [
+          "M² restates a portfolio's performance in return terms by levering (or de-levering) it with the risk-free asset so it has the same total risk as the market, and then comparing it with the market return. It ranks portfolios the same way as the Sharpe ratio but is expressed in percentage points: M² > 0 means the portfolio beats the market at equal risk. Sharpe measures excess return per unit of total risk; Treynor uses beta (systematic risk) and applies to a well-diversified part of a portfolio; Jensen's alpha is the return above what the SML predicts; M² uses total risk."
+        ],
+        "formulas": [
+          {
+            "id": "port-m2-m2",
+            "name": "M² (risk-adjusted return)",
+            "expression": "M² = [R<sub>f</sub> + (R<sub>p</sub> − R<sub>f</sub>) × <span class=\"frac\"><span class=\"num\">σ<sub>m</sub></span><span class=\"den\">σ<sub>p</sub></span></span>] − R<sub>m</sub>",
+            "when": "Comparing a portfolio with the market after matching the market's risk.",
+            "problem": "A portfolio returned 12% with a 18% standard deviation. The market returned 9% with 15%. The risk-free rate is 3%. Find M² and compare the Sharpe ratios.",
+            "given": [
+              "Rp = 0.12",
+              "σp = 0.18",
+              "Rm = 0.09",
+              "σm = 0.15",
+              "Rf = 0.03"
+            ],
+            "worked": "Adjusted return = 3% + (12% − 3%) × 15/18 = 10.50%\nM² = 10.50% − 9% = 1.50%\nSharpe portfolio = 0.09/0.18 = 0.50; Sharpe market = 0.06/0.15 = 0.40\nM² > 0 and Sharpe_p > Sharpe_m (both say the portfolio outperformed)."
+          }
+        ]
+      },
+      {
+        id: "port-2",
+        title: "Module 3 — The portfolio management process",
+        body: [`Professional portfolio management typically follows a repeating cycle: planning (understanding the investor's goals, constraints, and risk tolerance), execution (selecting and combining specific investments), and feedback (monitoring performance and rebalancing) — then returning to planning as circumstances change.`],
+        formulas: [],
+      },
+      {
+        "id": "port-m3a",
+        "title": "Module 3 — The portfolio approach to investing",
+        "body": [
+          "The portfolio approach evaluates each investment by its contribution to the whole portfolio's risk and return, not by its stand-alone characteristics. Combining assets with imperfect correlation reduces risk without sacrificing as much return (diversification), as shown by the 2008 crisis: investors who concentrated in a few holdings suffered large losses. The portfolio perspective also includes consideration of risk budgeting and the investor's overall liabilities and goals. Pooling is a related approach: investors pool capital in collective vehicles to get diversification and professional management at lower cost."
+        ],
+        "formulas": []
+      },
+      {
+        id: "port-2b",
+        title: "Module 3 — Investor types and the asset management industry",
+        body: [
+          `Investors come in two broad categories with meaningfully different needs: individual investors manage their own wealth (or have it managed) toward personal goals like retirement or a home purchase; institutional investors manage large pools of money on behalf of others — pension funds, endowments, insurance companies, and sovereign wealth funds among them.`,
+          `Pension plans split into two structures with very different risk allocation: a defined benefit (DB) plan promises retirees a specific future payout, putting the funding-shortfall risk on the sponsoring company (the same distinction introduced in Financial Statement Analysis); a defined contribution (DC) plan only promises to contribute a set amount today, putting investment-outcome risk on the employee.`,
+          `Retail investors can also access professionally managed portfolios through pooled vehicles — mutual funds (actively or passively managed, priced once daily) and exchange-traded funds, or ETFs (which trade throughout the day like a stock and are most commonly passively managed to track an index).`,
+        ],
+        formulas: [],
+      },
+      {
+        "id": "port-m3b",
+        "title": "Module 3 — Defined contribution and defined benefit pension plans",
+        "body": [
+          "In a defined benefit (DB) plan the sponsor promises a specified retirement benefit (usually based on salary and service) and bears the investment risk; the plan's assets must be managed to meet its liabilities (liability-driven investing), and risk tolerance depends on the plan's funded status and sponsor strength. In a defined contribution (DC) plan the employer (and employee) contributes a set amount to individual accounts; the employee bears investment risk, chooses among investment options (often with default funds), and the retirement benefit depends on contributions and returns. DC plans are portable, simple to fund and increasingly dominant; DB plans have long horizons and large, professionally managed pools."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m3c",
+        "title": "Module 3 — Types of investors and the asset management industry",
+        "body": [
+          "Investor types and distinctive needs (reference table below). Asset managers: the industry includes traditional (long-only, active and passive), alternative managers, institutions (banks, insurers), and a growing role for passive and ETFs. Industry features: scale economies, fee competition, regulation, and fiduciary duties. Active managers charge higher fees; passive managers track benchmarks at low cost. Services offered: portfolio management, advice, trading, administration, custody, and risk management. Compensation: fees as a percentage of assets, performance fees, and in some jurisdictions commissions."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m3d",
+        "title": "Module 3 — Investor types and their needs (reference)",
+        "body": [
+          "Distinctive characteristics."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Individual (retail) investors",
+            "detail": "Goals: retirement, education, wealth transfer. Needs vary by age and wealth; tax-sensitive; behavioral biases; liquidity needs."
+          },
+          {
+            "item": "Defined benefit pension plans",
+            "detail": "Long horizon; liabilities to retirees; risk tolerance tied to funding status; moderate liquidity needs."
+          },
+          {
+            "item": "Endowments and foundations",
+            "detail": "Perpetual horizon; spending rule (e.g., 4–5%) plus inflation; high alternatives allocation; tax-exempt."
+          },
+          {
+            "item": "Banks",
+            "detail": "Liabilities are short-term deposits; need liquidity and capital preservation; interest-rate and credit risk management."
+          },
+          {
+            "item": "Insurance companies",
+            "detail": "Life: long-term liabilities, fixed income; non-life: short-term claims, liquidity, conservative."
+          },
+          {
+            "item": "Sovereign wealth funds",
+            "detail": "Long horizon; may be stabilization or savings funds; invest widely, including alternatives."
+          },
+          {
+            "item": "Asset managers / pooled products",
+            "detail": "Mutual funds, ETFs, hedge funds, private funds provide access and diversification."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m3e",
+        "title": "Module 3 — Mutual funds and other pooled investment products",
+        "body": [
+          "Mutual funds pool investors' money in a professionally managed portfolio; they are priced at the end of day net asset value (NAV), redeemed at NAV with the fund, and can be open-end (continuous issuance and redemption) or closed-end (fixed shares, trade on exchange, possibly at a premium or discount to NAV). ETFs trade intraday on exchanges, are usually passive and have lower costs and better tax efficiency through in-kind creation/redemption. Hedge funds and private funds are less regulated and illiquid, for sophisticated investors. Separately managed accounts allow customization. Considerations for comparison: cost, liquidity, transparency, tax, regulation, minimums and strategy."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m3f",
+        "title": "Module 3 — Pooled investment products compared (reference)",
+        "body": [
+          "Key differences."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Open-end mutual fund",
+            "detail": "Buys/sells at end-of-day NAV directly with the fund; unlimited shares; fund holds cash for redemptions."
+          },
+          {
+            "item": "Closed-end fund",
+            "detail": "Fixed number of shares trading on exchange; price may differ from NAV; can use leverage."
+          },
+          {
+            "item": "ETF",
+            "detail": "Trades intraday; creation/redemption by authorized participants keeps price near NAV; low cost."
+          },
+          {
+            "item": "Hedge fund",
+            "detail": "Private, flexible strategies, high fees, limited liquidity, accredited investors."
+          },
+          {
+            "item": "Separately managed account",
+            "detail": "Customized, direct ownership of securities, higher minimums."
+          },
+          {
+            "item": "Private equity / real asset funds",
+            "detail": "Illiquid, long lockups, capital calls."
+          }
+        ],
+        "formulas": []
+      },
+      {
         id: "port-5e",
-        title: "The Investment Policy Statement",
+        title: "Module 4 — The Investment Policy Statement",
         body: [
           `An Investment Policy Statement (IPS) is the foundational document that formally records an investor's objectives and constraints before any portfolio gets built — the practical starting point of the entire planning process introduced earlier in this chapter.`,
           `Objectives split into risk and return: a return objective states what the investor needs or wants to earn; a risk objective captures both the investor's willingness to take risk (their psychological comfort with volatility) and their ability to take risk (their actual financial capacity to absorb losses, based on factors like time horizon and income stability) — these two don't always agree, and when they conflict, the more conservative of the two generally governs.`,
@@ -4103,8 +5948,50 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        "id": "port-m4a",
+        "title": "Module 4 — Why an IPS, and its major components",
+        "body": [
+          "A written investment policy statement (IPS) ensures a disciplined, goal-based, consistent process: it clarifies the client's objectives and constraints, aligns expectations, provides a benchmark for evaluating performance, reduces ad hoc decisions (especially in market stress), and protects the adviser (fiduciary documentation). It is a living document, reviewed when circumstances change.",
+          "Major components: client description and purpose; governance/responsibilities; investment objectives (return and risk); investment constraints (liquidity, time horizon, tax, legal and regulatory, unique circumstances); asset allocation and rebalancing policy; performance measurement and benchmarks; and review and reporting. The IPS sets the strategic asset allocation."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m4b",
+        "title": "Module 4 — Return and risk objectives; willingness vs. ability to take risk",
+        "body": [
+          "Return objective: the required return (what is needed to meet goals, such as to fund spending and inflation), or the desired return (what the client wants); may be absolute or relative. Risk objective: the risk the client is willing and able to take. Willingness to take risk is psychological (attitudes, comfort with volatility); ability to take risk is objective (wealth, income stability, time horizon, liabilities, liquidity needs, insurance). If willingness and ability conflict, the more conservative controls. Ability depends on: net worth relative to goals, time horizon (longer = more ability), income security, dependents, and liquidity. Risk objectives can be absolute (maximum loss, volatility) or relative (tracking error against a benchmark)."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m4c",
+        "title": "Module 4 — Investment constraints",
+        "body": [
+          "Liquidity: need for cash to meet near-term spending or unexpected needs; limits illiquid holdings. Time horizon: how long until the funds are needed (single or multistage); a longer horizon allows more risk and illiquidity. Tax concerns: the client's tax status affects after-tax returns, asset location (tax-advantaged vs taxable accounts), and turnover. Legal and regulatory factors: laws, trust rules, fiduciary standards and regulations (e.g., prudent investor rule, limits on holdings). Unique circumstances: client-specific issues such as ethical or ESG preferences, concentrated holdings (company stock), health, or other needs. Each constraint narrows the set of suitable portfolios."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m4d",
+        "title": "Module 4 — Asset classes, asset allocation and portfolio construction",
+        "body": [
+          "Asset classes group securities with similar characteristics; they should be mutually exclusive, diversifying, and able to absorb meaningful investment. Asset allocation (strategic) sets long-term target weights consistent with the IPS; tactical allocation temporarily deviates from targets to exploit views, with rebalancing back to targets. Asset allocation is the main driver of long-term return variability across portfolios, and the allocation must fit the IPS's objectives and constraints.",
+          "Portfolio construction principles: diversification across and within asset classes; a top-down approach (allocate by asset class, then select securities) versus bottom-up (select securities, then aggregate); core-satellite (a low-cost passive core with active satellites); active vs passive; use of factor exposures; and cost, tax and rebalancing discipline. The result is evaluated against benchmarks."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m4e",
+        "title": "Module 4 — Integrating ESG considerations",
+        "body": [
+          "ESG investing considers environmental, social and governance factors. Approaches: negative (exclusionary) screening, positive/best-in-class screening, ESG integration (including material ESG factors in financial analysis), thematic investing (e.g., clean energy), impact investing (aiming for measurable positive outcomes along with return), and active ownership (engagement and proxy voting). These approaches can be applied to the IPS as constraints or objectives (client values), in asset allocation (e.g., climate-risk adjustments), and in security selection and monitoring. Challenges: data quality and inconsistency, greenwashing, differing definitions, and possible tracking error or reduced diversification from exclusions."
+        ],
+        "formulas": []
+      },
+      {
         id: "port-5f",
-        title: "Behavioral biases",
+        title: "Module 5 — Behavioral biases (overview)",
         body: [
           `Real investors don't always behave the way traditional finance theory assumes. Behavioral biases fall into two broad categories.`,
           `Cognitive errors stem from faulty reasoning or information processing — and are somewhat correctable once recognized. Examples include confirmation bias (favoring information that supports an existing belief while discounting contrary evidence) and anchoring (relying too heavily on an initial piece of information, like a stock's purchase price, when making later decisions).`,
@@ -4113,8 +6000,84 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        "id": "port-m5a",
+        "title": "Module 5 — Cognitive errors versus emotional biases",
+        "body": [
+          "Cognitive errors arise from faulty reasoning, memory or information processing — they are more amenable to correction with better information and education. Emotional biases arise from feelings, impulses and intuition — harder to correct and often only moderated through adapting to them. Understanding the difference determines the remedy: educate and advise (cognitive), and adapt the portfolio to the bias (emotional).",
+          "Cognitive errors — belief perseverance: conservatism (slow to update), confirmation (seeking supportive evidence), representativeness (classifying by resemblance, base-rate neglect), illusion of control, and hindsight bias. Information processing: anchoring and adjustment, mental accounting, framing, availability. Emotional biases: loss aversion, overconfidence, self-control bias, status quo bias, endowment bias, regret aversion."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m5b",
+        "title": "Module 5 — Behavioral biases and implications (reference)",
+        "body": [
+          "Recognized biases and the decision problem each creates."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Conservatism (cognitive)",
+            "detail": "Under-reacts to new information; slow to revise forecasts."
+          },
+          {
+            "item": "Confirmation (cognitive)",
+            "detail": "Seeks evidence that supports existing beliefs; leads to concentrated, under-diversified portfolios."
+          },
+          {
+            "item": "Representativeness (cognitive)",
+            "detail": "Judges by similarity, ignores base rates; may chase recent winners."
+          },
+          {
+            "item": "Illusion of control (cognitive)",
+            "detail": "Believes one can influence outcomes; excessive trading."
+          },
+          {
+            "item": "Hindsight (cognitive)",
+            "detail": "'I knew it all along'; overestimates predictability and skill."
+          },
+          {
+            "item": "Anchoring and adjustment (cognitive)",
+            "detail": "Fixes on a reference price and fails to adjust."
+          },
+          {
+            "item": "Mental accounting (cognitive)",
+            "detail": "Treats money differently by account or source; poor overall allocation."
+          },
+          {
+            "item": "Framing and availability (cognitive)",
+            "detail": "Decisions depend on presentation and easily recalled events."
+          },
+          {
+            "item": "Loss aversion (emotional)",
+            "detail": "Losses hurt more than equal gains feel good; holds losers and sells winners (disposition effect)."
+          },
+          {
+            "item": "Overconfidence (emotional)",
+            "detail": "Overestimates skill and knowledge; excessive trading, under-diversification."
+          },
+          {
+            "item": "Self-control (emotional)",
+            "detail": "Favors current consumption over saving; poor discipline."
+          },
+          {
+            "item": "Status quo, endowment, regret aversion (emotional)",
+            "detail": "Inertia; overvaluing what you already own; avoiding decisions to avoid regret."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-m5c",
+        "title": "Module 5 — Behavioral biases and market characteristics not explained by traditional finance",
+        "body": [
+          "Traditional finance assumes rational investors and efficient markets. Behavioral biases can explain apparent anomalies: momentum and herding (investors follow trends; representativeness and confirmation), bubbles and crashes (overconfidence, herding, loss aversion), the disposition effect (selling winners too early, holding losers), the equity-premium puzzle (investors' loss aversion explains high required equity returns), home bias and under-diversification (familiarity), and overreaction/underreaction to news (conservatism, anchoring). Behavioral finance does not replace traditional models but helps explain deviations and design better advice: awareness, rules-based processes (IPS, rebalancing), and goals-based planning."
+        ],
+        "formulas": []
+      },
+      {
         id: "port-5g",
-        title: "Introduction to risk management",
+        title: "Module 6 — Introduction to risk management",
         body: [
           `Risk management is the ongoing discipline of identifying, measuring, and deliberately deciding what to do about the risks a portfolio (or an institution) faces — not simply avoiding risk altogether, since risk-taking is how returns get earned in the first place, but taking on risk deliberately and at a scale the investor can actually tolerate.`,
           `Risk governance sets the overall framework and oversight for how risk decisions get made and who's accountable for them. Risk budgeting allocates a limited "risk tolerance" across different strategies or asset classes, similar in spirit to a financial budget, but allocating risk rather than dollars. Once risks are identified, they can be modified in one of a few ways: avoided (not taking the risk at all), reduced (lowering exposure), transferred (shifting it to someone else, such as through insurance or derivatives), or accepted (deliberately retained, usually because the expected reward justifies it).`,
@@ -4122,42 +6085,278 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "port-6",
-        title: "Formula/concept decision guide",
-        type: "decision-guide",
-        body: [`Match the question to the concept.`],
-        decisionRows: [
-          { cue: "A portfolio's expected return given its holdings' weights and expected returns", formula: "Weighted average formula (E(Rp))", section: "port-3" },
-          { cue: "The two-asset portfolio with the lowest possible risk", formula: "Global minimum-variance portfolio", section: "port-3" },
-          { cue: "Whether combining two assets reduces risk", formula: "Correlation between the two assets", section: "port-4" },
-          { cue: "The best possible risk-return trade-off available from risky assets", formula: "Efficient frontier", section: "port-5" },
-          { cue: "Combining a risk-free asset with the market portfolio specifically", formula: "Capital market line (CML)", section: "port-5" },
-          { cue: "Risk that diversification can eliminate", formula: "Unsystematic (diversifiable) risk", section: "port-5b" },
-          { cue: "Risk that diversification cannot eliminate", formula: "Systematic (market) risk", section: "port-5b" },
-          { cue: "Required return based purely on beta / systematic risk", formula: "CAPM", section: "port-5c" },
-          { cue: "Risk-adjusted return for an investor's whole portfolio (uses total risk)", formula: "Sharpe ratio", section: "port-5d" },
-          { cue: "Risk-adjusted return for one holding in a diversified portfolio (uses beta)", formula: "Treynor ratio", section: "port-5d" },
-          { cue: "Return earned above/below what CAPM would predict", formula: "Jensen's alpha", section: "port-5d" },
-          { cue: "The document recording an investor's objectives and constraints", formula: "Investment Policy Statement (IPS)", section: "port-5e" },
-          { cue: "A reasoning error that's somewhat correctable with information", formula: "Cognitive error", section: "port-5f" },
-          { cue: "A feelings-driven bias, harder to correct with information alone", formula: "Emotional bias", section: "port-5f" },
+        "id": "port-m6a",
+        "title": "Module 6 — Risk management: definition, framework, governance and risk budgeting",
+        "body": [
+          "Risk management is the process of identifying the level of risk an entity wants, measuring its current risk, and taking actions to align the two — so that the risk taken is deliberate, understood and compensated; it is not about eliminating risk. A risk management framework includes: risk governance (structure, accountability, policies), risk identification and measurement, risk infrastructure (people, processes, systems, data), policies and processes, risk mitigation and management, communication and reporting, strategic risk analysis, and integration with strategy.",
+          "Risk governance sets the risk tolerance (the level of risk the organization is willing and able to bear), assigns decision rights, and ensures oversight (board, risk committee, chief risk officer). Effective governance includes clear risk appetite, independence of the risk function, alignment of incentives, and a culture of transparency. Risk tolerance determines which risks to take, avoid, or hedge: higher tolerance allows greater retained risk. Risk budgeting allocates the total acceptable risk across activities, desks or asset classes (e.g., tracking error or VaR budget) so that risk is taken where it is most likely to be rewarded."
         ],
-        formulas: [],
+        "formulas": []
       },
       {
-        id: "port-7",
-        title: "Common traps",
-        type: "reference",
-        body: [`Watch for these.`],
-        referenceRows: [
-          { item: "Treating portfolio risk like a simple weighted average", detail: "Portfolio risk depends on the correlations between holdings, not just their individual risk levels weighted together." },
-          { item: "Assuming diversification always eliminates risk", detail: "It eliminates unsystematic risk, but systematic (market-wide) risk remains no matter how diversified the portfolio is." },
-          { item: "Confusing the CAL with the CML", detail: "Every CAL uses some risky portfolio; the CML is the one specific CAL that uses the market portfolio." },
-          { item: "Confusing Sharpe and Treynor ratios", detail: "Sharpe uses total risk (standard deviation) — for an entire portfolio. Treynor uses only systematic risk (beta) — for one holding within a diversified portfolio." },
-          { item: "Assuming willingness and ability to take risk always agree", detail: "When they conflict, the more conservative of the two generally governs the IPS's risk objective." },
-          { item: "Assuming behavioral biases only affect uninformed investors", detail: "Cognitive errors and emotional biases affect even highly sophisticated investors — recognizing them is the main defense." },
+        "id": "port-m6b",
+        "title": "Module 6 — Sources of risk: financial and non-financial, and their interactions",
+        "body": [
+          "Financial risks: market risk (equity, interest rate, currency, commodity), credit risk (default, downgrade, counterparty), and liquidity risk (inability to trade at a fair price or to meet obligations). Non-financial risks: operational risk (people, processes, systems, fraud), model risk, settlement risk, regulatory, legal and compliance risk, tax risk, accounting risk, solvency risk, sovereign and political risk, and ESG/climate risk. Many risks interact: a market fall can trigger margin calls (liquidity), forced sales, credit downgrades and counterparty failures; operational failures can produce market losses; risks that appear independent in normal times correlate in stress. A holistic view is needed."
         ],
-        formulas: [],
+        "formulas": []
+      },
+      {
+        "id": "port-m6c",
+        "title": "Module 6 — Measuring and modifying risk exposures",
+        "body": [
+          "Measurement tools: standard deviation, beta, duration and convexity (fixed income), the 'Greeks' (derivatives: delta, gamma, vega), value at risk (VaR — the minimum loss over a horizon at a given probability), conditional VaR / expected shortfall (the average loss beyond VaR), tracking error, scenario analysis and stress tests (assess extreme events), and sensitivity analysis. VaR methods: parametric (variance-covariance), historical simulation, and Monte Carlo. VaR limitations: says nothing about the size of losses beyond the threshold, depends on assumptions (normality) and history, and may be gamed.",
+          "Modifying exposures: prevention/avoidance (do not take the risk), acceptance (self-insure: retain the risk, possibly with a reserve), transfer (insurance, contracting out risk to others), and shifting (use derivatives to change the distribution of outcomes, e.g., hedging). Choose methods by cost-benefit, effectiveness, the nature of the risk (insurable vs not), liquidity, tax, and the organization's risk tolerance."
+        ],
+        "formulas": [
+          {
+            "id": "port-m6-var",
+            "name": "Parametric value at risk (VaR)",
+            "expression": "VaR = (z × σ − μ) × Portfolio value &nbsp;&nbsp; z = 1.645 (95%), 2.33 (99%)",
+            "when": "Estimating the loss that will not be exceeded with a given confidence over the horizon (normal distribution).",
+            "problem": "A $10 million portfolio has an expected annual return of 8% and a standard deviation of 15%. Find the 1-year 95% VaR.",
+            "given": [
+              "Value = $10,000,000",
+              "μ = 0.08",
+              "σ = 0.15",
+              "z (95%) = 1.645"
+            ],
+            "worked": "VaR = (1.645 × 0.15 − 0.08) × 10,000,000\n= (0.24675 − 0.08) × 10,000,000\n= 0.16675 × 10,000,000 = $1,667,500\nWith 95% confidence, annual loss should not exceed about $1,667,500; the worst 5% of years could be larger."
+          }
+        ]
+      },
+      {
+        "id": "port-m6d",
+        "title": "Module 6 — Risk management methods (reference)",
+        "body": [
+          "Methods for modifying risk exposure."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Risk avoidance / prevention",
+            "detail": "Don't engage in the activity; eliminates the risk and its return potential."
+          },
+          {
+            "item": "Risk acceptance (self-insurance)",
+            "detail": "Retain the risk; may hold reserves; chosen when cost of transfer exceeds expected loss."
+          },
+          {
+            "item": "Risk transfer",
+            "detail": "Pass to an insurer or counterparty for a premium; suitable for insurable, low-probability, high-severity risks."
+          },
+          {
+            "item": "Risk shifting",
+            "detail": "Use derivatives to change the payoff distribution (forwards, futures, options, swaps)."
+          },
+          {
+            "item": "Selection factors",
+            "detail": "Cost, effectiveness, basis risk, counterparty risk, regulation, tax, risk tolerance."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-6",
+        "title": "Formula/concept decision guide",
+        "type": "decision-guide",
+        "body": [
+          "Match the question to the concept."
+        ],
+        "decisionRows": [
+          {
+            "cue": "Characteristics of equities, bonds, cash, real assets, alternatives",
+            "formula": "Major asset classes",
+            "section": "port-m1a"
+          },
+          {
+            "cue": "Utility function and certainty-equivalent return",
+            "formula": "U = E(R) − 0.5Aσ²",
+            "section": "port-m1b"
+          },
+          {
+            "cue": "Mean, variance, covariance and correlation of historical returns",
+            "formula": "Sample statistics",
+            "section": "port-m1c"
+          },
+          {
+            "cue": "Portfolio risk from weights, volatility and correlation",
+            "formula": "Two-asset portfolio standard deviation",
+            "section": "port-m1d"
+          },
+          {
+            "cue": "A portfolio's expected return from holdings' weights and expected returns",
+            "formula": "Weighted average E(Rp)",
+            "section": "port-3"
+          },
+          {
+            "cue": "The two-asset portfolio with the lowest possible risk",
+            "formula": "Global minimum-variance portfolio",
+            "section": "port-3"
+          },
+          {
+            "cue": "Highest return for each risk level on the minimum-variance frontier",
+            "formula": "Efficient frontier",
+            "section": "port-m1e"
+          },
+          {
+            "cue": "Mixing a risk-free asset with a risky portfolio",
+            "formula": "Capital allocation line (CAL)",
+            "section": "port-m2a"
+          },
+          {
+            "cue": "CAL using the market portfolio",
+            "formula": "Capital market line (CML)",
+            "section": "port-5"
+          },
+          {
+            "cue": "Slope of the market model regression",
+            "formula": "Beta",
+            "section": "port-m2b"
+          },
+          {
+            "cue": "Risk that diversification removes / cannot remove",
+            "formula": "Unsystematic / systematic risk",
+            "section": "port-5b"
+          },
+          {
+            "cue": "Required return from beta",
+            "formula": "CAPM / SML",
+            "section": "port-5c"
+          },
+          {
+            "cue": "Asset above or below the SML",
+            "formula": "Alpha / security selection",
+            "section": "port-m2c"
+          },
+          {
+            "cue": "Risk-adjusted return with total risk / beta",
+            "formula": "Sharpe / Treynor",
+            "section": "port-5d"
+          },
+          {
+            "cue": "Excess return vs CAPM prediction",
+            "formula": "Jensen's alpha",
+            "section": "port-5d"
+          },
+          {
+            "cue": "Performance expressed as return at market risk level",
+            "formula": "M²",
+            "section": "port-m2d"
+          },
+          {
+            "cue": "Steps and cycle of portfolio management",
+            "formula": "Portfolio management process",
+            "section": "port-2"
+          },
+          {
+            "cue": "Employee bears investment risk vs sponsor bears it",
+            "formula": "DC vs DB plan",
+            "section": "port-m3b"
+          },
+          {
+            "cue": "Which pooled product trades intraday?",
+            "formula": "ETF vs mutual fund",
+            "section": "port-m3e"
+          },
+          {
+            "cue": "Document recording objectives and constraints",
+            "formula": "Investment Policy Statement",
+            "section": "port-5e"
+          },
+          {
+            "cue": "Psychological comfort vs financial capacity for risk",
+            "formula": "Willingness vs ability to take risk",
+            "section": "port-m4b"
+          },
+          {
+            "cue": "Liquidity, time horizon, tax, legal, unique circumstances",
+            "formula": "IPS constraints",
+            "section": "port-m4c"
+          },
+          {
+            "cue": "Long-term target weights and rebalancing",
+            "formula": "Strategic asset allocation",
+            "section": "port-m4d"
+          },
+          {
+            "cue": "Screening, integration, thematic and impact investing",
+            "formula": "ESG approaches",
+            "section": "port-m4e"
+          },
+          {
+            "cue": "Reasoning error that can be corrected vs feeling-driven bias",
+            "formula": "Cognitive vs emotional bias",
+            "section": "port-m5a"
+          },
+          {
+            "cue": "Allocating a risk limit across desks or strategies",
+            "formula": "Risk budgeting",
+            "section": "port-m6a"
+          },
+          {
+            "cue": "Minimum loss at a probability over a horizon",
+            "formula": "Value at risk",
+            "section": "port-m6c"
+          },
+          {
+            "cue": "Avoid, accept, transfer or shift a risk",
+            "formula": "Risk management methods",
+            "section": "port-m6d"
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "port-7",
+        "title": "Common traps",
+        "type": "reference",
+        "body": [
+          "Watch for these."
+        ],
+        "referenceRows": [
+          {
+            "item": "Treating portfolio risk as a weighted average",
+            "detail": "Depends on correlations; only perfect correlation gives a weighted average."
+          },
+          {
+            "item": "Variance vs standard deviation in the formula",
+            "detail": "Use variance in the utility function and weights; take the square root to get standard deviation."
+          },
+          {
+            "item": "Assuming diversification removes all risk",
+            "detail": "It removes unsystematic risk only; systematic risk remains."
+          },
+          {
+            "item": "Confusing the CAL with the CML",
+            "detail": "CML is the CAL using the market portfolio."
+          },
+          {
+            "item": "Confusing the CML and the SML",
+            "detail": "CML plots return vs total risk (efficient portfolios only); SML plots return vs beta (any asset)."
+          },
+          {
+            "item": "Sharpe vs Treynor",
+            "detail": "Sharpe uses total risk (whole portfolio); Treynor uses beta (diversified or component)."
+          },
+          {
+            "item": "Willingness vs ability",
+            "detail": "When they conflict, the lower of the two sets the risk objective."
+          },
+          {
+            "item": "Treating all biases as fixable by information",
+            "detail": "Cognitive errors respond to education; emotional biases usually must be accommodated."
+          },
+          {
+            "item": "Reading VaR as the worst case",
+            "detail": "VaR is a threshold at a probability; losses beyond it can be much larger."
+          },
+          {
+            "item": "Mixing mutual funds and ETFs",
+            "detail": "Mutual funds trade at end-of-day NAV; ETFs trade intraday at market price."
+          }
+        ],
+        "formulas": []
       },
       {
         id: "port-8",
@@ -4466,6 +6665,57 @@ const QUIZZES = {
     { id: "fi-q16", question: "For an ordinary, option-free bond with positive convexity, the duration-only price estimate tends to", options: ["Overstate gains and understate losses", "Understate gains and overstate losses", "Be perfectly accurate", "Only apply to zero-coupon bonds"], correct: 1, explanation: "Positive convexity means the bond gains more than duration alone predicts and loses less — duration-only estimates understate gains and overstate losses.", remediation: "fi-6a2" },
     { id: "fi-q17", question: "A bond backed by a pool of auto loans or credit card receivables (rather than mortgages) is best described as", options: ["A mortgage-backed security (MBS)", "An asset-backed security (ABS)", "A zero-coupon bond", "A putable bond"], correct: 1, explanation: "MBS specifically refers to mortgage-backed pools; ABS is the broader category covering other loan types.", remediation: "fi-6c" },
     { id: "fi-q18", question: "Homeowners refinancing and paying off mortgages early, right when rates have fallen, creates which risk for MBS investors?", options: ["Credit risk", "Prepayment risk", "Currency risk", "Convexity"], correct: 1, explanation: "Prepayment risk returns principal early, right when reinvesting at an equally attractive rate is hardest.", remediation: "fi-6c" },
+    {"id": "fi-q19", "question": "Which is an affirmative covenant?", "options": ["Limit additional debt", "Maintain insurance on pledged assets", "Refrain from selling key assets", "Restrict dividend payments"], "correct": 1, "explanation": "Affirmative covenants require actions; negative ones restrict them.", "remediation": "fi-m1c"},
+    {"id": "fi-q20", "question": "A negative covenant is most likely to", "options": ["Require timely interest payments", "Restrict the issuer from taking on additional debt beyond a limit", "Require audited financial statements", "Require tax payments"], "correct": 1, "explanation": "Negative covenants prohibit actions that hurt creditors.", "remediation": "fi-m1b"},
+    {"id": "fi-q21", "question": "A fully amortizing bond differs from a bullet bond because", "options": ["It pays no coupons", "Principal is repaid gradually, so no balloon payment remains at maturity", "It repays everything at maturity", "It always has a call feature"], "correct": 1, "explanation": "Amortizing bonds retire principal over time.", "remediation": "fi-m2a"},
+    {"id": "fi-q22", "question": "A tax-exempt bond yields 3.6% for an investor in the 30% bracket. The taxable-equivalent yield is", "options": ["2.52%", "3.60%", "5.14%", "4.68%"], "correct": 2, "explanation": "3.6%/(1−0.30) = 5.14%.", "remediation": "fi-m2c"},
+    {"id": "fi-q23", "question": "A putable bond is", "options": ["Worth less than a straight bond", "More valuable to the investor than an otherwise identical straight bond", "Beneficial to the issuer", "Convertible into shares"], "correct": 1, "explanation": "Straight value + put option value.", "remediation": "fi-m2b"},
+    {"id": "fi-q24", "question": "Compared with equity markets, bond markets are", "options": ["Mostly exchange-listed", "More dependent on dealer-based OTC trading", "Less institutional", "More transparent in pricing"], "correct": 1, "explanation": "Most bond trading is OTC through dealers.", "remediation": "fi-m3c"},
+    {"id": "fi-q25", "question": "Bond index construction is difficult relative to equity indexes mainly because of", "options": ["Fewer securities", "Frequent maturities, thin trading and heterogeneous securities", "Continuous trading", "Uniform coupons"], "correct": 1, "explanation": "Turnover and illiquidity complicate bond indexes.", "remediation": "fi-m3b"},
+    {"id": "fi-q26", "question": "In a repo, the borrower", "options": ["Buys a security and agrees to sell it later", "Sells a security and agrees to repurchase it at a higher price", "Issues unsecured paper", "Borrows without collateral"], "correct": 1, "explanation": "A repo is a collateralized loan.", "remediation": "fi-m4b"},
+    {"id": "fi-q27", "question": "A $10.5M collateral pool with a 5% haircut supports a loan of", "options": ["$10,500,000", "$9,975,000", "$10,000,000", "$9,500,000"], "correct": 1, "explanation": "10.5M × 0.95.", "remediation": "fi-m4b"},
+    {"id": "fi-q28", "question": "High-yield issuers compared with investment-grade issuers typically have", "options": ["Looser covenants", "Tighter covenants and more secured debt", "Lower coupons", "Longer maturities"], "correct": 1, "explanation": "HY debt is more restricted and secured.", "remediation": "fi-m4c"},
+    {"id": "fi-q29", "question": "Municipal revenue bonds are repaid from", "options": ["Taxing power", "The revenues of the financed project or facility", "The national government", "The central bank"], "correct": 1, "explanation": "General obligation bonds use taxes; revenue bonds use project revenue.", "remediation": "fi-m5a"},
+    {"id": "fi-q30", "question": "A bond price between coupon dates: the flat price equals the full price", "options": ["Plus accrued interest", "Minus accrued interest", "Times accrued interest", "Unrelated to accrued interest"], "correct": 1, "explanation": "Flat = full − accrued.", "remediation": "fi-m6a"},
+    {"id": "fi-q31", "question": "A semiannual 4% coupon, 10-year bond with YTM 5% (par 1,000) is priced at about", "options": ["$1,000", "$922.05", "$1,082", "$950"], "correct": 1, "explanation": "PV at 2.5% for 20 periods.", "remediation": "fi-m6a"},
+    {"id": "fi-q32", "question": "For the same yield change, which bond has the largest price change?", "options": ["Short-maturity, high-coupon", "Long-maturity, low-coupon bond", "Short-maturity, low-coupon", "Long-maturity, high-coupon"], "correct": 1, "explanation": "Longer maturity and lower coupon raise interest rate risk.", "remediation": "fi-m6b"},
+    {"id": "fi-q33", "question": "Matrix pricing is used to estimate", "options": ["Option values", "The yield of an illiquid bond from comparable traded bonds", "Default probability", "Credit spreads of equities"], "correct": 1, "explanation": "It interpolates yields of comparable bonds.", "remediation": "fi-m6c"},
+    {"id": "fi-q34", "question": "A 6% yield quoted semiannually has an effective annual yield of", "options": ["6.00%", "6.09%", "6.14%", "5.91%"], "correct": 1, "explanation": "(1.03)² − 1.", "remediation": "fi-m7a"},
+    {"id": "fi-q35", "question": "For a callable bond trading at a premium, the yield to worst is most likely", "options": ["The YTM", "The yield to call", "The current yield", "The simple yield"], "correct": 1, "explanation": "A premium bond is likely called.", "remediation": "fi-m7b"},
+    {"id": "fi-q36", "question": "The Z-spread is", "options": ["Bond YTM minus government YTM", "The constant spread added to each spot rate so that PV equals price", "The option cost", "The swap rate"], "correct": 1, "explanation": "Z-spread uses the spot curve.", "remediation": "fi-m7c"},
+    {"id": "fi-q37", "question": "For a callable bond the OAS is", "options": ["Greater than the Z-spread", "Less than the Z-spread", "Equal to the Z-spread", "Negative"], "correct": 1, "explanation": "OAS = Z-spread − option cost.", "remediation": "fi-m7c"},
+    {"id": "fi-q38", "question": "A floating-rate note whose discount margin exceeds its quoted margin trades", "options": ["At par", "Above par", "Below par", "At a premium"], "correct": 2, "explanation": "Required margin > QM → discount.", "remediation": "fi-m8a"},
+    {"id": "fi-q39", "question": "A 91-day T-bill with a 2.40% discount rate has a price of about", "options": ["97.60", "99.39", "98.00", "99.76"], "correct": 1, "explanation": "100 × (1 − 0.024 × 91/360).", "remediation": "fi-m8b"},
+    {"id": "fi-q40", "question": "The bond-equivalent yield of a money market instrument uses", "options": ["360 days on face", "A 365-day year on the price invested", "A 252-day year", "Face value as base"], "correct": 1, "explanation": "BEY = (FV − P)/P × 365/days.", "remediation": "fi-m8b"},
+    {"id": "fi-q41", "question": "A spot rate is", "options": ["A coupon bond's YTM", "The yield on a zero-coupon bond for a given maturity", "A forward rate", "The par rate"], "correct": 1, "explanation": "Spot rates discount single cash flows.", "remediation": "fi-m9a"},
+    {"id": "fi-q42", "question": "With spot rates 2% (1y) and 3% (2y), the 1y1y forward rate is", "options": ["2.50%", "3.00%", "4.01%", "5.00%"], "correct": 2, "explanation": "1.03²/1.02 − 1.", "remediation": "fi-m9b"},
+    {"id": "fi-q43", "question": "In an upward-sloping market, which ordering is correct?", "options": ["Par > spot > forward", "Forward > spot > par", "Spot > forward > par", "Forward = spot = par"], "correct": 1, "explanation": "Forward rates rise fastest.", "remediation": "fi-m9c"},
+    {"id": "fi-q44", "question": "The three sources of return from a bond held to maturity are", "options": ["Coupons only", "Coupons, reinvestment income and capital gain/loss (pull to par)", "Duration, convexity and credit", "Price, yield and maturity"], "correct": 1, "explanation": "Total return decomposes into these components.", "remediation": "fi-m10a"},
+    {"id": "fi-q45", "question": "If the investment horizon equals the Macaulay duration, then", "options": ["Price risk dominates", "Price risk and reinvestment risk approximately offset", "Reinvestment risk dominates", "The bond has no risk"], "correct": 1, "explanation": "Immunization.", "remediation": "fi-m10b"},
+    {"id": "fi-q46", "question": "Money duration equals", "options": ["Macaulay duration × coupon", "Modified duration × full price", "Convexity × price", "Duration / price"], "correct": 1, "explanation": "Money duration is in currency.", "remediation": "fi-m11a"},
+    {"id": "fi-q47", "question": "Which bond has the lowest duration?", "options": ["Zero-coupon, 10-year", "High-coupon, short-maturity bond", "Low-coupon, long-maturity", "Zero-coupon, 30-year"], "correct": 1, "explanation": "Higher coupon and shorter maturity reduce duration.", "remediation": "fi-m11b"},
+    {"id": "fi-q48", "question": "Convexity is", "options": ["Negative for all bonds", "Always positive for option-free bonds and beneficial to bondholders", "Higher for higher coupons", "A credit risk measure"], "correct": 1, "explanation": "Positive convexity means larger gains than losses.", "remediation": "fi-m12a"},
+    {"id": "fi-q49", "question": "Portfolio duration assumes", "options": ["Non-parallel shifts", "A parallel shift in the yield curve", "No convexity", "Equal weights"], "correct": 1, "explanation": "Key rate durations handle non-parallel shifts.", "remediation": "fi-m12b"},
+    {"id": "fi-q50", "question": "Effective duration is the appropriate measure for", "options": ["Zero-coupon bonds only", "Bonds with embedded options", "Option-free bonds only", "Treasury bills"], "correct": 1, "explanation": "It captures changes in cash flows.", "remediation": "fi-m13a"},
+    {"id": "fi-q51", "question": "The sum of key rate durations approximately equals", "options": ["Convexity", "Effective duration", "Macaulay duration", "Money duration"], "correct": 1, "explanation": "KRDs break duration down by curve point.", "remediation": "fi-m13b"},
+    {"id": "fi-q52", "question": "Empirical duration is estimated by", "options": ["Discounting cash flows", "Regressing price changes on yield changes", "Using an option model", "Using the coupon"], "correct": 1, "explanation": "It is statistical.", "remediation": "fi-m13c"},
+    {"id": "fi-q53", "question": "A bond has PD of 2% and a recovery rate of 40%. Expected loss rate is", "options": ["0.8%", "1.2%", "2.0%", "0.6%"], "correct": 1, "explanation": "PD × (1 − RR).", "remediation": "fi-m14a"},
+    {"id": "fi-q54", "question": "A key limitation of credit ratings is that they", "options": ["Are always precise", "Can lag market changes in credit quality", "Measure liquidity", "Predict price movements"], "correct": 1, "explanation": "Ratings are slow-moving.", "remediation": "fi-m14b"},
+    {"id": "fi-q55", "question": "Which factor generally widens credit spreads?", "options": ["Economic expansion", "A recession", "Higher risk appetite", "Lower issuance"], "correct": 1, "explanation": "Spreads widen in downturns.", "remediation": "fi-m14c"},
+    {"id": "fi-q56", "question": "When analyzing a sovereign bond, which is a key consideration?", "options": ["Only the budget", "Both ability and willingness to pay", "Only collateral", "Covenants"], "correct": 1, "explanation": "Sovereigns can choose to default.", "remediation": "fi-m15a"},
+    {"id": "fi-q57", "question": "EBITDA $500m, debt $1,500m: Debt/EBITDA is", "options": ["0.33x", "3.0x", "5.0x", "1.5x"], "correct": 1, "explanation": "1,500/500.", "remediation": "fi-m16b"},
+    {"id": "fi-q58", "question": "Debt at a holding company is generally", "options": ["Senior to subsidiary debt", "Structurally subordinated to subsidiary debt", "Equal to subsidiary debt", "Unaffected by subsidiaries"], "correct": 1, "explanation": "Subsidiary creditors have first claim.", "remediation": "fi-m16c"},
+    {"id": "fi-q59", "question": "In a securitization, the servicer", "options": ["Issues the securities", "Collects payments and manages delinquent loans", "Rates the securities", "Provides legal protection"], "correct": 1, "explanation": "Servicer manages the collateral.", "remediation": "fi-m17a"},
+    {"id": "fi-q60", "question": "The SPE in securitization is used to", "options": ["Increase the originator's taxes", "Make the assets bankruptcy-remote from the originator", "Sell equity", "Rate bonds"], "correct": 1, "explanation": "It isolates the assets.", "remediation": "fi-m17a"},
+    {"id": "fi-q61", "question": "A covered bond differs from an ABS because it", "options": ["Has no collateral", "Gives investors recourse to the issuer as well as the cover pool", "Is not senior", "Is always prepayable"], "correct": 1, "explanation": "Dual recourse.", "remediation": "fi-m18a"},
+    {"id": "fi-q62", "question": "Which is an internal credit enhancement?", "options": ["Bond insurance", "Subordination", "Letter of credit", "Government guarantee"], "correct": 1, "explanation": "Subordination, overcollateralization, excess spread are internal.", "remediation": "fi-m18b"},
+    {"id": "fi-q63", "question": "A credit card ABS differs from an auto loan ABS because it", "options": ["Has no credit risk", "Has a revolving period before amortization", "Has fixed maturity loans", "Has no servicer"], "correct": 1, "explanation": "Revolving structure.", "remediation": "fi-m18c"},
+    {"id": "fi-q64", "question": "In a CDO, the equity tranche", "options": ["Gets paid first", "Bears the first loss", "Is the safest", "Has no residual"], "correct": 1, "explanation": "Equity absorbs losses first and gets the residual.", "remediation": "fi-m18d"},
+    {"id": "fi-q65", "question": "Contraction risk occurs when", "options": ["Rates rise and prepayments fall", "Rates fall and prepayments rise", "Defaults rise", "Servicing fails"], "correct": 1, "explanation": "Early principal must be reinvested at lower rates.", "remediation": "fi-m19a"},
+    {"id": "fi-q66", "question": "The monthly payment on a $300,000, 30-year, 6% mortgage is about", "options": ["$1,500.00", "$1,798.65", "$1,950.00", "$1,650.00"], "correct": 1, "explanation": "Annuity formula.", "remediation": "fi-m19b"},
+    {"id": "fi-q67", "question": "A 0.5% SMM equals a CPR of about", "options": ["6.00%", "5.84%", "0.5%", "12%"], "correct": 1, "explanation": "1 − (1−0.005)^12.", "remediation": "fi-m19c"},
+    {"id": "fi-q68", "question": "A PAC tranche has less prepayment risk because", "options": ["It is guaranteed by the government", "Support tranches absorb prepayment variability", "It has no principal", "It is a floater"], "correct": 1, "explanation": "Support tranches are protected last.", "remediation": "fi-m19c"},
+    {"id": "fi-q69", "question": "A CMBS loan with NOI $1.2M and debt service $0.9M has a DSCR of", "options": ["0.75x", "1.33x", "1.50x", "0.90x"], "correct": 1, "explanation": "NOI / debt service.", "remediation": "fi-m19d"},
   ],
   derivatives: [
     {"id": "deriv-q1", "question": "Which feature best describes a derivative?", "options": ["It always pays dividends", "Its value depends on an underlying asset, rate, or index", "It has no expiration", "It can only be traded on exchanges"], "correct": 1, "explanation": "A derivative derives its value from an underlying.", "remediation": "deriv-m1a"},
@@ -4510,6 +6760,33 @@ const QUIZZES = {
     { id: "alt-q9", question: "A fund investing in early-stage, pre-profitable companies in exchange for equity is engaged in", options: ["Private debt", "Venture capital", "A leveraged buyout", "Infrastructure investing"], correct: 1, explanation: "Venture capital specifically targets early-stage, often pre-profitable companies.", remediation: "alt-2c" },
     { id: "alt-q10", question: "Compared to private equity, private debt generally occupies which position in a company's capital structure?", options: ["A junior, residual ownership position", "A more senior lending position", "An identical position", "No position at all"], correct: 1, explanation: "Private debt involves lending (a more senior claim) rather than taking an ownership stake.", remediation: "alt-2c" },
     { id: "alt-q11", question: "Which investment characteristic is particularly associated with digital assets, compared to traditional alternatives?", options: ["A very long, well-established historical track record", "Extremely high price volatility and evolving regulatory treatment", "Guaranteed low correlation with all other assets", "No valuation uncertainty at all"], correct: 1, explanation: "Digital assets are notable for high volatility, a short track record, and still-developing regulation.", remediation: "alt-3b" },
+    {"id": "alt-q12", "question": "Compared with direct investment, a fund investment typically", "options": ["Gives more control", "Offers diversification and professional management but adds a layer of fees", "Has lower fees", "Requires more expertise"], "correct": 1, "explanation": "Funds trade control for diversification and expertise.", "remediation": "alt-m1b"},
+    {"id": "alt-q13", "question": "A co-investment is", "options": ["A pooled fund of funds", "An investment alongside a fund manager in a specific deal, often with lower fees", "A hedge fund strategy", "A REIT"], "correct": 1, "explanation": "Co-investment is deal-level.", "remediation": "alt-m1b"},
+    {"id": "alt-q14", "question": "The general partner in a limited partnership", "options": ["Provides most capital with limited liability", "Manages the fund and has unlimited liability", "Is passive", "Receives no fees"], "correct": 1, "explanation": "GP manages; LPs provide capital.", "remediation": "alt-m1c"},
+    {"id": "alt-q15", "question": "A clawback provision requires", "options": ["LPs to return distributions", "The GP to return excess carried interest", "Fees to be waived", "Capital to be recalled"], "correct": 1, "explanation": "Protects LPs from overpaying carry.", "remediation": "alt-m1c"},
+    {"id": "alt-q16", "question": "A hurdle rate is", "options": ["A management fee", "The minimum return before incentive fees are paid", "A borrowing rate", "A leverage cap"], "correct": 1, "explanation": "Pref return before carry.", "remediation": "alt-m1d"},
+    {"id": "alt-q17", "question": "Appraisal-based returns tend to", "options": ["Overstate volatility", "Understate volatility and correlation with markets", "Be unbiased", "Be negative"], "correct": 1, "explanation": "Smoothing lowers measured risk.", "remediation": "alt-m2a"},
+    {"id": "alt-q18", "question": "A fund has paid-in capital $15m, distributions $9m, residual NAV $12m. TVPI is", "options": ["0.60x", "0.80x", "1.40x", "2.00x"], "correct": 2, "explanation": "(9+12)/15.", "remediation": "alt-m2a"},
+    {"id": "alt-q19", "question": "DPI measures", "options": ["Unrealized value", "Realized distributions relative to paid-in capital", "Committed capital", "Fees"], "correct": 1, "explanation": "RVPI covers unrealized.", "remediation": "alt-m2a"},
+    {"id": "alt-q20", "question": "A 15% gross return, 2% mgmt fee, 20% incentive over a 5% hurdle (after mgmt fee) gives a net return of", "options": ["13.0%", "11.4%", "12.0%", "10.0%"], "correct": 1, "explanation": "13% − 20% × 8% = 11.4%.", "remediation": "alt-m2b"},
+    {"id": "alt-q21", "question": "A high-water mark ensures that", "options": ["Fees are fixed", "Incentive fees are paid only on gains above the previous peak", "Managers can't lose", "Returns are guaranteed"], "correct": 1, "explanation": "Prevents paying twice for the same gains.", "remediation": "alt-m2b"},
+    {"id": "alt-q22", "question": "In a leveraged buyout, the sponsor", "options": ["Buys a minority stake without debt", "Acquires a company using significant debt", "Lends to the company", "Invests in REITs"], "correct": 1, "explanation": "LBO = leveraged buyout.", "remediation": "alt-m3a"},
+    {"id": "alt-q23", "question": "Which is a typical private equity exit?", "options": ["Margin call", "Initial public offering", "Drawdown", "Rollover"], "correct": 1, "explanation": "IPO, trade sale, secondary buyout.", "remediation": "alt-m3a"},
+    {"id": "alt-q24", "question": "Mezzanine debt is", "options": ["Senior secured", "Subordinated, with higher yield and often equity warrants", "Risk free", "Short term"], "correct": 1, "explanation": "It ranks between senior debt and equity.", "remediation": "alt-m3b"},
+    {"id": "alt-q25", "question": "A property has NOI of $600,000 and the cap rate is 6%. Its value is", "options": ["$3,600,000", "$10,000,000", "$6,000,000", "$36,000,000"], "correct": 1, "explanation": "NOI/cap rate.", "remediation": "alt-m4a"},
+    {"id": "alt-q26", "question": "A higher cap rate, with NOI unchanged, means", "options": ["Higher value", "Lower property value", "No change", "Higher NOI"], "correct": 1, "explanation": "Value = NOI/cap rate.", "remediation": "alt-m4a"},
+    {"id": "alt-q27", "question": "Compared with private real estate, REITs", "options": ["Are less liquid", "Are more liquid and more correlated with equities in the short run", "Use appraisals", "Have no leverage"], "correct": 1, "explanation": "Listed REITs trade daily.", "remediation": "alt-m4b"},
+    {"id": "alt-q28", "question": "A brownfield infrastructure project is", "options": ["A new construction project", "An existing asset with established cash flows", "A government bond", "An equity fund"], "correct": 1, "explanation": "Greenfield = new.", "remediation": "alt-m4c"},
+    {"id": "alt-q29", "question": "Timberland returns are driven partly by", "options": ["Dividends", "Biological growth of trees", "Roll yield", "Interest rates only"], "correct": 1, "explanation": "Trees grow regardless of prices.", "remediation": "alt-m5a"},
+    {"id": "alt-q30", "question": "A futures curve in contango implies a long holder earns", "options": ["Positive roll yield", "Negative roll yield", "No roll yield", "Higher collateral yield"], "correct": 1, "explanation": "Futures converge down to spot.", "remediation": "alt-m5b"},
+    {"id": "alt-q31", "question": "Spot +4%, roll yield −2%, collateral yield 3% gives a total return of about", "options": ["9%", "5%", "1%", "4%"], "correct": 1, "explanation": "4 − 2 + 3.", "remediation": "alt-m5b"},
+    {"id": "alt-q32", "question": "Which strategy is an event-driven hedge fund strategy?", "options": ["Global macro", "Merger arbitrage", "Managed futures", "Market neutral"], "correct": 1, "explanation": "Event-driven: merger arbitrage, distressed.", "remediation": "alt-m6a"},
+    {"id": "alt-q33", "question": "A redemption gate", "options": ["Is a performance fee", "Limits the amount that can be withdrawn at one time", "Prevents leverage", "Is a hedge"], "correct": 1, "explanation": "A liquidity term.", "remediation": "alt-m6b"},
+    {"id": "alt-q34", "question": "A fund of funds", "options": ["Eliminates fees", "Adds diversification and due diligence but a second layer of fees", "Only invests in one strategy", "Is a CTA"], "correct": 1, "explanation": "Extra fee layer.", "remediation": "alt-m6b"},
+    {"id": "alt-q35", "question": "In market stress, hedge fund correlations to equities tend to", "options": ["Fall", "Rise", "Stay at zero", "Become negative"], "correct": 1, "explanation": "Diversification can fail in crises.", "remediation": "alt-m6c"},
+    {"id": "alt-q36", "question": "A permissionless distributed ledger", "options": ["Restricts participants", "Is open to anyone to participate", "Needs a central administrator", "Has no consensus"], "correct": 1, "explanation": "Permissioned ledgers restrict.", "remediation": "alt-m7a"},
+    {"id": "alt-q37", "question": "A stablecoin is", "options": ["A volatile cryptocurrency", "A token pegged to a fiat currency or asset", "A central bank currency", "An NFT"], "correct": 1, "explanation": "Designed to hold a stable value.", "remediation": "alt-m7b"},
+    {"id": "alt-q38", "question": "Which is a key risk specific to holding digital assets directly?", "options": ["Duration", "Custody and security (hacking, loss of keys)", "Convexity", "Call risk"], "correct": 1, "explanation": "Custody and theft risk.", "remediation": "alt-m7b"},
   ],
   portfolio: [
     { id: "port-q1", question: "A portfolio is 70% Stock A (12% expected return) and 30% Stock B (5% expected return). Expected portfolio return?", options: ["8.5%", "9.9%", "12%", "17%"], correct: 1, explanation: "0.70\u00D712% + 0.30\u00D75% = 9.9%.", remediation: "port-3" },
@@ -4526,6 +6803,39 @@ const QUIZZES = {
     { id: "port-q12", question: "An investor's psychological comfort with volatility is their", options: ["Ability to take risk", "Willingness to take risk", "Required return", "Risk-free rate"], correct: 1, explanation: "Willingness to take risk is the psychological/attitudinal side; ability to take risk is the financial-capacity side.", remediation: "port-5e" },
     { id: "port-q13", question: "An investor holds onto a losing stock far too long because the pain of realizing the loss feels worse than an equivalent gain would feel good. This describes", options: ["Confirmation bias", "Anchoring", "Loss aversion", "The Sharpe ratio"], correct: 2, explanation: "Loss aversion is an emotional bias where losses are felt more intensely than equivalent gains.", remediation: "port-5f" },
     { id: "port-q14", question: "Shifting a risk to an insurance company rather than retaining it is an example of which risk management response?", options: ["Avoiding the risk", "Reducing the risk", "Transferring the risk", "Accepting the risk"], correct: 2, explanation: "Transferring risk means shifting it to another party, such as through insurance.", remediation: "port-5g" },
+    {"id": "port-q15", "question": "A risk-averse investor", "options": ["Ignores risk", "Requires extra expected return to accept more risk", "Seeks risk", "Only holds cash"], "correct": 1, "explanation": "Risk aversion implies a risk premium.", "remediation": "port-m1b"},
+    {"id": "port-q16", "question": "With U = E(R) − 0.5Aσ², a higher A means", "options": ["Less risk aversion", "Greater risk aversion", "Higher return", "No effect"], "correct": 1, "explanation": "A is the risk aversion coefficient.", "remediation": "port-m1b"},
+    {"id": "port-q17", "question": "Risky portfolio: E(R)=10%, σ=20%, Rf=3%, A=4. Optimal weight in the risky portfolio is", "options": ["35%", "43.75%", "50%", "70%"], "correct": 1, "explanation": "0.07/(4×0.04).", "remediation": "port-m1b"},
+    {"id": "port-q18", "question": "Sample variance uses", "options": ["n", "n − 1 in the denominator", "n + 1", "n²"], "correct": 1, "explanation": "Sample estimators use n − 1.", "remediation": "port-m1c"},
+    {"id": "port-q19", "question": "Correlation equals", "options": ["Covariance × variances", "Covariance divided by the product of standard deviations", "Variance / mean", "Beta × σ"], "correct": 1, "explanation": "It scales covariance to −1…+1.", "remediation": "port-m1c"},
+    {"id": "port-q20", "question": "60% asset 1 (σ 20%), 40% asset 2 (σ 10%), ρ = 0.3. Portfolio σ is closest to", "options": ["16.0%", "13.7%", "10.0%", "20.0%"], "correct": 1, "explanation": "√0.0185.", "remediation": "port-m1d"},
+    {"id": "port-q21", "question": "If two assets have ρ = +1, the portfolio standard deviation is", "options": ["Zero", "The weighted average of the standard deviations", "Below the average", "Above the maximum"], "correct": 1, "explanation": "No diversification benefit.", "remediation": "port-m1d"},
+    {"id": "port-q22", "question": "The efficient frontier is", "options": ["The whole minimum-variance frontier", "The part of the minimum-variance frontier above the global minimum-variance portfolio", "A straight line", "The CML"], "correct": 1, "explanation": "It offers the highest return for each risk level.", "remediation": "port-m1e"},
+    {"id": "port-q23", "question": "The slope of the CAL equals", "options": ["Beta", "The Sharpe ratio of the risky portfolio", "Alpha", "Variance"], "correct": 1, "explanation": "Excess return per unit of total risk.", "remediation": "port-m2a"},
+    {"id": "port-q24", "question": "Rf=3%, Rm=9%, σm=15%. A portfolio 70% market / 30% cash has expected return and σ of", "options": ["9% and 15%", "7.2% and 10.5%", "6.0% and 15%", "7.2% and 15%"], "correct": 1, "explanation": "0.03 + 0.7×0.06; 0.7×0.15.", "remediation": "port-m2a"},
+    {"id": "port-q25", "question": "Beta can be computed as", "options": ["Variance / covariance", "Covariance with the market divided by market variance", "σ_i/σ_m", "Return / risk"], "correct": 1, "explanation": "Slope of the market model.", "remediation": "port-m2b"},
+    {"id": "port-q26", "question": "σ_i=30%, σ_m=20%, ρ=0.6. Beta is", "options": ["0.40", "0.90", "1.50", "0.60"], "correct": 1, "explanation": "0.6 × 0.30/0.20.", "remediation": "port-m2b"},
+    {"id": "port-q27", "question": "Which is a CAPM assumption?", "options": ["Taxes matter", "Homogeneous expectations", "Investors are risk seeking", "Borrowing is limited"], "correct": 1, "explanation": "Investors share the same expectations.", "remediation": "port-m2c"},
+    {"id": "port-q28", "question": "A stock whose forecast return exceeds the SML required return is", "options": ["Overvalued", "Undervalued (positive alpha)", "Fairly valued", "Risk free"], "correct": 1, "explanation": "It plots above the SML.", "remediation": "port-m2c"},
+    {"id": "port-q29", "question": "M² compares a portfolio with the market", "options": ["At the same beta", "At the same total risk level", "With no leverage", "On a nominal basis only"], "correct": 1, "explanation": "M² levers or de-levers the portfolio.", "remediation": "port-m2d"},
+    {"id": "port-q30", "question": "A DB pension plan", "options": ["Places risk on the employee", "Places investment risk on the plan sponsor", "Has no liabilities", "Is portable"], "correct": 1, "explanation": "The sponsor promises benefits.", "remediation": "port-m3b"},
+    {"id": "port-q31", "question": "In a DC plan, investment risk is borne by", "options": ["The employer", "The employee", "The insurer", "The government"], "correct": 1, "explanation": "Benefit depends on account performance.", "remediation": "port-m3b"},
+    {"id": "port-q32", "question": "A mutual fund (open-end) transacts at", "options": ["Intraday market price", "End-of-day NAV", "Auction price", "Bid-ask midpoint"], "correct": 1, "explanation": "ETFs trade intraday.", "remediation": "port-m3e"},
+    {"id": "port-q33", "question": "Which pooled product usually trades at a premium or discount to NAV?", "options": ["Open-end fund", "Closed-end fund", "Separate account", "Money market fund"], "correct": 1, "explanation": "Shares trade on exchanges.", "remediation": "port-m3f"},
+    {"id": "port-q34", "question": "A major reason for a written IPS is to", "options": ["Guarantee returns", "Document objectives and constraints and promote disciplined decisions", "Avoid fees", "Maximize leverage"], "correct": 1, "explanation": "The IPS is the planning anchor.", "remediation": "port-m4a"},
+    {"id": "port-q35", "question": "Ability to take risk depends mostly on", "options": ["Attitude to volatility", "Financial circumstances such as wealth, horizon and liquidity needs", "Fund fees", "Taxes only"], "correct": 1, "explanation": "Willingness is psychological.", "remediation": "port-m4b"},
+    {"id": "port-q36", "question": "If willingness is low but ability is high, the IPS risk objective is usually set at", "options": ["The higher level", "The more conservative (lower) level", "An average", "Unconstrained"], "correct": 1, "explanation": "The lower governs.", "remediation": "port-m4b"},
+    {"id": "port-q37", "question": "An unusual client need such as excluding tobacco stocks is a", "options": ["Liquidity constraint", "Unique circumstance", "Tax constraint", "Legal constraint"], "correct": 1, "explanation": "Unique circumstances.", "remediation": "port-m4c"},
+    {"id": "port-q38", "question": "Strategic asset allocation sets", "options": ["Short-term bets", "Long-term target weights", "Security selection", "Tax lots"], "correct": 1, "explanation": "Tactical allocation deviates temporarily.", "remediation": "port-m4d"},
+    {"id": "port-q39", "question": "Impact investing aims to", "options": ["Exclude sectors", "Generate measurable social or environmental outcomes along with returns", "Minimize costs", "Guarantee returns"], "correct": 1, "explanation": "An ESG approach.", "remediation": "port-m4e"},
+    {"id": "port-q40", "question": "Anchoring is a", "options": ["Emotional bias", "Cognitive error", "Governance risk", "Liquidity risk"], "correct": 1, "explanation": "Information-processing error.", "remediation": "port-m5a"},
+    {"id": "port-q41", "question": "Loss aversion causes investors to", "options": ["Sell losers quickly", "Hold losers too long and sell winners too soon", "Trade less", "Diversify"], "correct": 1, "explanation": "Disposition effect.", "remediation": "port-m5b"},
+    {"id": "port-q42", "question": "Which biases are generally harder to correct?", "options": ["Cognitive errors", "Emotional biases", "Both equally", "Neither"], "correct": 1, "explanation": "Adapt to emotional biases.", "remediation": "port-m5a"},
+    {"id": "port-q43", "question": "Bubbles and momentum can be partly explained by", "options": ["Efficient markets", "Herding and overconfidence", "Constant risk premia", "Risk neutrality"], "correct": 1, "explanation": "Behavioral explanations of market anomalies.", "remediation": "port-m5c"},
+    {"id": "port-q44", "question": "Risk budgeting is", "options": ["Avoiding all risk", "Allocating total acceptable risk across activities", "Hedging currency", "A tax strategy"], "correct": 1, "explanation": "A part of risk governance.", "remediation": "port-m6a"},
+    {"id": "port-q45", "question": "Which is a non-financial risk?", "options": ["Credit risk", "Operational risk", "Market risk", "Liquidity risk"], "correct": 1, "explanation": "People, systems and processes.", "remediation": "port-m6b"},
+    {"id": "port-q46", "question": "$10m, μ 8%, σ 15%, z 1.645. The one-year 95% VaR is about", "options": ["$0.8 million", "$1.67 million", "$2.47 million", "$3.5 million"], "correct": 1, "explanation": "(1.645×0.15−0.08)×10m.", "remediation": "port-m6c"},
+    {"id": "port-q47", "question": "Buying insurance against a property loss is risk", "options": ["Avoidance", "Acceptance", "Transfer", "Prevention"], "correct": 2, "explanation": "Passing the risk to an insurer for a premium.", "remediation": "port-m6d"},
   ],
   ethics: [
     { id: "ethics-q1", question: "When a professional's interests conflict with a client's, whose interest should generally take priority?", options: ["The professional's", "The employer's", "The client's", "Whichever is most profitable"], correct: 2, explanation: "Client interests should generally take priority.", remediation: "ethics-3" },
