@@ -6386,7 +6386,7 @@ const CHAPTERS = [
       },
       {
         id: "ethics-2",
-        title: "Why ethics is weighted so heavily",
+        title: "Module 1 — Why ethics is weighted so heavily",
         body: [
           `Investment professionals are routinely trusted with other people's money, information, and financial futures. Because the potential for harm from misconduct is high, and because trust is the foundation the entire investment industry depends on, professional bodies place enormous emphasis on ethical conduct.`,
           `As a point of structure (not content — this is a factual description, not a substitute for reading the actual document): CFA Institute's Code of Ethics is organized around six broad components, and its Standards of Professional Conduct are organized into seven broad categories. This course intentionally does not reproduce that copyrighted material — the general principles below build the same underlying intuition in plain language, but the official Code and Standards remain the authoritative source for exam purposes.`,
@@ -6394,14 +6394,88 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "ethics-2b",
-        title: "GIPS: the Global Investment Performance Standards",
-        body: [`GIPS is a separate but related set of voluntary ethical standards, focused specifically on how investment firms calculate and present their performance track records to prospective clients — rather than on individual professional conduct, which is the focus of the Code and Standards covered elsewhere in this chapter. GIPS exists because performance figures are relatively easy to present in a misleadingly favorable light (for example, showcasing only a firm's best-performing accounts rather than its full, composite results) — firms that voluntarily comply with GIPS commit to consistent, comparable, and fully disclosed performance reporting, giving prospective clients a fairer basis for comparing one firm's track record against another's.`],
-        formulas: [],
+        "id": "eth-m1a",
+        "title": "Module 1 — Ethics, codes of ethics, professions and trust",
+        "body": [
+          "Ethics is the set of moral principles and values that guide decisions about right and wrong conduct; it goes beyond what is merely legal and asks what one ought to do. In investment management, ethics governs how professionals treat clients, employers, markets and colleagues, especially when no rule or supervisor is watching.",
+          "A profession is an occupation marked by specialized knowledge acquired through extended education and training, a commitment to serve clients and society ahead of self-interest, and a shared code of ethics backed by enforcement. Society grants professions a degree of autonomy and trust in exchange for these commitments (a kind of social contract). Credentials, licensing, continuing education and disciplinary processes are how a profession signals competence and makes its ethical commitment credible.",
+          "A code of ethics defines the profession: it states the shared values and minimum standards of behavior, tells members and the public what to expect, guides decisions in situations rules do not anticipate, and provides a basis for discipline. A profession that fails to police its own members loses public trust, and with it the right to self-regulate."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m1b",
+        "title": "Module 1 — The need for high ethical standards and professionalism in investment management",
+        "body": [
+          "Why investment management needs especially high standards: clients hand over money and confidential information they cannot easily monitor (information asymmetry and an agency relationship); the quality of advice is hard to judge in advance and results are noisy and slow to reveal; the stakes (retirement, college, pension security) are large; and the industry's function — channeling savings to productive uses — depends on trust. Scandals (fraud, misuse of insider information, mis-selling) damage clients and reduce participation in markets, raising the cost of capital for everyone.",
+          "Professionalism in investment management means: competence (knowledge, skill, and continuing development), integrity (honesty and consistency of words and actions), putting clients' interests first, respecting the law and the profession's standards, communicating accurately, and taking responsibility for one's own and one's subordinates' conduct. Ethical conduct also protects the individual: reputation is the main asset of an advisor."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m1c",
+        "title": "Module 1 — Challenges to ethical behavior (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Situational influences",
+            "detail": "Pressure from bosses, sales targets, compensation structures, and a culture of 'everyone does it' can overpower good intentions."
+          },
+          {
+            "item": "Overconfidence bias",
+            "detail": "Believing one would never do wrong, or that one's judgment is above question, weakens vigilance."
+          },
+          {
+            "item": "Conflicts of interest",
+            "detail": "Personal, employer and client interests diverge (commissions, bonuses, gifts, relationships)."
+          },
+          {
+            "item": "Short-term focus",
+            "detail": "Pressure to meet quarterly numbers or win mandates leads to cutting corners."
+          },
+          {
+            "item": "Rationalization / ethical fading",
+            "detail": "Small compromises are explained away ('no one is hurt', 'it's legal'), and the ethical dimension fades from view."
+          },
+          {
+            "item": "Weak culture / tone at the top",
+            "detail": "Leaders who reward results regardless of how they are achieved signal that ethics are optional."
+          },
+          {
+            "item": "Information asymmetry",
+            "detail": "Clients cannot easily detect wrongdoing, so the temptation is higher and self-policing matters more."
+          },
+          {
+            "item": "Defenses",
+            "detail": "Awareness of these pressures, clear policies, escalation paths, independent compliance, and incentives aligned with clients."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m1d",
+        "title": "Module 1 — Ethical standards versus legal standards",
+        "body": [
+          "Laws set the minimum acceptable conduct and are backed by the state; ethical standards go further and also cover conduct that may be legal but still wrong (for example, favoring a preferred client with research ahead of others where no law forbids it). Compliance with the law is necessary but not sufficient. Laws differ across countries and may be silent, slow to change, or weakly enforced; a professional code gives a common, higher floor.",
+          "When the law and the professional standards differ, a CFA Institute member or candidate follows the stricter of the two (and does not claim a legal permission as a defense for unethical conduct). If the law is stricter, follow the law; if the Code and Standards are stricter, follow them."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m1e",
+        "title": "Module 1 — A framework for ethical decision-making",
+        "body": [
+          "A structured process reduces errors under pressure. A commonly taught framework has four stages. (1) Identify: gather the relevant facts, name the stakeholders and the duties owed to each, find the ethical principles at stake, and spot any conflicts of interest. (2) Consider: weigh situational influences that may be clouding judgment, look at the situation from the point of view of each stakeholder, and consult guidance (the Code and Standards, firm policy, compliance, legal counsel). (3) Decide and act: develop alternative actions, evaluate each against the principles and the 'would I be comfortable if this were public?' test, choose the best, and carry it out — including escalation or disclosure. (4) Reflect: ask whether the outcome was as expected and what should change in policies or personal habits.",
+          "Useful tests: would the action be acceptable if disclosed to the client, the employer, a regulator or the press? Does it put the client's interests first? Is it consistent with the stricter of the law and the Code and Standards?"
+        ],
+        "formulas": []
       },
       {
         id: "ethics-3",
-        title: "General principles worth internalizing",
+        title: "Module 1 — General principles worth internalizing",
         body: [
           `While you should study the official Code and Standards directly, these broad, commonly recognized ethical principles are worth having as a mental framework:`,
           `Client interests come first. When a professional's own interests (or an employer's interests) conflict with a client's interests, the client's interests should take priority.`,
@@ -6415,8 +6489,533 @@ const CHAPTERS = [
         formulas: [],
       },
       {
+        "id": "eth-m2a",
+        "title": "Module 2 — The CFA Institute Professional Conduct Program and enforcement",
+        "body": [
+          "All CFA Institute members and candidates are bound by the Code of Ethics and Standards of Professional Conduct. The Professional Conduct Program (PCP) administers enforcement, overseen by the Professional Conduct staff and a volunteer Disciplinary Review Committee (DRC), under the CFA Institute Board of Governors.",
+          "How cases start: annual self-disclosure on the Professional Conduct Statement (members and candidates must report relevant matters such as investigations or complaints), written complaints from clients, employers, colleagues or the public, reports of exam misconduct (including candidate misconduct found during exams), and media or regulatory reports. The staff reviews the matter, may request an explanation, and may investigate (including with the help of a volunteer investigator).",
+          "Outcomes: dismissal; a cautionary letter (not a sanction, but a warning); or a proposed sanction, which the member or candidate may accept or contest before a panel. Sanctions include private or public censure, suspension of membership and the right to use the designation, revocation of the CFA charter, and, for candidates, suspension or removal from the CFA Program. Participation and cooperation are required.",
+          "Note: procedural details may change; the authoritative description is in the current CFA Institute Standards of Practice Handbook and Rules of Procedure."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m2b",
+        "title": "Module 2 — The six components of the Code of Ethics",
+        "body": [
+          "Members and candidates must (in summary): (1) act with integrity, competence, diligence, respect and in an ethical manner with the public, clients, prospective clients, employers, employees, colleagues in the profession and other market participants; (2) place the integrity of the investment profession and the interests of clients above their own personal interests; (3) use reasonable care and exercise independent professional judgment when conducting investment analysis, making recommendations, taking investment actions and engaging in other professional activities; (4) practice and encourage others to practice in a professional and ethical manner that will reflect credit on themselves and the profession; (5) promote the integrity and viability of the global capital markets for the ultimate benefit of society; (6) maintain and improve their professional competence and strive to maintain and improve the competence of other investment professionals.",
+          "This is a plain-language summary; read the official wording in the Standards of Practice Handbook, which is what the exam tests."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m2c",
+        "title": "Module 2 — The seven Standards and their sub-sections (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "I. Professionalism",
+            "detail": "A Knowledge of the law; B Independence and objectivity; C Misrepresentation; D Misconduct."
+          },
+          {
+            "item": "II. Integrity of Capital Markets",
+            "detail": "A Material nonpublic information; B Market manipulation."
+          },
+          {
+            "item": "III. Duties to Clients",
+            "detail": "A Loyalty, prudence and care; B Fair dealing; C Suitability; D Performance presentation; E Preservation of confidentiality."
+          },
+          {
+            "item": "IV. Duties to Employers",
+            "detail": "A Loyalty; B Additional compensation arrangements; C Responsibilities of supervisors."
+          },
+          {
+            "item": "V. Investment Analysis, Recommendations and Actions",
+            "detail": "A Diligence and reasonable basis; B Communication with clients and prospective clients; C Record retention."
+          },
+          {
+            "item": "VI. Conflicts of Interest",
+            "detail": "A Disclosure of conflicts; B Priority of transactions; C Referral fees."
+          },
+          {
+            "item": "VII. Responsibilities as a CFA Institute Member or CFA Candidate",
+            "detail": "A Conduct as participants in CFA Institute programs; B Reference to CFA Institute, the CFA designation and the CFA Program."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m3a",
+        "title": "Module 3 — Standard I(A): Knowledge of the law",
+        "body": [
+          "Members and candidates must understand and comply with all applicable laws, rules, regulations and the Code and Standards, and when these differ must follow the strictest. They must not knowingly participate or assist in violations by others, and should dissociate from violations (for example by ceasing to work on the matter and reporting to a supervisor or compliance). Reporting to authorities is not always required but is encouraged where appropriate. Practices: keep current on legal and regulatory developments, review firm policies, and escalate concerns. A member working across countries follows the stricter rule of the countries involved."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m3b",
+        "title": "Module 3 — Standard I(B): Independence and objectivity",
+        "body": [
+          "Maintain independence and objectivity in professional judgment so that analysis and recommendations are not compromised by pressure or inducements. Threats: gifts and entertainment from companies or clients (modest gifts may be acceptable if disclosed; avoid anything that could appear to buy a favorable view), pressure from clients or employers to reach a particular conclusion, investment banking and other business relationships with the covered company, issuer-paid research (should be clearly disclosed and, ideally, paid a flat fee unrelated to the conclusion), and reliance on rating agencies' conclusions without independent analysis. Best practices: protect research from pressure through reporting lines, use restricted lists, limit gifts by policy, and disclose compensation arrangements."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m3c",
+        "title": "Module 3 — Standard I(C): Misrepresentation",
+        "body": [
+          "Do not knowingly make misrepresentations about investment analysis, recommendations, actions, or other professional activities. This covers misstating qualifications or services, overstating past performance, guaranteeing returns, and plagiarism (using others' ideas, research, models, or work without attribution). Using the work of others is acceptable if properly credited, and recommending a third-party's research is acceptable if the member has made reasonable efforts to verify it. Do not misrepresent the work of the firm or its employees, or omit key facts that would make a statement misleading. Practice: keep documentation, give credit, review marketing materials for accuracy."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m3d",
+        "title": "Module 3 — Standard I(D): Misconduct",
+        "body": [
+          "Do not engage in any professional conduct involving dishonesty, fraud or deceit, or commit any act that reflects poorly on one's professional reputation, integrity or competence. It covers professional and some personal conduct that bears on honesty or fitness: fraud, theft, falsifying records, abusing a position, serious dishonesty in personal affairs. It is not a general rule against all private misconduct (for example, a purely personal bankruptcy is not by itself a violation, but misleading creditors or fraud would be). Firms should have policies and codes of conduct and encourage reporting."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m3e",
+        "title": "Module 3 — Standard I: conforming vs. violating conduct and recommended procedures (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Conforming: follow the stricter rule",
+            "detail": "Knows both the local law and the Code and Standards; applies whichever is stricter."
+          },
+          {
+            "item": "Violating: ignore a known violation",
+            "detail": "Continues to work on a deal after learning a colleague is breaking the law, without dissociating or escalating."
+          },
+          {
+            "item": "Conforming: credit sources",
+            "detail": "Cites the source of research, charts or models used in a report; verifies third-party work."
+          },
+          {
+            "item": "Violating: plagiarism",
+            "detail": "Copies another analyst's report or model and publishes it as one's own."
+          },
+          {
+            "item": "Violating: guarantee returns",
+            "detail": "Tells a client a portfolio 'will' earn a specific return."
+          },
+          {
+            "item": "Violating: undisclosed influences",
+            "detail": "Issues a favorable report after the company pays for entertainment, without disclosure."
+          },
+          {
+            "item": "Violating: fraud / dishonesty",
+            "detail": "Falsifies expense reports or records."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "Stay informed on law; adopt compliance procedures; document sources; use restricted lists; disclose gifts and compensation; report violations internally."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m4a",
+        "title": "Module 4 — Standard II(A): Material nonpublic information",
+        "body": [
+          "Members and candidates who possess material nonpublic information (MNPI) must not act or cause others to act on it. Information is material if its disclosure would likely affect the price of a security or if a reasonable investor would want it before deciding; it is nonpublic if it has not been disseminated widely to the marketplace (for example, information shared selectively with analysts is still nonpublic until made generally available). The test is not whether the member trades personally: acting includes recommending, trading for clients, or tipping others.",
+          "Mosaic theory: analysts may combine public information and immaterial nonpublic information into a conclusion that is itself material; this is not a violation because the conclusion comes from the analyst's work. Recommended procedures: firewalls (information barriers) between departments, restricted and watch lists, limiting access to MNPI to those who need to know, monitoring personal and proprietary trading, written compliance procedures, and escalation to compliance when MNPI is suspected. Do not use the information while awaiting official release; if the information was obtained from a company, notify compliance."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m4b",
+        "title": "Module 4 — Standard II(B): Market manipulation",
+        "body": [
+          "Do not engage in practices that distort prices or artificially inflate trading volume with the intent to mislead market participants. Two types: information-based manipulation (spreading rumors or false information to induce trades — for example, a pump-and-dump) and transaction-based manipulation (trading to create a false impression of price or activity, such as wash trades, or acquiring a dominant position to squeeze the market). Legitimate strategies, such as arbitrage or acquiring a large position for investment reasons without intent to mislead, are not violations; intent and effect matter. Procedures: compliance review of trading, policies on communications and social media, and care in how large orders are placed."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m4c",
+        "title": "Module 4 — Standard II: conforming vs. violating conduct and procedures (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Violating: trading on MNPI",
+            "detail": "Buying shares after learning from an insider that a takeover will be announced."
+          },
+          {
+            "item": "Violating: tipping",
+            "detail": "Passing the MNPI to a friend, who then trades."
+          },
+          {
+            "item": "Conforming: mosaic theory",
+            "detail": "Combining public data, channel checks and non-material comments to form a view."
+          },
+          {
+            "item": "Violating: spreading false rumors",
+            "detail": "Posting false claims about a company to move its price."
+          },
+          {
+            "item": "Violating: wash trades",
+            "detail": "Trading with oneself to create a false volume signal."
+          },
+          {
+            "item": "Conforming: legitimate hedging/arbitrage",
+            "detail": "Trades made for investment purposes without intent to mislead."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "Firewalls; restricted and watch lists; trading and communications monitoring; training."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m5a",
+        "title": "Module 5 — Standard III(A): Loyalty, prudence and care",
+        "body": [
+          "Members and candidates owe duties of loyalty, prudence and care to clients and must place client interests before their own and their employer's. Act as a prudent person would, and in the client's best interest, for the benefit of the client. Understand who the client is (an individual, a trust beneficiary, an institution, or a plan participant): for a trust the duty is to the beneficiaries. Other duties: follow client mandates and legal duties (fiduciary duty where applicable), vote proxies in a way that benefits the client, and use soft dollars (client brokerage commissions) only to obtain goods and services that benefit clients (research and execution), not the manager's overhead. Disclose conflicts and keep the client informed. Good practice: written policies on proxy voting, best execution and soft dollars."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m5b",
+        "title": "Module 5 — Standard III(B): Fair dealing",
+        "body": [
+          "Deal fairly and objectively with all clients when providing investment analysis, making recommendations, taking investment action, or conducting other professional activities. Fair does not mean equal results: it means no client is systematically favored. Investment recommendations: disseminate changes in recommendations to all clients at about the same time (no tipping off preferred clients first). Investment actions: allocate trades and IPO shares fairly (for example, pro rata with documented policies) — do not favor accounts that pay higher fees. Different levels of service are permitted if disclosed and available to all clients. Procedures: written allocation policies, limiting the number of people who know of a pending change, and trade allocation review."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m5c",
+        "title": "Module 5 — Standard III(C): Suitability",
+        "body": [
+          "When in an advisory relationship, make a reasonable inquiry into the client's investment experience, risk and return objectives, and constraints; update this information at least annually and when circumstances change; and make only recommendations or take only actions that are suitable given the client's circumstances and consistent with the IPS. Consider the total portfolio and the role of an investment within it (an investment may be unsuitable in isolation but suitable as a part of a diversified portfolio). When managing to a specific mandate (such as an index fund), follow the mandate. Procedures: written IPS, regular reviews, know-your-client documentation and consideration of risk tolerance (willingness and ability)."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m5d",
+        "title": "Module 5 — Standard III(D): Performance presentation",
+        "body": [
+          "Make reasonable efforts to ensure that investment performance is presented fairly, accurately and completely. Do not present misleading performance (for example, only showing the best accounts or time periods, excluding losing accounts, or mixing gross and net without clarity). Clearly state if returns are gross or net of fees, include a representative or composite record where relevant, and make sure that any claim of compliance with GIPS is truthful (claim compliance only if the firm actually complies with all requirements). Do not include misleading comparison benchmarks. Procedures: consistent calculation methods, documentation, and review of marketing materials."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m5e",
+        "title": "Module 5 — Standard III(E): Preservation of confidentiality",
+        "body": [
+          "Keep information about current, former and prospective clients confidential unless: (1) the information concerns illegal activities by the client, (2) disclosure is required by law (for example, by subpoena or regulator), or (3) the client or prospective client permits disclosure. The duty covers information obtained in the professional relationship regardless of whether it was formally marked confidential, and applies to electronic records and cybersecurity. Share only with those who need it to serve the client. Procedures: secure systems, need-to-know access, clear policies on communication and storage."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m5f",
+        "title": "Module 5 — Standard III: conforming vs. violating conduct and procedures (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Violating (A): ignores the client's interests",
+            "detail": "Executing trades mostly to generate commissions (churning) or using soft dollars for firm expenses."
+          },
+          {
+            "item": "Conforming (B): fair allocation",
+            "detail": "Allocates a limited IPO pro rata across eligible accounts under a written policy."
+          },
+          {
+            "item": "Violating (B): selective dissemination",
+            "detail": "Calls favored clients first with a rating change."
+          },
+          {
+            "item": "Violating (C): unsuitable",
+            "detail": "Places a retiree needing income entirely in a high-volatility, non-dividend growth stock."
+          },
+          {
+            "item": "Conforming (C): reviews IPS annually",
+            "detail": "Updates the client's objectives and constraints at least yearly."
+          },
+          {
+            "item": "Violating (D): misleading performance",
+            "detail": "Reports only the best composite of accounts or cherry-picks the period."
+          },
+          {
+            "item": "Violating (E): disclosing client information",
+            "detail": "Telling a friend about a client's holdings (not required by law, no permission)."
+          },
+          {
+            "item": "Conforming (E): legally required disclosure",
+            "detail": "Responding to a valid subpoena for client records."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "IPS for each client, written allocation and proxy policies, performance-calculation standards, secure data handling."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m6a",
+        "title": "Module 6 — Standard IV(A): Loyalty (to employers)",
+        "body": [
+          "In matters related to employment, act for the benefit of the employer and do not deprive it of the advantage of one's skills and abilities, divulge confidential information, or otherwise cause harm. Client loyalty still comes first when there is a conflict, and ethical duty overrides the employer's wishes (a member should not follow an instruction to violate the Code). Independent practice: do not compete with the employer or solicit its clients while employed without written consent. Leaving an employer: may plan, but may not solicit clients or use confidential records (client lists) or take property of the employer before leaving; after leaving, may use general knowledge and skills and may contact former clients if not prohibited by agreement. Whistleblowing: may be justified when it protects the integrity of the capital markets or the interests of clients, and may override loyalty to the employer. Nature of employment: independent contractors still owe duties as agreed. Procedures: written employment agreements, non-solicitation policies, and a clear whistleblowing channel."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m6b",
+        "title": "Module 6 — Standard IV(B): Additional compensation arrangements",
+        "body": [
+          "Do not accept gifts, benefits, compensation or consideration that competes with or might reasonably be expected to create a conflict with the employer's interests unless written consent is obtained from all parties involved. Examples: performance bonuses from a client (beyond the employer's fee), commissions from a third party, or paid outside consulting. Disclose the arrangement in writing to the employer and obtain consent. Procedures: written disclosure, policies on outside activities."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m6c",
+        "title": "Module 6 — Standard IV(C): Responsibilities of supervisors",
+        "body": [
+          "Supervisors must make reasonable efforts to ensure that anyone subject to their supervision complies with laws, rules and the Code and Standards. Responsibilities: understand the Code and Standards, have adequate compliance procedures and systems, delegate with care (and verify), act decisively on indications of violations (investigate, document, and escalate or discipline), and train staff. A supervisor can be responsible for subordinates' violations if the compliance system was inadequate or the signs were ignored. If the employer lacks adequate compliance procedures, the supervisor should decline to supervise until they are in place. Procedures: code of ethics, clear compliance policy and escalation, monitoring and discipline."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m6d",
+        "title": "Module 6 — Standard IV: conforming vs. violating conduct and procedures (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Violating (A): solicits employer's clients while still employed",
+            "detail": "Uses the employer's client list to set up a competing firm before resigning."
+          },
+          {
+            "item": "Conforming (A): preparing to leave",
+            "detail": "Plans a new business on personal time without using employer resources or soliciting clients."
+          },
+          {
+            "item": "Conforming (A): whistleblowing to protect markets",
+            "detail": "Reports illegal conduct to regulators when the employer fails to act."
+          },
+          {
+            "item": "Violating (B): undisclosed side payment",
+            "detail": "Accepts a bonus from a client for strong results without the employer's written consent."
+          },
+          {
+            "item": "Conforming (B): written consent",
+            "detail": "Discloses outside consulting and gets the employer's written agreement."
+          },
+          {
+            "item": "Violating (C): ignoring red flags",
+            "detail": "A supervisor ignores a subordinate's suspicious trading."
+          },
+          {
+            "item": "Conforming (C): reasonable supervision",
+            "detail": "Implements monitoring and acts promptly when a problem is found."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "Employment agreements, compliance manual, disclosure of outside activities, whistleblowing procedures, training."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m7a",
+        "title": "Module 7 — Standard V(A): Diligence and reasonable basis",
+        "body": [
+          "Exercise diligence, independence and thoroughness in analyzing investments, making recommendations and taking investment actions, and have a reasonable and adequate basis supported by appropriate research and investigation. A reasonable basis requires understanding the company, security, or strategy, using appropriate data, and being aware of the limits of the analysis. Specific cases: secondary and third-party research (make reasonable efforts to ensure it is sound), quantitative models (understand their assumptions and limits and test them, including their inputs), selecting external advisers or managers (due diligence on competence, process and conflicts), and group research (the member can rely on the group's work if the member believes it is reasonable; may dissociate if not). Procedures: a written research process, peer review, documented assumptions, and a process to respond to changing conditions."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m7b",
+        "title": "Module 7 — Standard V(B): Communication with clients and prospective clients",
+        "body": [
+          "Disclose to clients and prospective clients the basic format and general principles of the investment process and any changes that could materially affect it; identify in reports the important factors that were considered; use reasonable judgment about which factors to include; and distinguish clearly between fact and opinion. Report on limitations, risks and uncertainties of a recommendation, and do not overstate certainty. Communications must not mislead (for example, omitting important risks of a strategy). Procedures: standard communication templates, disclosure of process, labeling of assumptions and opinions."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m7c",
+        "title": "Module 7 — Standard V(C): Record retention",
+        "body": [
+          "Develop and maintain appropriate records to support investment analyses, recommendations, actions and other investment-related communications with clients and prospective clients (including electronic communications). Records are the property of the firm. A commonly recommended retention period is at least seven years (unless local law requires longer or the records are needed in a legal case). Records allow the firm to demonstrate the basis for decisions if challenged. Departing employees may not take originals; they may keep copies of their own work only with permission."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m7d",
+        "title": "Module 7 — Standard V: conforming vs. violating conduct and procedures (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Violating (A): no reasonable basis",
+            "detail": "Recommends a stock based only on a rumor or without reading company filings."
+          },
+          {
+            "item": "Violating (A): blind reliance",
+            "detail": "Uses a vendor's model without understanding its assumptions or limits."
+          },
+          {
+            "item": "Conforming (A): uses third-party research after review",
+            "detail": "Checks the source's assumptions and independence before relying on it."
+          },
+          {
+            "item": "Violating (B): overstating certainty",
+            "detail": "Tells clients a strategy is 'safe' without disclosing key risks."
+          },
+          {
+            "item": "Conforming (B): separates fact from opinion",
+            "detail": "Labels forecasts as opinions and discloses key assumptions and limits."
+          },
+          {
+            "item": "Violating (C): no records",
+            "detail": "Makes a recommendation but keeps nothing documenting the analysis."
+          },
+          {
+            "item": "Conforming (C): retains records",
+            "detail": "Keeps supporting documents and communications for at least seven years."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "Research standards, model validation, communication policies, formal record-retention policy."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m8a",
+        "title": "Module 8 — Standard VI(A): Disclosure of conflicts",
+        "body": [
+          "Make full and fair disclosure of all matters that could reasonably be expected to impair independence and objectivity or interfere with respective duties to clients, prospective clients and the employer, and ensure disclosures are prominent, delivered in plain language, and communicate the relevant information effectively. Typical conflicts: ownership of the securities being recommended, investment banking or other relationships between the firm and covered companies, compensation arrangements, board seats, relationships with brokers, and referral fees (see C). Disclosure to the employer should also cover personal investments or outside roles that could conflict. Procedures: a written conflicts policy, regular review, and clear disclosure at the time of recommendation."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m8b",
+        "title": "Module 8 — Standard VI(B): Priority of transactions",
+        "body": [
+          "Investment transactions for clients and employers must have priority over those in which the member or candidate is the beneficial owner; personal trades must not disadvantage clients or take advantage of client trades (no front-running: trading ahead of client orders). Compliance procedures: limit participation in IPOs and private placements, pre-clearance of personal trades, blackout (restricted) periods around client trades and research releases, reporting of personal holdings and transactions, and disclosure of holding policy to clients on request. Trades of family accounts in which the member has beneficial interest are covered."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m8c",
+        "title": "Module 8 — Standard VI(C): Referral fees",
+        "body": [
+          "Disclose to the employer, clients and prospective clients, as appropriate, any compensation, consideration or benefit received from or paid to others for the recommendation of products or services, so that they can evaluate the objectivity of the recommendation and the full cost of the service. Disclosure should be made before the recommendation or services and describe the nature of the consideration. Failing to disclose referral fees undermines the client's ability to assess the advice."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m8d",
+        "title": "Module 8 — Standard VI: conforming vs. violating conduct and procedures (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Violating (A): undisclosed ownership",
+            "detail": "Recommends a company's stock without disclosing she owns a large stake."
+          },
+          {
+            "item": "Conforming (A): prominent disclosure",
+            "detail": "Discloses the firm's investment banking relationship in the report in plain language."
+          },
+          {
+            "item": "Violating (B): front-running",
+            "detail": "Buys a stock for his personal account ahead of a large client purchase."
+          },
+          {
+            "item": "Conforming (B): pre-clearance",
+            "detail": "Obtains compliance approval for personal trades and avoids blackout periods."
+          },
+          {
+            "item": "Violating (C): hidden referral fee",
+            "detail": "Refers clients to a tax adviser for a fee, without telling clients."
+          },
+          {
+            "item": "Conforming (C): discloses before the referral",
+            "detail": "Tells clients about the fee arrangement before recommending the service."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "Conflict policy, personal trading policy, pre-clearance, holdings reports, restricted lists."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m9a",
+        "title": "Module 9 — Standard VII(A): Conduct as participants in CFA Institute programs",
+        "body": [
+          "Do not engage in any conduct that compromises the reputation or integrity of CFA Institute or the CFA designation or the integrity, validity, or security of CFA Institute programs. Violations include cheating on an exam, helping others to cheat, disclosing exam content or questions (during or after the exam, including to candidates preparing for later sittings), misusing confidential information about the program (for example, grading materials), or violating exam rules (bringing prohibited items). Permitted: providing feedback to CFA Institute about the program or the exam in general terms; sharing the topics covered, as long as specific content is not revealed; and publicly expressing opinions about the program. Candidates should also keep their registration information accurate."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m9b",
+        "title": "Module 9 — Standard VII(B): Reference to CFA Institute, the CFA designation and the CFA Program",
+        "body": [
+          "When referring to CFA Institute, its membership, the CFA designation or the CFA Program, do not misrepresent or exaggerate their meaning or implications, and do not imply that the designation guarantees superior investment performance or abilities. Only those who have earned the charter and remain in good standing may use the designation (for example, as CFA charterholder or after their name). Candidates may truthfully say they are candidates in the CFA Program while they are registered, but must not claim or imply they hold the designation, must not use CFA after their name, and should not describe passing a level as a credential (for example, do not say 'CFA Level I' as a title; saying that one has passed the Level I exam of the CFA Program is accurate). Statements about exam results must be factual and must not suggest superior ability. Use of CFA Institute logos and marks is restricted, and marketing materials should be reviewed for accuracy."
+        ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m9c",
+        "title": "Module 9 — Standard VII: conforming vs. violating conduct (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "Violating (A): sharing exam questions",
+            "detail": "Texts a friend who is sitting the exam later in the week about what was asked."
+          },
+          {
+            "item": "Conforming (A): general feedback",
+            "detail": "Tells CFA Institute that a topic was weighted too lightly in the curriculum."
+          },
+          {
+            "item": "Violating (B): claiming a designation",
+            "detail": "A candidate lists 'CFA' after their name on a business card."
+          },
+          {
+            "item": "Conforming (B): accurate statement",
+            "detail": "'Passed the Level I exam of the CFA Program' or 'CFA Program candidate' when accurate."
+          },
+          {
+            "item": "Violating (B): implying superiority",
+            "detail": "Marketing that says CFA charterholders earn better returns."
+          },
+          {
+            "item": "Recommended procedures",
+            "detail": "Know the exam rules, keep content confidential, use the designation only as permitted, review marketing materials."
+          }
+        ],
+        "formulas": []
+      },
+      {
         id: "ethics-4",
-        title: "A reasoning framework for ethics vignettes",
+        title: "Module 10 — A reasoning framework for ethics vignettes",
         body: [
           `Ethics questions are typically presented as short scenarios ("vignettes") describing a professional's specific situation, then ask what the professional should have done, or whether an action was appropriate. A useful approach:`,
           `First, identify who could be harmed or misled by the action described — a client, an employer, other market participants, or the integrity of the market itself.`,
@@ -6427,20 +7026,247 @@ const CHAPTERS = [
         formulas: [],
       },
       {
-        id: "ethics-5",
-        title: "Decision guide",
-        type: "decision-guide",
-        body: [`Match the vignette pattern to the likely issue.`],
-        decisionRows: [
-          { cue: "Recommending unsuitable products because they pay a higher commission", formula: "Client interests not prioritized / conflict of interest", section: "ethics-3" },
-          { cue: "Trading ahead of a big client order for personal benefit", formula: "Fair dealing / market integrity violation", section: "ethics-3" },
-          { cue: "Giving one client earlier access to research than another", formula: "Fair dealing violation", section: "ethics-3" },
-          { cue: "Accepting an undisclosed gift before issuing a report on that company", formula: "Undisclosed conflict of interest", section: "ethics-3" },
-          { cue: "Advising outside your actual area of expertise", formula: "Competence violation", section: "ethics-3" },
-          { cue: "Exaggerating past investment performance to attract clients", formula: "Integrity / misrepresentation violation", section: "ethics-3" },
-          { cue: "A firm showcasing only its best accounts, not its full track record", formula: "GIPS violation (performance presentation)", section: "ethics-2b" },
+        "id": "eth-m10b",
+        "title": "Module 10 — Evaluating practices, policies and conduct",
+        "body": [
+          "On the exam you are asked to evaluate whether a practice, policy or action conforms to the Code and Standards, and why. Method: (1) read the facts and identify the people involved and their roles; (2) decide which Standard applies (often more than one); (3) ask what duty is owed and to whom; (4) decide whether the action is permitted, prohibited, or permitted only with disclosure/consent; (5) check whether the firm's policy is adequate (compliance procedures, firewalls, pre-clearance, written policies); (6) choose the answer that best protects clients and the integrity of the market, and that follows the stricter of law and the Standards. Compliance procedures and policy design are as testable as individual conduct: be ready to recommend firewalls, restricted lists, written policies, disclosure and escalation.",
+          "Common patterns: (a) action permitted if disclosed, (b) action always wrong (MNPI, front-running, misrepresentation), (c) action required (report to supervisor/compliance, update IPS, keep records), (d) the best next step (dissociate, escalate, investigate). When two answers seem plausible, choose the more conservative, client-first one."
         ],
+        "formulas": []
+      },
+      {
+        "id": "eth-m10a",
+        "title": "Module 10 — Applying the Code and Standards: practice vignettes (reference)",
+        "body": [
+          "Reference table."
+        ],
+        "type": "reference",
+        "referenceRows": [
+          {
+            "item": "1. An analyst learns from a friend at a target that an acquisition will be announced tomorrow and buys shares.",
+            "detail": "Violates II(A): trading on MNPI. Should not act; notify compliance."
+          },
+          {
+            "item": "2. A portfolio manager buys a stock for himself minutes before executing a large client buy order.",
+            "detail": "Violates VI(B) (front-running) and III(A)."
+          },
+          {
+            "item": "3. A research analyst changes a rating and sends it first to the firm's largest client.",
+            "detail": "Violates III(B): fair dealing — disseminate changes to all clients at the same time."
+          },
+          {
+            "item": "4. A broker accepts a trip from a company before publishing a research report on it, without disclosure.",
+            "detail": "Violates I(B) and VI(A): independence/objectivity and conflict disclosure."
+          },
+          {
+            "item": "5. An adviser guarantees 8% annual returns.",
+            "detail": "Violates I(C): misrepresentation."
+          },
+          {
+            "item": "6. A manager reports only her best-performing accounts as the firm's track record.",
+            "detail": "Violates III(D): performance presentation."
+          },
+          {
+            "item": "7. An analyst copies a paragraph from another report without citation.",
+            "detail": "Violates I(C): plagiarism."
+          },
+          {
+            "item": "8. An employee, still employed, copies the client list to start a competing firm.",
+            "detail": "Violates IV(A): loyalty to the employer."
+          },
+          {
+            "item": "9. A supervisor ignores a subordinate's repeated late trading.",
+            "detail": "Violates IV(C): responsibilities of supervisors."
+          },
+          {
+            "item": "10. A planner puts a conservative retiree in a concentrated high-risk fund.",
+            "detail": "Violates III(C): suitability."
+          },
+          {
+            "item": "11. A candidate posts exam questions after the exam.",
+            "detail": "Violates VII(A): conduct as a participant."
+          },
+          {
+            "item": "12. A member receives a fee for referring clients to a lawyer and does not tell clients.",
+            "detail": "Violates VI(C): referral fees."
+          },
+          {
+            "item": "13. An analyst combines public filings and non-material comments from suppliers to reach a negative view.",
+            "detail": "Conforms: mosaic theory under II(A)."
+          },
+          {
+            "item": "14. A firm finds a subordinate's wash trades and reports and halts them.",
+            "detail": "Conforms: IV(C) and II(B)."
+          }
+        ],
+        "formulas": []
+      },
+      {
+        id: "ethics-2b",
+        title: "Related — GIPS: the Global Investment Performance Standards",
+        body: [`GIPS is a separate but related set of voluntary ethical standards, focused specifically on how investment firms calculate and present their performance track records to prospective clients — rather than on individual professional conduct, which is the focus of the Code and Standards covered elsewhere in this chapter. GIPS exists because performance figures are relatively easy to present in a misleadingly favorable light (for example, showcasing only a firm's best-performing accounts rather than its full, composite results) — firms that voluntarily comply with GIPS commit to consistent, comparable, and fully disclosed performance reporting, giving prospective clients a fairer basis for comparing one firm's track record against another's.`],
         formulas: [],
+      },
+      {
+        "id": "ethics-5",
+        "title": "Decision guide",
+        "type": "decision-guide",
+        "body": [
+          "Match the vignette pattern to the likely issue."
+        ],
+        "decisionRows": [
+          {
+            "cue": "Defining ethics, professions and trust; why standards matter",
+            "formula": "Ethics and professionalism",
+            "section": "eth-m1a"
+          },
+          {
+            "cue": "Pressure, overconfidence or culture pushing a bad decision",
+            "formula": "Challenges to ethical behavior",
+            "section": "eth-m1c"
+          },
+          {
+            "cue": "Law and Code differ",
+            "formula": "Follow the stricter",
+            "section": "eth-m1d"
+          },
+          {
+            "cue": "Structured way to reason about an ethical problem",
+            "formula": "Ethical decision-making framework",
+            "section": "eth-m1e"
+          },
+          {
+            "cue": "How are violations investigated and sanctioned?",
+            "formula": "Professional Conduct Program",
+            "section": "eth-m2a"
+          },
+          {
+            "cue": "List of the Standards and sub-sections",
+            "formula": "Seven Standards",
+            "section": "eth-m2c"
+          },
+          {
+            "cue": "Knowing and following the strictest rule; dissociating from violations",
+            "formula": "I(A) Knowledge of the law",
+            "section": "eth-m3a"
+          },
+          {
+            "cue": "Gifts, pressure or issuer-paid research affecting opinions",
+            "formula": "I(B) Independence and objectivity",
+            "section": "eth-m3b"
+          },
+          {
+            "cue": "Plagiarism, guarantees, false credentials",
+            "formula": "I(C) Misrepresentation",
+            "section": "eth-m3c"
+          },
+          {
+            "cue": "Fraud, deceit or conduct reflecting on integrity",
+            "formula": "I(D) Misconduct",
+            "section": "eth-m3d"
+          },
+          {
+            "cue": "Trading on or passing on material nonpublic information",
+            "formula": "II(A) MNPI",
+            "section": "eth-m4a"
+          },
+          {
+            "cue": "Rumors, wash trades or distorting prices",
+            "formula": "II(B) Market manipulation",
+            "section": "eth-m4b"
+          },
+          {
+            "cue": "Putting client interest first, soft dollars, proxies",
+            "formula": "III(A) Loyalty, prudence and care",
+            "section": "eth-m5a"
+          },
+          {
+            "cue": "One client getting research or trades before others",
+            "formula": "III(B) Fair dealing",
+            "section": "eth-m5b"
+          },
+          {
+            "cue": "Recommendation that doesn't fit the client's profile",
+            "formula": "III(C) Suitability",
+            "section": "eth-m5c"
+          },
+          {
+            "cue": "Cherry-picked track record",
+            "formula": "III(D) Performance presentation",
+            "section": "eth-m5d"
+          },
+          {
+            "cue": "Revealing client information",
+            "formula": "III(E) Confidentiality (exceptions: illegal, required by law, permission)",
+            "section": "eth-m5e"
+          },
+          {
+            "cue": "Soliciting clients or taking records before leaving",
+            "formula": "IV(A) Loyalty to employer",
+            "section": "eth-m6a"
+          },
+          {
+            "cue": "Side payments from clients or third parties",
+            "formula": "IV(B) Additional compensation (written consent)",
+            "section": "eth-m6b"
+          },
+          {
+            "cue": "Supervisor ignoring red flags",
+            "formula": "IV(C) Responsibilities of supervisors",
+            "section": "eth-m6c"
+          },
+          {
+            "cue": "Recommendation without research; blind reliance on a model",
+            "formula": "V(A) Diligence and reasonable basis",
+            "section": "eth-m7a"
+          },
+          {
+            "cue": "Misleading client communications; mixing fact and opinion",
+            "formula": "V(B) Communication",
+            "section": "eth-m7b"
+          },
+          {
+            "cue": "No documentation of the analysis",
+            "formula": "V(C) Record retention",
+            "section": "eth-m7c"
+          },
+          {
+            "cue": "Undisclosed ownership or banking relationship",
+            "formula": "VI(A) Disclosure of conflicts",
+            "section": "eth-m8a"
+          },
+          {
+            "cue": "Personal trades ahead of clients",
+            "formula": "VI(B) Priority of transactions",
+            "section": "eth-m8b"
+          },
+          {
+            "cue": "Fees for referrals",
+            "formula": "VI(C) Referral fees",
+            "section": "eth-m8c"
+          },
+          {
+            "cue": "Cheating, sharing exam content",
+            "formula": "VII(A) Conduct in CFA programs",
+            "section": "eth-m9a"
+          },
+          {
+            "cue": "Claiming the CFA designation or implying superior ability",
+            "formula": "VII(B) Reference to the designation",
+            "section": "eth-m9b"
+          },
+          {
+            "cue": "Misreporting performance in marketing",
+            "formula": "GIPS",
+            "section": "ethics-2b"
+          },
+          {
+            "cue": "Evaluating an action or policy on exam day",
+            "formula": "Vignette method",
+            "section": "eth-m10b"
+          }
+        ],
+        "formulas": []
       },
     ],
   },
@@ -6847,6 +7673,48 @@ const QUIZZES = {
     { id: "ethics-q7", question: "CFA Institute's Standards of Professional Conduct are organized into how many broad categories?", options: ["Five", "Six", "Seven", "Ten"], correct: 2, explanation: "The Standards of Professional Conduct are organized into seven broad categories.", remediation: "ethics-2" },
     { id: "ethics-q8", question: "GIPS primarily addresses which topic?", options: ["Individual professional conduct", "How investment firms calculate and present performance track records", "Corporate governance", "Bond credit ratings"], correct: 1, explanation: "GIPS is a voluntary standard specifically for consistent, comparable performance presentation.", remediation: "ethics-2b" },
     { id: "ethics-q9", question: "A firm showcasing only its best-performing accounts, rather than its full composite results, to a prospective client is a concern GIPS was created to address. This is best described as a", options: ["Fair dealing violation", "Misleading performance presentation", "Conflict of interest only", "Not a concern at all, since firms may present anything"], correct: 1, explanation: "GIPS exists precisely to prevent this kind of selective, misleadingly favorable performance presentation.", remediation: "ethics-2b" },
+    {"id": "eth-q10", "question": "A profession is best characterized by", "options": ["High pay and exclusivity", "Specialized knowledge, a commitment to serve society, and a code of ethics with enforcement", "Government ownership", "A fixed fee schedule"], "correct": 1, "explanation": "These traits justify society's trust.", "remediation": "eth-m1a"},
+    {"id": "eth-q11", "question": "A code of ethics primarily", "options": ["Guarantees returns", "Defines the profession's values and minimum standards of conduct", "Replaces law", "Sets fee levels"], "correct": 1, "explanation": "It guides members and signals trust.", "remediation": "eth-m1a"},
+    {"id": "eth-q12", "question": "Ethical standards in investment management must be especially high because", "options": ["Returns are guaranteed", "Clients cannot easily monitor the advice they receive and the stakes are large", "Laws are always strict", "There is no competition"], "correct": 1, "explanation": "Information asymmetry and agency relationships.", "remediation": "eth-m1b"},
+    {"id": "eth-q13", "question": "Which is a challenge to ethical behavior?", "options": ["Strong compliance", "Pressure from superiors and a culture of 'everyone does it'", "Independent oversight", "Transparent pay"], "correct": 1, "explanation": "Situational influences override good intentions.", "remediation": "eth-m1c"},
+    {"id": "eth-q14", "question": "Overconfidence bias contributes to unethical behavior by", "options": ["Increasing caution", "Making people think they would never do wrong", "Reducing conflicts", "Improving diligence"], "correct": 1, "explanation": "It weakens vigilance.", "remediation": "eth-m1c"},
+    {"id": "eth-q15", "question": "When the law and the Code and Standards differ, a member should", "options": ["Follow the law", "Follow the Code", "Follow the stricter", "Follow the employer"], "correct": 2, "explanation": "The stricter of the two governs.", "remediation": "eth-m1d"},
+    {"id": "eth-q16", "question": "Compliance with the law is", "options": ["Always sufficient", "Necessary but not sufficient for ethical conduct", "Irrelevant", "Required only for lawyers"], "correct": 1, "explanation": "Ethics go beyond legality.", "remediation": "eth-m1d"},
+    {"id": "eth-q17", "question": "In an ethical decision-making framework, the first step is to", "options": ["Act immediately", "Identify the facts, stakeholders, duties and conflicts", "Ignore the stakeholders", "Consult the press"], "correct": 1, "explanation": "Identify, consider, decide/act, reflect.", "remediation": "eth-m1e"},
+    {"id": "eth-q18", "question": "The CFA Institute body that oversees enforcement of the Code and Standards is the", "options": ["GIPS Executive Committee", "Professional Conduct Program", "Board of Examiners", "Financial Stability Board"], "correct": 1, "explanation": "PCP with the DRC.", "remediation": "eth-m2a"},
+    {"id": "eth-q19", "question": "Which is NOT a sanction available under the Professional Conduct Program?", "options": ["Public censure", "Suspension of membership", "Revocation of the charter", "Fine of a percentage of income"], "correct": 3, "explanation": "Sanctions: censure, suspension, revocation (candidates: suspension/removal).", "remediation": "eth-m2a"},
+    {"id": "eth-q20", "question": "The Code of Ethics has how many components, and the Standards how many?", "options": ["Seven and six", "Six components, seven Standards", "Five and ten", "Ten and six"], "correct": 1, "explanation": "Six components; seven Standards.", "remediation": "eth-m2b"},
+    {"id": "eth-q21", "question": "Which Standard covers fair dealing?", "options": ["I Professionalism", "III Duties to Clients", "V Investment Analysis", "VI Conflicts of Interest"], "correct": 1, "explanation": "III(B).", "remediation": "eth-m2c"},
+    {"id": "eth-q22", "question": "An analyst notices a colleague violating securities law. Under I(A) she should", "options": ["Join if profitable", "Dissociate from the activity and escalate it internally", "Ignore it", "Tell clients first"], "correct": 1, "explanation": "Do not knowingly participate; dissociate and report.", "remediation": "eth-m3a"},
+    {"id": "eth-q23", "question": "Accepting an expensive gift from a company before issuing a report on it most clearly implicates", "options": ["II(B)", "Standard I(B): independence and objectivity", "III(C)", "V(C)"], "correct": 1, "explanation": "Gifts compromise objectivity and require disclosure.", "remediation": "eth-m3b"},
+    {"id": "eth-q24", "question": "Using another analyst's work without credit violates", "options": ["I(A)", "I(C) Misrepresentation (plagiarism)", "IV(B)", "VI(C)"], "correct": 1, "explanation": "Plagiarism is misrepresentation.", "remediation": "eth-m3c"},
+    {"id": "eth-q25", "question": "Standard I(D) Misconduct covers", "options": ["Poor investment performance", "Dishonesty, fraud or deceit and conduct reflecting poorly on integrity", "Late filings only", "Personal bankruptcy alone"], "correct": 1, "explanation": "A personal bankruptcy alone is not a violation.", "remediation": "eth-m3d"},
+    {"id": "eth-q26", "question": "Information is 'material' if", "options": ["It is secret", "It would likely affect the price or a reasonable investor's decision", "It was reported in the media", "It is about management"], "correct": 1, "explanation": "Materiality test.", "remediation": "eth-m4a"},
+    {"id": "eth-q27", "question": "Under the mosaic theory, an analyst", "options": ["May trade on any nonpublic information", "May combine public and immaterial nonpublic information into a conclusion", "Cannot use any nonpublic information", "Must publish all inputs"], "correct": 1, "explanation": "The conclusion is analysis, not MNPI.", "remediation": "eth-m4a"},
+    {"id": "eth-q28", "question": "An information barrier between investment banking and research is a", "options": ["Soft dollar", "Firewall", "Referral fee", "Mosaic"], "correct": 1, "explanation": "Controls the flow of MNPI.", "remediation": "eth-m4a"},
+    {"id": "eth-q29", "question": "Spreading false rumors to move a stock price is", "options": ["Mosaic theory", "Market manipulation", "A permitted opinion", "Fair dealing"], "correct": 1, "explanation": "Information-based manipulation under II(B).", "remediation": "eth-m4b"},
+    {"id": "eth-q30", "question": "Using client brokerage (soft dollars) is acceptable if", "options": ["It reduces the manager's overhead", "It buys goods or services that benefit the client", "It is hidden", "It is arranged by the broker"], "correct": 1, "explanation": "III(A).", "remediation": "eth-m5a"},
+    {"id": "eth-q31", "question": "For a trust account, the manager's duty runs to", "options": ["The trustee only", "The beneficiaries", "The firm", "The custodian"], "correct": 1, "explanation": "Know who the client is.", "remediation": "eth-m5a"},
+    {"id": "eth-q32", "question": "Fair dealing requires that clients", "options": ["Receive equal results", "Not be systematically favored", "Pay the same fees", "Be informed first"], "correct": 1, "explanation": "Fair is not identical outcomes.", "remediation": "eth-m5b"},
+    {"id": "eth-q33", "question": "A manager allocating limited IPO shares should", "options": ["Favor high-fee clients", "Allocate fairly under a written policy, such as pro rata", "Allocate to the firm first", "Allocate by size"], "correct": 1, "explanation": "No favoritism.", "remediation": "eth-m5b"},
+    {"id": "eth-q34", "question": "A member must update a client's investment profile", "options": ["Never", "At least annually and when circumstances change", "Every five years", "Only on request"], "correct": 1, "explanation": "III(C).", "remediation": "eth-m5c"},
+    {"id": "eth-q35", "question": "Claiming GIPS compliance is allowed only if", "options": ["It meets some requirements", "The firm actually meets all GIPS requirements", "It is a small firm", "Clients ask for it"], "correct": 1, "explanation": "III(D).", "remediation": "eth-m5d"},
+    {"id": "eth-q36", "question": "Which is an exception to the duty of confidentiality?", "options": ["The client is a competitor", "The information concerns illegal activity", "The information is dull", "The firm requests it"], "correct": 1, "explanation": "Illegal activity, legal requirement, or client permission.", "remediation": "eth-m5e"},
+    {"id": "eth-q37", "question": "A departing employee may", "options": ["Take the client list", "Use general skills and knowledge but not take confidential client records", "Solicit clients before resigning", "Take all research"], "correct": 1, "explanation": "IV(A).", "remediation": "eth-m6a"},
+    {"id": "eth-q38", "question": "Accepting a bonus from a client on top of the employer's fee requires", "options": ["Nothing", "Written consent from the employer", "Verbal approval", "Notification after the fact"], "correct": 1, "explanation": "IV(B).", "remediation": "eth-m6b"},
+    {"id": "eth-q39", "question": "A supervisor who ignores red flags in a subordinate's trading may violate", "options": ["IV(B)", "IV(C) Responsibilities of supervisors", "VI(C)", "VII(A)"], "correct": 1, "explanation": "Reasonable supervision.", "remediation": "eth-m6c"},
+    {"id": "eth-q40", "question": "Under V(A), reliance on a quantitative model requires", "options": ["Trust in the vendor", "Understanding its assumptions and limitations", "A guarantee", "No testing"], "correct": 1, "explanation": "Diligence and reasonable basis.", "remediation": "eth-m7a"},
+    {"id": "eth-q41", "question": "Under V(B), reports should", "options": ["Mix fact and opinion", "Distinguish fact from opinion and disclose limitations and risks", "Omit risks", "Avoid process disclosure"], "correct": 1, "explanation": "Communication standard.", "remediation": "eth-m7b"},
+    {"id": "eth-q42", "question": "A commonly recommended minimum record retention period is", "options": ["One year", "Three years", "Seven years", "Ten years"], "correct": 2, "explanation": "V(C).", "remediation": "eth-m7c"},
+    {"id": "eth-q43", "question": "A manager owns a stock she recommends. She must", "options": ["Hide it", "Disclose the ownership", "Sell before recommending", "Do nothing"], "correct": 1, "explanation": "VI(A).", "remediation": "eth-m8a"},
+    {"id": "eth-q44", "question": "Buying shares personally ahead of a client's large order is", "options": ["Permitted", "Front-running, violating priority of transactions", "A referral fee", "Mosaic theory"], "correct": 1, "explanation": "Client transactions come first.", "remediation": "eth-m8b"},
+    {"id": "eth-q45", "question": "Which compliance measure addresses VI(B)?", "options": ["Referral policies", "Pre-clearance and blackout periods for personal trades", "Research templates", "Client surveys"], "correct": 1, "explanation": "Personal trading controls.", "remediation": "eth-m8b"},
+    {"id": "eth-q46", "question": "A referral fee must be disclosed to", "options": ["No one", "Clients and prospective clients and the employer", "Regulators only", "The press"], "correct": 1, "explanation": "VI(C).", "remediation": "eth-m8c"},
+    {"id": "eth-q47", "question": "Telling a friend about exam questions violates", "options": ["VII(B)", "VII(A)", "IV(B)", "VI(A)"], "correct": 1, "explanation": "Exam integrity.", "remediation": "eth-m9a"},
+    {"id": "eth-q48", "question": "A candidate in the CFA Program may", "options": ["Use CFA after their name", "Say they are a candidate but not claim the designation", "Say CFA Level I is a credential", "Claim superior ability"], "correct": 1, "explanation": "VII(B).", "remediation": "eth-m9b"},
+    {"id": "eth-q49", "question": "Marketing that says 'CFA charterholders earn better returns' is", "options": ["Allowed", "A misleading claim of superior ability", "Required", "A GIPS disclosure"], "correct": 1, "explanation": "VII(B).", "remediation": "eth-m9b"},
+    {"id": "eth-q50", "question": "A manager reports a performance record that omits losing accounts. This violates", "options": ["II(A)", "III(D)", "IV(B)", "VII(A)"], "correct": 1, "explanation": "Performance presentation.", "remediation": "eth-m10a"},
+    {"id": "eth-q51", "question": "When two answer choices both look reasonable on an ethics vignette, choose", "options": ["The cheapest option", "The more conservative, client-first option", "The legal minimum", "The one favoring the employer"], "correct": 1, "explanation": "Strongest protection of clients and markets.", "remediation": "eth-m10b"},
   ],
 };
 
